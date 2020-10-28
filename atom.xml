@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>西风の博客</title>
+  
+  
+  <link href="https://niehewang.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://niehewang.github.io/"/>
+  <updated>2020-10-27T13:09:49.086Z</updated>
+  <id>https://niehewang.github.io/</id>
+  
+  <author>
+    <name>nhw</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jQuery简述</title>
+    <link href="https://niehewang.github.io/2020/10/27/jquery-jian-shu/"/>
+    <id>https://niehewang.github.io/2020/10/27/jquery-jian-shu/</id>
+    <published>2020-10-27T12:18:02.000Z</published>
+    <updated>2020-10-27T13:09:49.086Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;jQuery简述&lt;/font&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;什么是jQuery&quot;&gt;&lt;a href=&quot;#什么是jQuery&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="jQuery" scheme="https://niehewang.github.io/categories/jQuery/"/>
+    
+    
+    <category term="jQuery" scheme="https://niehewang.github.io/tags/jQuery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python函数</title>
+    <link href="https://niehewang.github.io/2020/10/26/python-han-shu/"/>
+    <id>https://niehewang.github.io/2020/10/26/python-han-shu/</id>
+    <published>2020-10-26T07:32:02.000Z</published>
+    <updated>2020-10-26T09:12:19.909Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python函数&lt;/font&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;调用函数&quot;&gt;&lt;a href=&quot;#调用函数&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="https://niehewang.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://niehewang.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python基础</title>
+    <link href="https://niehewang.github.io/2020/10/26/python-ji-chu/"/>
+    <id>https://niehewang.github.io/2020/10/26/python-ji-chu/</id>
+    <published>2020-10-26T01:34:02.000Z</published>
+    <updated>2020-10-26T03:57:48.515Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python基础&lt;/font&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h2&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="https://niehewang.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://niehewang.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript函数</title>
+    <link href="https://niehewang.github.io/2020/10/22/javascript-han-shu/"/>
+    <id>https://niehewang.github.io/2020/10/22/javascript-han-shu/</id>
+    <published>2020-10-22T07:14:02.000Z</published>
+    <updated>2020-10-25T13:43:59.490Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;JavaScript函数&lt;/font&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;函数定义&quot;&gt;&lt;a href=&quot;#函数定义&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaScript" scheme="https://niehewang.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://niehewang.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript简述</title>
+    <link href="https://niehewang.github.io/2020/10/20/javascript/"/>
+    <id>https://niehewang.github.io/2020/10/20/javascript/</id>
+    <published>2020-10-20T14:24:02.000Z</published>
+    <updated>2020-10-23T08:08:49.697Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;JavaScript简述&lt;/font&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;JavaScript历史&quot;&gt;&lt;a href=&quot;#JavaScript历史&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaScript" scheme="https://niehewang.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://niehewang.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS简述</title>
+    <link href="https://niehewang.github.io/2020/10/15/css/"/>
+    <id>https://niehewang.github.io/2020/10/15/css/</id>
+    <published>2020-10-15T14:24:02.000Z</published>
+    <updated>2020-10-21T03:26:50.726Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;css简述&lt;/font&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;什么是CSS&quot;&gt;&lt;a href=&quot;#什么是CSS&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="CSS" scheme="https://niehewang.github.io/categories/CSS/"/>
+    
+    
+    <category term="CSS" scheme="https://niehewang.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+</feed>

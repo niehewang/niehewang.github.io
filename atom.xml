@@ -6,7 +6,7 @@
   <link href="https://niehewang.github.io/atom.xml" rel="self"/>
   
   <link href="https://niehewang.github.io/"/>
-  <updated>2020-10-29T03:17:20.788Z</updated>
+  <updated>2020-10-29T09:09:59.315Z</updated>
   <id>https://niehewang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python特性</title>
+    <link href="https://niehewang.github.io/2020/10/29/python-te-xing/"/>
+    <id>https://niehewang.github.io/2020/10/29/python-te-xing/</id>
+    <published>2020-10-29T07:14:02.000Z</published>
+    <updated>2020-10-29T09:09:59.315Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python特性&lt;/font&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;切片&quot;&gt;&lt;a href=&quot;#切片&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="https://niehewang.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://niehewang.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>jQuery简述</title>
@@ -85,33 +112,6 @@
     <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python基础&lt;/font&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h2&gt;&lt;h3</summary>
-        
-      
-    
-    
-    
-    <category term="Python" scheme="https://niehewang.github.io/categories/Python/"/>
-    
-    
-    <category term="Python" scheme="https://niehewang.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python特性</title>
-    <link href="https://niehewang.github.io/2020/10/22/python-te-xing/"/>
-    <id>https://niehewang.github.io/2020/10/22/python-te-xing/</id>
-    <published>2020-10-22T07:14:02.000Z</published>
-    <updated>2020-10-29T09:06:38.332Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python特性&lt;/font&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;切片&quot;&gt;&lt;a href=&quot;#切片&quot; class=&quot;headerlink&quot;</summary>
         
       
     

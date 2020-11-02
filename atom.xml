@@ -6,7 +6,7 @@
   <link href="https://niehewang.github.io/atom.xml" rel="self"/>
   
   <link href="https://niehewang.github.io/"/>
-  <updated>2020-10-29T09:09:59.315Z</updated>
+  <updated>2020-11-02T05:38:08.636Z</updated>
   <id>https://niehewang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gabor滤波器</title>
+    <link href="https://niehewang.github.io/2020/11/02/gabor-lu-bo-qi/"/>
+    <id>https://niehewang.github.io/2020/11/02/gabor-lu-bo-qi/</id>
+    <published>2020-11-02T00:24:02.000Z</published>
+    <updated>2020-11-02T05:38:08.636Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Gabor滤波器&lt;/font&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;Gabor-Filter&quot;&gt;&lt;a href=&quot;#Gabor-Filter&quot; class=&quot;headerlink&quot; title=&quot;Gabor</summary>
+        
+      
+    
+    
+    
+    <category term="图像处理" scheme="https://niehewang.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+    
+    <category term="图像处理" scheme="https://niehewang.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>Python特性</title>
@@ -183,7 +210,7 @@
     <link href="https://niehewang.github.io/2020/10/15/css/"/>
     <id>https://niehewang.github.io/2020/10/15/css/</id>
     <published>2020-10-15T14:24:02.000Z</published>
-    <updated>2020-10-29T03:16:49.276Z</updated>
+    <updated>2020-11-01T12:28:04.044Z</updated>
     
     
       

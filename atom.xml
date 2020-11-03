@@ -6,7 +6,7 @@
   <link href="https://niehewang.github.io/atom.xml" rel="self"/>
   
   <link href="https://niehewang.github.io/"/>
-  <updated>2020-11-02T06:24:20.606Z</updated>
+  <updated>2020-11-03T03:20:29.722Z</updated>
   <id>https://niehewang.github.io/</id>
   
   <author>
@@ -21,16 +21,17 @@
     <link href="https://niehewang.github.io/2020/11/02/gabor-lu-bo-qi/"/>
     <id>https://niehewang.github.io/2020/11/02/gabor-lu-bo-qi/</id>
     <published>2020-11-02T00:24:02.000Z</published>
-    <updated>2020-11-02T06:24:20.606Z</updated>
+    <updated>2020-11-03T03:20:29.722Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Gabor滤波器&lt;/font&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;Gabor-Filter&quot;&gt;&lt;a href=&quot;#Gabor-Filter&quot; class=&quot;headerlink&quot; title=&quot;Gabor</summary>
+    <summary type="html">&lt;div data-align=&quot;center&quot;&gt;
+&lt;font size=&#39;70&#39;&gt;Gabor滤波器&lt;/font&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;gabor-filter&quot;&gt;Gabor</summary>
         
       
     
@@ -55,9 +56,10 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python特性&lt;/font&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;切片&quot;&gt;&lt;a href=&quot;#切片&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;div data-align=&quot;center&quot;&gt;
+&lt;font size=&#39;70&#39;&gt;Python特性&lt;/font&gt;
+&lt;/div&gt;
+&lt;h2</summary>
         
       
     
@@ -82,9 +84,11 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;jQuery简述&lt;/font&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;什么是jQuery&quot;&gt;&lt;a href=&quot;#什么是jQuery&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;div data-align=&quot;center&quot;&gt;
+&lt;font size=&#39;70&#39;&gt;jQuery简述&lt;/font&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;什么是jquery&quot;&gt;什么是jQuery&lt;/h2&gt;
+&lt;ol</summary>
         
       
     
@@ -109,9 +113,10 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python函数&lt;/font&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;调用函数&quot;&gt;&lt;a href=&quot;#调用函数&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;div data-align=&quot;center&quot;&gt;
+&lt;font size=&#39;70&#39;&gt;Python函数&lt;/font&gt;
+&lt;/div&gt;
+&lt;h2</summary>
         
       
     
@@ -136,9 +141,11 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python基础&lt;/font&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h2&gt;&lt;h3</summary>
+    <summary type="html">&lt;div data-align=&quot;center&quot;&gt;
+&lt;font size=&#39;70&#39;&gt;Python基础&lt;/font&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;数据类型&quot;&gt;数据类型&lt;/h2&gt;
+&lt;h3</summary>
         
       
     
@@ -163,9 +170,12 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;JavaScript函数&lt;/font&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;函数定义&quot;&gt;&lt;a href=&quot;#函数定义&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;div data-align=&quot;center&quot;&gt;
+&lt;font size=&#39;70&#39;&gt;JavaScript函数&lt;/font&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;函数定义&quot;&gt;函数定义&lt;/h2&gt;
+&lt;p&gt;  在JavaScript中，定义函数的方式如下：&lt;/p&gt;
+&lt;div</summary>
         
       
     
@@ -190,9 +200,11 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;JavaScript简述&lt;/font&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;JavaScript历史&quot;&gt;&lt;a href=&quot;#JavaScript历史&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;div data-align=&quot;center&quot;&gt;
+&lt;font size=&#39;70&#39;&gt;JavaScript简述&lt;/font&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;javascript历史&quot;&gt;JavaScript历史&lt;/h2&gt;
+&lt;p&gt;  1995年Brendan</summary>
         
       
     
@@ -217,9 +229,12 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;css简述&lt;/font&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;什么是CSS&quot;&gt;&lt;a href=&quot;#什么是CSS&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;div data-align=&quot;center&quot;&gt;
+&lt;font size=&#39;70&#39;&gt;css简述&lt;/font&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;什么是css&quot;&gt;什么是CSS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;CSS指层叠样式表（Cascading Style</summary>
         
       
     

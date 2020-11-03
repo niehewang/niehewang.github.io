@@ -543,140 +543,145 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div data-align="center">
-<font size='70'>Python函数</font>
-</div>
-<h2 id="调用函数">调用函数</h2>
-<p>  Python内置了很多有用的函数，我们可以直接调用。要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数<code>abs</code>，只有一个参数。可以直接从Python的官方网站查看文档：<code>http://docs.python.org/3/library/functions.html#abs</code>也可以在交互式命令行通过<code>help(abs)</code>查看<code>abs</code>函数的帮助信息。调用<code>abs</code>函数：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="bu">abs</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="dv">100</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="bu">abs</span>(<span class="op">-</span><span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dv">20</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span> <span class="bu">abs</span>(<span class="fl">12.34</span>)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="fl">12.34</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="op">&gt;&gt;&gt;</span> <span class="bu">max</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="dv">2</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="op">&gt;&gt;&gt;</span> <span class="bu">max</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">-5</span>)</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="dv">3</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="op">&gt;&gt;&gt;</span> <span class="bu">int</span>(<span class="st">&#39;123&#39;</span>)</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="dv">123</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="op">&gt;&gt;&gt;</span> <span class="bu">int</span>(<span class="fl">12.34</span>)</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="dv">12</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="op">&gt;&gt;&gt;</span> <span class="bu">float</span>(<span class="st">&#39;12.34&#39;</span>)</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="fl">12.34</span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="op">&gt;&gt;&gt;</span> <span class="bu">str</span>(<span class="fl">1.23</span>)</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">&#39;1.23&#39;</span></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="op">&gt;&gt;&gt;</span> <span class="bu">str</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="co">&#39;100&#39;</span></a>
-<a class="sourceLine" id="cb1-23" data-line-number="23"><span class="op">&gt;&gt;&gt;</span> <span class="bu">bool</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="va">True</span></a>
-<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="op">&gt;&gt;&gt;</span> <span class="bu">bool</span>(<span class="st">&#39;&#39;</span>)</a>
-<a class="sourceLine" id="cb1-26" data-line-number="26"><span class="va">False</span></a></code></pre></div>
-<p>  函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个“别名”：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> a <span class="op">=</span> <span class="bu">abs</span> <span class="co"># 变量a指向abs函数</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> a(<span class="op">-</span><span class="dv">1</span>) <span class="co"># 所以也可以通过a调用abs函数</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="dv">1</span></a></code></pre></div>
-<h2 id="定义函数">定义函数</h2>
-<p>  在Python中，定义一个函数要使用<code>def</code>语句，依次写出函数名、括号、括号中的参数和冒号<code>:</code>，然后，在缩进块中编写函数体，函数的返回值用<code>return</code>语句返回。我们以自定义一个求绝对值的<code>my_abs</code>函数为例：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">def</span> my_abs(x):</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">0</span>:</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">        <span class="cf">return</span> x</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="cf">else</span>:</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">        <span class="cf">return</span> <span class="op">-</span>x</a></code></pre></div>
-<h3 id="空函数">空函数</h3>
-<p>  如果想定义一个什么事也不做的空函数，可以用<code>pass</code>语句：</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">def</span> nop():</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="cf">pass</span></a></code></pre></div>
-<p>  <code>pass</code>语句什么都不做，那有什么用？实际上<code>pass</code>可以用来作为占位符，比如现在还没想好怎么写函数的代码，就可以先放一个<code>pass</code>，让代码能运行起来。</p>
-<h2 id="函数参数">函数参数</h2>
-<p>  Python的函数定义非常简单，但灵活度却非常大。除了正常定义的必选参数外，还可以使用默认参数、可变参数和关键字参数，使得函数定义出来的接口，不但能处理复杂的参数，还可以简化调用者的代码。 ### 位置参数</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">def</span> power(x):</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">    <span class="cf">return</span> x <span class="op">*</span> x</a></code></pre></div>
-<p>  对于<code>power(x)</code>函数，参数x就是一个位置参数。现在，如果我们要计算<code>x3</code>怎么办？可以再定义一个<code>power3</code>函数，但是如果要计算<code>x4、x5……</code>怎么办？我们不可能定义无限多个函数。你也许想到了，可以把<code>power(x)</code>修改为<code>power(x, n)</code>，用来计算<code>xn</code>，说干就干：</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">def</span> power(x, n):</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">    s <span class="op">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">        n <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">        s <span class="op">=</span> s <span class="op">*</span> x</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">    <span class="cf">return</span> s</a></code></pre></div>
-<h3 id="默认参数">默认参数</h3>
-<p>  新的<code>power(x, n)</code>函数定义没有问题，但是，旧的调用代码失败了，原因是我们增加了一个参数，导致旧的代码因为缺少一个参数而无法正常调用。这个时候，默认参数就排上用场了。由于我们经常计算x2，所以，完全可以把第二个参数n的默认值设定为2：</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">def</span> power(x, n<span class="op">=</span><span class="dv">2</span>):</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">    s <span class="op">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">        n <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">        s <span class="op">=</span> s <span class="op">*</span> x</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="cf">return</span> s</a></code></pre></div>
-<p>  注：必选参数在前，默认参数在后，否则Python的解释器会报错。当函数有多个参数时，把变化大的参数放前面，变化小的参数放后面。变化小的参数就可以作为默认参数。 定义默认参数要牢记一点：默认参数必须指向不变对象！</p>
-<h3 id="可变参数">可变参数</h3>
-<p>  在Python函数中，还可以定义可变参数。顾名思义，可变参数就是传入的参数个数是可变的，可以是1个、2个到任意个，还可以是0个。</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">def</span> calc(<span class="op">*</span>numbers):</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">    <span class="cf">for</span> n <span class="kw">in</span> numbers:</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">        <span class="bu">sum</span> <span class="op">=</span> <span class="bu">sum</span> <span class="op">+</span> n <span class="op">*</span> n</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">    <span class="cf">return</span> <span class="bu">sum</span></a></code></pre></div>
-<p>  定义可变参数和定义一个<code>list</code>或<code>tuple</code>参数相比，仅仅在参数前面加了一个<code>*</code>号。在函数内部，参数<code>numbers</code>接收到的是一个<code>tuple</code>，因此，函数代码完全不变。但是，调用该函数时，可以传入任意个参数，包括0个参数：</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> calc(<span class="dv">1</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="dv">5</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="op">&gt;&gt;&gt;</span> calc()</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="dv">0</span></a></code></pre></div>
-<p>  如果已经有一个<code>list</code>或者<code>tuple</code>，要调用一个可变参数怎么办？可以这样做：</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> nums <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> calc(<span class="op">*</span>nums)</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="dv">14</span></a></code></pre></div>
-<h3 id="关键字参数">关键字参数</h3>
-<p>  关键字参数有什么用？它可以扩展函数的功能。比如，在<code>person</code>函数里，我们保证能接收到<code>name</code>和<code>age</code>这两个参数，但是，如果调用者愿意提供更多的参数，我们也能收到。试想你正在做一个用户注册的功能，除了用户名和年龄是必填项外，其他都是可选项，利用关键字参数来定义这个函数就能满足注册的需求。和可变参数类似，也可以先组装出一个<code>dict</code>，然后，把该<code>dict</code>转换为关键字参数传进去：</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> extra <span class="op">=</span> {<span class="st">&#39;city&#39;</span>: <span class="st">&#39;Beijing&#39;</span>, <span class="st">&#39;job&#39;</span>: <span class="st">&#39;Engineer&#39;</span>}</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> person(<span class="st">&#39;Jack&#39;</span>, <span class="dv">24</span>, city<span class="op">=</span>extra[<span class="st">&#39;city&#39;</span>], job<span class="op">=</span>extra[<span class="st">&#39;job&#39;</span>])</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">name: Jack age: <span class="dv">24</span> other: {<span class="st">&#39;city&#39;</span>: <span class="st">&#39;Beijing&#39;</span>, <span class="st">&#39;job&#39;</span>: <span class="st">&#39;Engineer&#39;</span>}</a></code></pre></div>
-<h3 id="命名关键字参数">命名关键字参数</h3>
-<p>  如果要限制关键字参数的名字，就可以用命名关键字参数，例如，只接收<code>city</code>和<code>job</code>作为关键字参数。这种方式定义的函数如下：</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">def</span> person(name, age, <span class="op">*</span>, city, job):</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="bu">print</span>(name, age, city, job)</a></code></pre></div>
-<p>  和关键字参数<code>**kw</code>不同，命名关键字参数需要一个特殊分隔符<code>*</code>，<code>*</code>后面的参数被视为命名关键字参数。调用方式如下：</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> person(<span class="st">&#39;Jack&#39;</span>, <span class="dv">24</span>, city<span class="op">=</span><span class="st">&#39;Beijing&#39;</span>, job<span class="op">=</span><span class="st">&#39;Engineer&#39;</span>)</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">Jack <span class="dv">24</span> Beijing Engineer</a></code></pre></div>
-<h3 id="参数组合">参数组合</h3>
-<p>  在Python中定义函数，可以用必选参数、默认参数、可变参数、关键字参数和命名关键字参数，这5种参数都可以组合使用。但是请注意，参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。比如定义一个函数，包含上述若干种参数：</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">def</span> f1(a, b, c<span class="op">=</span><span class="dv">0</span>, <span class="op">*</span>args, <span class="op">**</span>kw):</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">    <span class="bu">print</span>(<span class="st">&#39;a =&#39;</span>, a, <span class="st">&#39;b =&#39;</span>, b, <span class="st">&#39;c =&#39;</span>, c, <span class="st">&#39;args =&#39;</span>, args, <span class="st">&#39;kw =&#39;</span>, kw)</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">def</span> f2(a, b, c<span class="op">=</span><span class="dv">0</span>, <span class="op">*</span>, d, <span class="op">**</span>kw):</a>
-<a class="sourceLine" id="cb14-6" data-line-number="6">    <span class="bu">print</span>(<span class="st">&#39;a =&#39;</span>, a, <span class="st">&#39;b =&#39;</span>, b, <span class="st">&#39;c =&#39;</span>, c, <span class="st">&#39;d =&#39;</span>, d, <span class="st">&#39;kw =&#39;</span>, kw)</a></code></pre></div>
-<p>  在函数调用的时候，Python解释器自动按照参数位置和参数名把对应的参数传进去。</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> f1(<span class="dv">1</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">a <span class="op">=</span> <span class="dv">1</span> b <span class="op">=</span> <span class="dv">2</span> c <span class="op">=</span> <span class="dv">0</span> args <span class="op">=</span> () kw <span class="op">=</span> {}</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="op">&gt;&gt;&gt;</span> f1(<span class="dv">1</span>, <span class="dv">2</span>, c<span class="op">=</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">a <span class="op">=</span> <span class="dv">1</span> b <span class="op">=</span> <span class="dv">2</span> c <span class="op">=</span> <span class="dv">3</span> args <span class="op">=</span> () kw <span class="op">=</span> {}</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> f1(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>)</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7">a <span class="op">=</span> <span class="dv">1</span> b <span class="op">=</span> <span class="dv">2</span> c <span class="op">=</span> <span class="dv">3</span> args <span class="op">=</span> (<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>) kw <span class="op">=</span> {}</a>
-<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="op">&gt;&gt;&gt;</span> f1(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, x<span class="op">=</span><span class="dv">99</span>)</a>
-<a class="sourceLine" id="cb15-9" data-line-number="9">a <span class="op">=</span> <span class="dv">1</span> b <span class="op">=</span> <span class="dv">2</span> c <span class="op">=</span> <span class="dv">3</span> args <span class="op">=</span> (<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>) kw <span class="op">=</span> {<span class="st">&#39;x&#39;</span>: <span class="dv">99</span>}</a>
-<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="op">&gt;&gt;&gt;</span> f2(<span class="dv">1</span>, <span class="dv">2</span>, d<span class="op">=</span><span class="dv">99</span>, ext<span class="op">=</span><span class="va">None</span>)</a>
-<a class="sourceLine" id="cb15-11" data-line-number="11">a <span class="op">=</span> <span class="dv">1</span> b <span class="op">=</span> <span class="dv">2</span> c <span class="op">=</span> <span class="dv">0</span> d <span class="op">=</span> <span class="dv">99</span> kw <span class="op">=</span> {<span class="st">&#39;ext&#39;</span>: <span class="va">None</span>}</a></code></pre></div>
-<h2 id="递归函数">递归函数</h2>
-<p>  在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。举个例子，我们来计算阶乘<code>n! = 1 x 2 x 3 x ... x n</code>，用函数<code>fact(n)</code>表示:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">def</span> fact(n):</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">    <span class="cf">if</span> n<span class="op">==</span><span class="dv">1</span>:</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">        <span class="cf">return</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">    <span class="cf">return</span> n <span class="op">*</span> fact(n <span class="op">-</span> <span class="dv">1</span>)</a></code></pre></div>
-<p>  使用递归函数需要注意防止栈溢出。在计算机中，函数调用是通过栈（<code>stack</code>）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。</p>
+                <div align='center' ><font size='70'>Python函数</font></div>
+
+<h2 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h2><p>&emsp;&emsp;Python内置了很多有用的函数，我们可以直接调用。要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数<code>abs</code>，只有一个参数。可以直接从Python的官方网站查看文档：<code>http://docs.python.org/3/library/functions.html#abs</code>也可以在交互式命令行通过<code>help(abs)</code>查看<code>abs</code>函数的帮助信息。调用<code>abs</code>函数：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> abs(100)
+100
+>>> abs(-20)
+20
+>>> abs(12.34)
+12.34
+
+>>> max(1, 2)
+2
+>>> max(2, 3, 1, -5)
+3
+
+>>> int('123')
+123
+>>> int(12.34)
+12
+>>> float('12.34')
+12.34
+>>> str(1.23)
+'1.23'
+>>> str(100)
+'100'
+>>> bool(1)
+True
+>>> bool('')
+False
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个“别名”：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> a = abs # 变量a指向abs函数
+>>> a(-1) # 所以也可以通过a调用abs函数
+1
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><p>&emsp;&emsp;在Python中，定义一个函数要使用<code>def</code>语句，依次写出函数名、括号、括号中的参数和冒号<code>:</code>，然后，在缩进块中编写函数体，函数的返回值用<code>return</code>语句返回。我们以自定义一个求绝对值的<code>my_abs</code>函数为例：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+def my_abs(x):
+    if x >= 0:
+        return x
+    else:
+        return -x
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="空函数"><a href="#空函数" class="headerlink" title="空函数"></a>空函数</h3><p>&emsp;&emsp;如果想定义一个什么事也不做的空函数，可以用<code>pass</code>语句：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+def nop():
+    pass
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;<code>pass</code>语句什么都不做，那有什么用？实际上<code>pass</code>可以用来作为占位符，比如现在还没想好怎么写函数的代码，就可以先放一个<code>pass</code>，让代码能运行起来。</p>
+<h2 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h2><p>&emsp;&emsp;Python的函数定义非常简单，但灵活度却非常大。除了正常定义的必选参数外，还可以使用默认参数、可变参数和关键字参数，使得函数定义出来的接口，不但能处理复杂的参数，还可以简化调用者的代码。</p>
+<h3 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h3><pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+def power(x):
+    return x * x
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;对于<code>power(x)</code>函数，参数x就是一个位置参数。现在，如果我们要计算<code>x3</code>怎么办？可以再定义一个<code>power3</code>函数，但是如果要计算<code>x4、x5……</code>怎么办？我们不可能定义无限多个函数。你也许想到了，可以把<code>power(x)</code>修改为<code>power(x, n)</code>，用来计算<code>xn</code>，说干就干：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+def power(x, n):
+    s = 1
+    while n > 0:
+        n = n - 1
+        s = s * x
+    return s
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>&emsp;&emsp;新的<code>power(x, n)</code>函数定义没有问题，但是，旧的调用代码失败了，原因是我们增加了一个参数，导致旧的代码因为缺少一个参数而无法正常调用。这个时候，默认参数就排上用场了。由于我们经常计算x2，所以，完全可以把第二个参数n的默认值设定为2：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+def power(x, n=2):
+    s = 1
+    while n > 0:
+        n = n - 1
+        s = s * x
+    return s
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;注：必选参数在前，默认参数在后，否则Python的解释器会报错。当函数有多个参数时，把变化大的参数放前面，变化小的参数放后面。变化小的参数就可以作为默认参数。 定义默认参数要牢记一点：默认参数必须指向不变对象！</p>
+<h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h3><p>&emsp;&emsp;在Python函数中，还可以定义可变参数。顾名思义，可变参数就是传入的参数个数是可变的，可以是1个、2个到任意个，还可以是0个。</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+def calc(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;定义可变参数和定义一个<code>list</code>或<code>tuple</code>参数相比，仅仅在参数前面加了一个<code>*</code>号。在函数内部，参数<code>numbers</code>接收到的是一个<code>tuple</code>，因此，函数代码完全不变。但是，调用该函数时，可以传入任意个参数，包括0个参数：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+>>> calc(1, 2)
+5
+>>> calc()
+0
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;如果已经有一个<code>list</code>或者<code>tuple</code>，要调用一个可变参数怎么办？可以这样做：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+>>> nums = [1, 2, 3]
+>>> calc(*nums)
+14
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h3><p>&emsp;&emsp;关键字参数有什么用？它可以扩展函数的功能。比如，在<code>person</code>函数里，我们保证能接收到<code>name</code>和<code>age</code>这两个参数，但是，如果调用者愿意提供更多的参数，我们也能收到。试想你正在做一个用户注册的功能，除了用户名和年龄是必填项外，其他都是可选项，利用关键字参数来定义这个函数就能满足注册的需求。和可变参数类似，也可以先组装出一个<code>dict</code>，然后，把该<code>dict</code>转换为关键字参数传进去：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+>>> extra = {'city': 'Beijing', 'job': 'Engineer'}
+>>> person('Jack', 24, city=extra['city'], job=extra['job'])
+name: Jack age: 24 other: {'city': 'Beijing', 'job': 'Engineer'}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="命名关键字参数"><a href="#命名关键字参数" class="headerlink" title="命名关键字参数"></a>命名关键字参数</h3><p>&emsp;&emsp;如果要限制关键字参数的名字，就可以用命名关键字参数，例如，只接收<code>city</code>和<code>job</code>作为关键字参数。这种方式定义的函数如下：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+def person(name, age, *, city, job):
+    print(name, age, city, job)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;和关键字参数<code>**kw</code>不同，命名关键字参数需要一个特殊分隔符<code>*</code>，<code>*</code>后面的参数被视为命名关键字参数。调用方式如下：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+>>> person('Jack', 24, city='Beijing', job='Engineer')
+Jack 24 Beijing Engineer
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="参数组合"><a href="#参数组合" class="headerlink" title="参数组合"></a>参数组合</h3><p>&emsp;&emsp;在Python中定义函数，可以用必选参数、默认参数、可变参数、关键字参数和命名关键字参数，这5种参数都可以组合使用。但是请注意，参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。比如定义一个函数，包含上述若干种参数：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+def f1(a, b, c=0, *args, **kw):
+    print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)
+
+def f2(a, b, c=0, *, d, **kw):
+    print('a =', a, 'b =', b, 'c =', c, 'd =', d, 'kw =', kw)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;在函数调用的时候，Python解释器自动按照参数位置和参数名把对应的参数传进去。</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+>>> f1(1, 2)
+a = 1 b = 2 c = 0 args = () kw = {}
+>>> f1(1, 2, c=3)
+a = 1 b = 2 c = 3 args = () kw = {}
+>>> f1(1, 2, 3, 'a', 'b')
+a = 1 b = 2 c = 3 args = ('a', 'b') kw = {}
+>>> f1(1, 2, 3, 'a', 'b', x=99)
+a = 1 b = 2 c = 3 args = ('a', 'b') kw = {'x': 99}
+>>> f2(1, 2, d=99, ext=None)
+a = 1 b = 2 c = 0 d = 99 kw = {'ext': None}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h2><p>&emsp;&emsp;在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。举个例子，我们来计算阶乘<code>n! = 1 x 2 x 3 x ... x n</code>，用函数<code>fact(n)</code>表示:</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+def fact(n):
+    if n==1:
+        return 1
+    return n * fact(n - 1)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;使用递归函数需要注意防止栈溢出。在计算机中，函数调用是通过栈（<code>stack</code>）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。</p>
 <p>本文参考廖雪峰 python 教程，作为个人学习笔记。</p>
 
             </div>
@@ -972,15 +977,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-jQuery简述
+                            jQuery简述
 
 什么是jQuery
-
 jQuery是一个JavaScript函数库。
-jQuery是一个轻量级的&quot;写的少，做的多&quot;的JavaScript库。
+jQuery是一个轻量级的”写的少，做的多”的JavaScript库。
 jQuery还提供了大量的插件。
-jQu
+jQuery库包含以下功能：
+HTML 元素选
                         
                     </div>
                     <div class="publish-info">
@@ -1029,14 +1033,10 @@ jQu
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-Python基础
+                            Python基础
 
-数据类型
-整型
-  Python可以处理任意大小的整数，当然包括负整数，在程序中的表示方法和数学上的写法一模一样，例如：1，100，-8080，0，等等
-浮点数
-  浮点数也就是小数，之所以称为浮点数，是
+数据类型整型&emsp;&emsp;Python可以处理任意大小的整数，当然包括负整数，在程序中的表示方法和数学上的写法一模一样，例如：1，100，-8080，0，等等
+浮点数&emsp;&emsp;浮点数也就是小数，之
                         
                     </div>
                     <div class="publish-info">
@@ -1473,9 +1473,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 
 </html>

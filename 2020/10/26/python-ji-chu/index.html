@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="西风の博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="西风の博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
 
  
@@ -543,295 +543,270 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div align='center' ><font size='70'>Python基础</font></div>
+                <div align="center"><font size="70">Python基础</font></div>
 
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><p>&emsp;&emsp;Python可以处理任意大小的整数，当然包括负整数，在程序中的表示方法和数学上的写法一模一样，例如：<code>1</code>，<code>100</code>，<code>-8080</code>，<code>0</code>，等等</p>
-<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>&emsp;&emsp;浮点数也就是小数，之所以称为浮点数，是因为按照科学记数法表示时，一个浮点数的小数点位置是可变的，整数和浮点数在计算机内部存储的方式是不同的，整数运算永远是精确的（除法难道也是精确的？是的！），而浮点数运算则可能会有四舍五入的误差。</p>
-<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>&emsp;&emsp;字符串是以单引号’或双引号”括起来的任意文本，比如<code>&#39;abc&#39;</code>，<code>&quot;xyz&quot;</code>等等。<br>&emsp;&emsp;转义字符<code>\</code>可以转义很多字符，比如<code>\n</code>表示换行，<code>\t</code>表示制表符，字符<code>\</code>本身也要转义，所以<code>\\</code>表示的字符就是<code>\</code>。</p>
-<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><p>&emsp;&emsp;布尔值和布尔代数的表示完全一致，一个布尔值只有<code>True</code>、<code>False</code>两种值，要么是<code>True</code>，要么是<code>False</code>，在Python中，可以直接用<code>True</code>、<code>False</code>表示布尔值（请注意大小写），也可以通过布尔运算计算出来：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> True
-True
->>> False
-False
->>> 3 > 2
-True
->>> 3 > 5
-False
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2><span id="数据类型">数据类型</span></h2><h3><span id="整型">整型</span></h3><p>&emsp;&emsp;Python可以处理任意大小的整数，当然包括负整数，在程序中的表示方法和数学上的写法一模一样，例如：<code>1</code>，<code>100</code>，<code>-8080</code>，<code>0</code>，等等</p>
+<h3><span id="浮点数">浮点数</span></h3><p>&emsp;&emsp;浮点数也就是小数，之所以称为浮点数，是因为按照科学记数法表示时，一个浮点数的小数点位置是可变的，整数和浮点数在计算机内部存储的方式是不同的，整数运算永远是精确的（除法难道也是精确的？是的！），而浮点数运算则可能会有四舍五入的误差。</p>
+<h3><span id="字符串">字符串</span></h3><p>&emsp;&emsp;字符串是以单引号’或双引号”括起来的任意文本，比如<code>&#39;abc&#39;</code>，<code>&quot;xyz&quot;</code>等等。<br>&emsp;&emsp;转义字符<code>\</code>可以转义很多字符，比如<code>\n</code>表示换行，<code>\t</code>表示制表符，字符<code>\</code>本身也要转义，所以<code>\\</code>表示的字符就是<code>\</code>。</p>
+<h3><span id="布尔值">布尔值</span></h3><p>&emsp;&emsp;布尔值和布尔代数的表示完全一致，一个布尔值只有<code>True</code>、<code>False</code>两种值，要么是<code>True</code>，要么是<code>False</code>，在Python中，可以直接用<code>True</code>、<code>False</code>表示布尔值（请注意大小写），也可以通过布尔运算计算出来：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token boolean">True</span>
+<span class="token boolean">True</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token boolean">False</span>
+<span class="token boolean">False</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token number">3</span> <span class="token operator">></span> <span class="token number">2</span>
+<span class="token boolean">True</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token number">3</span> <span class="token operator">></span> <span class="token number">5</span>
+<span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;布尔值可以用<code>and</code>、<code>or</code>和<code>not</code>运算。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> True and True
-True
->>> True or False
-True
->>> not True
-False
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h3><p>&emsp;&emsp;空值是Python里一个特殊的值，用<code>None</code>表示。<code>None</code>不能理解为<code>0</code>，因为<code>0</code>是有意义的，而<code>None</code>是一个特殊的空值。</p>
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>&emsp;&emsp;变量在程序中就是用一个变量名表示了，变量名必须是大小写英文、数字和<code>_</code>的组合，且不能用数字开头。</p>
-<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>&emsp;&emsp;所谓常量就是不能变的变量，比如常用的数学常数π就是一个常量。在Python中，通常用全部大写的变量名表示常量：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">PI = 3.14159265359
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token boolean">True</span> <span class="token operator">and</span> <span class="token boolean">True</span>
+<span class="token boolean">True</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token boolean">True</span> <span class="token operator">or</span> <span class="token boolean">False</span>
+<span class="token boolean">True</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token operator">not</span> <span class="token boolean">True</span>
+<span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="空值">空值</span></h3><p>&emsp;&emsp;空值是Python里一个特殊的值，用<code>None</code>表示。<code>None</code>不能理解为<code>0</code>，因为<code>0</code>是有意义的，而<code>None</code>是一个特殊的空值。</p>
+<h3><span id="变量">变量</span></h3><p>&emsp;&emsp;变量在程序中就是用一个变量名表示了，变量名必须是大小写英文、数字和<code>_</code>的组合，且不能用数字开头。</p>
+<h3><span id="常量">常量</span></h3><p>&emsp;&emsp;所谓常量就是不能变的变量，比如常用的数学常数π就是一个常量。在Python中，通常用全部大写的变量名表示常量：</p>
+<pre class="line-numbers language-python"><code class="language-python">PI <span class="token operator">=</span> <span class="token number">3.14159265359</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>&emsp;&emsp;但事实上<code>PI</code>仍然是一个变量，Python根本没有任何机制保证<code>PI</code>不会被改变，所以，用全部大写的变量名表示常量只是一个习惯上的用法，如果你一定要改变变量<code>PI</code>的值，也没人能拦住你。</p>
-<h3 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h3><p>&emsp;&emsp;一种除法是<code>/</code>：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 10 / 3
-3.3333333333333335
->>> 9 / 3
-3.0
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="除法">除法</span></h3><p>&emsp;&emsp;一种除法是<code>/</code>：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token number">10</span> <span class="token operator">/</span> <span class="token number">3</span>
+<span class="token number">3.3333333333333335</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token number">9</span> <span class="token operator">/</span> <span class="token number">3</span>
+<span class="token number">3.0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;还有一种除法是<code>//</code>，称为地板除，两个整数的除法仍然是整数,因为<code>//</code>除法只取结果的整数部分：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 10 // 3
-3
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token number">10</span> <span class="token operator">//</span> <span class="token number">3</span>
+<span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp; <code>%</code> 提供一个余数运算，可以得到两个整数相除的余数：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 10 % 3
-1
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="字符串和编码"><a href="#字符串和编码" class="headerlink" title="字符串和编码"></a>字符串和编码</h2><p>&emsp;&emsp;由于Python的字符串类型是<code>str</code>，在内存中以<code>Unicode</code>表示，一个字符对应若干个字节。如果要在网络上传输，或者保存到磁盘上，就需要把<code>str</code>变为以字节为单位的<code>bytes</code>，以<code>Unicode</code>表示的<code>str</code>通过<code>encode()</code>方法可以编码为指定的<code>bytes</code>。反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是<code>bytes</code>。要把<code>bytes</code>变为<code>str</code>，就需要用<code>decode()</code>方法。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'ABC'.encode('ascii')
-b'ABC'
->>> '中文'.encode('utf-8')
-b'\xe4\xb8\xad\xe6\x96\x87'
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token number">10</span> <span class="token operator">%</span> <span class="token number">3</span>
+<span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2><span id="字符串和编码">字符串和编码</span></h2><p>&emsp;&emsp;由于Python的字符串类型是<code>str</code>，在内存中以<code>Unicode</code>表示，一个字符对应若干个字节。如果要在网络上传输，或者保存到磁盘上，就需要把<code>str</code>变为以字节为单位的<code>bytes</code>，以<code>Unicode</code>表示的<code>str</code>通过<code>encode()</code>方法可以编码为指定的<code>bytes</code>。反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是<code>bytes</code>。要把<code>bytes</code>变为<code>str</code>，就需要用<code>decode()</code>方法。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token string">'ABC'</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'ascii'</span><span class="token punctuation">)</span>
+b<span class="token string">'ABC'</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token string">'中文'</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+b<span class="token string">'\xe4\xb8\xad\xe6\x96\x87'</span>
 
->>> b'ABC'.decode('ascii')
-'ABC'
->>> b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')
-'中文'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token operator">>></span><span class="token operator">></span> b<span class="token string">'ABC'</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'ascii'</span><span class="token punctuation">)</span>
+<span class="token string">'ABC'</span>
+<span class="token operator">>></span><span class="token operator">></span> b<span class="token string">'\xe4\xb8\xad\xe6\x96\x87'</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+<span class="token string">'中文'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;如果<code>bytes</code>中只有一小部分无效的字节，可以传入<code>errors=&#39;ignore&#39;</code>忽略错误的字节：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> b'\xe4\xb8\xad\xff'.decode('utf-8', errors='ignore')
-'中'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> b<span class="token string">'\xe4\xb8\xad\xff'</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">,</span> errors<span class="token operator">=</span><span class="token string">'ignore'</span><span class="token punctuation">)</span>
+<span class="token string">'中'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;要计算<code>str</code>包含多少个字符，可以用<code>len()</code>函数，<code>len()</code>函数计算的是<code>str</code>的字符数，如果换成<code>bytes</code>，<code>len()</code>函数就计算字节数：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> len(b'ABC')
-3
->>> len(b'\xe4\xb8\xad\xe6\x96\x87')
-6
->>> len('中文'.encode('utf-8'))
-6
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> len<span class="token punctuation">(</span>b<span class="token string">'ABC'</span><span class="token punctuation">)</span>
+<span class="token number">3</span>
+<span class="token operator">>></span><span class="token operator">></span> len<span class="token punctuation">(</span>b<span class="token string">'\xe4\xb8\xad\xe6\x96\x87'</span><span class="token punctuation">)</span>
+<span class="token number">6</span>
+<span class="token operator">>></span><span class="token operator">></span> len<span class="token punctuation">(</span><span class="token string">'中文'</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token number">6</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;在操作字符串时，我们经常遇到<code>str</code>和<code>bytes</code>的互相转换。为了避免乱码问题，应当始终坚持使用<code>UTF-8</code>编码对<code>str</code>和<code>bytes</code>进行转换。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python3</span>
+<span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;在Python中，采用的格式化方式和C语言是一致的，用<code>%</code>实现，举例如下：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'Hello, %s' % 'world'
-'Hello, world'
->>> 'Hi, %s, you have $%d.' % ('Michael', 1000000)
-'Hi, Michael, you have $1000000.'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token string">'Hello, %s'</span> <span class="token operator">%</span> <span class="token string">'world'</span>
+<span class="token string">'Hello, world'</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token string">'Hi, %s, you have $%d.'</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token string">'Michael'</span><span class="token punctuation">,</span> <span class="token number">1000000</span><span class="token punctuation">)</span>
+<span class="token string">'Hi, Michael, you have $1000000.'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;如果你不太确定应该用什么，<code>%s</code>永远起作用，它会把任何数据类型转换为字符串：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'Age: %s. Gender: %s' % (25, True)
-'Age: 25. Gender: True'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token string">'Age: %s. Gender: %s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token string">'Age: 25. Gender: True'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;有些时候，字符串里面的<code>%</code>是一个普通字符怎么办？这个时候就需要转义，用<code>%%</code>来表示一个<code>%</code>：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'growth rate: %d %%' % 7
-'growth rate: 7 %'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="format"><a href="#format" class="headerlink" title="format()"></a>format()</h3><p>&emsp;&emsp;另一种格式化字符串的方法是使用字符串的<code>format()</code>方法，它会用传入的参数依次替换字符串内的占位符<code>{0}</code>、<code>{1}……</code>，不过这种方式写起来比<code>%</code>要麻烦得多：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'Hello, {0}, 成绩提升了 {1:.1f}%'.format('小明', 17.125)
-'Hello, 小明, 成绩提升了 17.1%'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="f-string"><a href="#f-string" class="headerlink" title="f-string"></a>f-string</h3><p>&emsp;&emsp;最后一种格式化字符串的方法是使用以<code>f</code>开头的字符串，称之为<code>f-string</code>，它和普通字符串不同之处在于，字符串如果包含<code>{xxx}</code>，就会以对应的变量替换：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> r = 2.5
->>> s = 3.14 * r ** 2
->>> print(f'The area of a circle with radius {r} is {s:.2f}')
-The area of a circle with radius 2.5 is 19.62
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token string">'growth rate: %d %%'</span> <span class="token operator">%</span> <span class="token number">7</span>
+<span class="token string">'growth rate: 7 %'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3><span id="format">format()</span></h3><p>&emsp;&emsp;另一种格式化字符串的方法是使用字符串的<code>format()</code>方法，它会用传入的参数依次替换字符串内的占位符<code>{0}</code>、<code>{1}……</code>，不过这种方式写起来比<code>%</code>要麻烦得多：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token string">'Hello, {0}, 成绩提升了 {1:.1f}%'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span><span class="token string">'小明'</span><span class="token punctuation">,</span> <span class="token number">17.125</span><span class="token punctuation">)</span>
+<span class="token string">'Hello, 小明, 成绩提升了 17.1%'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3><span id="f-string">f-string</span></h3><p>&emsp;&emsp;最后一种格式化字符串的方法是使用以<code>f</code>开头的字符串，称之为<code>f-string</code>，它和普通字符串不同之处在于，字符串如果包含<code>{xxx}</code>，就会以对应的变量替换：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> r <span class="token operator">=</span> <span class="token number">2.5</span>
+<span class="token operator">>></span><span class="token operator">></span> s <span class="token operator">=</span> <span class="token number">3.14</span> <span class="token operator">*</span> r <span class="token operator">**</span> <span class="token number">2</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">'The area of a circle with radius {r} is {s:.2f}'</span><span class="token punctuation">)</span>
+The area of a circle <span class="token keyword">with</span> radius <span class="token number">2.5</span> <span class="token keyword">is</span> <span class="token number">19.62</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;上述代码中，<code>{r}</code>被变量<code>r</code>的值替换，<code>{s:.2f}</code>被变量<code>s</code>的值替换，并且<code>:</code>后面的<code>.2f</code>指定了格式化参数（即保留两位小数），因此，<code>{s:.2f}</code>的替换结果是<code>19.62</code>。</p>
-<h2 id="list和tuple"><a href="#list和tuple" class="headerlink" title="list和tuple"></a>list和tuple</h2><h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p>&emsp;&emsp;Python内置的一种数据类型是列表：<code>list</code>。<code>list</code>是一种有序的集合，可以随时添加和删除其中的元素。比如，列出班里所有同学的名字，就可以用一个<code>list</code>表示：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> classmates = ['Michael', 'Bob', 'Tracy']
->>> classmates
-['Michael', 'Bob', 'Tracy']
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2><span id="list和tuple">list和tuple</span></h2><h3><span id="list">list</span></h3><p>&emsp;&emsp;Python内置的一种数据类型是列表：<code>list</code>。<code>list</code>是一种有序的集合，可以随时添加和删除其中的元素。比如，列出班里所有同学的名字，就可以用一个<code>list</code>表示：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> classmates <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Michael'</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates
+<span class="token punctuation">[</span><span class="token string">'Michael'</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;用索引来访问<code>list</code>中每一个位置的元素，记得索引是从<code>0</code>开始的，如果要取最后一个元素，除了计算索引位置外，还可以用<code>-1</code>做索引，直接获取最后一个元素：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> classmates[0]
-'Michael'
->>> classmates[1]
-'Bob'
->>> classmates[2]
-'Tracy'
->>> classmates[-1]
-'Tracy'
->>> classmates[-2]
-'Bob'
->>> classmates[-3]
-'Michael'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token string">'Michael'</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token string">'Bob'</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token string">'Tracy'</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token string">'Tracy'</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token string">'Bob'</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token string">'Michael'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;<code>list</code>是一个可变的有序表，所以，可以往<code>list</code>中追加元素到末尾：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> classmates.append('Adam')
->>> classmates
-['Michael', 'Bob', 'Tracy', 'Adam']
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">'Adam'</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates
+<span class="token punctuation">[</span><span class="token string">'Michael'</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">,</span> <span class="token string">'Adam'</span><span class="token punctuation">]</span>
 
-// 也可以把元素插入到指定的位置，比如索引号为1的位置：
->>> classmates.insert(1, 'Jack')
->>> classmates
-['Michael', 'Jack', 'Bob', 'Tracy', 'Adam']
+<span class="token operator">//</span> 也可以把元素插入到指定的位置，比如索引号为<span class="token number">1</span>的位置：
+<span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">.</span>insert<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'Jack'</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates
+<span class="token punctuation">[</span><span class="token string">'Michael'</span><span class="token punctuation">,</span> <span class="token string">'Jack'</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">,</span> <span class="token string">'Adam'</span><span class="token punctuation">]</span>
 
-// 要删除list末尾的元素，用pop()方法：
->>> classmates.pop()
-'Adam'
->>> classmates
-['Michael', 'Jack', 'Bob', 'Tracy']
+<span class="token operator">//</span> 要删除list末尾的元素，用pop<span class="token punctuation">(</span><span class="token punctuation">)</span>方法：
+<span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token string">'Adam'</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates
+<span class="token punctuation">[</span><span class="token string">'Michael'</span><span class="token punctuation">,</span> <span class="token string">'Jack'</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">]</span>
 
-// 要删除指定位置的元素，用pop(i)方法，其中i是索引位置：
->>> classmates.pop(1)
-'Jack'
->>> classmates
-['Michael', 'Bob', 'Tracy']
+<span class="token operator">//</span> 要删除指定位置的元素，用pop<span class="token punctuation">(</span>i<span class="token punctuation">)</span>方法，其中i是索引位置：
+<span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token string">'Jack'</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates
+<span class="token punctuation">[</span><span class="token string">'Michael'</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">]</span>
 
-//要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：
->>> classmates[1] = 'Sarah'
->>> classmates
-['Michael', 'Sarah', 'Tracy']
+<span class="token operator">//</span>要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：
+<span class="token operator">>></span><span class="token operator">></span> classmates<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'Sarah'</span>
+<span class="token operator">>></span><span class="token operator">></span> classmates
+<span class="token punctuation">[</span><span class="token string">'Michael'</span><span class="token punctuation">,</span> <span class="token string">'Sarah'</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">]</span>
 
-// list里面的元素的数据类型也可以不同，比如：
->>> L = ['Apple', 123, True]
+<span class="token operator">//</span> list里面的元素的数据类型也可以不同，比如：
+<span class="token operator">>></span><span class="token operator">></span> L <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Apple'</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">]</span>
 
-// list元素也可以是另一个list，比如：
->>> s = ['python', 'java', ['asp', 'php'], 'scheme']
->>> len(s)
-4
+<span class="token operator">//</span> list元素也可以是另一个list，比如：
+<span class="token operator">>></span><span class="token operator">></span> s <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'python'</span><span class="token punctuation">,</span> <span class="token string">'java'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'asp'</span><span class="token punctuation">,</span> <span class="token string">'php'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'scheme'</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span> len<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token number">4</span>
 
-// 如果一个list中一个元素也没有，就是一个空的list，它的长度为0：
->>> L = []
->>> len(L)
-0
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h3><p>&emsp;&emsp;另一种有序列表叫元组：<code>tuple</code>。<code>tuple</code>和<code>list</code>非常类似，但是<code>tuple</code>一旦初始化就不能修改。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">// 当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，比如：
->>> t = (1, 2)
->>> t
-(1, 2)
+<span class="token operator">//</span> 如果一个list中一个元素也没有，就是一个空的list，它的长度为<span class="token number">0</span>：
+<span class="token operator">>></span><span class="token operator">></span> L <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span> len<span class="token punctuation">(</span>L<span class="token punctuation">)</span>
+<span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="tuple">tuple</span></h3><p>&emsp;&emsp;另一种有序列表叫元组：<code>tuple</code>。<code>tuple</code>和<code>list</code>非常类似，但是<code>tuple</code>一旦初始化就不能修改。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">//</span> 当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，比如：
+<span class="token operator">>></span><span class="token operator">></span> t <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> t
+<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
 
-// 如果要定义一个空的tuple，可以写成()：
->>> t = ()
->>> t
-()
+<span class="token operator">//</span> 如果要定义一个空的tuple，可以写成<span class="token punctuation">(</span><span class="token punctuation">)</span>：
+<span class="token operator">>></span><span class="token operator">></span> t <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> t
+<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-// 只有1个元素的tuple定义时必须加一个逗号,，来消除歧义：
->>> t = (1,)
->>> t
-(1,)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><p>&emsp;&emsp;Python中条件判断与其他语言类似：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">age = 20
-if age >= 18:
-    print('your age is', age)
-    print('adult')
+<span class="token operator">//</span> 只有<span class="token number">1</span>个元素的tuple定义时必须加一个逗号<span class="token punctuation">,</span>，来消除歧义：
+<span class="token operator">>></span><span class="token operator">></span> t <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> t
+<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2><span id="条件判断">条件判断</span></h2><p>&emsp;&emsp;Python中条件判断与其他语言类似：</p>
+<pre class="line-numbers language-python"><code class="language-python">age <span class="token operator">=</span> <span class="token number">20</span>
+<span class="token keyword">if</span> age <span class="token operator">>=</span> <span class="token number">18</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'your age is'</span><span class="token punctuation">,</span> age<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'adult'</span><span class="token punctuation">)</span>
 
-age = 3
-if age >= 18:
-    print('your age is', age)
-    print('adult')
-else:
-    print('your age is', age)
-    print('teenager')
+age <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token keyword">if</span> age <span class="token operator">>=</span> <span class="token number">18</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'your age is'</span><span class="token punctuation">,</span> age<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'adult'</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'your age is'</span><span class="token punctuation">,</span> age<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'teenager'</span><span class="token punctuation">)</span>
 
-age = 3
-if age >= 18:
-    print('adult')
-elif age >= 6:
-    print('teenager')
-else:
-    print('kid')
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+age <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token keyword">if</span> age <span class="token operator">>=</span> <span class="token number">18</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'adult'</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> age <span class="token operator">>=</span> <span class="token number">6</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'teenager'</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'kid'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;&emsp;只要判断条件是非零数值、非空字符串、非空<code>list</code>等，就判断为<code>True</code>，否则为<code>False</code>。<br>&emsp;&emsp;注：<code>input</code>返回的数据类型是<code>str</code>。</p>
-<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p>&emsp;&emsp;Python的循环有两种，一种是<code>for...in</code>循环，依次把<code>list</code>或<code>tuple</code>中的每个元素迭代出来，看例子：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">names = ['Michael', 'Bob', 'Tracy']
-for name in names:
-    print(name)
+<h2><span id="循环">循环</span></h2><p>&emsp;&emsp;Python的循环有两种，一种是<code>for...in</code>循环，依次把<code>list</code>或<code>tuple</code>中的每个元素迭代出来，看例子：</p>
+<pre class="line-numbers language-python"><code class="language-python">names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Michael'</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> name <span class="token keyword">in</span> names<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
 
 Michael
 Bob
-Tracy
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="range"><a href="#range" class="headerlink" title="range()"></a>range()</h3><p>&emsp;&emsp;<code>range(5)</code>生成的序列是从0开始小于5的整数。例：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">sum = 0
-for x in range(101):
-    sum = sum + x
-print(sum)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><p>&emsp;&emsp;第二种循环是<code>while</code>循环，只要条件满足，就不断循环，条件不满足时退出循环。比如我们要计算100以内所有奇数之和，可以用<code>while</code>循环实现：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">sum = 0
-n = 99
-while n > 0:
-    sum = sum + n
-    n = n - 2
-print(sum)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>&emsp;&emsp;在循环中，<code>break</code>语句可以提前退出循环。和其他语言类似。</p>
-<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>&emsp;&emsp;在循环过程中，也可以通过<code>continue</code>语句，跳过当前的这次循环，直接开始下一次循环。和其他语言类似。</p>
+Tracy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="range">range()</span></h3><p>&emsp;&emsp;<code>range(5)</code>生成的序列是从0开始小于5的整数。例：</p>
+<pre class="line-numbers language-python"><code class="language-python">sum <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">101</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sum <span class="token operator">=</span> sum <span class="token operator">+</span> x
+<span class="token keyword">print</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="while">while</span></h3><p>&emsp;&emsp;第二种循环是<code>while</code>循环，只要条件满足，就不断循环，条件不满足时退出循环。比如我们要计算100以内所有奇数之和，可以用<code>while</code>循环实现：</p>
+<pre class="line-numbers language-python"><code class="language-python">sum <span class="token operator">=</span> <span class="token number">0</span>
+n <span class="token operator">=</span> <span class="token number">99</span>
+<span class="token keyword">while</span> n <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+    sum <span class="token operator">=</span> sum <span class="token operator">+</span> n
+    n <span class="token operator">=</span> n <span class="token operator">-</span> <span class="token number">2</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="break">break</span></h3><p>&emsp;&emsp;在循环中，<code>break</code>语句可以提前退出循环。和其他语言类似。</p>
+<h3><span id="continue">continue</span></h3><p>&emsp;&emsp;在循环过程中，也可以通过<code>continue</code>语句，跳过当前的这次循环，直接开始下一次循环。和其他语言类似。</p>
 <p>注：少用<code>break</code>和<code>continue</code>。</p>
-<h2 id="dict和set"><a href="#dict和set" class="headerlink" title="dict和set"></a>dict和set</h2><h3 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h3><p>Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
->>> d['Michael']
-95
+<h2><span id="dict和set">dict和set</span></h2><h3><span id="dict">dict</span></h3><p>Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'Michael'</span><span class="token punctuation">:</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">:</span> <span class="token number">75</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">:</span> <span class="token number">85</span><span class="token punctuation">}</span>
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">[</span><span class="token string">'Michael'</span><span class="token punctuation">]</span>
+<span class="token number">95</span>
 
-// 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
->>> d['Adam'] = 67
->>> d['Adam']
-67
+<span class="token operator">//</span> 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">[</span><span class="token string">'Adam'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">67</span>
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">[</span><span class="token string">'Adam'</span><span class="token punctuation">]</span>
+<span class="token number">67</span>
 
-// 由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值冲掉：
->>> d['Jack'] = 90
->>> d['Jack']
-90
->>> d['Jack'] = 88
->>> d['Jack']
-88
+<span class="token operator">//</span> 由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值冲掉：
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">[</span><span class="token string">'Jack'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">90</span>
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">[</span><span class="token string">'Jack'</span><span class="token punctuation">]</span>
+<span class="token number">90</span>
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">[</span><span class="token string">'Jack'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">88</span>
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">[</span><span class="token string">'Jack'</span><span class="token punctuation">]</span>
+<span class="token number">88</span>
 
-// 如果key不存在，dict就会报错：
->>> d['Thomas']
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-KeyError: 'Thomas'
+<span class="token operator">//</span> 如果key不存在，dict就会报错：
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">[</span><span class="token string">'Thomas'</span><span class="token punctuation">]</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"&lt;stdin>"</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">></span>
+KeyError<span class="token punctuation">:</span> <span class="token string">'Thomas'</span>
 
-// 要避免key不存在的错误，有两种办法，一是通过in判断key是否存在：
->>> 'Thomas' in d
-False
+<span class="token operator">//</span> 要避免key不存在的错误，有两种办法，一是通过<span class="token keyword">in</span>判断key是否存在：
+<span class="token operator">>></span><span class="token operator">></span> <span class="token string">'Thomas'</span> <span class="token keyword">in</span> d
+<span class="token boolean">False</span>
 
-// 二是通过dict提供的get()方法，如果key不存在，可以返回None，或者自己指定的value：
->>> d.get('Thomas')
->>> d.get('Thomas', -1)
--1
+<span class="token operator">//</span> 二是通过dict提供的get<span class="token punctuation">(</span><span class="token punctuation">)</span>方法，如果key不存在，可以返回None，或者自己指定的value：
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'Thomas'</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'Thomas'</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token operator">-</span><span class="token number">1</span>
 
-// 要删除一个key，用pop(key)方法，对应的value也会从dict中删除：
->>> d.pop('Bob')
-75
->>> d
-{'Michael': 95, 'Tracy': 85}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> s = set([1, 2, 3])
->>> s
-{1, 2, 3}
+<span class="token operator">//</span> 要删除一个key，用pop<span class="token punctuation">(</span>key<span class="token punctuation">)</span>方法，对应的value也会从dict中删除：
+<span class="token operator">>></span><span class="token operator">></span> d<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token string">'Bob'</span><span class="token punctuation">)</span>
+<span class="token number">75</span>
+<span class="token operator">>></span><span class="token operator">></span> d
+<span class="token punctuation">{</span><span class="token string">'Michael'</span><span class="token punctuation">:</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token string">'Tracy'</span><span class="token punctuation">:</span> <span class="token number">85</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="set">set</span></h3><p>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> s <span class="token operator">=</span> set<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> s
+<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
 
-// 重复元素在set中自动被过滤：
->>> s = set([1, 1, 2, 2, 3, 3])
->>> s
-{1, 2, 3}
+<span class="token operator">//</span> 重复元素在set中自动被过滤：
+<span class="token operator">>></span><span class="token operator">></span> s <span class="token operator">=</span> set<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> s
+<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
 
-// 通过add(key)方法可以添加元素到set中，可以重复添加，但不会有效果：
->>> s.add(4)
->>> s
-{1, 2, 3, 4}
->>> s.add(4)
->>> s
-{1, 2, 3, 4}
+<span class="token operator">//</span> 通过add<span class="token punctuation">(</span>key<span class="token punctuation">)</span>方法可以添加元素到set中，可以重复添加，但不会有效果：
+<span class="token operator">>></span><span class="token operator">></span> s<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> s
+<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span>
+<span class="token operator">>></span><span class="token operator">></span> s<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> s
+<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span>
 
-// 通过remove(key)方法可以删除元素：
->>> s.remove(4)
->>> s
-{1, 2, 3}
+<span class="token operator">//</span> 通过remove<span class="token punctuation">(</span>key<span class="token punctuation">)</span>方法可以删除元素：
+<span class="token operator">>></span><span class="token operator">></span> s<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> s
+<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
 
-// set可以看成数学意义上的无序和无重复元素的集合，so，两个set可以做数学意义上的交集、并集等操作：
->>> s1 = set([1, 2, 3])
->>> s2 = set([2, 3, 4])
->>> s1 & s2
-{2, 3}
->>> s1 | s2
-{1, 2, 3, 4}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token operator">//</span> set可以看成数学意义上的无序和无重复元素的集合，so，两个set可以做数学意义上的交集、并集等操作：
+<span class="token operator">>></span><span class="token operator">></span> s1 <span class="token operator">=</span> set<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> s2 <span class="token operator">=</span> set<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> s1 <span class="token operator">&amp;</span> s2
+<span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+<span class="token operator">>></span><span class="token operator">></span> s1 <span class="token operator">|</span> s2
+<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>本文参考廖雪峰 python 教程，作为个人学习笔记。</p>
 
             </div>
@@ -1279,6 +1254,10 @@ function abs(x) {
 
 <!-- 代码块折行 -->
 
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -1621,9 +1600,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 
 </html>

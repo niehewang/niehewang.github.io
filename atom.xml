@@ -6,7 +6,7 @@
   <link href="https://niehewang.github.io/atom.xml" rel="self"/>
   
   <link href="https://niehewang.github.io/"/>
-  <updated>2020-11-03T07:07:06.964Z</updated>
+  <updated>2020-11-03T10:18:40.454Z</updated>
   <id>https://niehewang.github.io/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="https://niehewang.github.io/2020/11/03/svm-zhi-chi-xiang-liang-ji/"/>
     <id>https://niehewang.github.io/2020/11/03/svm-zhi-chi-xiang-liang-ji/</id>
     <published>2020-11-03T03:24:02.000Z</published>
-    <updated>2020-11-03T07:07:06.964Z</updated>
+    <updated>2020-11-03T10:18:40.454Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;支持向量机SVM&lt;/font&gt;&lt;/div&gt;
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;font size=&quot;70&quot;&gt;支持向量机SVM&lt;/font&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;</summary>
+&lt;h2&gt;&lt;span</summary>
         
       
     
@@ -48,16 +48,16 @@
     <link href="https://niehewang.github.io/2020/11/02/gabor-lu-bo-qi/"/>
     <id>https://niehewang.github.io/2020/11/02/gabor-lu-bo-qi/</id>
     <published>2020-11-02T00:24:02.000Z</published>
-    <updated>2020-11-03T03:20:29.722Z</updated>
+    <updated>2020-11-03T14:27:18.050Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Gabor滤波器&lt;/font&gt;&lt;/div&gt;
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;font size=&quot;70&quot;&gt;Gabor滤波器&lt;/font&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;Gabor-Filter&quot;&gt;&lt;a href=&quot;#Gabor-Filter&quot; class=&quot;headerlink&quot; title=&quot;Gabor</summary>
+&lt;h2&gt;&lt;span id=&quot;gabor-filter&quot;&gt;Gabor</summary>
         
       
     
@@ -82,9 +82,9 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python特性&lt;/font&gt;&lt;/div&gt;
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;font size=&quot;70&quot;&gt;Python特性&lt;/font&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;切片&quot;&gt;&lt;a href=&quot;#切片&quot; class=&quot;headerlink&quot;</summary>
+&lt;h2&gt;&lt;span</summary>
         
       
     
@@ -102,16 +102,16 @@
     <link href="https://niehewang.github.io/2020/10/27/jquery-jian-shu/"/>
     <id>https://niehewang.github.io/2020/10/27/jquery-jian-shu/</id>
     <published>2020-10-27T12:18:02.000Z</published>
-    <updated>2020-10-29T03:17:20.788Z</updated>
+    <updated>2020-11-03T13:40:10.364Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;jQuery简述&lt;/font&gt;&lt;/div&gt;
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;font size=&quot;70&quot;&gt;jQuery简述&lt;/font&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;什么是jQuery&quot;&gt;&lt;a href=&quot;#什么是jQuery&quot; class=&quot;headerlink&quot;</summary>
+&lt;h2&gt;&lt;span</summary>
         
       
     
@@ -136,9 +136,9 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python函数&lt;/font&gt;&lt;/div&gt;
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;font size=&quot;70&quot;&gt;Python函数&lt;/font&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;调用函数&quot;&gt;&lt;a href=&quot;#调用函数&quot; class=&quot;headerlink&quot;</summary>
+&lt;h2&gt;&lt;span</summary>
         
       
     
@@ -163,9 +163,9 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;Python基础&lt;/font&gt;&lt;/div&gt;
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;font size=&quot;70&quot;&gt;Python基础&lt;/font&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h2&gt;&lt;h3</summary>
+&lt;h2&gt;&lt;span id=&quot;数据类型&quot;&gt;数据类型&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span</summary>
         
       
     
@@ -190,9 +190,9 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;JavaScript函数&lt;/font&gt;&lt;/div&gt;
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;font size=&quot;70&quot;&gt;JavaScript函数&lt;/font&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;函数定义&quot;&gt;&lt;a href=&quot;#函数定义&quot; class=&quot;headerlink&quot;</summary>
+&lt;h2&gt;&lt;span</summary>
         
       
     
@@ -217,9 +217,9 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;JavaScript简述&lt;/font&gt;&lt;/div&gt;
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;font size=&quot;70&quot;&gt;JavaScript简述&lt;/font&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;JavaScript历史&quot;&gt;&lt;a href=&quot;#JavaScript历史&quot; class=&quot;headerlink&quot;</summary>
+&lt;h2&gt;&lt;span</summary>
         
       
     
@@ -244,9 +244,10 @@
       
         
         
-    <summary type="html">&lt;div align=&#39;center&#39; &gt;&lt;font size=&#39;70&#39;&gt;css简述&lt;/font&gt;&lt;/div&gt;
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;font size=&quot;70&quot;&gt;css简述&lt;/font&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;什么是CSS&quot;&gt;&lt;a href=&quot;#什么是CSS&quot; class=&quot;headerlink&quot;</summary>
+&lt;h2&gt;&lt;span id=&quot;什么是css&quot;&gt;什么是CSS&lt;/span&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;CSS指层叠样式表（Cascading Style</summary>
         
       
     

@@ -543,13 +543,16 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div align='center' ><font size='70'>jQuery简述</font></div>
-
-<h2 id="什么是jQuery"><a href="#什么是jQuery" class="headerlink" title="什么是jQuery"></a>什么是jQuery</h2><ol>
+                <div data-align="center">
+<font size='70'>jQuery简述</font>
+</div>
+<h2 id="什么是jquery">什么是jQuery</h2>
+<ol type="1">
 <li>jQuery是一个JavaScript函数库。</li>
-<li>jQuery是一个轻量级的”写的少，做的多”的JavaScript库。</li>
+<li>jQuery是一个轻量级的&quot;写的少，做的多&quot;的JavaScript库。</li>
 <li>jQuery还提供了大量的插件。</li>
-<li>jQuery库包含以下功能：<ul>
+<li>jQuery库包含以下功能：
+<ul>
 <li>HTML 元素选取</li>
 <li>HTML 元素操作</li>
 <li>CSS 操作</li>
@@ -558,144 +561,131 @@
 <li>HTML DOM 遍历和修改</li>
 <li>AJAX</li>
 <li>Utilities</li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h2 id="为什么使用-jQuery"><a href="#为什么使用-jQuery" class="headerlink" title="为什么使用 jQuery"></a>为什么使用 jQuery</h2><p>&emsp;&emsp;目前网络上有大量开源的 JS 框架, 但是 jQuery 是目前最流行的 JS 框架，而且提供了大量的扩展。</p>
-<h2 id="jQuery安装与使用"><a href="#jQuery安装与使用" class="headerlink" title="jQuery安装与使用"></a>jQuery安装与使用</h2><p>&emsp;&emsp;官网下载：<a href="https://jquery.com/download/" target="_blank" rel="noopener">jquery.com</a><br>&emsp;&emsp;jQuery 库是一个 JavaScript 文件，您可以使用 HTML 的 <code>&lt;script&gt;</code> 标签引用它：</p>
-<pre class="line-numbers language-lang-html"><code class="language-lang-html"><head>
-<script src="jquery-1.10.2.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="西风の博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="入口函数"><a href="#入口函数" class="headerlink" title="入口函数"></a>入口函数</h3><pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$(function(){
-    // 执行代码
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="为什么使用-jquery">为什么使用 jQuery</h2>
+<p>  目前网络上有大量开源的 JS 框架, 但是 jQuery 是目前最流行的 JS 框架，而且提供了大量的扩展。</p>
+<h2 id="jquery安装与使用">jQuery安装与使用</h2>
+<p>  官网下载：<a href="https://jquery.com/download/" target="_blank" rel="noopener">jquery.com</a>   jQuery 库是一个 JavaScript 文件，您可以使用 HTML 的 <code>&lt;script&gt;</code> 标签引用它：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">&lt;head&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;jquery-1.10.2.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">&lt;/head&gt;</span></a></code></pre></div>
+<h3 id="入口函数">入口函数</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="at">$</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="co">// 执行代码</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
 <p>例：</p>
-<pre class="line-numbers language-lang-html"><code class="language-lang-html"><head>
-<script src="jquery-1.10.2.min.js"></script>
-<script>
-$(function(){
-  $("button").click(function(){
-    $("p").hide();
-  });
-});
-</head>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="jQuery语法"><a href="#jQuery语法" class="headerlink" title="jQuery语法"></a>jQuery语法</h2><h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><p>&emsp;&emsp;<code>$(selector).action()</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;head&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;jquery-1.10.2.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">&lt;script&gt;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="at">$</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="at">$</span>(<span class="st">&quot;button&quot;</span>).<span class="at">click</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="at">$</span>(<span class="st">&quot;p&quot;</span>).<span class="at">hide</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">&lt;/head<span class="op">&gt;</span></a></code></pre></div>
+<h2 id="jquery语法">jQuery语法</h2>
+<h3 id="基础语法">基础语法</h3>
+<p>  <code>$(selector).action()</code> - 美元符号定义 jQuery - 选择符<code>（selector）</code>&quot;查询&quot;和&quot;查找&quot; HTML 元素 - jQuery 的 <code>action()</code> 执行对元素的操作</p>
+<p>例： - <code>$(this).hide()</code> - 隐藏当前元素 - <code>$(&quot;p&quot;).hide()</code> - 隐藏所有 <code>&lt;p&gt;</code> 元素 - <code>$(&quot;p.test&quot;).hide()</code> - 隐藏所有 <code>class=&quot;test&quot;</code> 的 <code>&lt;p&gt;</code>元素 - <code>$(&quot;#test&quot;).hide()</code> - 隐藏 <code>id=&quot;test&quot;</code> 的元素</p>
+<h2 id="jquery选择器">jQuery选择器</h2>
 <ul>
-<li>美元符号定义 jQuery</li>
-<li>选择符<code>（selector）</code>“查询”和”查找” HTML 元素</li>
-<li>jQuery 的 <code>action()</code> 执行对元素的操作</li>
-</ul>
-<p>例：</p>
-<ul>
-<li><code>$(this).hide()</code> - 隐藏当前元素</li>
-<li><code>$(&quot;p&quot;).hide()</code> - 隐藏所有 <code>&lt;p&gt;</code> 元素</li>
-<li><code>$(&quot;p.test&quot;).hide()</code> - 隐藏所有 <code>class=&quot;test&quot;</code> 的 <code>&lt;p&gt;</code>元素</li>
-<li><code>$(&quot;#test&quot;).hide()</code> - 隐藏 <code>id=&quot;test&quot;</code> 的元素</li>
-</ul>
-<h2 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h2><ul>
 <li>jQuery 选择器允许您对 HTML 元素组或单个元素进行操作。</li>
-<li>jQuery 选择器基于元素的 id、类、类型、属性、属性值等”查找”（或选择）HTML 元素。 它基于已经存在的 CSS 选择器，除此之外，它还有一些自定义的选择器。</li>
+<li>jQuery 选择器基于元素的 id、类、类型、属性、属性值等&quot;查找&quot;（或选择）HTML 元素。 它基于已经存在的 CSS 选择器，除此之外，它还有一些自定义的选择器。</li>
 <li>jQuery 中所有选择器都以美元符号开头：<code>$()</code>。</li>
 </ul>
-<h3 id="元素选择器"><a href="#元素选择器" class="headerlink" title="元素选择器"></a>元素选择器</h3><p>&emsp;&emsp;jQuery 元素选择器基于元素名选取元素,在页面中选取所有 <code>&lt;p&gt;</code> 元素:</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("p")
-
-// 用户点击按钮后，所有 <p> 元素都隐藏：
-$(function(){
-  $("button").click(function(){
-    $("p").hide();
-  });
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="id-选择器"><a href="#id-选择器" class="headerlink" title="#id 选择器"></a>#id 选择器</h3><p>&emsp;&emsp;jQuery <code>#id</code> 选择器通过 HTML 元素的 id 属性选取指定的元素。页面中元素的 id 应该是唯一的，所以您要在页面中选取唯一的元素需要通过 <code>#id</code> 选择器。通过 id 选取元素语法如下：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("#test")
-
-// 当用户点击按钮后，有 id="test" 属性的元素将被隐藏：
-$(function(){
-  $("button").click(function(){
-    $("#test").hide();
-  });
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="class-选择器"><a href="#class-选择器" class="headerlink" title=".class 选择器"></a>.class 选择器</h3><p>&emsp;&emsp;jQuery 类选择器可以通过指定的 class 查找元素。语法如下：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$(".test")
-
-// 用户点击按钮后所有带有 class="test" 属性的元素都隐藏：
-$(function(){
-  $("button").click(function(){
-    $(".test").hide();
-  });
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h2><h3 id="什么是事件"><a href="#什么是事件" class="headerlink" title="什么是事件"></a>什么是事件</h3><p>&emsp;&emsp;页面对不同访问者的响应叫做事件。事件处理程序指的是当 HTML 中发生某些事件时所调用的方法。</p>
-<ul>
-<li>在元素上移动鼠标。</li>
-<li>选取单选按钮</li>
-<li>点击元素</li>
-</ul>
-<h3 id="jQuery-事件方法语法"><a href="#jQuery-事件方法语法" class="headerlink" title="jQuery 事件方法语法"></a>jQuery 事件方法语法</h3><pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">// 页面中指定一个点击事件：
-$("p").click();
-
-// 下一步是定义什么时间触发事件。您可以通过一个事件函数实现：
-$("p").click(function(){
-    // 动作触发后执行的代码!!
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="常用的-jQuery-事件方法"><a href="#常用的-jQuery-事件方法" class="headerlink" title="常用的 jQuery 事件方法"></a>常用的 jQuery 事件方法</h3><h4 id="click"><a href="#click" class="headerlink" title="click()"></a>click()</h4><p>&emsp;&emsp;<code>click()</code> 方法是当按钮点击事件被触发时会调用一个函数。该函数在用户点击 HTML 元素时执行。在下面的实例中，当点击事件在某个 <code>&lt;p&gt;</code> 元素上触发时，隐藏当前的 <code>&lt;p&gt;</code> 元素：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("p").click(function(){
-  $(this).hide();
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="dblclick"><a href="#dblclick" class="headerlink" title="dblclick()"></a>dblclick()</h4><p>&emsp;&emsp;当双击元素时，会发生 dblclick 事件。<code>dblclick()</code> 方法触发 dblclick 事件，或规定当发生 dblclick 事件时运行的函数：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("p").dblclick(function(){
-  $(this).hide();
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="mouseenter"><a href="#mouseenter" class="headerlink" title="mouseenter()"></a>mouseenter()</h4><p>&emsp;&emsp;当鼠标指针穿过元素时，会发生 mouseenter 事件。<code>mouseenter()</code> 方法触发 mouseenter 事件，或规定当发生 mouseenter 事件时运行的函数：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("#p1").mouseenter(function(){
-    alert('您的鼠标移到了 id="p1" 的元素上!');
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="mouseleave"><a href="#mouseleave" class="headerlink" title="mouseleave()"></a>mouseleave()</h4><p>&emsp;&emsp;当鼠标指针离开元素时，会发生 mouseleave 事件。<code>mouseleave()</code> 方法触发 mouseleave 事件，或规定当发生 mouseleave 事件时运行的函数：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("#p1").mouseleave(function(){
-    alert("再见，您的鼠标离开了该段落。");
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="mousedown"><a href="#mousedown" class="headerlink" title="mousedown()"></a>mousedown()</h4><p>&emsp;&emsp;当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。<code>mousedown()</code> 方法触发 mousedown 事件，或规定当发生 mousedown 事件时运行的函数：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("#p1").mousedown(function(){
-    alert("鼠标在该段落上按下！");
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="mouseup"><a href="#mouseup" class="headerlink" title="mouseup()"></a>mouseup()</h4><p>&emsp;&emsp;当在元素上松开鼠标按钮时，会发生 mouseup 事件。<code>mouseup()</code> 方法触发 mouseup 事件，或规定当发生 mouseup 事件时运行的函数：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("#p1").mouseup(function(){
-    alert("鼠标在段落上松开。");
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="hover"><a href="#hover" class="headerlink" title="hover()"></a>hover()</h4><p>&emsp;&emsp;<code>hover()</code>方法用于模拟光标悬停事件。当鼠标移动到元素上时，会触发指定的第一个函数(mouseenter);当鼠标移出这个元素时，会触发指定的第二个函数(mouseleave)。</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("#p1").hover(
-    function(){
-        alert("你进入了 p1!");
-    },
-    function(){
-        alert("拜拜! 现在你离开了 p1!");
-    }
-);
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="focus"><a href="#focus" class="headerlink" title="focus()"></a>focus()</h4><p>&emsp;&emsp;当元素获得焦点时，发生 focus 事件。当通过鼠标点击选中元素或通过 tab 键定位到元素时，该元素就会获得焦点。<code>focus()</code> 方法触发 focus 事件，或规定当发生 focus 事件时运行的函数：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("input").focus(function(){
-  $(this).css("background-color","#cccccc");
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="blur"><a href="#blur" class="headerlink" title="blur()"></a>blur()</h4><p>&emsp;&emsp;当元素失去焦点时，发生 blur 事件。<code>blur()</code> 方法触发 blur 事件，或规定当发生 blur 事件时运行的函数：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">$("input").blur(function(){
-  $(this).css("background-color","#ffffff");
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="元素选择器">元素选择器</h3>
+<p>  jQuery 元素选择器基于元素名选取元素,在页面中选取所有 <code>&lt;p&gt;</code> 元素:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;p&quot;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">// 用户点击按钮后，所有 &lt;p&gt; 元素都隐藏：</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="at">$</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="at">$</span>(<span class="st">&quot;button&quot;</span>).<span class="at">click</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="at">$</span>(<span class="st">&quot;p&quot;</span>).<span class="at">hide</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h3 id="id-选择器">#id 选择器</h3>
+<p>  jQuery <code>#id</code> 选择器通过 HTML 元素的 id 属性选取指定的元素。页面中元素的 id 应该是唯一的，所以您要在页面中选取唯一的元素需要通过 <code>#id</code> 选择器。通过 id 选取元素语法如下：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;#test&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">// 当用户点击按钮后，有 id=&quot;test&quot; 属性的元素将被隐藏：</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="at">$</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="at">$</span>(<span class="st">&quot;button&quot;</span>).<span class="at">click</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="at">$</span>(<span class="st">&quot;#test&quot;</span>).<span class="at">hide</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">  <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h3 id="class-选择器">.class 选择器</h3>
+<p>  jQuery 类选择器可以通过指定的 class 查找元素。语法如下：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;.test&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">// 用户点击按钮后所有带有 class=&quot;test&quot; 属性的元素都隐藏：</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="at">$</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="at">$</span>(<span class="st">&quot;button&quot;</span>).<span class="at">click</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">    <span class="at">$</span>(<span class="st">&quot;.test&quot;</span>).<span class="at">hide</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="jquery事件">jQuery事件</h2>
+<h3 id="什么是事件">什么是事件</h3>
+<p>  页面对不同访问者的响应叫做事件。事件处理程序指的是当 HTML 中发生某些事件时所调用的方法。 - 在元素上移动鼠标。 - 选取单选按钮 - 点击元素</p>
+<h3 id="jquery-事件方法语法">jQuery 事件方法语法</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co">// 页面中指定一个点击事件：</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="at">$</span>(<span class="st">&quot;p&quot;</span>).<span class="at">click</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">// 下一步是定义什么时间触发事件。您可以通过一个事件函数实现：</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="at">$</span>(<span class="st">&quot;p&quot;</span>).<span class="at">click</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="co">// 动作触发后执行的代码!!</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h3 id="常用的-jquery-事件方法">常用的 jQuery 事件方法</h3>
+<h4 id="click">click()</h4>
+<p>  <code>click()</code> 方法是当按钮点击事件被触发时会调用一个函数。该函数在用户点击 HTML 元素时执行。在下面的实例中，当点击事件在某个 <code>&lt;p&gt;</code> 元素上触发时，隐藏当前的 <code>&lt;p&gt;</code> 元素：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;p&quot;</span>).<span class="at">click</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="at">$</span>(<span class="kw">this</span>).<span class="at">hide</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h4 id="dblclick">dblclick()</h4>
+<p>  当双击元素时，会发生 dblclick 事件。<code>dblclick()</code> 方法触发 dblclick 事件，或规定当发生 dblclick 事件时运行的函数：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;p&quot;</span>).<span class="at">dblclick</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="at">$</span>(<span class="kw">this</span>).<span class="at">hide</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h4 id="mouseenter">mouseenter()</h4>
+<p>  当鼠标指针穿过元素时，会发生 mouseenter 事件。<code>mouseenter()</code> 方法触发 mouseenter 事件，或规定当发生 mouseenter 事件时运行的函数：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;#p1&quot;</span>).<span class="at">mouseenter</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">    <span class="at">alert</span>(<span class="st">&#39;您的鼠标移到了 id=&quot;p1&quot; 的元素上!&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h4 id="mouseleave">mouseleave()</h4>
+<p>  当鼠标指针离开元素时，会发生 mouseleave 事件。<code>mouseleave()</code> 方法触发 mouseleave 事件，或规定当发生 mouseleave 事件时运行的函数：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;#p1&quot;</span>).<span class="at">mouseleave</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">    <span class="at">alert</span>(<span class="st">&quot;再见，您的鼠标离开了该段落。&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h4 id="mousedown">mousedown()</h4>
+<p>  当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。<code>mousedown()</code> 方法触发 mousedown 事件，或规定当发生 mousedown 事件时运行的函数：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;#p1&quot;</span>).<span class="at">mousedown</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">    <span class="at">alert</span>(<span class="st">&quot;鼠标在该段落上按下！&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h4 id="mouseup">mouseup()</h4>
+<p>  当在元素上松开鼠标按钮时，会发生 mouseup 事件。<code>mouseup()</code> 方法触发 mouseup 事件，或规定当发生 mouseup 事件时运行的函数：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;#p1&quot;</span>).<span class="at">mouseup</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">    <span class="at">alert</span>(<span class="st">&quot;鼠标在段落上松开。&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h4 id="hover">hover()</h4>
+<p>  <code>hover()</code>方法用于模拟光标悬停事件。当鼠标移动到元素上时，会触发指定的第一个函数(mouseenter);当鼠标移出这个元素时，会触发指定的第二个函数(mouseleave)。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;#p1&quot;</span>).<span class="at">hover</span>(</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">    <span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">        <span class="at">alert</span>(<span class="st">&quot;你进入了 p1!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">    <span class="op">},</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">    <span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">        <span class="at">alert</span>(<span class="st">&quot;拜拜! 现在你离开了 p1!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">)<span class="op">;</span></a></code></pre></div>
+<h4 id="focus">focus()</h4>
+<p>  当元素获得焦点时，发生 focus 事件。当通过鼠标点击选中元素或通过 tab 键定位到元素时，该元素就会获得焦点。<code>focus()</code> 方法触发 focus 事件，或规定当发生 focus 事件时运行的函数：</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;input&quot;</span>).<span class="at">focus</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">  <span class="at">$</span>(<span class="kw">this</span>).<span class="at">css</span>(<span class="st">&quot;background-color&quot;</span><span class="op">,</span><span class="st">&quot;#cccccc&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h4 id="blur">blur()</h4>
+<p>  当元素失去焦点时，发生 blur 事件。<code>blur()</code> 方法触发 blur 事件，或规定当发生 blur 事件时运行的函数：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="at">$</span>(<span class="st">&quot;input&quot;</span>).<span class="at">blur</span>(<span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">  <span class="at">$</span>(<span class="kw">this</span>).<span class="at">css</span>(<span class="st">&quot;background-color&quot;</span><span class="op">,</span><span class="st">&quot;#ffffff&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
 <p>本文参考菜鸟教程，作为个人学习笔记。</p>
 
             </div>
@@ -991,10 +981,12 @@ $("p").click(function(){
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Python特性
+                            
+Python特性
 
-切片&emsp;&emsp;取一个list或tuple的部分元素是非常常见的操作。对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符，能大大简化这种操作。例：
->>> L =
+切片
+  取一个list或tuple的部分元素是非常常见的操作。对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符，能大大简化这种操作。 例：
+&gt;&gt;&
                         
                     </div>
                     <div class="publish-info">
@@ -1043,9 +1035,11 @@ $("p").click(function(){
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Python函数
+                            
+Python函数
 
-调用函数&emsp;&emsp;Python内置了很多有用的函数，我们可以直接调用。要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数abs，只有一个参数。可以直接从Python的官方网站查看文档：http:/
+调用函数
+  Python内置了很多有用的函数，我们可以直接调用。要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数abs，只有一个参数。可以直接从Python的官方网站查看文档：http://doc
                         
                     </div>
                     <div class="publish-info">
@@ -1482,9 +1476,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

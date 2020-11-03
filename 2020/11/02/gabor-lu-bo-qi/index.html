@@ -543,146 +543,115 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div align='center' ><font size='70'>Gabor滤波器</font></div>
-
-<h2 id="Gabor-Filter"><a href="#Gabor-Filter" class="headerlink" title="Gabor Filter"></a>Gabor Filter</h2><p>&emsp;&emsp;在图像处理中，Gabor函数是一个用于边缘提取的线性滤波器。Gabor滤波器的频率和方向表达同人类视觉系统类似。研究发现，Gabor滤波器十分适合纹理表达和分离。在空间域中，一个二维Gabor滤波器是一个由正弦平面波调制的高斯核函数。还有，生物学实验发现，Gabor滤波器可以很好地近似单细胞的感受野函数（光强刺激下的传递函数），什么视皮层内的超柱，bla…bla，总之是这方面仿生的数学模型。另外，网上有一种说法，gabor分为实部和虚部，用实部进行滤波后图像会平滑；虚部滤波后用来检测边缘。</p>
-<p>&emsp;&emsp;Gabor滤波器的脉冲响应，可以定义为一个正弦波（对于二维Gabor滤波器是正弦平面波）乘以高斯函数。由于乘法卷积性质，Gabor滤波器的脉冲响应的傅立叶变换是其调和函数的傅立叶变换和高斯函数傅立叶变换的卷积。该滤波器由实部和虚部组成，二者相互正交。一组不同频率不同方向的Gabor函数数组对于图像特征提取非常有用。</p>
-<h3 id="一维Gabor滤波器"><a href="#一维Gabor滤波器" class="headerlink" title="一维Gabor滤波器"></a>一维Gabor滤波器</h3><p>&emsp;&emsp;Gabor滤波器是处理一维信号（比如音频）最佳的带通滤波器<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，一个复杂的Gabor滤波器是一个高斯核函数<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>乘以一个复杂的sin函数：</p>
-<script type="math/tex; mode=display">
-Gabor(t)=ke^{i\theta}w(at)s(t)</script><p>其中：</p>
-<script type="math/tex; mode=display">
+                <div data-align="center">
+<font size='70'>Gabor滤波器</font>
+</div>
+<h2 id="gabor-filter">Gabor Filter</h2>
+<p>  在图像处理中，Gabor函数是一个用于边缘提取的线性滤波器。Gabor滤波器的频率和方向表达同人类视觉系统类似。研究发现，Gabor滤波器十分适合纹理表达和分离。在空间域中，一个二维Gabor滤波器是一个由正弦平面波调制的高斯核函数。还有，生物学实验发现，Gabor滤波器可以很好地近似单细胞的感受野函数（光强刺激下的传递函数），什么视皮层内的超柱，bla...bla，总之是这方面仿生的数学模型。另外，网上有一种说法，gabor分为实部和虚部，用实部进行滤波后图像会平滑；虚部滤波后用来检测边缘。</p>
+<p>  Gabor滤波器的脉冲响应，可以定义为一个正弦波（对于二维Gabor滤波器是正弦平面波）乘以高斯函数。由于乘法卷积性质，Gabor滤波器的脉冲响应的傅立叶变换是其调和函数的傅立叶变换和高斯函数傅立叶变换的卷积。该滤波器由实部和虚部组成，二者相互正交。一组不同频率不同方向的Gabor函数数组对于图像特征提取非常有用。 ### 一维Gabor滤波器   Gabor滤波器是处理一维信号（比如音频）最佳的带通滤波器<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，一个复杂的Gabor滤波器是一个高斯核函数<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>乘以一个复杂的sin函数：</p>
+<p><span class="math display">\[
+Gabor(t)=ke^{i\theta}w(at)s(t)
+\]</span> 其中： <span class="math display">\[
 \begin{cases}
 w(t)=e^{- \pi t^2}\\
 s(t)=e^{i(2\pi f_0 t)}
-\end{cases}</script><p>其中，$f_0$是复数波$s(t)$的频率。<br>将复数波$s(t)=e^{i(2\pi f_0 t)}$带入（1）式中，得到：</p>
-<script type="math/tex; mode=display">
+\end{cases}
+\]</span></p>
+<p>其中，<span class="math inline">\(f_0\)</span>是复数波<span class="math inline">\(s(t)\)</span>的频率。 将复数波<span class="math inline">\(s(t)=e^{i(2\pi f_0 t)}\)</span>带入（1）式中，得到： <span class="math display">\[
 \begin{aligned} 
-Gabor(t) & = k \omega(at) e^{i(2\pi f_0 t + \theta)} \\ & = k \omega(at) \left[ \cos(2\pi f_0 t+\theta) + i\sin(2\pi f_0 t+\theta) \right] 
-\end{aligned}</script><p>上面最后一步得到了 Gabor 核的复数表示，我们就可以按实部和虚部将其拆分为实核和虚核，在很多应用中，我们只需要应用 Gabor核的实数部分即可：</p>
-<script type="math/tex; mode=display">\begin{cases} Gabor_{real}(t) = \omega(at)\cos(2\pi f_0 t + \theta) \\ Gabor_{imag}(t) = \omega(at)\sin(2\pi f_0 t + \theta) \end{cases}</script><h3 id="二维Gabor滤波器"><a href="#二维Gabor滤波器" class="headerlink" title="二维Gabor滤波器"></a>二维Gabor滤波器</h3><p>&emsp;&emsp;二维Gabor滤波器，也叫空间Gabor滤波器（The Spatial (2-D) Gabor Filter）。类似一维 Gabor 核，我们将二维高斯函数与二维复数波相乘，就得到了二维的Gabor核：</p>
-<script type="math/tex; mode=display">
+Gabor(t) &amp; = k \omega(at) e^{i(2\pi f_0 t + \theta)} \\ &amp; = k \omega(at) \left[ \cos(2\pi f_0 t+\theta) + i\sin(2\pi f_0 t+\theta) \right] 
+\end{aligned}
+\]</span> 上面最后一步得到了 Gabor 核的复数表示，我们就可以按实部和虚部将其拆分为实核和虚核，在很多应用中，我们只需要应用 Gabor核的实数部分即可： <span class="math display">\[\begin{cases} Gabor_{real}(t) = \omega(at)\cos(2\pi f_0 t + \theta) \\ Gabor_{imag}(t) = \omega(at)\sin(2\pi f_0 t + \theta) \end{cases}\]</span></p>
+<h3 id="二维gabor滤波器">二维Gabor滤波器</h3>
+<p>  二维Gabor滤波器，也叫空间Gabor滤波器（The Spatial (2-D) Gabor Filter）。类似一维 Gabor 核，我们将二维高斯函数与二维复数波相乘，就得到了二维的Gabor核： <span class="math display">\[
 \begin{aligned} 
-Gabor(x_0, y_0, \theta, \sigma_x, \sigma_y, u_0, v_0) & = s(x,y) \omega_r(x,y) \\ 
-& = K \exp\left(-\pi \left( (x-x_0)_r^2/\sigma_x^2 + (y-y_0)_r^2/\sigma_y^2 \right) \right) \exp\left(i 2\pi (u_0 x + v_0 y) \right) \\ 
-\end{aligned}</script><p>它的各个参数含义如下：</p>
-<ul>
-<li>$(x_0, y_0)$: 高斯核的中心点</li>
-<li>$\theta$: 高斯核的旋转方向（顺时针）</li>
-<li>$(\sigma_x, \sigma_y)$: 高斯核两个方向上的尺度</li>
-<li>$(u_0, v_0)$: 频域坐标</li>
-<li>$K$: 高斯核的幅度（magnitude）的比例</li>
-</ul>
-<h2 id="Gabor之Python实现"><a href="#Gabor之Python实现" class="headerlink" title="Gabor之Python实现"></a>Gabor之Python实现</h2><h3 id="Gabor变换"><a href="#Gabor变换" class="headerlink" title="Gabor变换"></a>Gabor变换</h3><p>&emsp;&emsp;其实，<code>skimage</code>包中就有封装好的gabor变换函数，可以直接调用。因此，这里介绍一种简单偷懒的方式。从<code>skimage</code>中导入<code>filters（from skimage import filters)</code>后,便可调用gabor函数了，其函数说明如下：<br><code>skimage.filters.gabor(image, frequency, theta=0, bandwidth=1, sigma_x=None, sigma_y=None, n_stds=3, offset=0, mode=‘reflect’, cval=0)</code></p>
-<ul>
-<li>函数返回：<ul>
-<li>Gabor变换后的实部和虚部<code>real</code>，<code>imag</code>；</li>
-<li>大小与输入图像尺寸相同。</li>
-</ul>
-</li>
-<li>函数参数：<ul>
-<li>图像（<code>image</code>）：二维数组输入图像（灰度图像）；</li>
-<li>频率（<code>frequency</code>）：浮点谐波函数的空间频率，控制尺度。$k<em>v=k</em>{max}/f^v$,$k_{max}=\pi/2$为最大的采用频率。在图像特征提取领域通常取5个不同尺度,v = [0,1,2,3,4]。</li>
-<li>方向（<code>theta</code>）：<code>float</code>，可选的弧度方向，如果为0，则谐波处于x方向。$\varphi_u=\pi u/8$,在图像特征提取领域通常取8个不同方向u=[0,1,2,3,4,5,6,7]。</li>
-<li>带宽（<code>bandwidth</code>)：浮点，可选由过滤器捕获的带宽。对于固定带宽，<code>sigma_x</code>和<code>sigma_y</code>将随着频率的增加而降低，如果用户设置了<code>sigma_x</code>和<code>sigma_y</code>，则该值将被忽略；</li>
-<li>标准偏差(<code>sigma_x，sigma_y</code>)：<code>float</code>，x和y方向上的可选标准偏差；</li>
-<li>内核的线性大小(<code>n_stds</code>)：标量，可选内核的线性大小为<code>n_stds</code>（默认为3）标准偏差；</li>
-<li>偏移量(<code>offset</code>)：浮点数，可选项以弧度表示的谐波函数的相位偏移；</li>
-<li>模式(<code>mode</code>）：<code>{‘constant’，‘near’，‘reflect’，‘mirror’，‘wrap’}</code>，可选用于将图像与内核进行卷积的模式，传递给<code>ndi.convolve</code>；</li>
-<li><code>cval</code>：标量，可选值如果卷积模式为’不变’，该参数被传递给<code>ndi.convolve</code>。</li>
-</ul>
-</li>
-</ul>
+Gabor(x_0, y_0, \theta, \sigma_x, \sigma_y, u_0, v_0) &amp; = s(x,y) \omega_r(x,y) \\ 
+&amp; = K \exp\left(-\pi \left( (x-x_0)_r^2/\sigma_x^2 + (y-y_0)_r^2/\sigma_y^2 \right) \right) \exp\left(i 2\pi (u_0 x + v_0 y) \right) \\ 
+\end{aligned}
+\]</span> 它的各个参数含义如下： - <span class="math inline">\((x_0, y_0)\)</span>: 高斯核的中心点 - <span class="math inline">\(\theta\)</span>: 高斯核的旋转方向（顺时针） - <span class="math inline">\((\sigma_x, \sigma_y)\)</span>: 高斯核两个方向上的尺度 - <span class="math inline">\((u_0, v_0)\)</span>: 频域坐标 - <span class="math inline">\(K\)</span>: 高斯核的幅度（magnitude）的比例</p>
+<h2 id="gabor之python实现">Gabor之Python实现</h2>
+<h3 id="gabor变换">Gabor变换</h3>
+<p>  其实，<code>skimage</code>包中就有封装好的gabor变换函数，可以直接调用。因此，这里介绍一种简单偷懒的方式。从<code>skimage</code>中导入<code>filters（from skimage import filters)</code>后,便可调用gabor函数了，其函数说明如下： <code>skimage.filters.gabor(image, frequency, theta=0, bandwidth=1, sigma_x=None, sigma_y=None, n_stds=3, offset=0, mode=‘reflect’, cval=0)</code> - 函数返回： - Gabor变换后的实部和虚部<code>real</code>，<code>imag</code>； - 大小与输入图像尺寸相同。 - 函数参数： - 图像（<code>image</code>）：二维数组输入图像（灰度图像）； - 频率（<code>frequency</code>）：浮点谐波函数的空间频率，控制尺度。<span class="math inline">\(k_v=k_{max}/f^v\)</span>,<span class="math inline">\(k_{max}=\pi/2\)</span>为最大的采用频率。在图像特征提取领域通常取5个不同尺度,v = [0,1,2,3,4]。 - 方向（<code>theta</code>）：<code>float</code>，可选的弧度方向，如果为0，则谐波处于x方向。<span class="math inline">\(\varphi_u=\pi u/8\)</span>,在图像特征提取领域通常取8个不同方向u=[0,1,2,3,4,5,6,7]。 - 带宽（<code>bandwidth</code>)：浮点，可选由过滤器捕获的带宽。对于固定带宽，<code>sigma_x</code>和<code>sigma_y</code>将随着频率的增加而降低，如果用户设置了<code>sigma_x</code>和<code>sigma_y</code>，则该值将被忽略； - 标准偏差(<code>sigma_x，sigma_y</code>)：<code>float</code>，x和y方向上的可选标准偏差； - 内核的线性大小(<code>n_stds</code>)：标量，可选内核的线性大小为<code>n_stds</code>（默认为3）标准偏差； - 偏移量(<code>offset</code>)：浮点数，可选项以弧度表示的谐波函数的相位偏移； - 模式(<code>mode</code>）：<code>{‘constant’，‘near’，‘reflect’，‘mirror’，‘wrap’}</code>，可选用于将图像与内核进行卷积的模式，传递给<code>ndi.convolve</code>； - <code>cval</code>：标量，可选值如果卷积模式为’不变’，该参数被传递给<code>ndi.convolve</code>。</p>
 <p>源码：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">import matplotlib.pyplot as plt
-from skimage import filters,io,color
-import numpy as np
-
-filename='D:/lena.jpg'
-img = io.imread(filename)#读取图像
-img_gray = color.rgb2gray(img)#RGB转灰度
-frequency=0.6
-#调用gabor函数
-real, imag = filters.gabor(img_gray, frequency=0.6,theta=45,n_stds=5)
-#取模图像
-img_mod=np.sqrt(real.astype(float)**2+imag.astype(float)**2)
-#图像显示
-plt.figure()
-plt.subplot(2,2,1)
-plt.imshow(img_gray,cmap='gray')
-plt.subplot(2,2,2)
-plt.imshow(img_mod,cmap='gray')
-plt.subplot(2,2,3)
-plt.imshow(real,cmap='gray')
-plt.subplot(2,2,4)
-plt.imshow(imag,cmap='gray')
-plt.show()
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注：</p>
-<ul>
-<li>通过<code>theta</code>参数调不同方向，这里输入是弧度，不是角度。</li>
-<li>通过<code>frequency</code>参数调不同尺度变化。</li>
-</ul>
-<h3 id="Gabor卷积核"><a href="#Gabor卷积核" class="headerlink" title="Gabor卷积核"></a>Gabor卷积核</h3><p>&emsp;&emsp;利用skimage生成gobor卷积核：<code>gabor_kernel</code><br><code>skimage.filters.gabor_kernel(frequency, theta=0, bandwidth=1, sigma_x=None, sigma_y=None, n_stds=3, offset=0)</code></p>
-<ul>
-<li>函数返回：返回2D Gabor滤波器内核，包含实部与虚部。</li>
-<li>参数与<code>skimage.filters.gabor（）</code>函数相同。</li>
-</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="im">from</span> skimage <span class="im">import</span> filters,io,color</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">filename<span class="op">=</span><span class="st">&#39;D:/lena.jpg&#39;</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">img <span class="op">=</span> io.imread(filename)<span class="co">#读取图像</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">img_gray <span class="op">=</span> color.rgb2gray(img)<span class="co">#RGB转灰度</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">frequency<span class="op">=</span><span class="fl">0.6</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#调用gabor函数</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">real, imag <span class="op">=</span> filters.gabor(img_gray, frequency<span class="op">=</span><span class="fl">0.6</span>,theta<span class="op">=</span><span class="dv">45</span>,n_stds<span class="op">=</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#取模图像</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">img_mod<span class="op">=</span>np.sqrt(real.astype(<span class="bu">float</span>)<span class="op">**</span><span class="dv">2</span><span class="op">+</span>imag.astype(<span class="bu">float</span>)<span class="op">**</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#图像显示</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">plt.figure()</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">plt.imshow(img_gray,cmap<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">plt.imshow(img_mod,cmap<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">plt.imshow(real,cmap<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">plt.imshow(imag,cmap<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">plt.show()</a></code></pre></div>
+<p>注： - 通过<code>theta</code>参数调不同方向，这里输入是弧度，不是角度。 - 通过<code>frequency</code>参数调不同尺度变化。</p>
+<h3 id="gabor卷积核">Gabor卷积核</h3>
+<p>  利用skimage生成gobor卷积核：<code>gabor_kernel</code> <code>skimage.filters.gabor_kernel(frequency, theta=0, bandwidth=1, sigma_x=None, sigma_y=None, n_stds=3, offset=0)</code> - 函数返回：返回2D Gabor滤波器内核，包含实部与虚部。 - 参数与<code>skimage.filters.gabor（）</code>函数相同。</p>
 <p>源码：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">import matplotlib.pyplot as plt
-from skimage import filters
-gk = filters.gabor_kernel(frequency=0.1,theta=np.pi*30/180.0,n_stds=5)
-mod=np.sqrt(gk.real.astype(float) ** 2 + gk.imag.astype(float) ** 2)
-plt.figure()
-plt.subplot(1,3,1)
-plt.imshow(gk.real*255,cmap='gray')
-plt.subplot(1,3,2)
-plt.imshow(gk.imag*255,cmap='gray')
-plt.subplot(1,3,3)
-plt.imshow(mod*255,cmap='gray')
-plt.show()
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注：</p>
-<ul>
-<li>参数<code>n_stds=3</code>并不是说滤波核大小为<code>（3,3)</code>，滤波核大小由参数<code>frequency、theta、n_stds</code>三个参数共同决定。</li>
-<li><code>gabor_kernel</code>函数返回是带有实部和虚部的复矩阵。</li>
-<li><code>theta</code>是弧度，不是角度</li>
-</ul>
-<h3 id="Gabor特征"><a href="#Gabor特征" class="headerlink" title="Gabor特征"></a>Gabor特征</h3><p>&emsp;&emsp;Gabor滤波器可以在频域上不同尺度、不同方向上提取相关的特征。另外，Gabor函数与人眼的作用相仿，所以经常用作纹理识别上，并取得了较好的效果。Gabor特征提取一般包括取模、特征降维、特征归一化和特征选取等操作：</p>
-<ol>
-<li>取模：<code>skimage.filters.gabor（）</code>函数返回的是图像变换后的实部和虚部，在图像识别领域一般使用其模作为图像特征。<script type="math/tex; mode=display">mod=\sqrt{real^2+imag^2}</script></li>
-<li>特征降维：<code>skimage.filters.gabor（）</code>函数返回值大小和原图像一样；另外，图像识别领域一般使用8个方向和5个尺度的gabor滤波器，得到40幅变换图像；导致提取的图像特征维度（40幅图像特征串联）比较高。因此，需要对取模图像进行降维处理。最简单的方法就是对每个模图像进行下采样，如使用Opencv中的resize函数<code>cv2.resize(img,(0,0),fx=1/4,fy=1/4)</code>。</li>
-<li>特征归一化：在机器学习领域中，不同评价指标（即特征向量中的不同特征就是所述的不同评价指标）往往具有不同的量纲和量纲单位，这样的情况会影响到数据分析的结果，为了消除指标之间的量纲影响，需要进行数据标准化处理，以解决数据指标之间的可比性。原始数据经过数据标准化处理后，各指标处于同一数量级，适合进行综合对比评价。其中，最典型的就是数据的归一化处理。简而言之，归一化的目的就是使得预处理的数据被限定在一定的范围内。一种Z-score标准化方法：<script type="math/tex; mode=display">x=\frac{x-\mu}{\sigma}</script><ul>
-<li>其中μ为所有样本数据的均值，σ为所有样本数据的标准差。</li>
-<li>本方法要求原始数据的分布可以近似为高斯分布，否则归一化的效果会变得很糟糕；</li>
-<li>应用场景：在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，Z-score standardization表现更好。</li>
-</ul>
-</li>
-<li>特征选取：经过以上三步后，可以将各模图像特征串联起来作为输入图像的特征向量。但此时得到的特征向量存在大量冗余，最好再进行一次特征降维（特征选取）操作。可以采用PCA或Fisher等线性子空间分析方法。</li>
-</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="im">from</span> skimage <span class="im">import</span> filters</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">gk <span class="op">=</span> filters.gabor_kernel(frequency<span class="op">=</span><span class="fl">0.1</span>,theta<span class="op">=</span>np.pi<span class="op">*</span><span class="dv">30</span><span class="op">/</span><span class="fl">180.0</span>,n_stds<span class="op">=</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">mod<span class="op">=</span>np.sqrt(gk.real.astype(<span class="bu">float</span>) <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> gk.imag.astype(<span class="bu">float</span>) <span class="op">**</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">plt.figure()</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">plt.subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">plt.imshow(gk.real<span class="op">*</span><span class="dv">255</span>,cmap<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">plt.subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">plt.imshow(gk.imag<span class="op">*</span><span class="dv">255</span>,cmap<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">plt.subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">plt.imshow(mod<span class="op">*</span><span class="dv">255</span>,cmap<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">plt.show()</a></code></pre></div>
+<p>注： - 参数<code>n_stds=3</code>并不是说滤波核大小为<code>（3,3)</code>，滤波核大小由参数<code>frequency、theta、n_stds</code>三个参数共同决定。 - <code>gabor_kernel</code>函数返回是带有实部和虚部的复矩阵。 - <code>theta</code>是弧度，不是角度</p>
+<h3 id="gabor特征">Gabor特征</h3>
+<p>  Gabor滤波器可以在频域上不同尺度、不同方向上提取相关的特征。另外，Gabor函数与人眼的作用相仿，所以经常用作纹理识别上，并取得了较好的效果。Gabor特征提取一般包括取模、特征降维、特征归一化和特征选取等操作： 1. 取模：<code>skimage.filters.gabor（）</code>函数返回的是图像变换后的实部和虚部，在图像识别领域一般使用其模作为图像特征。 <span class="math display">\[mod=\sqrt{real^2+imag^2}\]</span> 2. 特征降维：<code>skimage.filters.gabor（）</code>函数返回值大小和原图像一样；另外，图像识别领域一般使用8个方向和5个尺度的gabor滤波器，得到40幅变换图像；导致提取的图像特征维度（40幅图像特征串联）比较高。因此，需要对取模图像进行降维处理。最简单的方法就是对每个模图像进行下采样，如使用Opencv中的resize函数<code>cv2.resize(img,(0,0),fx=1/4,fy=1/4)</code>。 3. 特征归一化：在机器学习领域中，不同评价指标（即特征向量中的不同特征就是所述的不同评价指标）往往具有不同的量纲和量纲单位，这样的情况会影响到数据分析的结果，为了消除指标之间的量纲影响，需要进行数据标准化处理，以解决数据指标之间的可比性。原始数据经过数据标准化处理后，各指标处于同一数量级，适合进行综合对比评价。其中，最典型的就是数据的归一化处理。简而言之，归一化的目的就是使得预处理的数据被限定在一定的范围内。一种Z-score标准化方法： <span class="math display">\[x=\frac{x-\mu}{\sigma}\]</span> - 其中μ为所有样本数据的均值，σ为所有样本数据的标准差。 - 本方法要求原始数据的分布可以近似为高斯分布，否则归一化的效果会变得很糟糕； - 应用场景：在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，Z-score standardization表现更好。 4. 特征选取：经过以上三步后，可以将各模图像特征串联起来作为输入图像的特征向量。但此时得到的特征向量存在大量冗余，最好再进行一次特征降维（特征选取）操作。可以采用PCA或Fisher等线性子空间分析方法。</p>
 <p>源码：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">import cv2
-import numpy as np
-from skimage import filters
-filename='D:/lena.jpg'
-img = cv2.imread(filename)#读图像
-img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)#转灰度
-frequency=0.6
-#gabor变换
-real, imag = filters.gabor(img_gray, frequency=0.6,theta=45,n_stds=5)
-#取模
-img_mod=np.sqrt(real.astype(float)**2+imag.astype(float)**2)
-#图像缩放（下采样）
-newimg = cv2.resize(img_mod,(0,0),fx=1/4,fy=1/4,interpolation=cv2.INTER_AREA)
-tempfea = newimg.flatten()#矩阵展平
-tmean = np.mean(tempfea)#求均值
-tstd = np.std(tempfea)#求方差
-newfea = (tempfea - tmean)/tstd#数值归一化
-print(newfea)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="im">import</span> cv2</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="im">from</span> skimage <span class="im">import</span> filters</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">filename<span class="op">=</span><span class="st">&#39;D:/lena.jpg&#39;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">img <span class="op">=</span> cv2.imread(filename)<span class="co">#读图像</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">img_gray <span class="op">=</span> cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<span class="co">#转灰度</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">frequency<span class="op">=</span><span class="fl">0.6</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#gabor变换</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">real, imag <span class="op">=</span> filters.gabor(img_gray, frequency<span class="op">=</span><span class="fl">0.6</span>,theta<span class="op">=</span><span class="dv">45</span>,n_stds<span class="op">=</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#取模</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">img_mod<span class="op">=</span>np.sqrt(real.astype(<span class="bu">float</span>)<span class="op">**</span><span class="dv">2</span><span class="op">+</span>imag.astype(<span class="bu">float</span>)<span class="op">**</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#图像缩放（下采样）</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">newimg <span class="op">=</span> cv2.resize(img_mod,(<span class="dv">0</span>,<span class="dv">0</span>),fx<span class="op">=</span><span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,fy<span class="op">=</span><span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,interpolation<span class="op">=</span>cv2.INTER_AREA)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">tempfea <span class="op">=</span> newimg.flatten()<span class="co">#矩阵展平</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">tmean <span class="op">=</span> np.mean(tempfea)<span class="co">#求均值</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">tstd <span class="op">=</span> np.std(tempfea)<span class="co">#求方差</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">newfea <span class="op">=</span> (tempfea <span class="op">-</span> tmean)<span class="op">/</span>tstd<span class="co">#数值归一化</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="bu">print</span>(newfea)</a></code></pre></div>
+<h2 id="参考资料">参考资料</h2>
+<ol type="1">
 <li><a href="https://zh.wikipedia.org/wiki/%E5%8D%B7%E7%A7%AF%E5%AE%9A%E7%90%86" target="_blank" rel="noopener">中文维基百科/卷积定理</a></li>
 <li><a href="http://mengqi92.github.io/2015/10/11/gabor/" target="_blank" rel="noopener">Mengqi/Gabor 特征总结</a></li>
-<li><a href="https://blog.csdn.net/liaohaibing/article/details/109284561" target="_blank" rel="noopener">廖海斌/基于python的图像Gabor变换及特征提取</a><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">带通滤波器是指能通过某一频率范围内的频率分量、但将其他范围的频率分量衰减到极低水平的滤波器。</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">高斯核函数又称径向基函数,是常用的一种核函数。它可以将有限维数据映射到高维空间。</span><a href="#fnref:2" rev="footnote"> ↩</a></li></ol></div>&lt;/div&gt;</li>
+<li><a href="https://blog.csdn.net/liaohaibing/article/details/109284561" target="_blank" rel="noopener">廖海斌/基于python的图像Gabor变换及特征提取</a>
+<div id="footnotes">
+<hr>
+<div id="footnotelist">
+<ol style="list-style:none; padding-left: 0;">
+<li id="fn:1">
+<span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">带通滤波器是指能通过某一频率范围内的频率分量、但将其他范围的频率分量衰减到极低水平的滤波器。</span><a href="#fnref:1" rev="footnote"> ↩</a>
+</li>
+<li id="fn:2">
+<span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">高斯核函数又称径向基函数,是常用的一种核函数。它可以将有限维数据映射到高维空间。</span><a href="#fnref:2" rev="footnote"> ↩</a>
+</li>
+</ol>
+</div>
+</div></li>
 </ol>
 
             </div>
@@ -979,9 +948,11 @@ print(newfea)
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Gabor滤波器
+                            
+Gabor滤波器
 
-Gabor Filter&emsp;&emsp;在图像处理中，Gabor函数是一个用于边缘提取的线性滤波器。Gabor滤波器的频率和方向表达同人类视觉系统类似。研究发现，Gabor滤波器十分适合纹理表达和分离。在空间域中
+Gabor Filter
+  在图像处理中，Gabor函数是一个用于边缘提取的线性滤波器。Gabor滤波器的频率和方向表达同人类视觉系统类似。研究发现，Gabor滤波器十分适合纹理表达和分离。在空间域中，一个二
                         
                     </div>
                     <div class="publish-info">
@@ -1031,10 +1002,12 @@ Gabor Filter&emsp;&emsp;在图像处理中，Gabor函数是一个用于边缘提
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Python特性
+                            
+Python特性
 
-切片&emsp;&emsp;取一个list或tuple的部分元素是非常常见的操作。对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符，能大大简化这种操作。例：
->>> L =
+切片
+  取一个list或tuple的部分元素是非常常见的操作。对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符，能大大简化这种操作。 例：
+&gt;&gt;&
                         
                     </div>
                     <div class="publish-info">
@@ -1471,9 +1444,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

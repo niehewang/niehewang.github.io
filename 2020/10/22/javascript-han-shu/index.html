@@ -543,464 +543,441 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div align='center' ><font size='70'>JavaScript函数</font></div>
-
-<h2 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h2><p>&emsp;&emsp;在JavaScript中，定义函数的方式如下：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function abs(x) {
-    if (x >= 0) {
-        return x;
-    } else {
-        return -x;
-    }
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;第二种定义函数的方式如下：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var abs = function (x) {
-    if (x >= 0) {
-        return x;
-    } else {
-        return -x;
-    }
-};
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>&emsp;&emsp;由于JavaScript允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题，虽然函数内部并不需要这些参数。</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">abs(10); // 返回10
-abs(-9); // 返回9
-abs(10, 'blablabla'); // 返回10
-abs(-9, 'haha', 'hehe', null); // 返回9
-abs(); // 返回NaN
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><p>&emsp;&emsp;JavaScript还有一个免费赠送的关键字<code>arguments</code>，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。<code>arguments</code>类似<code>Array</code>但它不是一个<code>Array</code>.利用<code>arguments</code>，你可以获得调用者传入的所有参数。也就是说，即使函数不定义任何参数，还是可以拿到参数的值：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function abs() {
-    if (arguments.length === 0) {
-        return 0;
-    }
-    var x = arguments[0];
-    return x >= 0 ? x : -x;
-}
-
-abs(); // 0
-abs(10); // 10
-abs(-9); // 9
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;实际上<code>arguments</code>最常用于判断传入参数的个数。你可能会看到这样的写法：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">// foo(a, b, c)
-// 接收2~3个参数，b是可选参数，如果只传2个参数，b默认为null：
-function foo(a, b, c) {
-    if (arguments.length === 2) {
-        // 实际拿到的参数是a和b，c为undefined
-        c = b; // 把b赋给c
-        b = null; // b变为默认值
-    }
-    // ...
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h3><p>&emsp;&emsp;由于JavaScript函数允许接收任意个参数，于是我们就不得不用<code>arguments</code>来获取所有参数：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function foo(a, b) {
-    var i, rest = [];
-    if (arguments.length > 2) {
-        for (i = 2; i<arguments.length; i++) {
-            rest.push(arguments[i]);
-        }
-    }
-    console.log('a = ' + a);
-    console.log('b = ' + b);
-    console.log(rest);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;为了获取除了已定义参数<code>a</code>、<code>b</code>之外的参数，我们不得不用<code>arguments</code>，并且循环要从索引2开始以便排除前两个参数，这种写法很别扭，只是为了获得额外的<code>rest</code>参数，有没有更好的方法？ES6标准引入了<code>rest</code>参数，上面的函数可以改写为：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function foo(a, b, ...rest) {
-    console.log('a = ' + a);
-    console.log('b = ' + b);
-    console.log(rest);
-}
-
-foo(1, 2, 3, 4, 5);
-// 结果:
-// a = 1
-// b = 2
-// Array [ 3, 4, 5 ]
-
-foo(1);
-// 结果:
-// a = 1
-// b = undefined
-// Array []
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;<code>rest</code>参数只能写在最后，前面用…标识，从运行结果可知，传入的参数先绑定<code>a</code>、<code>b</code>，多余的参数以数组形式交给变量<code>rest</code>，所以，不再需要<code>arguments</code>我们就获取了全部参数。如果传入的参数连正常定义的参数都没填满，也不要紧，<code>rest</code>参数会接收一个空数组（注意不是<code>undefined</code>）。</p>
-<h2 id="变量作用域与解构赋值"><a href="#变量作用域与解构赋值" class="headerlink" title="变量作用域与解构赋值"></a>变量作用域与解构赋值</h2><p>&emsp;&emsp;在JavaScript中，用<code>var</code>申明的变量实际上是有作用域的。如果一个变量在函数体内部申明，则该变量的作用域为整个函数体，在函数体外不可引用该变量,如果两个不同的函数各自申明了同一个变量，那么该变量只在各自的函数体内起作用。换句话说，不同函数内部的同名变量互相独立，互不影响.<br>&emsp;&emsp;由于JavaScript的函数可以嵌套，此时，内部函数可以访问外部函数定义的变量，反过来则不行,如果内部函数定义了与外部函数重名的变量，则内部函数的变量将“屏蔽”外部函数的变量。</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-function foo() {
-    var x = 1;
-    function bar() {
-        var y = x + 1; // bar可以访问foo的变量x!
-    }
-    var z = y + 1; // ReferenceError! foo不可以访问bar的变量y!
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>&emsp;&emsp;JavaScript的函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-function foo() {
-    var x = 'Hello, ' + y;
-    console.log(x);
-    var y = 'Bob';
-}
-
-foo();
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;虽然是<code>strict</code>模式，但语句<code>var x = &#39;Hello, &#39; + y;</code>并不报错，原因是变量<code>y</code>在稍后申明了。但是<code>console.log</code>显示<code>Hello, undefined</code>，说明变量<code>y</code>的值为<code>undefined</code>。这正是因为JavaScript引擎自动提升了变量<code>y</code>的声明，但不会提升变量<code>y</code>的赋值。对于上述<code>foo()</code>函数，JavaScript引擎看到的代码相当于：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function foo() {
-    var y; // 提升变量y的申明，此时y为undefined
-    var x = 'Hello, ' + y;
-    console.log(x);
-    y = 'Bob';
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;由于JavaScript的这一怪异的“特性”，我们在函数内部定义变量时，请严格遵守“在函数内部首先申明所有变量”这一规则。最常见的做法是用一个<code>var</code>申明函数内部用到的所有变量：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function foo() {
-    var
-        x = 1, // x初始化为1
-        y = x + 1, // y初始化为2
-        z, i; // z和i为undefined
-    // 其他语句:
-    for (i=0; i<100; i++) {
-        ...
-    }
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h3><p>&emsp;&emsp;不在任何函数内定义的变量就具有全局作用域。实际上，JavaScript默认有一个全局对象<code>window</code>，全局作用域的变量实际上被绑定到<code>window</code>的一个属性因此，直接访问全局变量<code>course</code>和访问<code>window.course</code>是完全一样的：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-var course = 'Learn JavaScript';
-alert(course); // 'Learn JavaScript'
-alert(window.course); // 'Learn JavaScript'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="名字空间"><a href="#名字空间" class="headerlink" title="名字空间"></a>名字空间</h3><p>&emsp;&emsp;全局变量会绑定到<code>window</code>上，不同的JavaScript文件如果使用了相同的全局变量，或者定义了相同名字的顶层函数，都会造成命名冲突，并且很难被发现。减少冲突的一个方法是把自己的所有变量和函数全部绑定到一个全局变量中。例如：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">// 唯一的全局变量MYAPP:
-var MYAPP = {};
-
-// 其他变量:
-MYAPP.name = 'myapp';
-MYAPP.version = 1.0;
-
-// 其他函数:
-MYAPP.foo = function () {
-    return 'foo';
-};
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="局部作用域"><a href="#局部作用域" class="headerlink" title="局部作用域"></a>局部作用域</h3><p>&emsp;&emsp;由于JavaScript的变量作用域实际上是函数内部，我们在<code>for</code>循环等语句块中是无法定义具有局部作用域的变量的：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-function foo() {
-    for (var i=0; i<100; i++) {
-        //
-    }
-    i += 100; // 仍然可以引用变量i
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;为了解决块级作用域，ES6引入了新的关键字<code>let</code>，用<code>let</code>替代<code>var</code>可以申明一个块级作用域的变量：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-function foo() {
-    var sum = 0;
-    for (let i=0; i<100; i++) {
-        sum += i;
-    }
-    // SyntaxError:
-    i += 1;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>&emsp;&emsp;ES6标准引入了新的关键字<code>const</code>来定义常量，<code>const</code>与<code>let</code>都具有块级作用域：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-const PI = 3.14;
-PI = 3; // 某些浏览器不报错，但是无效果！
-PI; // 3.14
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h3><p>&emsp;&emsp;从ES6开始，JavaScript引入了解构赋值，可以同时对一组变量进行赋值。</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-// 如果浏览器支持解构赋值就不会报错:
-var [x, y, z] = ['hello', 'JavaScript', 'ES6'];
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;如果数组本身还有嵌套，也可以通过下面的形式进行解构赋值，注意嵌套层次和位置要保持一致：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">let [x, [y, z]] = ['hello', ['JavaScript', 'ES6']];
-x; // 'hello'
-y; // 'JavaScript'
-z; // 'ES6'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;解构赋值还可以忽略某些元素：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">let [, , z] = ['hello', 'JavaScript', 'ES6']; // 忽略前两个元素，只对z赋值第三个元素
-z; // 'ES6'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;如果需要从一个对象中取出若干属性，也可以使用解构赋值，便于快速获取对象的指定属性：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-var person = {
-    name: '小明',
-    age: 20,
-    gender: 'male',
-    passport: 'G-12345678',
-    school: 'No.4 middle school'
-};
-var {name, age, passport} = person;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;使用解构赋值对对象属性进行赋值时，如果对应的属性不存在，变量将被赋值为<code>undefined</code>，这和引用一个不存在的属性获得<code>undefined</code>是一致的。如果要使用的变量名和属性名不一致，可以用下面的语法获取：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var person = {
-    name: '小明',
-    age: 20,
-    gender: 'male',
-    passport: 'G-12345678',
-    school: 'No.4 middle school'
-};
-
-// 把passport属性赋值给变量id:
-let {name, passport:id} = person;
-name; // '小明'
-id; // 'G-12345678'
-// 注意: passport不是变量，而是为了让变量id获得passport属性:
-passport; // Uncaught ReferenceError: passport is not defined
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;解构赋值还可以使用默认值，这样就避免了不存在的属性返回<code>undefined</code>的问题：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var person = {
-    name: '小明',
-    age: 20,
-    gender: 'male',
-    passport: 'G-12345678'
-};
-
-// 如果person对象没有single属性，默认赋值为true:
-var {name, single=true} = person;
-name; // '小明'
-single; // true
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;有些时候，如果变量已经被声明了，再次赋值的时候，正确的写法也会报语法错误,这是因为JavaScript引擎把<code>{</code>开头的语句当作了块处理，于是<code>=</code>不再合法。解决方法是用小括号括起来：：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">// 声明变量:
-var x, y;
-// 解构赋值:
-{x, y} = { name: '小明', x: 100, y: 200};
-// 语法错误: Uncaught SyntaxError: Unexpected token =
-
-({x, y} = { name: '小明', x: 100, y: 200});
-// 语法正确
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="解构赋值使用场景"><a href="#解构赋值使用场景" class="headerlink" title="解构赋值使用场景"></a>解构赋值使用场景</h3><pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">// 交换两个变量x和y的值:
-var x=1, y=2;
-[x, y] = [y, x]
-// 快速获取当前页面的域名和路径：
-var {hostname:domain, pathname:path} = location;
-// 快速创建一个Date对象：
-function buildDate({year, month, day, hour=0, minute=0, second=0}) {
-    return new Date(year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>&emsp;&emsp;绑定到对象上的函数称为方法，和普通函数也没啥区别，但是它在内部使用了一个<code>this</code>关键字，在一个方法内部，<code>this</code>是一个特殊变量，它始终指向当前对象，也就是<code>xiaoming</code>这个变量。所以，<code>this.birth</code>可以拿到<code>xiaoming</code>的<code>birth</code>属性。</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var xiaoming = {
-    name: '小明',
-    birth: 1990,
-    age: function () {
-        var y = new Date().getFullYear();
-        return y - this.birth;
-    }
-};
-
-xiaoming.age; // function xiaoming.age()
-xiaoming.age(); // 今年调用是25,明年调用就变成26了
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;JavaScript中如果以对象的方法形式调用，比如<code>xiaoming.age()</code>，该函数的<code>this</code>指向被调用的对象，也就是<code>xiaoming</code>，这是符合我们预期的。如果单独调用函数，比如<code>getAge()</code>，此时，该函数的<code>this</code>指向全局对象，也就是<code>window</code>。要保证<code>this</code>指向正确，必须用<code>obj.xxx()</code>的形式调用！要指定函数的<code>this</code>指向哪个对象，可以用函数本身的<code>apply</code>方法，它接收两个参数，第一个参数就是需要绑定的<code>this</code>变量，第二个参数是<code>Array</code>，表示函数本身的参数。</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function getAge() {
-    var y = new Date().getFullYear();
-    return y - this.birth;
-}
-
-var xiaoming = {
-    name: '小明',
-    birth: 1990,
-    age: getAge
-};
-
-xiaoming.age(); // 25
-getAge.apply(xiaoming, []); // 25, this指向xiaoming, 参数为空
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;另一个与<code>apply()</code>类似的方法是<code>call()</code>，唯一区别是：<code>apply()</code>把参数打包成<code>Array</code>再传入，<code>call()</code>把参数按顺序传入。</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">Math.max.apply(null, [3, 5, 4]); // 5
-Math.max.call(null, 3, 5, 4); // 5
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>&emsp;&emsp;JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function add(x, y, f) {
-    return f(x) + f(y);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>&emsp;&emsp;由于<code>map()</code>方法定义在JavaScript的<code>Array</code>中，我们调用<code>Array</code>的<code>map()</code>方法，传入我们自己的函数，就得到了一个新的<code>Array</code>作为结果：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-function pow(x) {
-    return x * x;
-}
-var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-var results = arr.map(pow); // [1, 4, 9, 16, 25, 36, 49, 64, 81]
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;<code>map()</code>作为高阶函数，事实上它把运算规则抽象了，因此，我们不但可以计算简单的<code>f(x)=x^2</code>，还可以计算任意复杂的函数，比如，把<code>Array</code>的所有数字转为字符串：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-arr.map(String); // ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>&emsp;&emsp;再看<code>reduce</code>的用法。<code>Array</code>的<code>reduce()</code>把一个函数作用在这个<code>Array</code>的<code>[x1, x2, x3...]</code>上，这个函数必须接收两个参数，<code>reduce()</code>把结果继续和序列的下一个元素做累积计算，其效果就是：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">[x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4)
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>&emsp;&emsp;比方说对一个<code>Array</code>求和，就可以用<code>reduce</code>实现：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var arr = [1, 3, 5, 7, 9];
-arr.reduce(function (x, y) {
-    return x + y;
-}); // 25
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>&emsp;&emsp;<code>filter</code>也是一个常用的操作，它用于把<code>Array</code>的某些元素过滤掉，然后返回剩下的元素。和<code>map()</code>类似，<code>Array</code>的<code>filter()</code>也接收一个函数。和<code>map()</code>不同的是，<code>filter()</code>把传入的函数依次作用于每个元素，然后根据返回值是<code>true</code>还是<code>false</code>决定保留还是丢弃该元素。<br>&emsp;&emsp;例如，在一个<code>Array</code>中，删掉偶数，只保留奇数，可以这么写：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var arr = [1, 2, 4, 5, 6, 9, 10, 15];
-var r = arr.filter(function (x) {
-    return x % 2 !== 0;
-});
-r; // [1, 5, 9, 15]
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;把一个<code>Array</code>中的空字符串删掉，可以这么写：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var arr = ['A', '', 'B', null, undefined, 'C', '  '];
-var r = arr.filter(function (s) {
-    return s && s.trim(); // 注意：IE9以下的版本没有trim()方法
-});
-r; // ['A', 'B', 'C']
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;<code>filter()</code>接收的回调函数，其实可以有多个参数。通常我们仅使用第一个参数，表示<code>Array</code>的某个元素。回调函数还可以接收另外两个参数，表示元素的位置和数组本身：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var arr = ['A', 'B', 'C'];
-var r = arr.filter(function (element, index, self) {
-    console.log(element); // 依次打印'A', 'B', 'C'
-    console.log(index); // 依次打印0, 1, 2
-    console.log(self); // self就是变量arr
-    return true;
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;利用<code>filter</code>，可以巧妙地去除<code>Array</code>的重复元素：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-var
-    r,
-    arr = ['apple', 'strawberry', 'banana', 'pear', 'apple', 'orange', 'orange', 'strawberry'];
-r = arr.filter(function (element, index, self) {
-    return self.indexOf(element) === index;
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;去除重复元素依靠的是<code>indexOf</code>总是返回第一个元素的位置，后续的重复元素位置与<code>indexOf</code>返回的位置不相等，因此被<code>filter</code>滤掉了。</p>
-<h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><p>&emsp;&emsp;排序也是在程序中经常用到的算法。无论使用冒泡排序还是快速排序，排序的核心是比较两个元素的大小。如果是数字，我们可以直接比较，但如果是字符串或者两个对象呢？直接比较数学上的大小是没有意义的，因此，比较的过程必须通过函数抽象出来。通常规定，对于两个元素<code>x</code>和<code>y</code>，如果认为<code>x &lt; y</code>，则返回<code>-1</code>，如果认为<code>x == y</code>，则返回<code>0</code>，如果认为<code>x &gt; y</code>，则返回<code>1</code>，这样，排序算法就不用关心具体的比较过程，而是根据比较结果直接排序。<br>&emsp;&emsp;JavaScript的<code>Array</code>的<code>sort()</code>方法就是用于排序的，但是排序结果可能让你大吃一惊：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">// 看上去正常的结果:
-['Google', 'Apple', 'Microsoft'].sort(); // ['Apple', 'Google', 'Microsoft'];
-
-// apple排在了最后:
-['Google', 'apple', 'Microsoft'].sort(); // ['Google', 'Microsoft", 'apple']
-
-// 无法理解的结果:
-[10, 20, 1, 2].sort(); // [1, 10, 2, 20]
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;这是因为<code>Array</code>的<code>sort()</code>方法默认把所有元素先转换为<code>String</code>再排序,如果不知道<code>sort()</code>方法的默认排序规则，直接对数字排序，绝对栽进坑里！幸运的是，<code>sort()</code>方法也是一个高阶函数，它还可以接收一个比较函数来实现自定义的排序。要按数字大小排序，我们可以这么写：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-
-var arr = [10, 20, 1, 2];
-arr.sort(function (x, y) {
-    if (x < y) {
-        return -1;
-    }
-    if (x > y) {
-        return 1;
-    }
-    return 0;
-});
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;<code>sort()</code>方法会直接对<code>Array</code>进行修改，它返回的结果仍是当前<code>Array</code>：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">var a1 = ['B', 'A', 'C'];
-var a2 = a1.sort();
-a1; // ['A', 'B', 'C']
-a2; // ['A', 'B', 'C']
-a1 === a2; // true, a1和a2是同一对象
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="every"><a href="#every" class="headerlink" title="every"></a>every</h3><p>&emsp;&emsp;<code>every()</code>方法可以判断数组的所有元素是否满足测试条件。例如，给定一个包含若干字符串的数组，判断所有字符串是否满足指定的测试条件：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-var arr = ['Apple', 'pear', 'orange'];
-console.log(arr.every(function (s) {
-    return s.length > 0;
-})); // true, 因为每个元素都满足s.length>0
-
-console.log(arr.every(function (s) {
-    return s.toLowerCase() === s;
-})); // false, 因为不是每个元素都全部是小写
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>&emsp;&emsp;<code>find()</code>方法用于查找符合条件的第一个元素，如果找到了，返回这个元素，否则，返回<code>undefined</code>：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-var arr = ['Apple', 'pear', 'orange'];
-console.log(arr.find(function (s) {
-    return s.toLowerCase() === s;
-})); // 'pear', 因为pear全部是小写
-
-console.log(arr.find(function (s) {
-    return s.toUpperCase() === s;
-})); // undefined, 因为没有全部是大写的元素
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="findIndex"><a href="#findIndex" class="headerlink" title="findIndex"></a>findIndex</h3><p>&emsp;&emsp;<code>findIndex()</code>和<code>find()</code>类似，也是查找符合条件的第一个元素，不同之处在于<code>findIndex()</code>会返回这个元素的索引，如果没有找到，返回<code>-1</code>：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-var arr = ['Apple', 'pear', 'orange'];
-console.log(arr.findIndex(function (s) {
-    return s.toLowerCase() === s;
-})); // 1, 因为'pear'的索引是1
-
-console.log(arr.findIndex(function (s) {
-    return s.toUpperCase() === s;
-})); // -1
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h3><p>&emsp;&emsp;<code>forEach()</code>和<code>map()</code>类似，它也把每个元素依次作用于传入的函数，但不会返回新的数组。<code>forEach()</code>常用于遍历数组，因此，传入的函数不需要返回值：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">'use strict';
-var arr = ['Apple', 'pear', 'orange'];
-arr.forEach(console.log); // 依次打印每个元素
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>&emsp;&emsp;ES6标准新增了一种新的函数：Arrow Function（箭头函数），为什么叫Arrow Function？因为它的定义用的就是一个箭头：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">x => x * x
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>&emsp;&emsp;上面的箭头函数相当于：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function (x) {
-    return x * x;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;如果参数不是一个，就需要用括号<code>()</code>括起来：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">// 两个参数:
-(x, y) => x * x + y * y
-
-// 无参数:
-() => 3.14
-
-// 可变参数:
-(x, y, ...rest) => {
-    var i, sum = x + y;
-    for (i=0; i<rest.length; i++) {
-        sum += rest[i];
-    }
-    return sum;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="generator"><a href="#generator" class="headerlink" title="generator"></a>generator</h2><p>&emsp;&emsp;generator（生成器）是ES6标准引入的新的数据类型。一个generator看上去像一个函数，但可以返回多次,generator跟函数很像，定义如下：</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function* foo(x) {
-    yield x + 1;
-    yield x + 2;
-    return x + 3;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;generator和函数不同的是，generator由<code>function*</code>定义（注意多出的*号），并且，除了<code>return</code>语句，还可以用<code>yield</code>返回多次。</p>
-<pre class="line-numbers language-lang-javascript"><code class="language-lang-javascript">function *gen () {
-  yield 1
-  yield 2
-  return 3
-}
-const g = gen()   // Iterator对象
-g.next() // {value: 1, done: false}
-g.next() // {value: 2, done: false}
-g.next() // {value: 3, done: true}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;从上面代码中可以看出，<code>gen</code>函数使用<code>yield</code>表达式定义了两个内部状态。同时呢，也可以看出来，<code>return</code>语句只能有一个，而<code>yield</code>表达式却可以有多个。执行<code>gen</code>函数之后，会返回一个遍历器对象，而不是立即执行<code>gen</code>函数。如果需要获取<code>yield</code>表达式定义的每个状态，需要调用<code>next</code>方法。每调用一次<code>next</code>方法都会返回一个包含<code>value</code>和<code>done</code>属性的对象，此时会停留在某个<code>yield</code>表达式结尾处。<code>value</code>属性值即是<code>yield</code>表达式的值；<code>done</code>属性是布尔值，表示是否遍历完毕。</p>
+                <div data-align="center">
+<font size='70'>JavaScript函数</font>
+</div>
+<h2 id="函数定义">函数定义</h2>
+<p>  在JavaScript中，定义函数的方式如下：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">function</span> <span class="at">abs</span>(x) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    <span class="cf">if</span> (x <span class="op">&gt;=</span> <span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">        <span class="cf">return</span> x<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">        <span class="cf">return</span> <span class="op">-</span>x<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="op">}</span></a></code></pre></div>
+<p>  第二种定义函数的方式如下：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">var</span> abs <span class="op">=</span> <span class="kw">function</span> (x) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="cf">if</span> (x <span class="op">&gt;=</span> <span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">        <span class="cf">return</span> x<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">        <span class="cf">return</span> <span class="op">-</span>x<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="op">};</span></a></code></pre></div>
+<h2 id="函数调用">函数调用</h2>
+<p>  由于JavaScript允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题，虽然函数内部并不需要这些参数。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="at">abs</span>(<span class="dv">10</span>)<span class="op">;</span> <span class="co">// 返回10</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="at">abs</span>(<span class="op">-</span><span class="dv">9</span>)<span class="op">;</span> <span class="co">// 返回9</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="at">abs</span>(<span class="dv">10</span><span class="op">,</span> <span class="st">&#39;blablabla&#39;</span>)<span class="op">;</span> <span class="co">// 返回10</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="at">abs</span>(<span class="op">-</span><span class="dv">9</span><span class="op">,</span> <span class="st">&#39;haha&#39;</span><span class="op">,</span> <span class="st">&#39;hehe&#39;</span><span class="op">,</span> <span class="kw">null</span>)<span class="op">;</span> <span class="co">// 返回9</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="at">abs</span>()<span class="op">;</span> <span class="co">// 返回NaN</span></a></code></pre></div>
+<h3 id="arguments">arguments</h3>
+<p>  JavaScript还有一个免费赠送的关键字<code>arguments</code>，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。<code>arguments</code>类似<code>Array</code>但它不是一个<code>Array</code>.利用<code>arguments</code>，你可以获得调用者传入的所有参数。也就是说，即使函数不定义任何参数，还是可以拿到参数的值：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">function</span> <span class="at">abs</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="cf">if</span> (<span class="va">arguments</span>.<span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="kw">var</span> x <span class="op">=</span> arguments[<span class="dv">0</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="cf">return</span> x <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">?</span> x : <span class="op">-</span>x<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="op">}</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="at">abs</span>()<span class="op">;</span> <span class="co">// 0</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="at">abs</span>(<span class="dv">10</span>)<span class="op">;</span> <span class="co">// 10</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="at">abs</span>(<span class="op">-</span><span class="dv">9</span>)<span class="op">;</span> <span class="co">// 9</span></a></code></pre></div>
+<p>  实际上<code>arguments</code>最常用于判断传入参数的个数。你可能会看到这样的写法：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">// foo(a, b, c)</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">// 接收2~3个参数，b是可选参数，如果只传2个参数，b默认为null：</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">function</span> <span class="at">foo</span>(a<span class="op">,</span> b<span class="op">,</span> c) <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="cf">if</span> (<span class="va">arguments</span>.<span class="at">length</span> <span class="op">===</span> <span class="dv">2</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">        <span class="co">// 实际拿到的参数是a和b，c为undefined</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">        c <span class="op">=</span> b<span class="op">;</span> <span class="co">// 把b赋给c</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">        b <span class="op">=</span> <span class="kw">null</span><span class="op">;</span> <span class="co">// b变为默认值</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="co">// ...</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="op">}</span></a></code></pre></div>
+<h3 id="rest参数">rest参数</h3>
+<p>  由于JavaScript函数允许接收任意个参数，于是我们就不得不用<code>arguments</code>来获取所有参数：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">function</span> <span class="at">foo</span>(a<span class="op">,</span> b) <span class="op">{</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">    <span class="kw">var</span> i<span class="op">,</span> rest <span class="op">=</span> []<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">    <span class="cf">if</span> (<span class="va">arguments</span>.<span class="at">length</span> <span class="op">&gt;</span> <span class="dv">2</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">        <span class="cf">for</span> (i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> i<span class="op">&lt;</span><span class="va">arguments</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">            <span class="va">rest</span>.<span class="at">push</span>(arguments[i])<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;a = &#39;</span> <span class="op">+</span> a)<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;b = &#39;</span> <span class="op">+</span> b)<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="va">console</span>.<span class="at">log</span>(rest)<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="op">}</span></a></code></pre></div>
+<p>  为了获取除了已定义参数<code>a</code>、<code>b</code>之外的参数，我们不得不用<code>arguments</code>，并且循环要从索引2开始以便排除前两个参数，这种写法很别扭，只是为了获得额外的<code>rest</code>参数，有没有更好的方法？ES6标准引入了<code>rest</code>参数，上面的函数可以改写为：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">function</span> <span class="at">foo</span>(a<span class="op">,</span> b<span class="op">,</span> ...<span class="at">rest</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;a = &#39;</span> <span class="op">+</span> a)<span class="op">;</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;b = &#39;</span> <span class="op">+</span> b)<span class="op">;</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">    <span class="va">console</span>.<span class="at">log</span>(rest)<span class="op">;</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="op">}</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="at">foo</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">// 结果:</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">// a = 1</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">// b = 2</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">// Array [ 3, 4, 5 ]</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="at">foo</span>(<span class="dv">1</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">// 结果:</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">// a = 1</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">// b = undefined</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">// Array []</span></a></code></pre></div>
+<p>  <code>rest</code>参数只能写在最后，前面用...标识，从运行结果可知，传入的参数先绑定<code>a</code>、<code>b</code>，多余的参数以数组形式交给变量<code>rest</code>，所以，不再需要<code>arguments</code>我们就获取了全部参数。如果传入的参数连正常定义的参数都没填满，也不要紧，<code>rest</code>参数会接收一个空数组（注意不是<code>undefined</code>）。</p>
+<h2 id="变量作用域与解构赋值">变量作用域与解构赋值</h2>
+<p>  在JavaScript中，用<code>var</code>申明的变量实际上是有作用域的。如果一个变量在函数体内部申明，则该变量的作用域为整个函数体，在函数体外不可引用该变量,如果两个不同的函数各自申明了同一个变量，那么该变量只在各自的函数体内起作用。换句话说，不同函数内部的同名变量互相独立，互不影响.   由于JavaScript的函数可以嵌套，此时，内部函数可以访问外部函数定义的变量，反过来则不行,如果内部函数定义了与外部函数重名的变量，则内部函数的变量将“屏蔽”外部函数的变量。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">function</span> <span class="at">foo</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">    <span class="kw">var</span> x <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">    <span class="kw">function</span> <span class="at">bar</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">        <span class="kw">var</span> y <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// bar可以访问foo的变量x!</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">    <span class="kw">var</span> z <span class="op">=</span> y <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// ReferenceError! foo不可以访问bar的变量y!</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="op">}</span></a></code></pre></div>
+<h3 id="变量提升">变量提升</h3>
+<p>  JavaScript的函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">function</span> <span class="at">foo</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">    <span class="kw">var</span> x <span class="op">=</span> <span class="st">&#39;Hello, &#39;</span> <span class="op">+</span> y<span class="op">;</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">    <span class="va">console</span>.<span class="at">log</span>(x)<span class="op">;</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">    <span class="kw">var</span> y <span class="op">=</span> <span class="st">&#39;Bob&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="op">}</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="at">foo</span>()<span class="op">;</span></a></code></pre></div>
+<p>  虽然是<code>strict</code>模式，但语句<code>var x = 'Hello, ' + y;</code>并不报错，原因是变量<code>y</code>在稍后申明了。但是<code>console.log</code>显示<code>Hello, undefined</code>，说明变量<code>y</code>的值为<code>undefined</code>。这正是因为JavaScript引擎自动提升了变量<code>y</code>的声明，但不会提升变量<code>y</code>的赋值。对于上述<code>foo()</code>函数，JavaScript引擎看到的代码相当于：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">function</span> <span class="at">foo</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">    <span class="kw">var</span> y<span class="op">;</span> <span class="co">// 提升变量y的申明，此时y为undefined</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">    <span class="kw">var</span> x <span class="op">=</span> <span class="st">&#39;Hello, &#39;</span> <span class="op">+</span> y<span class="op">;</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">    <span class="va">console</span>.<span class="at">log</span>(x)<span class="op">;</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">    y <span class="op">=</span> <span class="st">&#39;Bob&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
+<p>  由于JavaScript的这一怪异的“特性”，我们在函数内部定义变量时，请严格遵守“在函数内部首先申明所有变量”这一规则。最常见的做法是用一个<code>var</code>申明函数内部用到的所有变量：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">function</span> <span class="at">foo</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">    <span class="kw">var</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">        x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="co">// x初始化为1</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">        y <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="co">// y初始化为2</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">        z<span class="op">,</span> i<span class="op">;</span> <span class="co">// z和i为undefined</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">    <span class="co">// 其他语句:</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">    <span class="cf">for</span> (i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">100</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">        ...</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="op">}</span></a></code></pre></div>
+<h3 id="全局作用域">全局作用域</h3>
+<p>  不在任何函数内定义的变量就具有全局作用域。实际上，JavaScript默认有一个全局对象<code>window</code>，全局作用域的变量实际上被绑定到<code>window</code>的一个属性因此，直接访问全局变量<code>course</code>和访问<code>window.course</code>是完全一样的：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">var</span> course <span class="op">=</span> <span class="st">&#39;Learn JavaScript&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="at">alert</span>(course)<span class="op">;</span> <span class="co">// &#39;Learn JavaScript&#39;</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="at">alert</span>(<span class="va">window</span>.<span class="at">course</span>)<span class="op">;</span> <span class="co">// &#39;Learn JavaScript&#39;</span></a></code></pre></div>
+<h3 id="名字空间">名字空间</h3>
+<p>  全局变量会绑定到<code>window</code>上，不同的JavaScript文件如果使用了相同的全局变量，或者定义了相同名字的顶层函数，都会造成命名冲突，并且很难被发现。减少冲突的一个方法是把自己的所有变量和函数全部绑定到一个全局变量中。例如：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">// 唯一的全局变量MYAPP:</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">var</span> MYAPP <span class="op">=</span> <span class="op">{};</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">// 其他变量:</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="va">MYAPP</span>.<span class="at">name</span> <span class="op">=</span> <span class="st">&#39;myapp&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="va">MYAPP</span>.<span class="at">version</span> <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co">// 其他函数:</span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="va">MYAPP</span>.<span class="at">foo</span> <span class="op">=</span> <span class="kw">function</span> () <span class="op">{</span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">    <span class="cf">return</span> <span class="st">&#39;foo&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="op">};</span></a></code></pre></div>
+<h3 id="局部作用域">局部作用域</h3>
+<p>  由于JavaScript的变量作用域实际上是函数内部，我们在<code>for</code>循环等语句块中是无法定义具有局部作用域的变量的：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">function</span> <span class="at">foo</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">    <span class="cf">for</span> (<span class="kw">var</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">100</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">        <span class="co">//</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">    i <span class="op">+=</span> <span class="dv">100</span><span class="op">;</span> <span class="co">// 仍然可以引用变量i</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="op">}</span></a></code></pre></div>
+<p>  为了解决块级作用域，ES6引入了新的关键字<code>let</code>，用<code>let</code>替代<code>var</code>可以申明一个块级作用域的变量：</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">function</span> <span class="at">foo</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">    <span class="kw">var</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">    <span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">100</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">        sum <span class="op">+=</span> i<span class="op">;</span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8">    <span class="co">// SyntaxError:</span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">    i <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="op">}</span></a></code></pre></div>
+<h3 id="常量">常量</h3>
+<p>  ES6标准引入了新的关键字<code>const</code>来定义常量，<code>const</code>与<code>let</code>都具有块级作用域：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw">const</span> PI <span class="op">=</span> <span class="fl">3.14</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">PI <span class="op">=</span> <span class="dv">3</span><span class="op">;</span> <span class="co">// 某些浏览器不报错，但是无效果！</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">PI<span class="op">;</span> <span class="co">// 3.14</span></a></code></pre></div>
+<h3 id="解构赋值">解构赋值</h3>
+<p>  从ES6开始，JavaScript引入了解构赋值，可以同时对一组变量进行赋值。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co">// 如果浏览器支持解构赋值就不会报错:</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">var</span> [x<span class="op">,</span> y<span class="op">,</span> z] <span class="op">=</span> [<span class="st">&#39;hello&#39;</span><span class="op">,</span> <span class="st">&#39;JavaScript&#39;</span><span class="op">,</span> <span class="st">&#39;ES6&#39;</span>]<span class="op">;</span></a></code></pre></div>
+<p>  如果数组本身还有嵌套，也可以通过下面的形式进行解构赋值，注意嵌套层次和位置要保持一致：</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">let</span> [x<span class="op">,</span> [y<span class="op">,</span> z]] <span class="op">=</span> [<span class="st">&#39;hello&#39;</span><span class="op">,</span> [<span class="st">&#39;JavaScript&#39;</span><span class="op">,</span> <span class="st">&#39;ES6&#39;</span>]]<span class="op">;</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">x<span class="op">;</span> <span class="co">// &#39;hello&#39;</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">y<span class="op">;</span> <span class="co">// &#39;JavaScript&#39;</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">z<span class="op">;</span> <span class="co">// &#39;ES6&#39;</span></a></code></pre></div>
+<p>  解构赋值还可以忽略某些元素：</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">let</span> [<span class="op">,</span> <span class="op">,</span> z] <span class="op">=</span> [<span class="st">&#39;hello&#39;</span><span class="op">,</span> <span class="st">&#39;JavaScript&#39;</span><span class="op">,</span> <span class="st">&#39;ES6&#39;</span>]<span class="op">;</span> <span class="co">// 忽略前两个元素，只对z赋值第三个元素</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">z<span class="op">;</span> <span class="co">// &#39;ES6&#39;</span></a></code></pre></div>
+<p>  如果需要从一个对象中取出若干属性，也可以使用解构赋值，便于快速获取对象的指定属性：</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw">var</span> person <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">    <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;小明&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">    <span class="dt">age</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">    <span class="dt">gender</span><span class="op">:</span> <span class="st">&#39;male&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">    <span class="dt">passport</span><span class="op">:</span> <span class="st">&#39;G-12345678&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">    <span class="dt">school</span><span class="op">:</span> <span class="st">&#39;No.4 middle school&#39;</span></a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="op">};</span></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="kw">var</span> <span class="op">{</span>name<span class="op">,</span> age<span class="op">,</span> passport<span class="op">}</span> <span class="op">=</span> person<span class="op">;</span></a></code></pre></div>
+<p>  使用解构赋值对对象属性进行赋值时，如果对应的属性不存在，变量将被赋值为<code>undefined</code>，这和引用一个不存在的属性获得<code>undefined</code>是一致的。如果要使用的变量名和属性名不一致，可以用下面的语法获取：</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">var</span> person <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">    <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;小明&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">    <span class="dt">age</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">    <span class="dt">gender</span><span class="op">:</span> <span class="st">&#39;male&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">    <span class="dt">passport</span><span class="op">:</span> <span class="st">&#39;G-12345678&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">    <span class="dt">school</span><span class="op">:</span> <span class="st">&#39;No.4 middle school&#39;</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="op">};</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="co">// 把passport属性赋值给变量id:</span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="kw">let</span> <span class="op">{</span>name<span class="op">,</span> <span class="dt">passport</span><span class="op">:</span>id<span class="op">}</span> <span class="op">=</span> person<span class="op">;</span></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11">name<span class="op">;</span> <span class="co">// &#39;小明&#39;</span></a>
+<a class="sourceLine" id="cb21-12" data-line-number="12">id<span class="op">;</span> <span class="co">// &#39;G-12345678&#39;</span></a>
+<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="co">// 注意: passport不是变量，而是为了让变量id获得passport属性:</span></a>
+<a class="sourceLine" id="cb21-14" data-line-number="14">passport<span class="op">;</span> <span class="co">// Uncaught ReferenceError: passport is not defined</span></a></code></pre></div>
+<p>  解构赋值还可以使用默认值，这样就避免了不存在的属性返回<code>undefined</code>的问题：</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">var</span> person <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">    <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;小明&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">    <span class="dt">age</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">    <span class="dt">gender</span><span class="op">:</span> <span class="st">&#39;male&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">    <span class="dt">passport</span><span class="op">:</span> <span class="st">&#39;G-12345678&#39;</span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="op">};</span></a>
+<a class="sourceLine" id="cb22-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb22-8" data-line-number="8"><span class="co">// 如果person对象没有single属性，默认赋值为true:</span></a>
+<a class="sourceLine" id="cb22-9" data-line-number="9"><span class="kw">var</span> <span class="op">{</span>name<span class="op">,</span> single<span class="op">=</span><span class="kw">true</span><span class="op">}</span> <span class="op">=</span> person<span class="op">;</span></a>
+<a class="sourceLine" id="cb22-10" data-line-number="10">name<span class="op">;</span> <span class="co">// &#39;小明&#39;</span></a>
+<a class="sourceLine" id="cb22-11" data-line-number="11">single<span class="op">;</span> <span class="co">// true</span></a></code></pre></div>
+<p>  有些时候，如果变量已经被声明了，再次赋值的时候，正确的写法也会报语法错误,这是因为JavaScript引擎把<code>{</code>开头的语句当作了块处理，于是<code>=</code>不再合法。解决方法是用小括号括起来：：</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co">// 声明变量:</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">var</span> x<span class="op">,</span> y<span class="op">;</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co">// 解构赋值:</span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="op">{</span>x<span class="op">,</span> y<span class="op">}</span> <span class="op">=</span> <span class="op">{</span> <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;小明&#39;</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">200</span><span class="op">};</span></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="co">// 语法错误: Uncaught SyntaxError: Unexpected token =</span></a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">(<span class="op">{</span>x<span class="op">,</span> y<span class="op">}</span> <span class="op">=</span> <span class="op">{</span> <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;小明&#39;</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">200</span><span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb23-8" data-line-number="8"><span class="co">// 语法正确</span></a></code></pre></div>
+<h3 id="解构赋值使用场景">解构赋值使用场景</h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co">// 交换两个变量x和y的值:</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">var</span> x<span class="op">=</span><span class="dv">1</span><span class="op">,</span> y<span class="op">=</span><span class="dv">2</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">[x<span class="op">,</span> y] <span class="op">=</span> [y<span class="op">,</span> x]</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="co">// 快速获取当前页面的域名和路径：</span></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="kw">var</span> <span class="op">{</span><span class="dt">hostname</span><span class="op">:</span>domain<span class="op">,</span> <span class="dt">pathname</span><span class="op">:</span>path<span class="op">}</span> <span class="op">=</span> location<span class="op">;</span></a>
+<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="co">// 快速创建一个Date对象：</span></a>
+<a class="sourceLine" id="cb24-7" data-line-number="7"><span class="kw">function</span> <span class="at">buildDate</span>(<span class="op">{</span>year<span class="op">,</span> month<span class="op">,</span> day<span class="op">,</span> hour<span class="op">=</span><span class="dv">0</span><span class="op">,</span> minute<span class="op">=</span><span class="dv">0</span><span class="op">,</span> second<span class="op">=</span><span class="dv">0</span><span class="op">}</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">    <span class="cf">return</span> <span class="kw">new</span> <span class="at">Date</span>(year <span class="op">+</span> <span class="st">&#39;-&#39;</span> <span class="op">+</span> month <span class="op">+</span> <span class="st">&#39;-&#39;</span> <span class="op">+</span> day <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> hour <span class="op">+</span> <span class="st">&#39;:&#39;</span> <span class="op">+</span> minute <span class="op">+</span> <span class="st">&#39;:&#39;</span> <span class="op">+</span> second)<span class="op">;</span></a>
+<a class="sourceLine" id="cb24-9" data-line-number="9"><span class="op">}</span></a></code></pre></div>
+<h2 id="方法">方法</h2>
+<p>  绑定到对象上的函数称为方法，和普通函数也没啥区别，但是它在内部使用了一个<code>this</code>关键字，在一个方法内部，<code>this</code>是一个特殊变量，它始终指向当前对象，也就是<code>xiaoming</code>这个变量。所以，<code>this.birth</code>可以拿到<code>xiaoming</code>的<code>birth</code>属性。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">var</span> xiaoming <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">    <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;小明&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">    <span class="dt">birth</span><span class="op">:</span> <span class="dv">1990</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">    <span class="dt">age</span><span class="op">:</span> <span class="kw">function</span> () <span class="op">{</span></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">        <span class="kw">var</span> y <span class="op">=</span> <span class="kw">new</span> <span class="at">Date</span>().<span class="at">getFullYear</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">        <span class="cf">return</span> y <span class="op">-</span> <span class="kw">this</span>.<span class="at">birth</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb25-7" data-line-number="7">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="op">};</span></a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="va">xiaoming</span>.<span class="at">age</span><span class="op">;</span> <span class="co">// function xiaoming.age()</span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="va">xiaoming</span>.<span class="at">age</span>()<span class="op">;</span> <span class="co">// 今年调用是25,明年调用就变成26了</span></a></code></pre></div>
+<p>  JavaScript中如果以对象的方法形式调用，比如<code>xiaoming.age()</code>，该函数的<code>this</code>指向被调用的对象，也就是<code>xiaoming</code>，这是符合我们预期的。如果单独调用函数，比如<code>getAge()</code>，此时，该函数的<code>this</code>指向全局对象，也就是<code>window</code>。要保证<code>this</code>指向正确，必须用<code>obj.xxx()</code>的形式调用！要指定函数的<code>this</code>指向哪个对象，可以用函数本身的<code>apply</code>方法，它接收两个参数，第一个参数就是需要绑定的<code>this</code>变量，第二个参数是<code>Array</code>，表示函数本身的参数。</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">function</span> <span class="at">getAge</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">    <span class="kw">var</span> y <span class="op">=</span> <span class="kw">new</span> <span class="at">Date</span>().<span class="at">getFullYear</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">    <span class="cf">return</span> y <span class="op">-</span> <span class="kw">this</span>.<span class="at">birth</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="op">}</span></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="kw">var</span> xiaoming <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb26-7" data-line-number="7">    <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;小明&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb26-8" data-line-number="8">    <span class="dt">birth</span><span class="op">:</span> <span class="dv">1990</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb26-9" data-line-number="9">    <span class="dt">age</span><span class="op">:</span> getAge</a>
+<a class="sourceLine" id="cb26-10" data-line-number="10"><span class="op">};</span></a>
+<a class="sourceLine" id="cb26-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb26-12" data-line-number="12"><span class="va">xiaoming</span>.<span class="at">age</span>()<span class="op">;</span> <span class="co">// 25</span></a>
+<a class="sourceLine" id="cb26-13" data-line-number="13"><span class="va">getAge</span>.<span class="at">apply</span>(xiaoming<span class="op">,</span> [])<span class="op">;</span> <span class="co">// 25, this指向xiaoming, 参数为空</span></a></code></pre></div>
+<p>  另一个与<code>apply()</code>类似的方法是<code>call()</code>，唯一区别是：<code>apply()</code>把参数打包成<code>Array</code>再传入，<code>call()</code>把参数按顺序传入。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="va">Math</span>.<span class="va">max</span>.<span class="at">apply</span>(<span class="kw">null</span><span class="op">,</span> [<span class="dv">3</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">4</span>])<span class="op">;</span> <span class="co">// 5</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="va">Math</span>.<span class="va">max</span>.<span class="at">call</span>(<span class="kw">null</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">4</span>)<span class="op">;</span> <span class="co">// 5</span></a></code></pre></div>
+<h2 id="高阶函数">高阶函数</h2>
+<p>  JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">function</span> <span class="at">add</span>(x<span class="op">,</span> y<span class="op">,</span> f) <span class="op">{</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">    <span class="cf">return</span> <span class="at">f</span>(x) <span class="op">+</span> <span class="at">f</span>(y)<span class="op">;</span></a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<h3 id="map">map</h3>
+<p>  由于<code>map()</code>方法定义在JavaScript的<code>Array</code>中，我们调用<code>Array</code>的<code>map()</code>方法，传入我们自己的函数，就得到了一个新的<code>Array</code>作为结果：</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw">function</span> <span class="at">pow</span>(x) <span class="op">{</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">    <span class="cf">return</span> x <span class="op">*</span> x<span class="op">;</span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="op">}</span></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="kw">var</span> arr <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="kw">var</span> results <span class="op">=</span> <span class="va">arr</span>.<span class="at">map</span>(pow)<span class="op">;</span> <span class="co">// [1, 4, 9, 16, 25, 36, 49, 64, 81]</span></a></code></pre></div>
+<p>  <code>map()</code>作为高阶函数，事实上它把运算规则抽象了，因此，我们不但可以计算简单的<code>f(x)=x^2</code>，还可以计算任意复杂的函数，比如，把<code>Array</code>的所有数字转为字符串：</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">var</span> arr <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="va">arr</span>.<span class="at">map</span>(String)<span class="op">;</span> <span class="co">// [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;]</span></a></code></pre></div>
+<h3 id="reduce">reduce</h3>
+<p>  再看<code>reduce</code>的用法。<code>Array</code>的<code>reduce()</code>把一个函数作用在这个<code>Array</code>的<code>[x1, x2, x3...]</code>上，这个函数必须接收两个参数，<code>reduce()</code>把结果继续和序列的下一个元素做累积计算，其效果就是：</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb31-1" data-line-number="1">[x1<span class="op">,</span> x2<span class="op">,</span> x3<span class="op">,</span> x4].<span class="at">reduce</span>(f) <span class="op">=</span> <span class="at">f</span>(<span class="at">f</span>(<span class="at">f</span>(x1<span class="op">,</span> x2)<span class="op">,</span> x3)<span class="op">,</span> x4)</a></code></pre></div>
+<p>  比方说对一个<code>Array</code>求和，就可以用<code>reduce</code>实现：</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">var</span> arr <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">9</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="va">arr</span>.<span class="at">reduce</span>(<span class="kw">function</span> (x<span class="op">,</span> y) <span class="op">{</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3">    <span class="cf">return</span> x <span class="op">+</span> y<span class="op">;</span></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="op">}</span>)<span class="op">;</span> <span class="co">// 25</span></a></code></pre></div>
+<h3 id="filter">filter</h3>
+<p>  <code>filter</code>也是一个常用的操作，它用于把<code>Array</code>的某些元素过滤掉，然后返回剩下的元素。和<code>map()</code>类似，<code>Array</code>的<code>filter()</code>也接收一个函数。和<code>map()</code>不同的是，<code>filter()</code>把传入的函数依次作用于每个元素，然后根据返回值是<code>true</code>还是<code>false</code>决定保留还是丢弃该元素。   例如，在一个<code>Array</code>中，删掉偶数，只保留奇数，可以这么写：</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">var</span> arr <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">var</span> r <span class="op">=</span> <span class="va">arr</span>.<span class="at">filter</span>(<span class="kw">function</span> (x) <span class="op">{</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">    <span class="cf">return</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">!==</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb33-5" data-line-number="5">r<span class="op">;</span> <span class="co">// [1, 5, 9, 15]</span></a></code></pre></div>
+<p>  把一个<code>Array</code>中的空字符串删掉，可以这么写：</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">var</span> arr <span class="op">=</span> [<span class="st">&#39;A&#39;</span><span class="op">,</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="st">&#39;B&#39;</span><span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="kw">undefined</span><span class="op">,</span> <span class="st">&#39;C&#39;</span><span class="op">,</span> <span class="st">&#39;  &#39;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">var</span> r <span class="op">=</span> <span class="va">arr</span>.<span class="at">filter</span>(<span class="kw">function</span> (s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">    <span class="cf">return</span> s <span class="op">&amp;&amp;</span> <span class="va">s</span>.<span class="at">trim</span>()<span class="op">;</span> <span class="co">// 注意：IE9以下的版本没有trim()方法</span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">r<span class="op">;</span> <span class="co">// [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</span></a></code></pre></div>
+<p>  <code>filter()</code>接收的回调函数，其实可以有多个参数。通常我们仅使用第一个参数，表示<code>Array</code>的某个元素。回调函数还可以接收另外两个参数，表示元素的位置和数组本身：</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">var</span> arr <span class="op">=</span> [<span class="st">&#39;A&#39;</span><span class="op">,</span> <span class="st">&#39;B&#39;</span><span class="op">,</span> <span class="st">&#39;C&#39;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw">var</span> r <span class="op">=</span> <span class="va">arr</span>.<span class="at">filter</span>(<span class="kw">function</span> (element<span class="op">,</span> index<span class="op">,</span> self) <span class="op">{</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">    <span class="va">console</span>.<span class="at">log</span>(element)<span class="op">;</span> <span class="co">// 依次打印&#39;A&#39;, &#39;B&#39;, &#39;C&#39;</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">    <span class="va">console</span>.<span class="at">log</span>(index)<span class="op">;</span> <span class="co">// 依次打印0, 1, 2</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">    <span class="va">console</span>.<span class="at">log</span>(self)<span class="op">;</span> <span class="co">// self就是变量arr</span></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">    <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>  利用<code>filter</code>，可以巧妙地去除<code>Array</code>的重复元素：</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="kw">var</span></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4">    r<span class="op">,</span></a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">    arr <span class="op">=</span> [<span class="st">&#39;apple&#39;</span><span class="op">,</span> <span class="st">&#39;strawberry&#39;</span><span class="op">,</span> <span class="st">&#39;banana&#39;</span><span class="op">,</span> <span class="st">&#39;pear&#39;</span><span class="op">,</span> <span class="st">&#39;apple&#39;</span><span class="op">,</span> <span class="st">&#39;orange&#39;</span><span class="op">,</span> <span class="st">&#39;orange&#39;</span><span class="op">,</span> <span class="st">&#39;strawberry&#39;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb36-6" data-line-number="6">r <span class="op">=</span> <span class="va">arr</span>.<span class="at">filter</span>(<span class="kw">function</span> (element<span class="op">,</span> index<span class="op">,</span> self) <span class="op">{</span></a>
+<a class="sourceLine" id="cb36-7" data-line-number="7">    <span class="cf">return</span> <span class="va">self</span>.<span class="at">indexOf</span>(element) <span class="op">===</span> index<span class="op">;</span></a>
+<a class="sourceLine" id="cb36-8" data-line-number="8"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>  去除重复元素依靠的是<code>indexOf</code>总是返回第一个元素的位置，后续的重复元素位置与<code>indexOf</code>返回的位置不相等，因此被<code>filter</code>滤掉了。</p>
+<h3 id="sort">sort</h3>
+<p>  排序也是在程序中经常用到的算法。无论使用冒泡排序还是快速排序，排序的核心是比较两个元素的大小。如果是数字，我们可以直接比较，但如果是字符串或者两个对象呢？直接比较数学上的大小是没有意义的，因此，比较的过程必须通过函数抽象出来。通常规定，对于两个元素<code>x</code>和<code>y</code>，如果认为<code>x &lt; y</code>，则返回<code>-1</code>，如果认为<code>x == y</code>，则返回<code>0</code>，如果认为<code>x &gt; y</code>，则返回<code>1</code>，这样，排序算法就不用关心具体的比较过程，而是根据比较结果直接排序。   JavaScript的<code>Array</code>的<code>sort()</code>方法就是用于排序的，但是排序结果可能让你大吃一惊：</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co">// 看上去正常的结果:</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">[<span class="st">&#39;Google&#39;</span><span class="op">,</span> <span class="st">&#39;Apple&#39;</span><span class="op">,</span> <span class="st">&#39;Microsoft&#39;</span>].<span class="at">sort</span>()<span class="op">;</span> <span class="co">// [&#39;Apple&#39;, &#39;Google&#39;, &#39;Microsoft&#39;];</span></a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co">// apple排在了最后:</span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5">[<span class="st">&#39;Google&#39;</span><span class="op">,</span> <span class="st">&#39;apple&#39;</span><span class="op">,</span> <span class="st">&#39;Microsoft&#39;</span>].<span class="at">sort</span>()<span class="op">;</span> <span class="co">// [&#39;Google&#39;, &#39;Microsoft&quot;, &#39;apple&#39;]</span></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb37-7" data-line-number="7"><span class="co">// 无法理解的结果:</span></a>
+<a class="sourceLine" id="cb37-8" data-line-number="8">[<span class="dv">10</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>].<span class="at">sort</span>()<span class="op">;</span> <span class="co">// [1, 10, 2, 20]</span></a></code></pre></div>
+<p>  这是因为<code>Array</code>的<code>sort()</code>方法默认把所有元素先转换为<code>String</code>再排序,如果不知道<code>sort()</code>方法的默认排序规则，直接对数字排序，绝对栽进坑里！幸运的是，<code>sort()</code>方法也是一个高阶函数，它还可以接收一个比较函数来实现自定义的排序。要按数字大小排序，我们可以这么写：</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="kw">var</span> arr <span class="op">=</span> [<span class="dv">10</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="va">arr</span>.<span class="at">sort</span>(<span class="kw">function</span> (x<span class="op">,</span> y) <span class="op">{</span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5">    <span class="cf">if</span> (x <span class="op">&lt;</span> y) <span class="op">{</span></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6">        <span class="cf">return</span> <span class="dv">-1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb38-8" data-line-number="8">    <span class="cf">if</span> (x <span class="op">&gt;</span> y) <span class="op">{</span></a>
+<a class="sourceLine" id="cb38-9" data-line-number="9">        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb38-10" data-line-number="10">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb38-11" data-line-number="11">    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb38-12" data-line-number="12"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>  <code>sort()</code>方法会直接对<code>Array</code>进行修改，它返回的结果仍是当前<code>Array</code>：</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">var</span> a1 <span class="op">=</span> [<span class="st">&#39;B&#39;</span><span class="op">,</span> <span class="st">&#39;A&#39;</span><span class="op">,</span> <span class="st">&#39;C&#39;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="kw">var</span> a2 <span class="op">=</span> <span class="va">a1</span>.<span class="at">sort</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb39-3" data-line-number="3">a1<span class="op">;</span> <span class="co">// [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</span></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">a2<span class="op">;</span> <span class="co">// [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</span></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5">a1 <span class="op">===</span> a2<span class="op">;</span> <span class="co">// true, a1和a2是同一对象</span></a></code></pre></div>
+<h3 id="every">every</h3>
+<p>  <code>every()</code>方法可以判断数组的所有元素是否满足测试条件。例如，给定一个包含若干字符串的数组，判断所有字符串是否满足指定的测试条件：</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">var</span> arr <span class="op">=</span> [<span class="st">&#39;Apple&#39;</span><span class="op">,</span> <span class="st">&#39;pear&#39;</span><span class="op">,</span> <span class="st">&#39;orange&#39;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(<span class="va">arr</span>.<span class="at">every</span>(<span class="kw">function</span> (s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4">    <span class="cf">return</span> <span class="va">s</span>.<span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="op">}</span>))<span class="op">;</span> <span class="co">// true, 因为每个元素都满足s.length&gt;0</span></a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(<span class="va">arr</span>.<span class="at">every</span>(<span class="kw">function</span> (s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb40-8" data-line-number="8">    <span class="cf">return</span> <span class="va">s</span>.<span class="at">toLowerCase</span>() <span class="op">===</span> s<span class="op">;</span></a>
+<a class="sourceLine" id="cb40-9" data-line-number="9"><span class="op">}</span>))<span class="op">;</span> <span class="co">// false, 因为不是每个元素都全部是小写</span></a></code></pre></div>
+<h3 id="find">find</h3>
+<p>  <code>find()</code>方法用于查找符合条件的第一个元素，如果找到了，返回这个元素，否则，返回<code>undefined</code>：</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="kw">var</span> arr <span class="op">=</span> [<span class="st">&#39;Apple&#39;</span><span class="op">,</span> <span class="st">&#39;pear&#39;</span><span class="op">,</span> <span class="st">&#39;orange&#39;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(<span class="va">arr</span>.<span class="at">find</span>(<span class="kw">function</span> (s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb41-4" data-line-number="4">    <span class="cf">return</span> <span class="va">s</span>.<span class="at">toLowerCase</span>() <span class="op">===</span> s<span class="op">;</span></a>
+<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="op">}</span>))<span class="op">;</span> <span class="co">// &#39;pear&#39;, 因为pear全部是小写</span></a>
+<a class="sourceLine" id="cb41-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb41-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(<span class="va">arr</span>.<span class="at">find</span>(<span class="kw">function</span> (s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb41-8" data-line-number="8">    <span class="cf">return</span> <span class="va">s</span>.<span class="at">toUpperCase</span>() <span class="op">===</span> s<span class="op">;</span></a>
+<a class="sourceLine" id="cb41-9" data-line-number="9"><span class="op">}</span>))<span class="op">;</span> <span class="co">// undefined, 因为没有全部是大写的元素</span></a></code></pre></div>
+<h3 id="findindex">findIndex</h3>
+<p>  <code>findIndex()</code>和<code>find()</code>类似，也是查找符合条件的第一个元素，不同之处在于<code>findIndex()</code>会返回这个元素的索引，如果没有找到，返回<code>-1</code>：</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw">var</span> arr <span class="op">=</span> [<span class="st">&#39;Apple&#39;</span><span class="op">,</span> <span class="st">&#39;pear&#39;</span><span class="op">,</span> <span class="st">&#39;orange&#39;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(<span class="va">arr</span>.<span class="at">findIndex</span>(<span class="kw">function</span> (s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">    <span class="cf">return</span> <span class="va">s</span>.<span class="at">toLowerCase</span>() <span class="op">===</span> s<span class="op">;</span></a>
+<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="op">}</span>))<span class="op">;</span> <span class="co">// 1, 因为&#39;pear&#39;的索引是1</span></a>
+<a class="sourceLine" id="cb42-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(<span class="va">arr</span>.<span class="at">findIndex</span>(<span class="kw">function</span> (s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb42-8" data-line-number="8">    <span class="cf">return</span> <span class="va">s</span>.<span class="at">toUpperCase</span>() <span class="op">===</span> s<span class="op">;</span></a>
+<a class="sourceLine" id="cb42-9" data-line-number="9"><span class="op">}</span>))<span class="op">;</span> <span class="co">// -1</span></a></code></pre></div>
+<h3 id="foreach">forEach</h3>
+<p>  <code>forEach()</code>和<code>map()</code>类似，它也把每个元素依次作用于传入的函数，但不会返回新的数组。<code>forEach()</code>常用于遍历数组，因此，传入的函数不需要返回值：</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="st">&#39;use strict&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="kw">var</span> arr <span class="op">=</span> [<span class="st">&#39;Apple&#39;</span><span class="op">,</span> <span class="st">&#39;pear&#39;</span><span class="op">,</span> <span class="st">&#39;orange&#39;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="va">arr</span>.<span class="at">forEach</span>(<span class="va">console</span>.<span class="at">log</span>)<span class="op">;</span> <span class="co">// 依次打印每个元素</span></a></code></pre></div>
+<h2 id="箭头函数">箭头函数</h2>
+<p>  ES6标准新增了一种新的函数：Arrow Function（箭头函数），为什么叫Arrow Function？因为它的定义用的就是一个箭头：</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb44-1" data-line-number="1">x <span class="op">=&gt;</span> x <span class="op">*</span> x</a></code></pre></div>
+<p>  上面的箭头函数相当于：</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">function</span> (x) <span class="op">{</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">    <span class="cf">return</span> x <span class="op">*</span> x<span class="op">;</span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>  如果参数不是一个，就需要用括号<code>()</code>括起来：</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="co">// 两个参数:</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">(x<span class="op">,</span> y) <span class="op">=&gt;</span> x <span class="op">*</span> x <span class="op">+</span> y <span class="op">*</span> y</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="co">// 无参数:</span></a>
+<a class="sourceLine" id="cb46-5" data-line-number="5">() <span class="op">=&gt;</span> <span class="fl">3.14</span></a>
+<a class="sourceLine" id="cb46-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb46-7" data-line-number="7"><span class="co">// 可变参数:</span></a>
+<a class="sourceLine" id="cb46-8" data-line-number="8">(x<span class="op">,</span> y<span class="op">,</span> ...<span class="at">rest</span>) <span class="op">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb46-9" data-line-number="9">    <span class="kw">var</span> i<span class="op">,</span> sum <span class="op">=</span> x <span class="op">+</span> y<span class="op">;</span></a>
+<a class="sourceLine" id="cb46-10" data-line-number="10">    <span class="cf">for</span> (i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span><span class="va">rest</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb46-11" data-line-number="11">        sum <span class="op">+=</span> rest[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb46-12" data-line-number="12">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb46-13" data-line-number="13">    <span class="cf">return</span> sum<span class="op">;</span></a>
+<a class="sourceLine" id="cb46-14" data-line-number="14"><span class="op">}</span></a></code></pre></div>
+<h2 id="generator">generator</h2>
+<p>  generator（生成器）是ES6标准引入的新的数据类型。一个generator看上去像一个函数，但可以返回多次,generator跟函数很像，定义如下：</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">function</span><span class="op">*</span> <span class="at">foo</span>(x) <span class="op">{</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">    <span class="kw">yield</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3">    <span class="kw">yield</span> x <span class="op">+</span> <span class="dv">2</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb47-4" data-line-number="4">    <span class="cf">return</span> x <span class="op">+</span> <span class="dv">3</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="op">}</span></a></code></pre></div>
+<p>  generator和函数不同的是，generator由<code>function*</code>定义（注意多出的*号），并且，除了<code>return</code>语句，还可以用<code>yield</code>返回多次。</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">function</span> <span class="op">*</span><span class="at">gen</span> () <span class="op">{</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">  <span class="kw">yield</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">  <span class="kw">yield</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">  <span class="cf">return</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="op">}</span></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="kw">const</span> g <span class="op">=</span> <span class="at">gen</span>()   <span class="co">// Iterator对象</span></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="va">g</span>.<span class="at">next</span>() <span class="co">// {value: 1, done: false}</span></a>
+<a class="sourceLine" id="cb48-8" data-line-number="8"><span class="va">g</span>.<span class="at">next</span>() <span class="co">// {value: 2, done: false}</span></a>
+<a class="sourceLine" id="cb48-9" data-line-number="9"><span class="va">g</span>.<span class="at">next</span>() <span class="co">// {value: 3, done: true}</span></a></code></pre></div>
+<p>  从上面代码中可以看出，<code>gen</code>函数使用<code>yield</code>表达式定义了两个内部状态。同时呢，也可以看出来，<code>return</code>语句只能有一个，而<code>yield</code>表达式却可以有多个。执行<code>gen</code>函数之后，会返回一个遍历器对象，而不是立即执行<code>gen</code>函数。如果需要获取<code>yield</code>表达式定义的每个状态，需要调用<code>next</code>方法。每调用一次<code>next</code>方法都会返回一个包含<code>value</code>和<code>done</code>属性的对象，此时会停留在某个<code>yield</code>表达式结尾处。<code>value</code>属性值即是<code>yield</code>表达式的值；<code>done</code>属性是布尔值，表示是否遍历完毕。</p>
 <p>本文参考廖雪峰 javascript教程，作为个人学习笔记。</p>
 
             </div>
@@ -1296,10 +1273,14 @@ g.next() // {value: 3, done: true}
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Python基础
+                            
+Python基础
 
-数据类型整型&emsp;&emsp;Python可以处理任意大小的整数，当然包括负整数，在程序中的表示方法和数学上的写法一模一样，例如：1，100，-8080，0，等等
-浮点数&emsp;&emsp;浮点数也就是小数，之
+数据类型
+整型
+  Python可以处理任意大小的整数，当然包括负整数，在程序中的表示方法和数学上的写法一模一样，例如：1，100，-8080，0，等等
+浮点数
+  浮点数也就是小数，之所以称为浮点数，是
                         
                     </div>
                     <div class="publish-info">
@@ -1348,10 +1329,12 @@ g.next() // {value: 3, done: true}
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JavaScript简述
+                            
+JavaScript简述
 
-JavaScript历史&emsp;&emsp;1995年Brendan Eich用了10天（NB）时间设计了JavaScript语言。为了蹭热度，取名JavaScript，实际与Java没有一点关系。
-ECMA
+JavaScript历史
+  1995年Brendan Eich用了10天（NB）时间设计了JavaScript语言。为了蹭热度，取名JavaScript，实际与Java没有一点关系。
+ECMAScr
                         
                     </div>
                     <div class="publish-info">
@@ -1788,9 +1771,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

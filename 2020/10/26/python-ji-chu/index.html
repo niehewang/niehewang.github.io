@@ -543,295 +543,295 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div align='center' ><font size='70'>Python基础</font></div>
-
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><p>&emsp;&emsp;Python可以处理任意大小的整数，当然包括负整数，在程序中的表示方法和数学上的写法一模一样，例如：<code>1</code>，<code>100</code>，<code>-8080</code>，<code>0</code>，等等</p>
-<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>&emsp;&emsp;浮点数也就是小数，之所以称为浮点数，是因为按照科学记数法表示时，一个浮点数的小数点位置是可变的，整数和浮点数在计算机内部存储的方式是不同的，整数运算永远是精确的（除法难道也是精确的？是的！），而浮点数运算则可能会有四舍五入的误差。</p>
-<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>&emsp;&emsp;字符串是以单引号’或双引号”括起来的任意文本，比如<code>&#39;abc&#39;</code>，<code>&quot;xyz&quot;</code>等等。<br>&emsp;&emsp;转义字符<code>\</code>可以转义很多字符，比如<code>\n</code>表示换行，<code>\t</code>表示制表符，字符<code>\</code>本身也要转义，所以<code>\\</code>表示的字符就是<code>\</code>。</p>
-<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><p>&emsp;&emsp;布尔值和布尔代数的表示完全一致，一个布尔值只有<code>True</code>、<code>False</code>两种值，要么是<code>True</code>，要么是<code>False</code>，在Python中，可以直接用<code>True</code>、<code>False</code>表示布尔值（请注意大小写），也可以通过布尔运算计算出来：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> True
-True
->>> False
-False
->>> 3 > 2
-True
->>> 3 > 5
-False
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;布尔值可以用<code>and</code>、<code>or</code>和<code>not</code>运算。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> True and True
-True
->>> True or False
-True
->>> not True
-False
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h3><p>&emsp;&emsp;空值是Python里一个特殊的值，用<code>None</code>表示。<code>None</code>不能理解为<code>0</code>，因为<code>0</code>是有意义的，而<code>None</code>是一个特殊的空值。</p>
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>&emsp;&emsp;变量在程序中就是用一个变量名表示了，变量名必须是大小写英文、数字和<code>_</code>的组合，且不能用数字开头。</p>
-<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>&emsp;&emsp;所谓常量就是不能变的变量，比如常用的数学常数π就是一个常量。在Python中，通常用全部大写的变量名表示常量：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">PI = 3.14159265359
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>&emsp;&emsp;但事实上<code>PI</code>仍然是一个变量，Python根本没有任何机制保证<code>PI</code>不会被改变，所以，用全部大写的变量名表示常量只是一个习惯上的用法，如果你一定要改变变量<code>PI</code>的值，也没人能拦住你。</p>
-<h3 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h3><p>&emsp;&emsp;一种除法是<code>/</code>：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 10 / 3
-3.3333333333333335
->>> 9 / 3
-3.0
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;还有一种除法是<code>//</code>，称为地板除，两个整数的除法仍然是整数,因为<code>//</code>除法只取结果的整数部分：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 10 // 3
-3
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp; <code>%</code> 提供一个余数运算，可以得到两个整数相除的余数：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 10 % 3
-1
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="字符串和编码"><a href="#字符串和编码" class="headerlink" title="字符串和编码"></a>字符串和编码</h2><p>&emsp;&emsp;由于Python的字符串类型是<code>str</code>，在内存中以<code>Unicode</code>表示，一个字符对应若干个字节。如果要在网络上传输，或者保存到磁盘上，就需要把<code>str</code>变为以字节为单位的<code>bytes</code>，以<code>Unicode</code>表示的<code>str</code>通过<code>encode()</code>方法可以编码为指定的<code>bytes</code>。反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是<code>bytes</code>。要把<code>bytes</code>变为<code>str</code>，就需要用<code>decode()</code>方法。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'ABC'.encode('ascii')
-b'ABC'
->>> '中文'.encode('utf-8')
-b'\xe4\xb8\xad\xe6\x96\x87'
-
->>> b'ABC'.decode('ascii')
-'ABC'
->>> b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')
-'中文'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;如果<code>bytes</code>中只有一小部分无效的字节，可以传入<code>errors=&#39;ignore&#39;</code>忽略错误的字节：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> b'\xe4\xb8\xad\xff'.decode('utf-8', errors='ignore')
-'中'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;要计算<code>str</code>包含多少个字符，可以用<code>len()</code>函数，<code>len()</code>函数计算的是<code>str</code>的字符数，如果换成<code>bytes</code>，<code>len()</code>函数就计算字节数：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> len(b'ABC')
-3
->>> len(b'\xe4\xb8\xad\xe6\x96\x87')
-6
->>> len('中文'.encode('utf-8'))
-6
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;在操作字符串时，我们经常遇到<code>str</code>和<code>bytes</code>的互相转换。为了避免乱码问题，应当始终坚持使用<code>UTF-8</code>编码对<code>str</code>和<code>bytes</code>进行转换。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;在Python中，采用的格式化方式和C语言是一致的，用<code>%</code>实现，举例如下：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'Hello, %s' % 'world'
-'Hello, world'
->>> 'Hi, %s, you have $%d.' % ('Michael', 1000000)
-'Hi, Michael, you have $1000000.'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;如果你不太确定应该用什么，<code>%s</code>永远起作用，它会把任何数据类型转换为字符串：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'Age: %s. Gender: %s' % (25, True)
-'Age: 25. Gender: True'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;有些时候，字符串里面的<code>%</code>是一个普通字符怎么办？这个时候就需要转义，用<code>%%</code>来表示一个<code>%</code>：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'growth rate: %d %%' % 7
-'growth rate: 7 %'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="format"><a href="#format" class="headerlink" title="format()"></a>format()</h3><p>&emsp;&emsp;另一种格式化字符串的方法是使用字符串的<code>format()</code>方法，它会用传入的参数依次替换字符串内的占位符<code>{0}</code>、<code>{1}……</code>，不过这种方式写起来比<code>%</code>要麻烦得多：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> 'Hello, {0}, 成绩提升了 {1:.1f}%'.format('小明', 17.125)
-'Hello, 小明, 成绩提升了 17.1%'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="f-string"><a href="#f-string" class="headerlink" title="f-string"></a>f-string</h3><p>&emsp;&emsp;最后一种格式化字符串的方法是使用以<code>f</code>开头的字符串，称之为<code>f-string</code>，它和普通字符串不同之处在于，字符串如果包含<code>{xxx}</code>，就会以对应的变量替换：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> r = 2.5
->>> s = 3.14 * r ** 2
->>> print(f'The area of a circle with radius {r} is {s:.2f}')
-The area of a circle with radius 2.5 is 19.62
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;上述代码中，<code>{r}</code>被变量<code>r</code>的值替换，<code>{s:.2f}</code>被变量<code>s</code>的值替换，并且<code>:</code>后面的<code>.2f</code>指定了格式化参数（即保留两位小数），因此，<code>{s:.2f}</code>的替换结果是<code>19.62</code>。</p>
-<h2 id="list和tuple"><a href="#list和tuple" class="headerlink" title="list和tuple"></a>list和tuple</h2><h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p>&emsp;&emsp;Python内置的一种数据类型是列表：<code>list</code>。<code>list</code>是一种有序的集合，可以随时添加和删除其中的元素。比如，列出班里所有同学的名字，就可以用一个<code>list</code>表示：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> classmates = ['Michael', 'Bob', 'Tracy']
->>> classmates
-['Michael', 'Bob', 'Tracy']
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;用索引来访问<code>list</code>中每一个位置的元素，记得索引是从<code>0</code>开始的，如果要取最后一个元素，除了计算索引位置外，还可以用<code>-1</code>做索引，直接获取最后一个元素：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> classmates[0]
-'Michael'
->>> classmates[1]
-'Bob'
->>> classmates[2]
-'Tracy'
->>> classmates[-1]
-'Tracy'
->>> classmates[-2]
-'Bob'
->>> classmates[-3]
-'Michael'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;<code>list</code>是一个可变的有序表，所以，可以往<code>list</code>中追加元素到末尾：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> classmates.append('Adam')
->>> classmates
-['Michael', 'Bob', 'Tracy', 'Adam']
-
-// 也可以把元素插入到指定的位置，比如索引号为1的位置：
->>> classmates.insert(1, 'Jack')
->>> classmates
-['Michael', 'Jack', 'Bob', 'Tracy', 'Adam']
-
-// 要删除list末尾的元素，用pop()方法：
->>> classmates.pop()
-'Adam'
->>> classmates
-['Michael', 'Jack', 'Bob', 'Tracy']
-
-// 要删除指定位置的元素，用pop(i)方法，其中i是索引位置：
->>> classmates.pop(1)
-'Jack'
->>> classmates
-['Michael', 'Bob', 'Tracy']
-
-//要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：
->>> classmates[1] = 'Sarah'
->>> classmates
-['Michael', 'Sarah', 'Tracy']
-
-// list里面的元素的数据类型也可以不同，比如：
->>> L = ['Apple', 123, True]
-
-// list元素也可以是另一个list，比如：
->>> s = ['python', 'java', ['asp', 'php'], 'scheme']
->>> len(s)
-4
-
-// 如果一个list中一个元素也没有，就是一个空的list，它的长度为0：
->>> L = []
->>> len(L)
-0
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h3><p>&emsp;&emsp;另一种有序列表叫元组：<code>tuple</code>。<code>tuple</code>和<code>list</code>非常类似，但是<code>tuple</code>一旦初始化就不能修改。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">// 当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，比如：
->>> t = (1, 2)
->>> t
-(1, 2)
-
-// 如果要定义一个空的tuple，可以写成()：
->>> t = ()
->>> t
-()
-
-// 只有1个元素的tuple定义时必须加一个逗号,，来消除歧义：
->>> t = (1,)
->>> t
-(1,)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><p>&emsp;&emsp;Python中条件判断与其他语言类似：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">age = 20
-if age >= 18:
-    print('your age is', age)
-    print('adult')
-
-age = 3
-if age >= 18:
-    print('your age is', age)
-    print('adult')
-else:
-    print('your age is', age)
-    print('teenager')
-
-age = 3
-if age >= 18:
-    print('adult')
-elif age >= 6:
-    print('teenager')
-else:
-    print('kid')
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;只要判断条件是非零数值、非空字符串、非空<code>list</code>等，就判断为<code>True</code>，否则为<code>False</code>。<br>&emsp;&emsp;注：<code>input</code>返回的数据类型是<code>str</code>。</p>
-<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p>&emsp;&emsp;Python的循环有两种，一种是<code>for...in</code>循环，依次把<code>list</code>或<code>tuple</code>中的每个元素迭代出来，看例子：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">names = ['Michael', 'Bob', 'Tracy']
-for name in names:
-    print(name)
-
-Michael
-Bob
-Tracy
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="range"><a href="#range" class="headerlink" title="range()"></a>range()</h3><p>&emsp;&emsp;<code>range(5)</code>生成的序列是从0开始小于5的整数。例：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">sum = 0
-for x in range(101):
-    sum = sum + x
-print(sum)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><p>&emsp;&emsp;第二种循环是<code>while</code>循环，只要条件满足，就不断循环，条件不满足时退出循环。比如我们要计算100以内所有奇数之和，可以用<code>while</code>循环实现：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">sum = 0
-n = 99
-while n > 0:
-    sum = sum + n
-    n = n - 2
-print(sum)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>&emsp;&emsp;在循环中，<code>break</code>语句可以提前退出循环。和其他语言类似。</p>
-<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>&emsp;&emsp;在循环过程中，也可以通过<code>continue</code>语句，跳过当前的这次循环，直接开始下一次循环。和其他语言类似。</p>
+                <div data-align="center">
+<font size='70'>Python基础</font>
+</div>
+<h2 id="数据类型">数据类型</h2>
+<h3 id="整型">整型</h3>
+<p>  Python可以处理任意大小的整数，当然包括负整数，在程序中的表示方法和数学上的写法一模一样，例如：<code>1</code>，<code>100</code>，<code>-8080</code>，<code>0</code>，等等</p>
+<h3 id="浮点数">浮点数</h3>
+<p>  浮点数也就是小数，之所以称为浮点数，是因为按照科学记数法表示时，一个浮点数的小数点位置是可变的，整数和浮点数在计算机内部存储的方式是不同的，整数运算永远是精确的（除法难道也是精确的？是的！），而浮点数运算则可能会有四舍五入的误差。</p>
+<h3 id="字符串">字符串</h3>
+<p>  字符串是以单引号'或双引号&quot;括起来的任意文本，比如<code>'abc'</code>，<code>&quot;xyz&quot;</code>等等。   转义字符<code>\</code>可以转义很多字符，比如<code>\n</code>表示换行，<code>\t</code>表示制表符，字符<code>\</code>本身也要转义，所以<code>\\</code>表示的字符就是<code>\</code>。</p>
+<h3 id="布尔值">布尔值</h3>
+<p>  布尔值和布尔代数的表示完全一致，一个布尔值只有<code>True</code>、<code>False</code>两种值，要么是<code>True</code>，要么是<code>False</code>，在Python中，可以直接用<code>True</code>、<code>False</code>表示布尔值（请注意大小写），也可以通过布尔运算计算出来：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="va">True</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="va">True</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="va">False</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="va">False</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span> <span class="dv">3</span> <span class="op">&gt;</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="va">True</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="op">&gt;&gt;&gt;</span> <span class="dv">3</span> <span class="op">&gt;</span> <span class="dv">5</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="va">False</span></a></code></pre></div>
+<p>  布尔值可以用<code>and</code>、<code>or</code>和<code>not</code>运算。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="va">True</span> <span class="kw">and</span> <span class="va">True</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="va">True</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="va">True</span> <span class="kw">or</span> <span class="va">False</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="va">True</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span> <span class="kw">not</span> <span class="va">True</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="va">False</span></a></code></pre></div>
+<h3 id="空值">空值</h3>
+<p>  空值是Python里一个特殊的值，用<code>None</code>表示。<code>None</code>不能理解为<code>0</code>，因为<code>0</code>是有意义的，而<code>None</code>是一个特殊的空值。</p>
+<h3 id="变量">变量</h3>
+<p>  变量在程序中就是用一个变量名表示了，变量名必须是大小写英文、数字和<code>_</code>的组合，且不能用数字开头。</p>
+<h3 id="常量">常量</h3>
+<p>  所谓常量就是不能变的变量，比如常用的数学常数π就是一个常量。在Python中，通常用全部大写的变量名表示常量：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1">PI <span class="op">=</span> <span class="fl">3.14159265359</span></a></code></pre></div>
+<p>  但事实上<code>PI</code>仍然是一个变量，Python根本没有任何机制保证<code>PI</code>不会被改变，所以，用全部大写的变量名表示常量只是一个习惯上的用法，如果你一定要改变变量<code>PI</code>的值，也没人能拦住你。</p>
+<h3 id="除法">除法</h3>
+<p>  一种除法是<code>/</code>：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="fl">3.3333333333333335</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="dv">9</span> <span class="op">/</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="fl">3.0</span></a></code></pre></div>
+<p>  还有一种除法是<code>//</code>，称为地板除，两个整数的除法仍然是整数,因为<code>//</code>除法只取结果的整数部分：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="dv">10</span> <span class="op">//</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="dv">3</span></a></code></pre></div>
+<p>   <code>%</code> 提供一个余数运算，可以得到两个整数相除的余数：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="dv">10</span> <span class="op">%</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="dv">1</span></a></code></pre></div>
+<h2 id="字符串和编码">字符串和编码</h2>
+<p>  由于Python的字符串类型是<code>str</code>，在内存中以<code>Unicode</code>表示，一个字符对应若干个字节。如果要在网络上传输，或者保存到磁盘上，就需要把<code>str</code>变为以字节为单位的<code>bytes</code>，以<code>Unicode</code>表示的<code>str</code>通过<code>encode()</code>方法可以编码为指定的<code>bytes</code>。反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是<code>bytes</code>。要把<code>bytes</code>变为<code>str</code>，就需要用<code>decode()</code>方法。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="st">&#39;ABC&#39;</span>.encode(<span class="st">&#39;ascii&#39;</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">b<span class="st">&#39;ABC&#39;</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="st">&#39;中文&#39;</span>.encode(<span class="st">&#39;utf-8&#39;</span>)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">b<span class="st">&#39;</span><span class="ch">\xe4\xb8\xad\xe6\x96\x87</span><span class="st">&#39;</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> b<span class="st">&#39;ABC&#39;</span>.decode(<span class="st">&#39;ascii&#39;</span>)</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">&#39;ABC&#39;</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="op">&gt;&gt;&gt;</span> b<span class="st">&#39;</span><span class="ch">\xe4\xb8\xad\xe6\x96\x87</span><span class="st">&#39;</span>.decode(<span class="st">&#39;utf-8&#39;</span>)</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">&#39;中文&#39;</span></a></code></pre></div>
+<p>  如果<code>bytes</code>中只有一小部分无效的字节，可以传入<code>errors='ignore'</code>忽略错误的字节：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> b<span class="st">&#39;</span><span class="ch">\xe4\xb8\xad\xff</span><span class="st">&#39;</span>.decode(<span class="st">&#39;utf-8&#39;</span>, errors<span class="op">=</span><span class="st">&#39;ignore&#39;</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">&#39;中&#39;</span></a></code></pre></div>
+<p>  要计算<code>str</code>包含多少个字符，可以用<code>len()</code>函数，<code>len()</code>函数计算的是<code>str</code>的字符数，如果换成<code>bytes</code>，<code>len()</code>函数就计算字节数：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(b<span class="st">&#39;ABC&#39;</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="dv">3</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(b<span class="st">&#39;</span><span class="ch">\xe4\xb8\xad\xe6\x96\x87</span><span class="st">&#39;</span>)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="dv">6</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(<span class="st">&#39;中文&#39;</span>.encode(<span class="st">&#39;utf-8&#39;</span>))</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="dv">6</span></a></code></pre></div>
+<p>  在操作字符串时，我们经常遇到<code>str</code>和<code>bytes</code>的互相转换。为了避免乱码问题，应当始终坚持使用<code>UTF-8</code>编码对<code>str</code>和<code>bytes</code>进行转换。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co">#!/usr/bin/env python3</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co"># -*- coding: utf-8 -*-</span></a></code></pre></div>
+<p>  在Python中，采用的格式化方式和C语言是一致的，用<code>%</code>实现，举例如下：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="st">&#39;Hello, </span><span class="sc">%s</span><span class="st">&#39;</span> <span class="op">%</span> <span class="st">&#39;world&#39;</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">&#39;Hello, world&#39;</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="st">&#39;Hi, </span><span class="sc">%s</span><span class="st">, you have $</span><span class="sc">%d</span><span class="st">.&#39;</span> <span class="op">%</span> (<span class="st">&#39;Michael&#39;</span>, <span class="dv">1000000</span>)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">&#39;Hi, Michael, you have $1000000.&#39;</span></a></code></pre></div>
+<p>  如果你不太确定应该用什么，<code>%s</code>永远起作用，它会把任何数据类型转换为字符串：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="st">&#39;Age: </span><span class="sc">%s</span><span class="st">. Gender: </span><span class="sc">%s</span><span class="st">&#39;</span> <span class="op">%</span> (<span class="dv">25</span>, <span class="va">True</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">&#39;Age: 25. Gender: True&#39;</span></a></code></pre></div>
+<p>  有些时候，字符串里面的<code>%</code>是一个普通字符怎么办？这个时候就需要转义，用<code>%%</code>来表示一个<code>%</code>：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="st">&#39;growth rate: </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%%</span><span class="st">&#39;</span> <span class="op">%</span> <span class="dv">7</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">&#39;growth rate: 7 %&#39;</span></a></code></pre></div>
+<h3 id="format">format()</h3>
+<p>  另一种格式化字符串的方法是使用字符串的<code>format()</code>方法，它会用传入的参数依次替换字符串内的占位符<code>{0}</code>、<code>{1}……</code>，不过这种方式写起来比<code>%</code>要麻烦得多：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="st">&#39;Hello, </span><span class="sc">{0}</span><span class="st">, 成绩提升了 </span><span class="sc">{1:.1f}</span><span class="st">%&#39;</span>.<span class="bu">format</span>(<span class="st">&#39;小明&#39;</span>, <span class="fl">17.125</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">&#39;Hello, 小明, 成绩提升了 17.1%&#39;</span></a></code></pre></div>
+<h3 id="f-string">f-string</h3>
+<p>  最后一种格式化字符串的方法是使用以<code>f</code>开头的字符串，称之为<code>f-string</code>，它和普通字符串不同之处在于，字符串如果包含<code>{xxx}</code>，就会以对应的变量替换：</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> r <span class="op">=</span> <span class="fl">2.5</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="fl">3.14</span> <span class="op">*</span> r <span class="op">**</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f&#39;The area of a circle with radius </span><span class="sc">{r}</span><span class="ss"> is </span><span class="sc">{s:.2f}</span><span class="ss">&#39;</span>)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">The area of a circle <span class="cf">with</span> radius <span class="fl">2.5</span> <span class="kw">is</span> <span class="fl">19.62</span></a></code></pre></div>
+<p>  上述代码中，<code>{r}</code>被变量<code>r</code>的值替换，<code>{s:.2f}</code>被变量<code>s</code>的值替换，并且<code>:</code>后面的<code>.2f</code>指定了格式化参数（即保留两位小数），因此，<code>{s:.2f}</code>的替换结果是<code>19.62</code>。</p>
+<h2 id="list和tuple">list和tuple</h2>
+<h3 id="list">list</h3>
+<p>  Python内置的一种数据类型是列表：<code>list</code>。<code>list</code>是一种有序的集合，可以随时添加和删除其中的元素。比如，列出班里所有同学的名字，就可以用一个<code>list</code>表示：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> classmates <span class="op">=</span> [<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Tracy&#39;</span>]</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> classmates</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">[<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Tracy&#39;</span>]</a></code></pre></div>
+<p>  用索引来访问<code>list</code>中每一个位置的元素，记得索引是从<code>0</code>开始的，如果要取最后一个元素，除了计算索引位置外，还可以用<code>-1</code>做索引，直接获取最后一个元素：</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> classmates[<span class="dv">0</span>]</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="co">&#39;Michael&#39;</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> classmates[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">&#39;Bob&#39;</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span> classmates[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">&#39;Tracy&#39;</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="op">&gt;&gt;&gt;</span> classmates[<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">&#39;Tracy&#39;</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="op">&gt;&gt;&gt;</span> classmates[<span class="op">-</span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">&#39;Bob&#39;</span></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="op">&gt;&gt;&gt;</span> classmates[<span class="op">-</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">&#39;Michael&#39;</span></a></code></pre></div>
+<p>  <code>list</code>是一个可变的有序表，所以，可以往<code>list</code>中追加元素到末尾：</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> classmates.append(<span class="st">&#39;Adam&#39;</span>)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> classmates</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">[<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Tracy&#39;</span>, <span class="st">&#39;Adam&#39;</span>]</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="op">//</span> 也可以把元素插入到指定的位置，比如索引号为1的位置：</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> classmates.insert(<span class="dv">1</span>, <span class="st">&#39;Jack&#39;</span>)</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="op">&gt;&gt;&gt;</span> classmates</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8">[<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Jack&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Tracy&#39;</span>, <span class="st">&#39;Adam&#39;</span>]</a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="op">//</span> 要删除list末尾的元素，用pop()方法：</a>
+<a class="sourceLine" id="cb18-11" data-line-number="11"><span class="op">&gt;&gt;&gt;</span> classmates.pop()</a>
+<a class="sourceLine" id="cb18-12" data-line-number="12"><span class="co">&#39;Adam&#39;</span></a>
+<a class="sourceLine" id="cb18-13" data-line-number="13"><span class="op">&gt;&gt;&gt;</span> classmates</a>
+<a class="sourceLine" id="cb18-14" data-line-number="14">[<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Jack&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Tracy&#39;</span>]</a>
+<a class="sourceLine" id="cb18-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb18-16" data-line-number="16"><span class="op">//</span> 要删除指定位置的元素，用pop(i)方法，其中i是索引位置：</a>
+<a class="sourceLine" id="cb18-17" data-line-number="17"><span class="op">&gt;&gt;&gt;</span> classmates.pop(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb18-18" data-line-number="18"><span class="co">&#39;Jack&#39;</span></a>
+<a class="sourceLine" id="cb18-19" data-line-number="19"><span class="op">&gt;&gt;&gt;</span> classmates</a>
+<a class="sourceLine" id="cb18-20" data-line-number="20">[<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Tracy&#39;</span>]</a>
+<a class="sourceLine" id="cb18-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb18-22" data-line-number="22"><span class="op">//</span>要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：</a>
+<a class="sourceLine" id="cb18-23" data-line-number="23"><span class="op">&gt;&gt;&gt;</span> classmates[<span class="dv">1</span>] <span class="op">=</span> <span class="st">&#39;Sarah&#39;</span></a>
+<a class="sourceLine" id="cb18-24" data-line-number="24"><span class="op">&gt;&gt;&gt;</span> classmates</a>
+<a class="sourceLine" id="cb18-25" data-line-number="25">[<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Sarah&#39;</span>, <span class="st">&#39;Tracy&#39;</span>]</a>
+<a class="sourceLine" id="cb18-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb18-27" data-line-number="27"><span class="op">//</span> list里面的元素的数据类型也可以不同，比如：</a>
+<a class="sourceLine" id="cb18-28" data-line-number="28"><span class="op">&gt;&gt;&gt;</span> L <span class="op">=</span> [<span class="st">&#39;Apple&#39;</span>, <span class="dv">123</span>, <span class="va">True</span>]</a>
+<a class="sourceLine" id="cb18-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb18-30" data-line-number="30"><span class="op">//</span> list元素也可以是另一个list，比如：</a>
+<a class="sourceLine" id="cb18-31" data-line-number="31"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> [<span class="st">&#39;python&#39;</span>, <span class="st">&#39;java&#39;</span>, [<span class="st">&#39;asp&#39;</span>, <span class="st">&#39;php&#39;</span>], <span class="st">&#39;scheme&#39;</span>]</a>
+<a class="sourceLine" id="cb18-32" data-line-number="32"><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(s)</a>
+<a class="sourceLine" id="cb18-33" data-line-number="33"><span class="dv">4</span></a>
+<a class="sourceLine" id="cb18-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb18-35" data-line-number="35"><span class="op">//</span> 如果一个list中一个元素也没有，就是一个空的list，它的长度为0：</a>
+<a class="sourceLine" id="cb18-36" data-line-number="36"><span class="op">&gt;&gt;&gt;</span> L <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb18-37" data-line-number="37"><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(L)</a>
+<a class="sourceLine" id="cb18-38" data-line-number="38"><span class="dv">0</span></a></code></pre></div>
+<h3 id="tuple">tuple</h3>
+<p>  另一种有序列表叫元组：<code>tuple</code>。<code>tuple</code>和<code>list</code>非常类似，但是<code>tuple</code>一旦初始化就不能修改。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="op">//</span> 当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，比如：</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> t <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> t</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">(<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="op">//</span> 如果要定义一个空的tuple，可以写成()：</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="op">&gt;&gt;&gt;</span> t <span class="op">=</span> ()</a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="op">&gt;&gt;&gt;</span> t</a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">()</a>
+<a class="sourceLine" id="cb19-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb19-11" data-line-number="11"><span class="op">//</span> 只有1个元素的tuple定义时必须加一个逗号,，来消除歧义：</a>
+<a class="sourceLine" id="cb19-12" data-line-number="12"><span class="op">&gt;&gt;&gt;</span> t <span class="op">=</span> (<span class="dv">1</span>,)</a>
+<a class="sourceLine" id="cb19-13" data-line-number="13"><span class="op">&gt;&gt;&gt;</span> t</a>
+<a class="sourceLine" id="cb19-14" data-line-number="14">(<span class="dv">1</span>,)</a></code></pre></div>
+<h2 id="条件判断">条件判断</h2>
+<p>  Python中条件判断与其他语言类似：</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb20-1" data-line-number="1">age <span class="op">=</span> <span class="dv">20</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">18</span>:</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">    <span class="bu">print</span>(<span class="st">&#39;your age is&#39;</span>, age)</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">    <span class="bu">print</span>(<span class="st">&#39;adult&#39;</span>)</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">    </a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">age <span class="op">=</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">18</span>:</a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">    <span class="bu">print</span>(<span class="st">&#39;your age is&#39;</span>, age)</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9">    <span class="bu">print</span>(<span class="st">&#39;adult&#39;</span>)</a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb20-11" data-line-number="11">    <span class="bu">print</span>(<span class="st">&#39;your age is&#39;</span>, age)</a>
+<a class="sourceLine" id="cb20-12" data-line-number="12">    <span class="bu">print</span>(<span class="st">&#39;teenager&#39;</span>)</a>
+<a class="sourceLine" id="cb20-13" data-line-number="13">    </a>
+<a class="sourceLine" id="cb20-14" data-line-number="14">age <span class="op">=</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb20-15" data-line-number="15"><span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">18</span>:</a>
+<a class="sourceLine" id="cb20-16" data-line-number="16">    <span class="bu">print</span>(<span class="st">&#39;adult&#39;</span>)</a>
+<a class="sourceLine" id="cb20-17" data-line-number="17"><span class="cf">elif</span> age <span class="op">&gt;=</span> <span class="dv">6</span>:</a>
+<a class="sourceLine" id="cb20-18" data-line-number="18">    <span class="bu">print</span>(<span class="st">&#39;teenager&#39;</span>)</a>
+<a class="sourceLine" id="cb20-19" data-line-number="19"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb20-20" data-line-number="20">    <span class="bu">print</span>(<span class="st">&#39;kid&#39;</span>)</a></code></pre></div>
+<p>  只要判断条件是非零数值、非空字符串、非空<code>list</code>等，就判断为<code>True</code>，否则为<code>False</code>。   注：<code>input</code>返回的数据类型是<code>str</code>。</p>
+<h2 id="循环">循环</h2>
+<p>  Python的循环有两种，一种是<code>for...in</code>循环，依次把<code>list</code>或<code>tuple</code>中的每个元素迭代出来，看例子：</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb21-1" data-line-number="1">names <span class="op">=</span> [<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Tracy&#39;</span>]</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="cf">for</span> name <span class="kw">in</span> names:</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">    <span class="bu">print</span>(name)</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">Michael</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">Bob</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">Tracy</a></code></pre></div>
+<h3 id="range">range()</h3>
+<p>  <code>range(5)</code>生成的序列是从0开始小于5的整数。例：</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">101</span>):</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">    <span class="bu">sum</span> <span class="op">=</span> <span class="bu">sum</span> <span class="op">+</span> x</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="bu">print</span>(<span class="bu">sum</span>)</a></code></pre></div>
+<h3 id="while">while</h3>
+<p>  第二种循环是<code>while</code>循环，只要条件满足，就不断循环，条件不满足时退出循环。比如我们要计算100以内所有奇数之和，可以用<code>while</code>循环实现：</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">n <span class="op">=</span> <span class="dv">99</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">    <span class="bu">sum</span> <span class="op">=</span> <span class="bu">sum</span> <span class="op">+</span> n</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">    n <span class="op">=</span> n <span class="op">-</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="bu">print</span>(<span class="bu">sum</span>)</a></code></pre></div>
+<h3 id="break">break</h3>
+<p>  在循环中，<code>break</code>语句可以提前退出循环。和其他语言类似。</p>
+<h3 id="continue">continue</h3>
+<p>  在循环过程中，也可以通过<code>continue</code>语句，跳过当前的这次循环，直接开始下一次循环。和其他语言类似。</p>
 <p>注：少用<code>break</code>和<code>continue</code>。</p>
-<h2 id="dict和set"><a href="#dict和set" class="headerlink" title="dict和set"></a>dict和set</h2><h3 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h3><p>Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
->>> d['Michael']
-95
-
-// 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
->>> d['Adam'] = 67
->>> d['Adam']
-67
-
-// 由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值冲掉：
->>> d['Jack'] = 90
->>> d['Jack']
-90
->>> d['Jack'] = 88
->>> d['Jack']
-88
-
-// 如果key不存在，dict就会报错：
->>> d['Thomas']
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-KeyError: 'Thomas'
-
-// 要避免key不存在的错误，有两种办法，一是通过in判断key是否存在：
->>> 'Thomas' in d
-False
-
-// 二是通过dict提供的get()方法，如果key不存在，可以返回None，或者自己指定的value：
->>> d.get('Thomas')
->>> d.get('Thomas', -1)
--1
-
-// 要删除一个key，用pop(key)方法，对应的value也会从dict中删除：
->>> d.pop('Bob')
-75
->>> d
-{'Michael': 95, 'Tracy': 85}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> s = set([1, 2, 3])
->>> s
-{1, 2, 3}
-
-// 重复元素在set中自动被过滤：
->>> s = set([1, 1, 2, 2, 3, 3])
->>> s
-{1, 2, 3}
-
-// 通过add(key)方法可以添加元素到set中，可以重复添加，但不会有效果：
->>> s.add(4)
->>> s
-{1, 2, 3, 4}
->>> s.add(4)
->>> s
-{1, 2, 3, 4}
-
-// 通过remove(key)方法可以删除元素：
->>> s.remove(4)
->>> s
-{1, 2, 3}
-
-// set可以看成数学意义上的无序和无重复元素的集合，so，两个set可以做数学意义上的交集、并集等操作：
->>> s1 = set([1, 2, 3])
->>> s2 = set([2, 3, 4])
->>> s1 & s2
-{2, 3}
->>> s1 | s2
-{1, 2, 3, 4}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="dict和set">dict和set</h2>
+<h3 id="dict">dict</h3>
+<p>Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> d <span class="op">=</span> {<span class="st">&#39;Michael&#39;</span>: <span class="dv">95</span>, <span class="st">&#39;Bob&#39;</span>: <span class="dv">75</span>, <span class="st">&#39;Tracy&#39;</span>: <span class="dv">85</span>}</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> d[<span class="st">&#39;Michael&#39;</span>]</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="dv">95</span></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="op">//</span> 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> d[<span class="st">&#39;Adam&#39;</span>] <span class="op">=</span> <span class="dv">67</span></a>
+<a class="sourceLine" id="cb24-7" data-line-number="7"><span class="op">&gt;&gt;&gt;</span> d[<span class="st">&#39;Adam&#39;</span>]</a>
+<a class="sourceLine" id="cb24-8" data-line-number="8"><span class="dv">67</span></a>
+<a class="sourceLine" id="cb24-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb24-10" data-line-number="10"><span class="op">//</span> 由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值冲掉：</a>
+<a class="sourceLine" id="cb24-11" data-line-number="11"><span class="op">&gt;&gt;&gt;</span> d[<span class="st">&#39;Jack&#39;</span>] <span class="op">=</span> <span class="dv">90</span></a>
+<a class="sourceLine" id="cb24-12" data-line-number="12"><span class="op">&gt;&gt;&gt;</span> d[<span class="st">&#39;Jack&#39;</span>]</a>
+<a class="sourceLine" id="cb24-13" data-line-number="13"><span class="dv">90</span></a>
+<a class="sourceLine" id="cb24-14" data-line-number="14"><span class="op">&gt;&gt;&gt;</span> d[<span class="st">&#39;Jack&#39;</span>] <span class="op">=</span> <span class="dv">88</span></a>
+<a class="sourceLine" id="cb24-15" data-line-number="15"><span class="op">&gt;&gt;&gt;</span> d[<span class="st">&#39;Jack&#39;</span>]</a>
+<a class="sourceLine" id="cb24-16" data-line-number="16"><span class="dv">88</span></a>
+<a class="sourceLine" id="cb24-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb24-18" data-line-number="18"><span class="op">//</span> 如果key不存在，dict就会报错：</a>
+<a class="sourceLine" id="cb24-19" data-line-number="19"><span class="op">&gt;&gt;&gt;</span> d[<span class="st">&#39;Thomas&#39;</span>]</a>
+<a class="sourceLine" id="cb24-20" data-line-number="20">Traceback (most recent call last):</a>
+<a class="sourceLine" id="cb24-21" data-line-number="21">  File <span class="st">&quot;&lt;stdin&gt;&quot;</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb24-22" data-line-number="22"><span class="pp">KeyError</span>: <span class="st">&#39;Thomas&#39;</span></a>
+<a class="sourceLine" id="cb24-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb24-24" data-line-number="24"><span class="op">//</span> 要避免key不存在的错误，有两种办法，一是通过in判断key是否存在：</a>
+<a class="sourceLine" id="cb24-25" data-line-number="25"><span class="op">&gt;&gt;&gt;</span> <span class="st">&#39;Thomas&#39;</span> <span class="kw">in</span> d</a>
+<a class="sourceLine" id="cb24-26" data-line-number="26"><span class="va">False</span></a>
+<a class="sourceLine" id="cb24-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb24-28" data-line-number="28"><span class="op">//</span> 二是通过dict提供的get()方法，如果key不存在，可以返回None，或者自己指定的value：</a>
+<a class="sourceLine" id="cb24-29" data-line-number="29"><span class="op">&gt;&gt;&gt;</span> d.get(<span class="st">&#39;Thomas&#39;</span>)</a>
+<a class="sourceLine" id="cb24-30" data-line-number="30"><span class="op">&gt;&gt;&gt;</span> d.get(<span class="st">&#39;Thomas&#39;</span>, <span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb24-31" data-line-number="31"><span class="dv">-1</span></a>
+<a class="sourceLine" id="cb24-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb24-33" data-line-number="33"><span class="op">//</span> 要删除一个key，用pop(key)方法，对应的value也会从dict中删除：</a>
+<a class="sourceLine" id="cb24-34" data-line-number="34"><span class="op">&gt;&gt;&gt;</span> d.pop(<span class="st">&#39;Bob&#39;</span>)</a>
+<a class="sourceLine" id="cb24-35" data-line-number="35"><span class="dv">75</span></a>
+<a class="sourceLine" id="cb24-36" data-line-number="36"><span class="op">&gt;&gt;&gt;</span> d</a>
+<a class="sourceLine" id="cb24-37" data-line-number="37">{<span class="st">&#39;Michael&#39;</span>: <span class="dv">95</span>, <span class="st">&#39;Tracy&#39;</span>: <span class="dv">85</span>}</a></code></pre></div>
+<h3 id="set">set</h3>
+<p>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="bu">set</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> s</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">{<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="op">//</span> 重复元素在set中自动被过滤：</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="bu">set</span>([<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="op">&gt;&gt;&gt;</span> s</a>
+<a class="sourceLine" id="cb25-8" data-line-number="8">{<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}</a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="op">//</span> 通过add(key)方法可以添加元素到set中，可以重复添加，但不会有效果：</a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="op">&gt;&gt;&gt;</span> s.add(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="op">&gt;&gt;&gt;</span> s</a>
+<a class="sourceLine" id="cb25-13" data-line-number="13">{<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>}</a>
+<a class="sourceLine" id="cb25-14" data-line-number="14"><span class="op">&gt;&gt;&gt;</span> s.add(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb25-15" data-line-number="15"><span class="op">&gt;&gt;&gt;</span> s</a>
+<a class="sourceLine" id="cb25-16" data-line-number="16">{<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>}</a>
+<a class="sourceLine" id="cb25-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb25-18" data-line-number="18"><span class="op">//</span> 通过remove(key)方法可以删除元素：</a>
+<a class="sourceLine" id="cb25-19" data-line-number="19"><span class="op">&gt;&gt;&gt;</span> s.remove(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb25-20" data-line-number="20"><span class="op">&gt;&gt;&gt;</span> s</a>
+<a class="sourceLine" id="cb25-21" data-line-number="21">{<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}</a>
+<a class="sourceLine" id="cb25-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb25-23" data-line-number="23"><span class="op">//</span> set可以看成数学意义上的无序和无重复元素的集合，so，两个set可以做数学意义上的交集、并集等操作：</a>
+<a class="sourceLine" id="cb25-24" data-line-number="24"><span class="op">&gt;&gt;&gt;</span> s1 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb25-25" data-line-number="25"><span class="op">&gt;&gt;&gt;</span> s2 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb25-26" data-line-number="26"><span class="op">&gt;&gt;&gt;</span> s1 <span class="op">&amp;</span> s2</a>
+<a class="sourceLine" id="cb25-27" data-line-number="27">{<span class="dv">2</span>, <span class="dv">3</span>}</a>
+<a class="sourceLine" id="cb25-28" data-line-number="28"><span class="op">&gt;&gt;&gt;</span> s1 <span class="op">|</span> s2</a>
+<a class="sourceLine" id="cb25-29" data-line-number="29">{<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>}</a></code></pre></div>
 <p>本文参考廖雪峰 python 教程，作为个人学习笔记。</p>
 
             </div>
@@ -1127,9 +1127,11 @@ False
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Python函数
+                            
+Python函数
 
-调用函数&emsp;&emsp;Python内置了很多有用的函数，我们可以直接调用。要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数abs，只有一个参数。可以直接从Python的官方网站查看文档：http:/
+调用函数
+  Python内置了很多有用的函数，我们可以直接调用。要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数abs，只有一个参数。可以直接从Python的官方网站查看文档：http://doc
                         
                     </div>
                     <div class="publish-info">
@@ -1178,13 +1180,15 @@ False
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JavaScript函数
+                            
+JavaScript函数
 
-函数定义&emsp;&emsp;在JavaScript中，定义函数的方式如下：
+函数定义
+  在JavaScript中，定义函数的方式如下：
 function abs(x) {
-    if (x >= 0) {
+    if (x &gt;= 0) {
         return x;
-    } else {
+    } els
                         
                     </div>
                     <div class="publish-info">
@@ -1621,9 +1625,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

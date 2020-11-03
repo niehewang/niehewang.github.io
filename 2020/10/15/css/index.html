@@ -543,110 +543,110 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div data-align="center">
-<font size='70'>css简述</font>
-</div>
-<h2 id="什么是css">什么是CSS</h2>
-<ul>
+                <div align='center' ><font size='70'>css简述</font></div>
+
+<h2 id="什么是CSS"><a href="#什么是CSS" class="headerlink" title="什么是CSS"></a>什么是CSS</h2><ul>
 <li>CSS指层叠样式表（Cascading Style Sheets）</li>
 <li>样式定义如何显示HTML元素</li>
 <li>样式通常存储在样式表中</li>
 <li>把样式添加到HTML4.0中，是为了解决内容与表现分离的问题</li>
 <li>外部样式表可以极大提高工作效率</li>
 <li>外部样式表通常存储在CSS文件中</li>
-<li>多个样式定义可层叠为一个
-<hr width="100%" /></li>
+<li>多个样式定义可层叠为一个<hr width="100%" />
+
+</li>
 </ul>
-<h2 id="css语法">CSS语法</h2>
-<ol type="1">
-<li>标签选择器</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb1-1" data-line-number="1">h1 {<span class="kw">color</span>: <span class="dv">blue</span>; <span class="kw">font-size</span>: <span class="dv">12px</span>;}</a></code></pre></div>
-<ol start="2" type="1">
-<li>id选择器</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="pp">#paral</span> {<span class="kw">text-align</span>: <span class="dv">center</span>; <span class="kw">color</span>: <span class="dv">red</span>;}</a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;p</span><span class="ot"> id=</span><span class="st">&quot;paral&quot;</span><span class="kw">&gt;</span>hello world!<span class="kw">&lt;/p&gt;</span></a></code></pre></div>
-<ol start="3" type="1">
-<li>class选择器</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="fu">.center</span> {<span class="kw">text-align</span>: <span class="dv">center</span>; <span class="kw">color</span>: <span class="dv">red</span>;} //所有元素使用class=&quot;center&quot;起效</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">p<span class="fu">.center</span> {<span class="kw">text-align</span>:<span class="dv">center</span>;} //p元素中使用class=&quot;center&quot;起效</a></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;center&quot;</span><span class="kw">&gt;</span>hello world!<span class="kw">&lt;/p&gt;</span></a></code></pre></div>
-<ol start="4" type="1">
-<li>分组选择器   在样式表中有很多具有相同样式的元素，为了尽量减少代码，你可以使用分组选择器，每个选择器用逗号分隔。</li>
-</ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb6-1" data-line-number="1">h1 { <span class="kw">color</span>: <span class="dv">green</span>;}</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">h2 { <span class="kw">color</span>: <span class="dv">green</span>;}</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">p { <span class="kw">color</span>: <span class="dv">green</span>;}</a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb7-1" data-line-number="1">h1,h2,p { <span class="kw">color</span>: <span class="dv">green</span>;}</a></code></pre></div>
-<ol start="5" type="1">
-<li>嵌套选择器
-<ul>
+<h2 id="CSS语法"><a href="#CSS语法" class="headerlink" title="CSS语法"></a>CSS语法</h2><ol>
+<li>标签选择器<pre class="line-numbers language-lang-css"><code class="language-lang-css">h1 {color: blue; font-size: 12px;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>id选择器<pre class="line-numbers language-lang-css"><code class="language-lang-css">#paral {text-align: center; color: red;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-html"><code class="language-lang-html"><p id="paral">hello world!</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>class选择器<pre class="line-numbers language-lang-css"><code class="language-lang-css">.center {text-align: center; color: red;} //所有元素使用class="center"起效
+p.center {text-align:center;} //p元素中使用class="center"起效
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-html"><code class="language-lang-html"><p class="center">hello world!</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>分组选择器<br>&emsp;&emsp;在样式表中有很多具有相同样式的元素，为了尽量减少代码，你可以使用分组选择器，每个选择器用逗号分隔。<pre class="line-numbers language-lang-css"><code class="language-lang-css">h1 { color: green;}
+h2 { color: green;}
+p { color: green;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-css"><code class="language-lang-css">h1,h2,p { color: green;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>嵌套选择器<ul>
 <li><code>p{ }</code>: 为所有 p 元素指定一个样式。</li>
-<li><code>.marked{ }</code>: 为所有 class=&quot;marked&quot; 的元素指定一个样式。</li>
-<li><code>.marked p{ }</code>: 为所有 class=&quot;marked&quot; 元素内的 p 元素指定一个样式。</li>
-<li><code>p.marked{ }</code>: 为所有 class=&quot;marked&quot; 的 p 元素指定一个样式。</li>
+<li><code>.marked{ }</code>: 为所有 class=”marked” 的元素指定一个样式。</li>
+<li><code>.marked p{ }</code>: 为所有 class=”marked” 元素内的 p 元素指定一个样式。</li>
+<li><code>p.marked{ }</code>: 为所有 class=”marked” 的 p 元素指定一个样式。<pre class="line-numbers language-lang-css"><code class="language-lang-css">p { color: blue; text-align: center;}
+.marked { background-color: red;}
+.marked p { color: white;}
+p.marked{ text-decoration: underline;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb8-1" data-line-number="1">p { <span class="kw">color</span>: <span class="dv">blue</span>; <span class="kw">text-align</span>: <span class="dv">center</span>;}</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="fu">.marked</span> { <span class="kw">background-color</span>: <span class="dv">red</span>;}</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="fu">.marked</span> p { <span class="kw">color</span>: <span class="dv">white</span>;}</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">p<span class="fu">.marked</span>{ <span class="kw">text-decoration</span>: <span class="dv">underline</span>;}</a></code></pre></div></li>
-<li>后代选择器   后代选择器用于选取某元素的后代元素，以下实例效果作用在所有<code>&lt;div&gt;</code>元素中的<code>&lt;p&gt;</code>元素上:</li>
-</ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb9-1" data-line-number="1">div p { <span class="kw">background-color</span>: <span class="dv">yellow</span>;}</a></code></pre></div>
-<ol start="7" type="1">
-<li>子元素选择器   与后代选择器相比，子元素选择器（Child selectors）只能选择作用在某元素的子元素上。 以下实例选择了<code>&lt;div&gt;</code>元素中所有直接子元素<code>&lt;p&gt;</code>：</li>
-</ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb10-1" data-line-number="1">div&gt;p { <span class="kw">background-color</span>:<span class="dv">yellow</span>;}</a></code></pre></div>
-<ol start="8" type="1">
-<li>相邻兄弟选择器   相邻兄弟选择器（Adjacent sibling selector）可选择紧接在一个元素后面的元素，且二者有相同父元素，以下实例选取了所有位于 <code>&lt;div&gt;</code>元素后的第一个 <code>&lt;p&gt;</code> 元素:</li>
-</ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb11-1" data-line-number="1">div+p { <span class="kw">background-color</span>:<span class="dv">yellow</span>;}</a></code></pre></div>
-<ol start="9" type="1">
-<li>后续兄弟选择器   后续兄弟选择器选取所有指定元素之后的所有相邻兄弟元素，以下实例选取了所有 <code>&lt;div&gt;</code> 元素之后的所有相邻兄弟元素 <code>&lt;p&gt;</code> :</li>
-</ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb12-1" data-line-number="1">div~p { <span class="kw">background-color</span>:<span class="dv">yellow</span>;}</a></code></pre></div>
+</li>
+<li>后代选择器<br>&emsp;&emsp;后代选择器用于选取某元素的后代元素，以下实例效果作用在所有<code>&lt;div&gt;</code>元素中的<code>&lt;p&gt;</code>元素上: <pre class="line-numbers language-lang-css"><code class="language-lang-css">div p { background-color: yellow;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>子元素选择器<br>&emsp;&emsp;与后代选择器相比，子元素选择器（Child selectors）只能选择作用在某元素的子元素上。<br>以下实例选择了<code>&lt;div&gt;</code>元素中所有直接子元素<code>&lt;p&gt;</code>：<pre class="line-numbers language-lang-css"><code class="language-lang-css">div>p { background-color:yellow;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>相邻兄弟选择器<br>&emsp;&emsp;相邻兄弟选择器（Adjacent sibling selector）可选择紧接在一个元素后面的元素，且二者有相同父元素，以下实例选取了所有位于 <code>&lt;div&gt;</code>元素后的第一个 <code>&lt;p&gt;</code> 元素:<pre class="line-numbers language-lang-css"><code class="language-lang-css">div+p { background-color:yellow;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>后续兄弟选择器<br>&emsp;&emsp;后续兄弟选择器选取所有指定元素之后的所有相邻兄弟元素，以下实例选取了所有 <code>&lt;div&gt;</code> 元素之后的所有相邻兄弟元素 <code>&lt;p&gt;</code> :<pre class="line-numbers language-lang-css"><code class="language-lang-css">div~p { background-color:yellow;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <hr width="100%" />
-<h2 id="css创建">css创建</h2>
-<h3 id="如何插入样式表">如何插入样式表</h3>
-<ul>
+
+</li>
+</ol>
+<h2 id="css创建"><a href="#css创建" class="headerlink" title="css创建"></a>css创建</h2><h3 id="如何插入样式表"><a href="#如何插入样式表" class="headerlink" title="如何插入样式表"></a>如何插入样式表</h3><ul>
 <li>外部样式表(External style sheet)</li>
 <li>内部样式表(Internal style sheet)</li>
 <li>内联样式(Inline style)</li>
 </ul>
-<h3 id="外部样式表">外部样式表</h3>
-  当样式需要应用于很多页面时，外部样式表将是理想的选择。在使用外部样式表的情况下，你可以通过改变一个文件来改变整个站点的外观。每个页面使用 <code>&lt;link&gt;</code> 标签链接到样式表。 <code>&lt;link&gt;</code>标签在（文档的）头部： ~~~html
-<head>
+<h3 id="外部样式表"><a href="#外部样式表" class="headerlink" title="外部样式表"></a>外部样式表</h3><p>&emsp;&emsp;当样式需要应用于很多页面时，外部样式表将是理想的选择。在使用外部样式表的情况下，你可以通过改变一个文件来改变整个站点的外观。每个页面使用 <code>&lt;link&gt;</code> 标签链接到样式表。 <code>&lt;link&gt;</code>标签在（文档的）头部：</p>
+<pre class="line-numbers language-lang-html"><code class="language-lang-html"><head>
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="西风の博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
-<p>~~~   浏览器会从文件 mystyle.css 中读到样式声明，并根据它来格式文档。   外部样式表可以在任何文本编辑器中进行编辑。文件不能包含任何的 html 标签。样式表应该以 .css 扩展名进行保存。下面是一个样式表文件的例子： ~<del>css hr {color: sienna;} p {margin-left: 20px;} body {background-image:url(&quot;/images/back40.gif&quot;);}</del>~</p>
-<h3 id="内部样式表">内部样式表</h3>
-<p>  当单个文档需要特殊的样式时，就应该使用内部样式表。你可以使用 <code>&lt;style&gt;</code>标签在文档头部定义内部样式表，就像这样:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">&lt;head&gt;</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">&lt;style&gt;</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">hr {<span class="kw">color</span>: <span class="dv">red</span>;}</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">p {<span class="kw">margin-left</span>: <span class="dv">20px</span>;}</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">body {<span class="kw">background-image</span>:<span class="fu">url</span>(<span class="st">&quot;images/1.jpg&quot;</span>);}</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="kw">&lt;/style&gt;</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="kw">&lt;/head&gt;</span></a></code></pre></div>
-<h3 id="内联样式">内联样式</h3>
-<p>  由于要将表现和内容混杂在一起，内联样式会损失掉样式表的许多优势。请慎用这种方法，例如当样式仅需要在一个元素上应用一次时。要使用内联样式，你需要在相关的标签内使用样式（style）属性。Style 属性可以包含任何 CSS 属性。本例展示如何改变段落的颜色和左外边距：</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">&lt;p</span><span class="ot"> style=</span><span class="st">&quot;color:sienna;margin-left:20px&quot;</span><span class="kw">&gt;</span>这是一个段落。<span class="kw">&lt;/p&gt;</span></a></code></pre></div>
-<h3 id="多重样式">多重样式</h3>
-<p>  如果某些属性在不同的样式表中被同样的选择器定义，那么属性值将从更具体的样式表中被继承过来。   例如，外部样式表拥有针对 h3 选择器的三个属性：</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb15-1" data-line-number="1">h3 { <span class="kw">color</span>: <span class="dv">red</span>; <span class="kw">text-align</span>: <span class="dv">left</span>; <span class="kw">font-size</span>: <span class="dv">8pt</span>;}</a></code></pre></div>
-<p>  而内部样式表拥有针对 h3 选择器的两个属性：</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb16-1" data-line-number="1">h3 { <span class="kw">text-align</span>: font-size:<span class="dv">20pt</span>;}</a></code></pre></div>
-<p>  假如拥有内部样式表的这个页面同时与外部样式表链接，那么 h3 得到的样式是：</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb17-1" data-line-number="1">color<span class="in">:</span>red;</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">text-align<span class="in">:</span>right;</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">font-size<span class="in">:</span>20pt;</a></code></pre></div>
-<p>  即颜色属性将被继承于外部样式表，而文字排列（text-alignment）和字体尺寸（font-size）会被内部样式表中的规则取代。</p>
-<h3 id="多重样式优先级">多重样式优先级</h3>
-<p>  样式表允许以多种方式规定样式信息。样式可以规定在单个的 HTML 元素中，在 HTML 页的头元素中，或在一个外部的 CSS 文件中。甚至可以在同一个 HTML 文档内部引用多个外部样式表。 一般情况下，优先级如下： （内联样式）Inline style &gt; （内部样式）Internal style sheet &gt;（外部样式）External style sheet &gt; 浏览器默认样式</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;浏览器会从文件 mystyle.css 中读到样式声明，并根据它来格式文档。<br>&emsp;&emsp;外部样式表可以在任何文本编辑器中进行编辑。文件不能包含任何的 html 标签。样式表应该以 .css 扩展名进行保存。下面是一个样式表文件的例子：</p>
+<pre class="line-numbers language-lang-css"><code class="language-lang-css">hr {color: sienna;}
+p {margin-left: 20px;}
+body {background-image:url("/images/back40.gif");}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="内部样式表"><a href="#内部样式表" class="headerlink" title="内部样式表"></a>内部样式表</h3><p>&emsp;&emsp;当单个文档需要特殊的样式时，就应该使用内部样式表。你可以使用 <code>&lt;style&gt;</code>标签在文档头部定义内部样式表，就像这样:</p>
+<pre class="line-numbers language-lang-html"><code class="language-lang-html"><head>
+<style>
+hr {color: red;}
+p {margin-left: 20px;}
+body {background-image:url("images/1.jpg");}
+</style>
+</head>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="内联样式"><a href="#内联样式" class="headerlink" title="内联样式"></a>内联样式</h3><p>&emsp;&emsp;由于要将表现和内容混杂在一起，内联样式会损失掉样式表的许多优势。请慎用这种方法，例如当样式仅需要在一个元素上应用一次时。要使用内联样式，你需要在相关的标签内使用样式（style）属性。Style 属性可以包含任何 CSS 属性。本例展示如何改变段落的颜色和左外边距：</p>
+<pre class="line-numbers language-lang-html"><code class="language-lang-html"><p style="color:sienna;margin-left:20px">这是一个段落。</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="多重样式"><a href="#多重样式" class="headerlink" title="多重样式"></a>多重样式</h3><p>&emsp;&emsp;如果某些属性在不同的样式表中被同样的选择器定义，那么属性值将从更具体的样式表中被继承过来。<br>&emsp;&emsp;例如，外部样式表拥有针对 h3 选择器的三个属性：</p>
+<pre class="line-numbers language-lang-css"><code class="language-lang-css">h3 { color: red; text-align: left; font-size: 8pt;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>&emsp;&emsp;而内部样式表拥有针对 h3 选择器的两个属性：</p>
+<pre class="line-numbers language-lang-css"><code class="language-lang-css">h3 { text-align: font-size:20pt;}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>&emsp;&emsp;假如拥有内部样式表的这个页面同时与外部样式表链接，那么 h3 得到的样式是：</p>
+<pre class="line-numbers language-lang-css"><code class="language-lang-css">color:red;
+text-align:right;
+font-size:20pt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;即颜色属性将被继承于外部样式表，而文字排列（text-alignment）和字体尺寸（font-size）会被内部样式表中的规则取代。</p>
+<h3 id="多重样式优先级"><a href="#多重样式优先级" class="headerlink" title="多重样式优先级"></a>多重样式优先级</h3><p>&emsp;&emsp;样式表允许以多种方式规定样式信息。样式可以规定在单个的 HTML 元素中，在 HTML 页的头元素中，或在一个外部的 CSS 文件中。甚至可以在同一个 HTML 文档内部引用多个外部样式表。<br>一般情况下，优先级如下：<br>（内联样式）Inline style &gt; （内部样式）Internal style sheet &gt;（外部样式）External style sheet &gt; 浏览器默认样式</p>
 <p>本文参考菜鸟教程，作为个人学习笔记。</p>
 
             </div>
@@ -942,12 +942,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-JavaScript简述
+                            JavaScript简述
 
-JavaScript历史
-  1995年Brendan Eich用了10天（NB）时间设计了JavaScript语言。为了蹭热度，取名JavaScript，实际与Java没有一点关系。
-ECMAScr
+JavaScript历史&emsp;&emsp;1995年Brendan Eich用了10天（NB）时间设计了JavaScript语言。为了蹭热度，取名JavaScript，实际与Java没有一点关系。
+ECMA
                         
                     </div>
                     <div class="publish-info">
@@ -996,16 +994,14 @@ ECMAScr
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-css简述
+                            css简述
 
 什么是CSS
-
 CSS指层叠样式表（Cascading Style Sheets）
 样式定义如何显示HTML元素
 样式通常存储在样式表中
 把样式添加到HTML4.0中，是为了解决内容与表现分离的问题
-外部样
+外部样式表可以极大提高工作效
                         
                     </div>
                     <div class="publish-info">

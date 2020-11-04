@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="西风の博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="西风の博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
  
@@ -548,9 +548,9 @@
 <h2><span id="gabor-filter">Gabor Filter</span></h2><p>&emsp;&emsp;在图像处理中，Gabor函数是一个用于边缘提取的线性滤波器。Gabor滤波器的频率和方向表达同人类视觉系统类似。研究发现，Gabor滤波器十分适合纹理表达和分离。在空间域中，一个二维Gabor滤波器是一个由正弦平面波调制的高斯核函数。还有，生物学实验发现，Gabor滤波器可以很好地近似单细胞的感受野函数（光强刺激下的传递函数），什么视皮层内的超柱，bla…bla，总之是这方面仿生的数学模型。另外，网上有一种说法，gabor分为实部和虚部，用实部进行滤波后图像会平滑；虚部滤波后用来检测边缘。</p>
 <p>&emsp;&emsp;Gabor滤波器的脉冲响应，可以定义为一个正弦波（对于二维Gabor滤波器是正弦平面波）乘以高斯函数。由于乘法卷积性质，Gabor滤波器的脉冲响应的傅立叶变换是其调和函数的傅立叶变换和高斯函数傅立叶变换的卷积。该滤波器由实部和虚部组成，二者相互正交。一组不同频率不同方向的Gabor函数数组对于图像特征提取非常有用。</p>
 <h3><span id="一维gabor滤波器">一维Gabor滤波器</span></h3><p>&emsp;&emsp;Gabor滤波器是处理一维信号（比如音频）最佳的带通滤波器<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，一个复杂的Gabor滤波器是一个高斯核函数<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>乘以一个复杂的sin函数：</p>
-<p>$$<br>Gabor(t)=ke^{i\theta}w(at)s(t)<br>$$<br>其中：<br>$$<br>\begin{cases}<br>w(t)=e^{- \pi t^2} \\<br>s(t)=e^{i(2\pi f_0 t)}<br>\end{cases}<br>$$</p>
-<p>其中，$f_0$是复数波$s(t)$的频率。<br>将复数波$s(t)=e^{i(2\pi f_0 t)}$带入（1）式中，得到：<br>$$<br>\begin{aligned}<br>Gabor(t) &amp; = k \omega(at) e^{i(2\pi f_0 t + \theta)} \\ &amp; = k \omega(at) \left[ \cos(2\pi f_0 t+\theta) + i\sin(2\pi f_0 t+\theta) \right]<br>\end{aligned}<br>$$<br>上面最后一步得到了 Gabor 核的复数表示，我们就可以按实部和虚部将其拆分为实核和虚核，在很多应用中，我们只需要应用 Gabor核的实数部分即可：<br>$$\begin{cases} Gabor_{real}(t) = \omega(at)\cos(2\pi f_0 t + \theta) \\ Gabor_{imag}(t) = \omega(at)\sin(2\pi f_0 t + \theta) \end{cases}$$</p>
-<h3><span id="二维gabor滤波器">二维Gabor滤波器</span></h3><p>&emsp;&emsp;二维Gabor滤波器，也叫空间Gabor滤波器（The Spatial (2-D) Gabor Filter）。类似一维 Gabor 核，我们将二维高斯函数与二维复数波相乘，就得到了二维的Gabor核：<br>$$<br>\begin{aligned}<br>Gabor(x_0, y_0, \theta, \sigma_x, \sigma_y, u_0, v_0) &amp; = s(x,y) \omega_r(x,y) \\<br>&amp; = K \exp\left(-\pi \left( (x-x_0)_r^2/\sigma_x^2 + (y-y_0)_r^2/\sigma_y^2 \right) \right) \exp\left(i 2\pi (u_0 x + v_0 y) \right) \<br>\end{aligned}<br>$$<br>它的各个参数含义如下：</p>
+<p>$$<br>Gabor(t)=ke^{i\theta}w(at)s(t) \tag{1}<br>$$<br>其中：<br>$$<br>\begin{cases}<br>w(t)=e^{- \pi t^2} \\<br>s(t)=e^{i(2\pi f_0 t)}<br>\end{cases} \tag{2}<br>$$</p>
+<p>其中，$f_0$是复数波$s(t)$的频率。<br>将复数波$s(t)=e^{i(2\pi f_0 t)}$带入（1）式中，得到：<br>$$<br>\begin{aligned}<br>Gabor(t) &amp; = k \omega(at) e^{i(2\pi f_0 t + \theta)} \\ &amp; = k \omega(at) \left[ \cos(2\pi f_0 t+\theta) + i\sin(2\pi f_0 t+\theta) \right]<br>\end{aligned} \tag{3}<br>$$<br>上面最后一步得到了 Gabor 核的复数表示，我们就可以按实部和虚部将其拆分为实核和虚核，在很多应用中，我们只需要应用 Gabor核的实数部分即可：<br>$$<br>\begin{cases} Gabor_{real}(t) = \omega(at)\cos(2\pi f_0 t + \theta) \\ Gabor_{imag}(t) = \omega(at)\sin(2\pi f_0 t + \theta) \end{cases} \tag{4}<br>$$</p>
+<h3><span id="二维gabor滤波器">二维Gabor滤波器</span></h3><p>&emsp;&emsp;二维Gabor滤波器，也叫空间Gabor滤波器（The Spatial (2-D) Gabor Filter）。类似一维 Gabor 核，我们将二维高斯函数与二维复数波相乘，就得到了二维的Gabor核：<br>$$<br>\begin{aligned}<br>Gabor(x_0, y_0, \theta, \sigma_x, \sigma_y, u_0, v_0) &amp; = s(x,y) \omega_r(x,y) \\<br>&amp; = K \exp\left(-\pi \left( (x-x_0)_r^2/\sigma_x^2 + (y-y_0)_r^2/\sigma_y^2 \right) \right) \exp\left(i 2\pi (u_0 x + v_0 y) \right) \<br>\end{aligned} \tag{5}<br>$$<br>它的各个参数含义如下：</p>
 <ul>
 <li>$(x_0, y_0)$: 高斯核的中心点</li>
 <li>$\theta$: 高斯核的旋转方向（顺时针）</li>
@@ -633,9 +633,9 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
 </ul>
 <h3><span id="gabor特征">Gabor特征</span></h3><p>&emsp;&emsp;Gabor滤波器可以在频域上不同尺度、不同方向上提取相关的特征。另外，Gabor函数与人眼的作用相仿，所以经常用作纹理识别上，并取得了较好的效果。Gabor特征提取一般包括取模、特征降维、特征归一化和特征选取等操作：</p>
 <ol>
-<li>取模：<code>skimage.filters.gabor（）</code>函数返回的是图像变换后的实部和虚部，在图像识别领域一般使用其模作为图像特征。<br>$$mod=\sqrt{real^2+imag^2}$$</li>
+<li>取模：<code>skimage.filters.gabor（）</code>函数返回的是图像变换后的实部和虚部，在图像识别领域一般使用其模作为图像特征。<br>$$mod=\sqrt{real^2+imag^2} \tag{6}$$</li>
 <li>特征降维：<code>skimage.filters.gabor（）</code>函数返回值大小和原图像一样；另外，图像识别领域一般使用8个方向和5个尺度的gabor滤波器，得到40幅变换图像；导致提取的图像特征维度（40幅图像特征串联）比较高。因此，需要对取模图像进行降维处理。最简单的方法就是对每个模图像进行下采样，如使用Opencv中的resize函数<code>cv2.resize(img,(0,0),fx=1/4,fy=1/4)</code>。</li>
-<li>特征归一化：在机器学习领域中，不同评价指标（即特征向量中的不同特征就是所述的不同评价指标）往往具有不同的量纲和量纲单位，这样的情况会影响到数据分析的结果，为了消除指标之间的量纲影响，需要进行数据标准化处理，以解决数据指标之间的可比性。原始数据经过数据标准化处理后，各指标处于同一数量级，适合进行综合对比评价。其中，最典型的就是数据的归一化处理。简而言之，归一化的目的就是使得预处理的数据被限定在一定的范围内。一种Z-score标准化方法：<br>$$x=\frac{x-\mu}{\sigma}$$<ul>
+<li>特征归一化：在机器学习领域中，不同评价指标（即特征向量中的不同特征就是所述的不同评价指标）往往具有不同的量纲和量纲单位，这样的情况会影响到数据分析的结果，为了消除指标之间的量纲影响，需要进行数据标准化处理，以解决数据指标之间的可比性。原始数据经过数据标准化处理后，各指标处于同一数量级，适合进行综合对比评价。其中，最典型的就是数据的归一化处理。简而言之，归一化的目的就是使得预处理的数据被限定在一定的范围内。一种Z-score标准化方法：<br>$$x=\frac{x-\mu}{\sigma} \tag{7}$$<ul>
 <li>其中μ为所有样本数据的均值，σ为所有样本数据的标准差。</li>
 <li>本方法要求原始数据的分布可以近似为高斯分布，否则归一化的效果会变得很糟糕；</li>
 <li>应用场景：在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，Z-score standardization表现更好。</li>

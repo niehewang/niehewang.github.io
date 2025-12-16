@@ -248,6 +248,30 @@
     li { margin-bottom: 8px; padding-left: 5px; }
     ul li::marker { color: var(--primary); }
 
+    /* 期刊审稿人双栏列表 */
+    .journal-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 双栏 */
+      gap: 8px 30px;
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    .journal-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+      color: var(--text-sub);
+    }
+    .journal-list li::before {
+      content: "•";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
     /* 论文列表 (高级版) */
     .pub-list { list-style: none; padding: 0; }
     .pub-item {
@@ -343,6 +367,7 @@
       .main-card { padding: 30px 20px; }
       .toolbar { flex-wrap: wrap; }
       .btn-download { margin-left: 0; width: 100%; justify-content: center; order: 3; margin-top: 10px; }
+      .journal-list { grid-template-columns: 1fr; } /* 移动端单栏 */
     }
 
     @media print {
@@ -454,8 +479,37 @@
         <ul>
           <li>中国图象图形学学会数字媒体取证与安全专委会委员</li>
           <li>“新一代图像安全技术研讨会” 程序委员会委员 (PC Member)</li>
-          <li><strong>期刊审稿人：</strong> IEEE TAI, IEEE Access, KBS, ESWA, EAAI, IPM, Information Fusion, Neural Networks 等。</li>
-          <li><strong>会议审稿人：</strong> ICASSP, ICME, IJCNN 等。</li>
+        </ul>
+        
+        <h3>期刊审稿人 (Reviewer for Journals)</h3>
+        <ul class="journal-list">
+          <li>IEEE Transactions on Artificial Intelligence</li>
+          <li>IEEE Access</li>
+          <li>Knowledge-Based Systems</li>
+          <li>Expert Systems with Applications</li>
+          <li>Engineering Applications of Artificial Intelligence</li>
+          <li>Information Processing & Management</li>
+          <li>Information Fusion</li>
+          <li>Information Sciences</li>
+          <li>Applied Soft Computing</li>
+          <li>Neural Networks</li>
+          <li>Neurocomputing</li>
+          <li>Signal Processing</li>
+          <li>Ad Hoc Networks</li>
+          <li>Cluster Computing</li>
+          <li>Complex & Intelligent Systems</li>
+          <li>EURASIP Journal on Image and Video Processing</li>
+          <li>IET Image Processing</li>
+          <li>PLOS ONE</li>
+          <li>Journal of King Saud University -- Computer and Information Sciences</li>
+          <li>Smart Health</li>
+          <li>Computer Law & Security Review</li>
+          <li>International Journal of Computational Intelligence Systems</li>
+        </ul>
+
+        <h3>会议审稿人</h3>
+        <ul>
+          <li>ICASSP, ICME, IJCNN 等</li>
         </ul>
       </section>
 
@@ -728,8 +782,37 @@
         <ul>
           <li>Member of the Digital Media Forensics and Security Committee, CSIG.</li>
           <li>PC Member for <em>Workshop on New-Generation Image Security Technologies</em>.</li>
-          <li><strong>Journal Reviewer:</strong> IEEE TAI, IEEE Access, KBS, ESWA, EAAI, IPM, Information Fusion, Neural Networks, etc.</li>
-          <li><strong>Conference Reviewer:</strong> ICASSP, ICME, IJCNN, etc.</li>
+        </ul>
+        
+        <h3>Journal Reviewer</h3>
+        <ul class="journal-list">
+          <li>IEEE Transactions on Artificial Intelligence</li>
+          <li>IEEE Access</li>
+          <li>Knowledge-Based Systems</li>
+          <li>Expert Systems with Applications</li>
+          <li>Engineering Applications of Artificial Intelligence</li>
+          <li>Information Processing & Management</li>
+          <li>Information Fusion</li>
+          <li>Information Sciences</li>
+          <li>Applied Soft Computing</li>
+          <li>Neural Networks</li>
+          <li>Neurocomputing</li>
+          <li>Signal Processing</li>
+          <li>Ad Hoc Networks</li>
+          <li>Cluster Computing</li>
+          <li>Complex & Intelligent Systems</li>
+          <li>EURASIP Journal on Image and Video Processing</li>
+          <li>IET Image Processing</li>
+          <li>PLOS ONE</li>
+          <li>Journal of King Saud University -- Computer and Information Sciences</li>
+          <li>Smart Health</li>
+          <li>Computer Law & Security Review</li>
+          <li>International Journal of Computational Intelligence Systems</li>
+        </ul>
+
+        <h3>Conference Reviewer</h3>
+        <ul>
+          <li>ICASSP, ICME, IJCNN, etc.</li>
         </ul>
       </section>
 

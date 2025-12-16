@@ -1,43 +1,614 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>个人主页 | 聂何望</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人主页 | 聂何望 (Hewang Nie)</title>
+  <meta name="description" content="聂何望的学术个人主页 - 广西师范大学讲师/硕导">
   <style>
-    html,body{height:100%;margin:0}
-    .wrap{height:100vh;display:flex;flex-direction:column}
-    header{padding:10px 16px;border-bottom:1px solid #eee;font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial}
-    
-    /* --- 修改了这里 --- */
-    .pdf {
-      flex: 1;
-      display: flex;           /* 让 .pdf 变成 flex 容器 */
-      justify-content: center; /* 让内部的 object 标签居中 */
-      background-color: #525659; /* 选填：给背景加个深灰色，类似浏览器原生PDF预览的背景，体验更好 */
+    :root {
+      --primary-color: #1F77B4; /* LaTeX中的 accent */
+      --secondary-color: #2CA02C; /* LaTeX中的 accent2 */
+      --highlight-color: #FF7F0E; /* LaTeX中的 starcol */
+      --text-color: #333;
+      --bg-color: #f9f9f9;
+      --container-bg: #fff;
+      --border-color: #eee;
     }
-    /* ---------------- */
 
-    .hint{font:14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial;color:#444;padding:8px 16px}
-    .btn{display:inline-block;margin-right:12px}
-    a{color:#1f77b4;text-decoration:underline}
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 布局容器 */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: var(--container-bg);
+      padding: 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+
+    /* 语言切换 & PDF下载栏 */
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-bottom: 20px;
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fff;
+    }
+
+    .btn:hover, .btn.active {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+
+    /* 头部信息 */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .header-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .name {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin: 0 0 5px 0;
+    }
+
+    .title {
+      font-size: 1.1rem;
+      color: var(--secondary-color);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .contact-info p {
+      margin: 2px 0;
+      font-size: 0.95rem;
+    }
+
+    .contact-info a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .photo-box {
+      width: 120px;
+      height: 160px;
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 章节通用样式 */
+    section {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      border-bottom: 1px solid #e1e8f0;
+      padding-bottom: 8px;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin: 15px 0 10px;
+      color: #444;
+    }
+
+    p { margin-bottom: 10px; }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-top: 5px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* 列表项符号颜色 */
+    ul li::marker {
+      color: var(--primary-color);
+    }
+
+    /* 论文列表样式 */
+    .pub-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: pub-counter;
+    }
+
+    .pub-list li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 12px;
+    }
+
+    .pub-list li::before {
+      counter-increment: pub-counter;
+      content: counter(pub-counter) ".";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .my-name {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .highlight-star { color: var(--highlight-color); font-weight: bold; }
+    .highlight-cross { color: #D62728; font-weight: bold; } /* 红色通讯作者符号 */
+    
+    .paper-title { font-style: italic; }
+    
+    .journal-name { 
+      font-weight: 500;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.8em;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 5px;
+      background-color: #f0f4f8;
+      color: #555;
+      border: 1px solid #dce4ec;
+    }
+
+    /* 页脚 */
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.85rem;
+      color: #777;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 600px) {
+      .container { padding: 20px; margin: 0; border-radius: 0; box-shadow: none; }
+      header { flex-direction: column-reverse; }
+      .photo-box { margin: 0 0 20px 0; width: 100px; height: 133px; }
+      .header-info { width: 100%; }
+      .top-bar { justify-content: center; }
+    }
+
+    /* 打印样式 */
+    @media print {
+      .top-bar { display: none; }
+      .container { box-shadow: none; margin: 0; padding: 0; max-width: 100%; }
+      a { text-decoration: none; color: #000; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <strong>个人主页（PDF）</strong>
-      <span class="btn"><a href="homepage.pdf" download>下载 PDF</a></span>
-      <span class="btn"><a href="homepage.pdf#page=1">打开新窗口</a></span>
-    </header>
-    <div class="pdf">
-      <!-- 宽度依然保持 50%，现在它会居中显示了 -->
-      <object data="homepage.pdf#view=FitH&toolbar=1" type="application/pdf" width="50%" height="100%">
-        <p class="hint">你的浏览器无法内嵌预览 PDF。你可以 <a href="homepage.pdf">点击这里下载</a>。</p>
-      </object>
-    </div>
+
+<div class="container">
+  <!-- 顶部导航栏 -->
+  <div class="top-bar">
+    <button class="btn active" onclick="setLang('zh')" id="btn-zh">中文</button>
+    <button class="btn" onclick="setLang('en')" id="btn-en">English</button>
+    <a href="homepage.pdf" class="btn" download>下载 PDF</a>
   </div>
+
+  <!-- ================= 中文内容 ================= -->
+  <div id="content-zh">
+    <header>
+      <div class="header-info">
+        <h1 class="name">聂何望</h1>
+        <div class="title">讲师 / 硕士生导师 (学硕、专硕)</div>
+        <div class="contact-info">
+          <p>广西师范大学（2025.07--至今）</p>
+          <p>邮箱：<a href="mailto:nhw@gxnu.edu.cn">nhw@gxnu.edu.cn</a></p>
+          <p>地址：广西师范大学育才校区 文二楼 503室</p>
+        </div>
+      </div>
+      <div class="photo-box">
+        <!-- 请确保同一目录下有 photo.jpg，或者将 src 修改为你的图片链接 -->
+        <img src="photo.jpg" alt="聂何望照片" onerror="this.style.display='none';this.parentNode.style.backgroundColor='#eee';this.parentNode.innerHTML='Photo'">
+      </div>
+    </header>
+
+    <section>
+      <h2>简介</h2>
+      <p>聂何望，男，汉族，籍贯江西省九江市，博士/讲师。2025年6月毕业于华中科技大学，获网络与信息安全博士学位。长期致力于人工智能安全、可逆信息隐藏、神经网络模型水印等领域的研究。</p>
+      <p>主持中央网信办创新资助计划项目，参与国家重点研发计划、国家科学自然基金地区科学基金项目、广西高校中青年教师基础能力提升项目等重要科研项目研究。已在国内外著名期刊和会议发表论文十余篇，其中SCI一区top国际期刊论文5篇、CCF-B类国际期刊/会议论文6篇，获授权发明专利3件，软件著作权1件。</p>
+    </section>
+
+    <section>
+      <h2>研究方向</h2>
+      <ul>
+        <li>人工智能安全、神经网络模型版权保护</li>
+        <li>多媒体信息安全、神经网络水印、可逆信息隐藏、图像水印</li>
+        <li>联邦学习安全、模型所有权验证</li>
+        <li>人工智能医疗、医学图像处理</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>学术任职</h2>
+      <ul>
+        <li>中国图象图形学学会数字媒体取证与安全专委会委员</li>
+        <li>“新一代图像安全技术研讨会”——程序委员会委员 (Program Committee Member)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>审稿人</h2>
+      <p>担任以下期刊/会议审稿人：</p>
+      <ul>
+        <li><strong>期刊：</strong> IEEE Transactions on Artificial Intelligence, IEEE Access, Knowledge-Based Systems, Expert Systems with Applications, Engineering Applications of Artificial Intelligence, Information Processing & Management, Information Fusion, Neural Networks 等。</li>
+        <li><strong>会议：</strong> ICASSP, ICME, IJCNN 等。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>科研项目</h2>
+      <ul>
+        <li><strong>中央网络安全和信息化委员会办公室</strong>，网络安全学院学生创新资助计划，AI数据模型防泄露检测工具，2024.04--2025.04，5万元，结题，<strong>主持</strong></li>
+        <li><strong>国家重点研发计划</strong>，开放式数控系统安全可信技术，2021.11--2024.10，2297万元，结题，参与</li>
+        <li><strong>国家自然科学基金地区科学基金项目</strong>，基于矩阵分解的彩色图像哈希算法研究，2020.01--2023.12，40万元，结题，参与</li>
+        <li><strong>广西壮族自治区教育厅</strong>，基于注意力卷积神经网络的目标检测算法研究，2021.01--2025.04，2万元，结题，参与</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>论文发表</h2>
+      <p style="font-size:0.9em; color:#666;">
+        说明：姓名后标注 <span class="highlight-cross">†</span> 为通讯作者；姓名后标注 <span class="highlight-star">∗</span> 为共同一作。
+      </p>
+
+      <h3>2025</h3>
+      <ol class="pub-list">
+        <li>
+          <span class="my-name">Nie Hewang</span>, Xuemei Yuan. 
+          <span class="paper-title">Compression Is No Barrier: Dataset Copyright Protection with Compression-Resistant Backdoor Watermarks</span>. 
+          <span class="journal-name">Information Processing & Management</span>, 2025.
+          <span class="tag">SCI一区TOP</span> <span class="tag">CCF B</span>
+        </li>
+        <li>
+          Xuemei Yuan, <span class="my-name">Nie Hewang</span><span class="highlight-cross">†</span>. 
+          <span class="paper-title">Beyond Protection: Unveiling Neural Network Copyright Trading</span>. 
+          <span class="journal-name">Knowledge-Based Systems</span>, 2025.
+          <span class="tag">SCI一区TOP</span> <span class="tag">CCF C</span>
+        </li>
+        <li>
+          Xuemei Yuan, <span class="my-name">Nie Hewang</span><span class="highlight-cross">†</span>. 
+          <span class="paper-title">Secure Industrial Federated Learning: Label Encryption for Model Protection</span>. 
+          <span class="journal-name">Engineering Applications of Artificial Intelligence</span>, 2025.
+          <span class="tag">SCI一区TOP</span> <span class="tag">CCF C</span>
+        </li>
+        <li>
+          Jue Xiao<span class="highlight-star">∗</span>, <span class="my-name">Nie Hewang</span><span class="highlight-star">∗</span>, Xueming Tang, Songfeng Lu. 
+          <span class="paper-title">Federated Learning with Bilateral Defense via Blockchain</span>. 
+          <span class="journal-name">Neural Networks</span>, 2025.
+          <span class="tag">SCI二区</span> <span class="tag">CCF B</span>
+        </li>
+        <li>
+          Hao Fei<span class="highlight-star">∗</span>, <span class="my-name">Nie Hewang</span><span class="highlight-star">∗</span>, et al. 
+          <span class="paper-title">Optimized Dynamic Watermarking for Audio DNNs with Adaptive Embedding and Boundary Sampling</span>. 
+          <span class="journal-name">ICASSP 2025</span>.
+          <span class="tag">CCF B 会议</span>
+        </li>
+        <li>
+          Jue Xiao, Zepu Yi, <span class="my-name">Nie Hewang</span>, et al. 
+          <span class="paper-title">FedDiT: Federated Learning by Distillation Token Enhanced Vision Transformer</span>. 
+          <span class="journal-name">ICASSP 2025</span>.
+          <span class="tag">CCF B 会议</span>
+        </li>
+      </ol>
+
+      <h3>2024</h3>
+      <ol class="pub-list">
+        <li>
+          <span class="my-name">Nie Hewang</span>, Songfeng Lu, Junjun Wu, Jianxin Zhu. 
+          <span class="paper-title">Deep Model Intellectual Property Protection with Compression-Resistant Model Watermarking</span>. 
+          <span class="journal-name">IEEE Transactions on Artificial Intelligence</span>, 2024.
+        </li>
+        <li>
+          <span class="my-name">Nie Hewang</span>, Songfeng Lu. 
+          <span class="paper-title">PersistVerifty: Federated model ownership verification with spatial attention and boundary sampling</span>. 
+          <span class="journal-name">Knowledge-Based Systems</span>, 2024.
+          <span class="tag">SCI一区TOP</span>
+        </li>
+        <li>
+          <span class="my-name">Nie Hewang</span>, Songfeng Lu. 
+          <span class="paper-title">FedCRMW: Federated model ownership verification with compression-resistant model watermarking</span>. 
+          <span class="journal-name">Expert Systems with Applications</span>, 2024.
+          <span class="tag">SCI一区TOP</span>
+        </li>
+        <li>
+          <span class="my-name">Nie Hewang</span>, Songfeng Lu. 
+          <span class="paper-title">Securing IP in Edge AI: Neural Network Watermarking for Multimodal Models</span>. 
+          <span class="journal-name">Applied Intelligence</span>, 2024.
+          <span class="tag">SCI三区</span>
+        </li>
+        <li>
+          <span class="my-name">Nie Hewang</span>, Songfeng Lu, et al. 
+          <span class="paper-title">VeriChroma: Ownership Verification for Federated Models via RGB Filters</span>. 
+          <span class="journal-name">Euro-Par 2024</span>.
+          <span class="tag">CCF B 会议</span>
+        </li>
+      </ol>
+
+      <h3>2020</h3>
+      <ol class="pub-list">
+        <li>
+          Zhenjun Tang, <span class="my-name">Nie Hewang</span>, et al. 
+          <span class="paper-title">Color image reversible data hiding with double-layer embedding</span>. 
+          <span class="journal-name">IEEE Access</span>, 2020.
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>发明专利与软著</h2>
+      <ul>
+        <li>路松峰, 路直, <span class="my-name">聂何望</span>, 杨豪. 一种基于国产密码的工控数据安全防护系统及其工作方法. CN118133298A (2024).</li>
+        <li>路松峰, ..., <span class="my-name">聂何望</span>. 一种基于LSTM的数控系统日志审计方法及终端. CN116781321A (2023).</li>
+        <li>路松峰, 肖珏, 路直, <span class="my-name">聂何望</span>, 杨豪. 一种适用于数控系统的流加密机及其工作方法. CN116684076A (2023).</li>
+        <li><span class="my-name">聂何望</span>, 唐振军, 梁晓萍. 抗压缩的联邦学习模型水印系统V1.0 (2025SR11L2606607).</li>
+        <li><span class="my-name">聂何望</span>, 唐振军, 陈旅. 基于边界采样的音频深度神经网络模型水印系统V1.0 (2025SR2186923).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>荣誉奖项</h2>
+      <ul>
+        <li>优秀毕业博士研究生 (2025)</li>
+        <li>国家奖学金 (2023--2024)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>招生启事</h2>
+      <p>欢迎对人工智能安全、联邦学习与模型水印等方向感兴趣的同学报考与加入课题组！<strong>同时欢迎踏实勤奋、积极上进的本科生加入。</strong></p>
+      <ul>
+        <li><strong>研究方向：</strong> 模型版权保护、联邦学习所有权验证、数据/模型水印、AI安全评测等</li>
+        <li><strong>期望背景：</strong> 具备良好的编程基础（Python/PyTorch优先），对科研有热情与自驱力</li>
+        <li><strong>联系方式：</strong> 请附个人简历、成绩单发送至：<a href="mailto:nhw@gxnu.edu.cn">nhw@gxnu.edu.cn</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- ================= English Content ================= -->
+  <div id="content-en" style="display: none;">
+    <header>
+      <div class="header-info">
+        <h1 class="name">Hewang Nie</h1>
+        <div class="title">Lecturer / Master's Supervisor</div>
+        <div class="contact-info">
+          <p>Guangxi Normal University (Jul. 2025 -- Present)</p>
+          <p>Email: <a href="mailto:nhw@gxnu.edu.cn">nhw@gxnu.edu.cn</a></p>
+          <p>Address: Room 503, Wen Building 2, Yucai Campus, GXNU, Guilin, China</p>
+        </div>
+      </div>
+      <div class="photo-box">
+        <img src="photo.jpg" alt="Photo of Hewang Nie" onerror="this.style.display='none';this.parentNode.style.backgroundColor='#eee';this.parentNode.innerHTML='Photo'">
+      </div>
+    </header>
+
+    <section>
+      <h2>About</h2>
+      <p>Hewang Nie is a Lecturer with a Ph.D. in Cyberspace Security from Huazhong University of Science and Technology (June 2025). His research focuses on AI security, reversible information hiding, and neural network watermarking.</p>
+      <p>He has led a student innovation funding project from the Cyberspace Administration of China and participated in major research programs including the National Key R&D Program of China and the National Natural Science Foundation of China. He has published over ten papers in well-known journals (IEEE TAI, IPM, KBS, ESWA) and conferences (ICASSP, Euro-Par), holding 3 invention patents.</p>
+    </section>
+
+    <section>
+      <h2>Research Interests</h2>
+      <ul>
+        <li>AI Security; Intellectual Property Protection for Neural Network Models</li>
+        <li>Multimedia Security; Neural Network Watermarking; Reversible Data Hiding</li>
+        <li>Federated Learning Security; Model Ownership Verification</li>
+        <li>AI in Healthcare</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Academic Service</h2>
+      <ul>
+        <li>Member of the Digital Media Forensics and Security Committee, CSIG.</li>
+        <li>Program Committee Member for <em>Workshop on New-Generation Image Security Technologies</em>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Reviewer</h2>
+      <p>Reviewer for Journals and Conferences:</p>
+      <ul>
+        <li><strong>Journals:</strong> IEEE TAI, IEEE Access, KBS, ESWA, EAAI, IPM, Information Fusion, Neural Networks, etc.</li>
+        <li><strong>Conferences:</strong> ICASSP, ICME, IJCNN, etc.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <ul>
+        <li><strong>Cyberspace Administration of China</strong>, AI Data/Model Leakage Detection Tool, 2024.04--2025.04, PI.</li>
+        <li><strong>National Key R&D Program</strong>, Security for Open CNC Systems, 2021.11--2024.10, Participant.</li>
+        <li><strong>National Natural Science Foundation of China</strong>, Color Image Hashing, 2020.01--2023.12, Participant.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Publications</h2>
+      <p style="font-size:0.9em; color:#666;">
+        Note: <span class="highlight-cross">†</span> = corresponding author; <span class="highlight-star">∗</span> = co-first author.
+      </p>
+
+      <h3>2025</h3>
+      <ol class="pub-list">
+        <li>
+          <span class="my-name">Hewang Nie</span>, Xuemei Yuan. 
+          <span class="paper-title">Compression Is No Barrier: Dataset Copyright Protection with Compression-Resistant Backdoor Watermarks</span>. 
+          <span class="journal-name">Information Processing & Management</span>, 2025.
+          <span class="tag">CAS Q1</span> <span class="tag">CCF B</span>
+        </li>
+        <li>
+          Xuemei Yuan, <span class="my-name">Hewang Nie</span><span class="highlight-cross">†</span>. 
+          <span class="paper-title">Beyond Protection: Unveiling Neural Network Copyright Trading</span>. 
+          <span class="journal-name">Knowledge-Based Systems</span>, 2025.
+          <span class="tag">CAS Q1</span> <span class="tag">CCF C</span>
+        </li>
+        <li>
+          Xuemei Yuan, <span class="my-name">Hewang Nie</span><span class="highlight-cross">†</span>. 
+          <span class="paper-title">Secure Industrial Federated Learning: Label Encryption for Model Protection</span>. 
+          <span class="journal-name">Engineering Applications of Artificial Intelligence</span>, 2025.
+          <span class="tag">CAS Q1</span> <span class="tag">CCF C</span>
+        </li>
+        <li>
+          Jue Xiao<span class="highlight-star">∗</span>, <span class="my-name">Hewang Nie</span><span class="highlight-star">∗</span>, et al. 
+          <span class="paper-title">Federated Learning with Bilateral Defense via Blockchain</span>. 
+          <span class="journal-name">Neural Networks</span>, 2025.
+          <span class="tag">CAS Q2</span> <span class="tag">CCF B</span>
+        </li>
+        <li>
+          Hao Fei<span class="highlight-star">∗</span>, <span class="my-name">Hewang Nie</span><span class="highlight-star">∗</span>, et al. 
+          <span class="paper-title">Optimized Dynamic Watermarking for Audio DNNs with Adaptive Embedding and Boundary Sampling</span>. 
+          <span class="journal-name">ICASSP 2025</span>.
+        </li>
+      </ol>
+
+      <h3>2024</h3>
+      <ol class="pub-list">
+        <li>
+          <span class="my-name">Hewang Nie</span>, Songfeng Lu, et al. 
+          <span class="paper-title">Deep Model Intellectual Property Protection with Compression-Resistant Model Watermarking</span>. 
+          <span class="journal-name">IEEE Transactions on Artificial Intelligence</span>, 2024.
+        </li>
+        <li>
+          <span class="my-name">Hewang Nie</span>, Songfeng Lu. 
+          <span class="paper-title">PersistVerifty: Federated model ownership verification with spatial attention and boundary sampling</span>. 
+          <span class="journal-name">Knowledge-Based Systems</span>, 2024.
+          <span class="tag">CAS Q1</span>
+        </li>
+        <li>
+          <span class="my-name">Hewang Nie</span>, Songfeng Lu. 
+          <span class="paper-title">FedCRMW: Federated model ownership verification with compression-resistant model watermarking</span>. 
+          <span class="journal-name">Expert Systems with Applications</span>, 2024.
+          <span class="tag">CAS Q1</span>
+        </li>
+        <li>
+          <span class="my-name">Hewang Nie</span>, Songfeng Lu, et al. 
+          <span class="paper-title">VeriChroma: Ownership Verification for Federated Models via RGB Filters</span>. 
+          <span class="journal-name">Euro-Par 2024</span>.
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Patents</h2>
+      <ul>
+        <li>Songfeng Lu, Zhi Lu, <span class="my-name">Hewang Nie</span>, Hao Yang. Industrial Control Data Security Protection System. CN118133298A (2024).</li>
+        <li>Songfeng Lu, ..., <span class="my-name">Hewang Nie</span>. Log Audit Method for CNC Systems based on LSTM. CN116781321A (2023).</li>
+        <li>Songfeng Lu, Jue Xiao, Zhi Lu, <span class="my-name">Hewang Nie</span>, Hao Yang. Stream Cipher Device for CNC Systems. CN116684076A (2023).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Honors</h2>
+      <ul>
+        <li>Outstanding Graduating Ph.D. Student (2025)</li>
+        <li>National Scholarship (2023--2024)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Admission</h2>
+      <p>We welcome motivated students interested in AI security, federated learning, and model watermarking to join our group.</p>
+      <ul>
+        <li><strong>Requirements:</strong> Solid programming skills (Python/PyTorch) and strong research motivation.</li>
+        <li><strong>Contact:</strong> Please email your CV and transcript to <a href="mailto:nhw@gxnu.edu.cn">nhw@gxnu.edu.cn</a>.</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Hewang Nie. Last updated: Dec 2025.</p>
+  </footer>
+
+</div>
+
+<script>
+  function setLang(lang) {
+    const zhContent = document.getElementById('content-zh');
+    const enContent = document.getElementById('content-en');
+    const zhBtn = document.getElementById('btn-zh');
+    const enBtn = document.getElementById('btn-en');
+    const htmlTag = document.documentElement;
+
+    if (lang === 'zh') {
+      zhContent.style.display = 'block';
+      enContent.style.display = 'none';
+      zhBtn.classList.add('active');
+      enBtn.classList.remove('active');
+      htmlTag.lang = 'zh-CN';
+      document.title = "个人主页 | 聂何望";
+    } else {
+      zhContent.style.display = 'none';
+      enContent.style.display = 'block';
+      zhBtn.classList.remove('active');
+      enBtn.classList.add('active');
+      htmlTag.lang = 'en';
+      document.title = "Homepage | Hewang Nie";
+    }
+  }
+</script>
+
 </body>
 </html>
-
-

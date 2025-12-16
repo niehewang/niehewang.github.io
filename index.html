@@ -248,8 +248,8 @@
     li { margin-bottom: 8px; padding-left: 5px; }
     ul li::marker { color: var(--primary); }
 
-    /* 期刊审稿人双栏列表 */
-    .journal-list {
+    /* 审稿人双栏列表 (期刊 & 会议通用) */
+    .grid-list {
       display: grid;
       grid-template-columns: 1fr 1fr; /* 双栏 */
       gap: 8px 30px;
@@ -257,14 +257,14 @@
       padding: 0;
       margin-bottom: 20px;
     }
-    .journal-list li {
+    .grid-list li {
       position: relative;
       padding-left: 18px;
       margin-bottom: 4px;
       font-size: 0.95rem;
       color: var(--text-sub);
     }
-    .journal-list li::before {
+    .grid-list li::before {
       content: "•";
       color: var(--primary);
       position: absolute;
@@ -367,7 +367,7 @@
       .main-card { padding: 30px 20px; }
       .toolbar { flex-wrap: wrap; }
       .btn-download { margin-left: 0; width: 100%; justify-content: center; order: 3; margin-top: 10px; }
-      .journal-list { grid-template-columns: 1fr; } /* 移动端单栏 */
+      .grid-list { grid-template-columns: 1fr; } /* 移动端列表变单栏 */
     }
 
     @media print {
@@ -481,8 +481,8 @@
           <li>“新一代图像安全技术研讨会” 程序委员会委员 (PC Member)</li>
         </ul>
         
-        <h3>期刊审稿人 (Reviewer for Journals)</h3>
-        <ul class="journal-list">
+        <h3>期刊审稿人</h3>
+        <ul class="grid-list">
           <li>IEEE Transactions on Artificial Intelligence</li>
           <li>IEEE Access</li>
           <li>Knowledge-Based Systems</li>
@@ -508,8 +508,10 @@
         </ul>
 
         <h3>会议审稿人</h3>
-        <ul>
-          <li>ICASSP, ICME, IJCNN 等</li>
+        <ul class="grid-list">
+          <li>ICASSP</li>
+          <li>ICME</li>
+          <li>IJCNN</li>
         </ul>
       </section>
 
@@ -735,7 +737,7 @@
         <h2>荣誉奖项</h2>
         <ul>
           <li>优秀毕业博士研究生 (2025)</li>
-          <li>国家奖学金 (2023-2024)</li>
+          <li>博士研究生国家奖学金 (2023-2024)</li>
         </ul>
       </section>
       
@@ -785,7 +787,7 @@
         </ul>
         
         <h3>Journal Reviewer</h3>
-        <ul class="journal-list">
+        <ul class="grid-list">
           <li>IEEE Transactions on Artificial Intelligence</li>
           <li>IEEE Access</li>
           <li>Knowledge-Based Systems</li>
@@ -811,8 +813,10 @@
         </ul>
 
         <h3>Conference Reviewer</h3>
-        <ul>
-          <li>ICASSP, ICME, IJCNN, etc.</li>
+        <ul class="grid-list">
+          <li>ICASSP</li>
+          <li>ICME</li>
+          <li>IJCNN</li>
         </ul>
       </section>
 
@@ -1027,7 +1031,7 @@
         <h2>Honors</h2>
         <ul>
           <li>Outstanding Graduating Ph.D. Student (2025)</li>
-          <li>National Scholarship (2023-2024)</li>
+          <li>National Scholarship for Doctoral Students (2023-2024)</li>
         </ul>
       </section>
 

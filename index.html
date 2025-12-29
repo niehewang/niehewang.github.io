@@ -6,7 +6,7 @@
   <title>个人主页 | 聂何望 (Hewang Nie)</title>
   <meta name="description" content="聂何望的学术个人主页 - 广西师范大学讲师/硕导">
   
-  <!-- 引入 Google Fonts: Inter (西文) + Noto Sans SC (中文) -->
+  <!-- 引入 Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
       --accent: #FF7F0E;        /* 强调橙 */
       
       /* --- 文本色 --- */
-      --text-main: #1e293b;     /* 深灰蓝，比纯黑更有质感 */
+      --text-main: #1e293b;     /* 深灰蓝 */
       --text-sub: #475569;      /* 次级文本 */
       --text-muted: #94a3b8;    /* 弱文本 */
 
@@ -47,7 +47,7 @@
       background-color: var(--bg-body);
       margin: 0;
       padding: 0;
-      -webkit-font-smoothing: antialiased; /* 让字体更清晰 */
+      -webkit-font-smoothing: antialiased;
     }
 
     a { color: var(--primary); text-decoration: none; transition: var(--transition); }
@@ -59,7 +59,7 @@
       margin: 0 auto;
       padding: 30px 20px;
       display: grid;
-      grid-template-columns: 320px 1fr; /* 左侧加宽至320px */
+      grid-template-columns: 320px 1fr;
       gap: 40px;
       align-items: start;
     }
@@ -78,7 +78,7 @@
 
     .avatar-wrapper {
       width: 160px;
-      height: 213px; /* 3:4 比例 */
+      height: 213px;
       margin: 0 auto 25px;
       position: relative;
       border-radius: 12px;
@@ -139,11 +139,7 @@
       font-size: 1.1em;
     }
 
-    /* 侧边栏研究方向标签 */
-    .research-tags {
-      text-align: left;
-      margin-top: 25px;
-    }
+    .research-tags { text-align: left; margin-top: 25px; }
     .tag-label {
       font-size: 0.8rem;
       text-transform: uppercase;
@@ -174,7 +170,6 @@
       position: relative;
     }
 
-    /* 工具栏 */
     .toolbar {
       display: flex;
       justify-content: flex-end;
@@ -204,16 +199,12 @@
     .btn-download { color: var(--primary); border-color: #bfdbfe; background: #eff6ff; margin-left: auto; }
     .btn-download:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-    /* 内容切换动画 */
-    .fade-wrapper {
-      animation: fadeIn 0.4s ease-in-out;
-    }
+    .fade-wrapper { animation: fadeIn 0.4s ease-in-out; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 标题样式 */
     h2 {
       font-size: 1.4rem;
       font-weight: 700;
@@ -242,16 +233,14 @@
     }
 
     p { margin-bottom: 15px; text-align: justify; }
-
-    /* 列表样式 */
     ul { padding-left: 18px; margin-bottom: 20px; }
     li { margin-bottom: 8px; padding-left: 5px; }
     ul li::marker { color: var(--primary); }
 
-    /* 审稿人双栏列表 (期刊 & 会议通用) */
+    /* 双栏网格列表 (Reviewer) */
     .grid-list {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* 双栏 */
+      grid-template-columns: 1fr 1fr;
       gap: 8px 30px;
       list-style: none;
       padding: 0;
@@ -272,7 +261,7 @@
       font-weight: bold;
     }
 
-    /* 论文列表 (高级版) */
+    /* 论文列表 */
     .pub-list { list-style: none; padding: 0; }
     .pub-item {
       display: grid;
@@ -281,7 +270,6 @@
       margin-bottom: 20px;
       align-items: baseline;
     }
-
     .pub-idx {
       font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
@@ -289,77 +277,39 @@
       color: var(--text-muted);
       text-align: right;
     }
-
-    .pub-content {
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .pub-title {
-      font-weight: 600;
-      color: #0f172a;
-      display: block;
-      margin-bottom: 4px;
-    }
-    
-    .pub-meta {
-      color: var(--text-sub);
-      font-size: 0.92rem;
-    }
-
+    .pub-content { font-size: 0.95rem; line-height: 1.6; }
+    .pub-title { font-weight: 600; color: #0f172a; display: block; margin-bottom: 4px; }
+    .pub-meta { color: var(--text-sub); font-size: 0.92rem; }
     .author-me { font-weight: 700; color: var(--primary); }
     
-    /* 论文徽章 */
     .badges { margin-left: 8px; display: inline-flex; gap: 6px; vertical-align: middle; }
     .badge {
-      font-size: 0.7rem;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 600;
-      line-height: 1.4;
-      border: 1px solid transparent;
+      font-size: 0.7rem; padding: 2px 8px; border-radius: 4px;
+      font-weight: 600; line-height: 1.4; border: 1px solid transparent;
     }
     .badge-top { background: #fef2f2; color: #dc2626; border-color: #fecaca; }
     .badge-ccf { background: #f0f9ff; color: #0284c7; border-color: #bae6fd; }
     .badge-sci { background: #f0fdf4; color: #16a34a; border-color: #bbf7d0; }
 
-    /* 特殊符号 */
     .sym { font-weight: bold; margin-left: 1px; cursor: help; }
-    .sym-corr { color: #D62728; } /* 通讯 */
-    .sym-co { color: #FF7F0E; }   /* 共同一作 */
+    .sym-corr { color: #D62728; } 
+    .sym-co { color: #FF7F0E; }   
     
-    /* 提示框 */
     .callout {
-      background: #f8fafc;
-      border-left: 4px solid var(--primary);
-      padding: 15px 20px;
-      border-radius: 0 8px 8px 0;
-      font-size: 0.9rem;
-      margin: 20px 0;
+      background: #f8fafc; border-left: 4px solid var(--primary);
+      padding: 15px 20px; border-radius: 0 8px 8px 0; font-size: 0.9rem; margin: 20px 0;
     }
-    
     .note-box {
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      background: #fff;
-      border: 1px solid var(--border);
-      padding: 8px 12px;
-      border-radius: 6px;
-      display: inline-block;
-      margin-bottom: 20px;
+      font-size: 0.85rem; color: var(--text-sub); background: #fff;
+      border: 1px solid var(--border); padding: 8px 12px; border-radius: 6px;
+      display: inline-block; margin-bottom: 20px;
     }
 
-    /* 页脚 */
     footer {
-      margin-top: 60px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
+      text-align: center; font-size: 0.85rem; color: var(--text-muted);
     }
 
-    /* --- 移动端适配 --- */
     @media (max-width: 900px) {
       .page-wrapper { grid-template-columns: 1fr; gap: 25px; padding: 15px; }
       .profile-card { position: relative; top: 0; display: flex; flex-direction: column; align-items: center; }
@@ -367,7 +317,7 @@
       .main-card { padding: 30px 20px; }
       .toolbar { flex-wrap: wrap; }
       .btn-download { margin-left: 0; width: 100%; justify-content: center; order: 3; margin-top: 10px; }
-      .grid-list { grid-template-columns: 1fr; } /* 移动端列表变单栏 */
+      .grid-list { grid-template-columns: 1fr; }
     }
 
     @media print {
@@ -382,14 +332,13 @@
 
 <div class="page-wrapper">
   
-  <!-- ================= 左侧侧边栏 (Sidebar) ================= -->
+  <!-- ================= 侧边栏 ================= -->
   <aside class="profile-card">
     <div class="avatar-wrapper">
-      <!-- ⚠️ 请确保目录下有 photo.jpg -->
       <img src="photo.jpg" alt="Hewang Nie" class="avatar-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzIDQiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIwLjUiIGZpbGw9IiNjY2MiPlBob3RvPC90ZXh0Pjwvc3ZnPg=='">
     </div>
 
-    <!-- 中文侧栏信息 -->
+    <!-- 中文侧栏 -->
     <div id="sidebar-zh">
       <h1 class="profile-name">聂何望</h1>
       <div class="profile-title">讲师 / 硕士生导师</div>
@@ -421,7 +370,7 @@
       </div>
     </div>
 
-    <!-- 英文侧栏信息 -->
+    <!-- 英文侧栏 -->
     <div id="sidebar-en" style="display: none;">
       <h1 class="profile-name">Hewang Nie</h1>
       <div class="profile-title">Lecturer / Master's Supervisor</div>
@@ -454,10 +403,9 @@
     </div>
   </aside>
 
-  <!-- ================= 右侧主内容 (Main) ================= -->
+  <!-- ================= 主内容 ================= -->
   <main class="main-card">
     
-    <!-- 顶部工具栏 -->
     <div class="toolbar">
       <button class="btn active" onclick="setLang('zh')" id="btn-zh">🇨🇳 中文</button>
       <button class="btn" onclick="setLang('en')" id="btn-en">🇺🇸 English</button>
@@ -730,6 +678,16 @@
           <li><strong>聂何望</strong>, 唐振军, 梁晓萍, 广西师范大学. 抗压缩的联邦学习模型水印系统V1.0，登记号：2025R11L2606607</li>
           <li><strong>聂何望</strong>, 唐振军, 陈旅, 广西师范大学. 基于边界采样的音频深度神经网络模型水印系统V1.0，登记号：2025SR2186923</li>
           <li><strong>聂何望</strong>, 唐振军, 凌曼, 广西师范大学. 基于SVM的车牌识别软件V1.0，登记号：2018SR219059</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>学术交流</h2>
+        <ul>
+          <li><strong>2025.11</strong> (海南海口): 第六届 CSIG 中国媒体取证与安全大会 (ChinaMFS 2025)</li>
+          <li><strong>2025.11</strong> (广西桂林): 新一代图像安全技术研讨会 (Workshop on New-Generation Image Security Technologies)</li>
+          <li><strong>2024.08</strong> (西班牙马德里): Euro-Par 2024 第30届并行与分布式计算国际欧洲大会</li>
+          <li><strong>2019.10</strong> (福建厦门): 第十五届全国信息隐藏暨多媒体信息安全学术大会 (CIHW 2019)</li>
         </ul>
       </section>
 
@@ -1028,6 +986,16 @@
       </section>
 
       <section>
+        <h2>Academic Exchanges</h2>
+        <ul>
+           <li><strong>Nov 2025</strong> (Haikou, China): The 6th CSIG Chinese Conference on Media Forensics and Security (ChinaMFS 2025).</li>
+           <li><strong>Nov 2025</strong> (Guilin, China): Workshop on New-Generation Image Security Technologies.</li>
+           <li><strong>Aug 2024</strong> (Madrid, Spain): Euro-Par 2024: 30th International European Conference on Parallel and Distributed Computing.</li>
+           <li><strong>Oct 2019</strong> (Xiamen, China): The 15th China Information Hiding and Multimedia Security Workshop (CIHW 2019).</li>
+        </ul>
+      </section>
+
+      <section>
         <h2>Honors</h2>
         <ul>
           <li>Outstanding Graduating Ph.D. Student (2025)</li>
@@ -1073,7 +1041,6 @@
     const enBtn = document.getElementById('btn-en');
     const htmlTag = document.documentElement;
 
-    // 简单淡入淡出逻辑
     if (lang === 'zh') {
       zhContent.style.display = 'block';
       zhSidebar.style.display = 'block';
@@ -1098,7 +1065,6 @@
       document.title = "Homepage | Hewang Nie";
     }
     
-    // 触发重绘以确保动画流畅
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 </script>

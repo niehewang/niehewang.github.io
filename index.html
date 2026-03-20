@@ -177,6 +177,7 @@
       margin-bottom: 40px;
       padding-bottom: 15px;
       border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -192,11 +193,16 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      text-decoration: none;
     }
 
     .btn:hover { background: #f8fafc; border-color: #cbd5e1; color: var(--primary); }
     .btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-    .btn-download { color: var(--primary); border-color: #bfdbfe; background: #eff6ff; margin-left: auto; }
+    
+    .btn-ccf { color: var(--secondary); border-color: #bbf7d0; background: #f0fdf4; }
+    .btn-ccf:hover { background: var(--secondary); color: white; border-color: var(--secondary); }
+
+    .btn-download { color: var(--primary); border-color: #bfdbfe; background: #eff6ff; }
     .btn-download:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
     .fade-wrapper { animation: fadeIn 0.4s ease-in-out; }
@@ -298,15 +304,15 @@
     }
     
     /* CCF 分类 */
-    .badge-ccf-a { background: #fef2f2; color: #dc2626; border-color: #fecaca; } /* 红色 */
-    .badge-ccf-b { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; } /* 蓝色 */
-    .badge-ccf-c { background: #faf5ff; color: #9333ea; border-color: #e9d5ff; } /* 紫色 */
+    .badge-ccf-a { background: #fef2f2; color: #dc2626; border-color: #fecaca; } /* 红色 A类 */
+    .badge-ccf-b { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; } /* 蓝色 B类 */
+    .badge-ccf-c { background: #faf5ff; color: #9333ea; border-color: #e9d5ff; } /* 紫色 C类 */
     
     /* SCI 分区 */
-    .badge-sci-1 { background: #fffbeb; color: #d97706; border-color: #fde68a; } /* 琥珀/金 (TOP) */
-    .badge-sci-2 { background: #f0fdf4; color: #16a34a; border-color: #bbf7d0; } /* 绿色 */
-    .badge-sci-3 { background: #f0fdfa; color: #0d9488; border-color: #ccfbf1; } /* 青色 */
-    .badge-sci-4 { background: #f8fafc; color: #64748b; border-color: #e2e8f0; } /* 灰蓝 */
+    .badge-sci-1 { background: #fffbeb; color: #d97706; border-color: #fde68a; } /* 琥珀金 TOP */
+    .badge-sci-2 { background: #f0fdf4; color: #16a34a; border-color: #bbf7d0; } /* 绿色 二区 */
+    .badge-sci-3 { background: #f0fdfa; color: #0d9488; border-color: #ccfbf1; } /* 青色 三区 */
+    .badge-sci-4 { background: #f8fafc; color: #64748b; border-color: #e2e8f0; } /* 灰蓝 四区 */
     /* ======================================= */
 
     .sym { font-weight: bold; margin-left: 1px; cursor: help; }
@@ -325,10 +331,7 @@
       display: inline-block; margin-bottom: 20px;
     }
     
-    .highlight-text {
-        font-weight: 600;
-        color: var(--primary-hover);
-    }
+    .highlight-text { font-weight: 600; color: var(--primary-hover); }
 
     footer {
       margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
@@ -340,13 +343,13 @@
       .profile-card { position: relative; top: 0; display: flex; flex-direction: column; align-items: center; }
       .contact-list { width: 100%; max-width: 400px; }
       .main-card { padding: 30px 20px; }
-      .toolbar { flex-wrap: wrap; }
-      .btn-download { margin-left: 0; width: 100%; justify-content: center; order: 3; margin-top: 10px; }
+      .toolbar { justify-content: center; }
+      .btn-download, .btn-ccf { width: 100%; justify-content: center; margin-top: 5px; }
       .grid-list { grid-template-columns: 1fr; }
     }
 
     @media print {
-      .toolbar, .btn-download { display: none !important; }
+      .toolbar { display: none !important; }
       .page-wrapper { display: block; }
       .profile-card, .main-card { box-shadow: none; border: none; padding: 0; }
       .profile-card { page-break-after: always; border-bottom: 1px solid #ddd; margin-bottom: 30px; }
@@ -434,6 +437,12 @@
     <div class="toolbar">
       <button class="btn active" onclick="setLang('zh')" id="btn-zh">🇨🇳 中文</button>
       <button class="btn" onclick="setLang('en')" id="btn-en">🇺🇸 English</button>
+      
+      <!-- 新增跳转到 CCF 目录的按钮 -->
+      <a href="ccf-2026.html" target="_blank" class="btn btn-ccf">
+        <span style="font-size:1.1em">📚</span> CCF目录(2026)
+      </a>
+
       <a href="homepage.pdf" class="btn btn-download" download>
         <span style="font-size:1.1em">📄</span> 下载 PDF
       </a>
@@ -444,7 +453,7 @@
       <section>
         <h2>个人简介</h2>
         <p>聂何望，男，汉族，籍贯江西省九江市，博士/讲师。2025年6月毕业于华中科技大学，获网络与信息安全博士学位。长期致力于人工智能安全、可逆信息隐藏、神经网络模型水印等领域的研究。</p>
-        <p>主持中央网信办创新资助计划项目，参与国家重点研发计划、国家科学自然基金地区科学基金项目、广西高校中青年教师基础能力提升项目等重要科研项目研究。已在国内外著名期刊和会议发表论文十余篇，其中SCI一区TOP国际期刊论文<strong>6</strong>篇、CCF-B类国际期刊/会议论文<strong>8</strong>篇，获授权发明专利3件，软件著作权3件。</p>
+        <p>主持中央网信办创新资助计划项目，参与国家重点研发计划、国家科学自然基金地区科学基金项目、广西高校中青年教师基础能力提升项目等重要科研项目研究。已在国内外著名期刊和会议发表论文十余篇，其中 <strong>SCI一区TOP国际期刊论文 6 篇，CCF-B类国际期刊/会议论文 8 篇</strong>，获授权发明专利3件，软件著作权3件。</p>
       </section>
 
       <section>

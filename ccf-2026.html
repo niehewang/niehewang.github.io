@@ -1,1 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中国计算机学会（CCF）推荐国际学术会议和期刊目录（2026版）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --link-color: #1F77B4;
+      --border-color: #dddddd;
+      --th-bg: #f5f7fa;
+      --highlight-bg: #ffe4b5;  /* 按钮选中颜色 */
+    }
+    
+    body {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+    }
 
+    a { color: var(--link-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header { margin-bottom: 20px; text-align: center; }
+    h1 { font-size: 1.8rem; color: #2c3e50; }
+    
+    .note { text-align: center; font-size: 0.9rem; color: #666; margin-bottom: 20px; }
+    .note span { display: inline-block; margin: 0 10px; padding: 2px 6px; border-radius: 4px; }
+    
+    /* === 2026版 CCF 图例颜色样式 === */
+    .bg-yellow { background-color: #ffff99 !important; }        /* 新增 */
+    .bg-cyan { background-color: #99ffff !important; }          /* 降级 */
+    .txt-red { color: #dc2626 !important; font-weight: bold; }  /* 晋级 */
+    .txt-green { color: #16a34a !important; font-weight: bold; }/* 更名 */
+
+    /* 表格通用样式 */
+    table { width: 100%; max-width: 1200px; margin: 0 auto; border-collapse: collapse; font-size: 0.85rem; }
+    th, td { border: 1px solid var(--border-color); padding: 8px 12px; text-align: left; }
+    th { background-color: var(--th-bg); font-weight: 600; color: #475569; position: sticky; top: 0; }
+    
+    /* 过滤器表格样式 */
+    #filter { margin-bottom: 20px; text-align: center; }
+    #filter th, #filter td { text-align: center; cursor: pointer; user-select: none; }
+    #filter th { cursor: default; background-color: #e2e8f0; width: 60px; }
+    #filter td:hover { background-color: #f1f5f9; }
+    #filter .highlight { background-color: var(--highlight-bg); font-weight: bold; color: #b45309; }
+
+    /* 数据表格特殊列宽 */
+    #data-table th:nth-child(1) { width: 60px; text-align: center;} /* 方向 */
+    #data-table th:nth-child(2) { width: 50px; text-align: center;} /* 级别 */
+    #data-table th:nth-child(3) { width: 50px; text-align: center;} /* 类型 */
+    #data-table th:nth-child(4) { width: 50px; text-align: center;} /* 序号 */
+    #data-table th:nth-child(5) { width: 100px; } /* 简称 */
+    #data-table th:nth-child(7) { width: 120px; } /* 出版社 */
+
+    #data-table td:nth-child(1), #data-table td:nth-child(2), #data-table td:nth-child(3), #data-table td:nth-child(4) {
+      text-align: center;
+    }
+
+    .hide { display: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>中国计算机学会（CCF）推荐国际学术会议和期刊目录（2026年）</h1>
+  <div class="note">
+    <span class="bg-yellow">标黄背景：新增会议或期刊</span>
+    <span class="txt-red">红色字体：较2022版晋级</span>
+    <span class="bg-cyan">标蓝背景：较2022版降级</span>
+    <span class="txt-green">绿色字体：名称更新</span>
+  </div>
+</header>
+
+<table id="filter">
+  <tbody>
+    <tr id="subj">
+      <th>方向</th>
+      <td class="highlight">全部</td>
+      <td>系统</td><td>网络</td><td>安全</td><td>软工</td><td>数据库</td>
+      <td>理论</td><td>多媒体</td><td>AI</td><td>交互</td><td>综合</td>
+    </tr>
+    <tr id="rank">
+      <th>级别</th>
+      <td class="highlight">全部</td>
+      <td>A</td><td>B</td><td>C</td><td colspan="7" style="cursor:default; background:#fff;"></td>
+    </tr>
+    <tr id="kind">
+      <th>类型</th>
+      <td class="highlight">全部</td>
+      <td>期刊</td><td>会议</td><td colspan="8" style="cursor:default; background:#fff;"></td>
+    </tr>
+  </tbody>
+</table>
+
+<table id="data-table">
+  <thead>
+    <tr>
+      <th>方向</th><th>级别</th><th>类型</th><th>序号</th>
+      <th>刊物简称</th><th>刊物全称</th><th>出版社</th><th>网址</th>
+    </tr>
+  </thead>
+  <tbody id="all">
+    
+    <!-- 系统 (Systems) -->
+    <tr><td>系统</td><td>A</td><td>期刊</td><td>1</td><td>TOCS</td><td>ACM Transactions on Computer Systems</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr><td>系统</td><td>A</td><td>期刊</td><td>2</td><td>TOS</td><td>ACM Transactions on Storage</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr class="txt-red"><td>系统</td><td>B</td><td>期刊</td><td>10</td><td>TCC</td><td>IEEE Transactions on Cloud Computing</td><td>IEEE</td><td>https://dblp...</td></tr>
+    <tr class="txt-red"><td>系统</td><td>C</td><td>期刊</td><td>12</td><td>TCASI</td><td>IEEE Transactions on Circuits and Systems I: Regular Papers</td><td>IEEE</td><td>https://dblp...</td></tr>
+    <tr class="txt-red"><td>系统</td><td>C</td><td>期刊</td><td>13</td><td>CCF-THPC</td><td>CCF Transactions on High Performance Computing</td><td>CCF</td><td>https://dblp...</td></tr>
+    <tr class="txt-green"><td>系统</td><td>A</td><td>会议</td><td>9</td><td>ACM SIGOPS ATC</td><td>ACM SIGOPS Annual Technical Conference</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr class="txt-red"><td>系统</td><td>A</td><td>会议</td><td>11</td><td>HPDC</td><td>The International ACM Symposium on High-Performance Parallel and Distributed Computing</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr class="txt-red"><td>系统</td><td>B</td><td>会议</td><td>26</td><td>ISCAS</td><td>IEEE International Symposium on Circuits and Systems</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr class="bg-yellow"><td>系统</td><td>C</td><td>会议</td><td>26</td><td>SEC</td><td>ACM/IEEE Symposium on Edge Computing</td><td>IEEE/ACM</td><td>https://dblp...</td></tr>
+    <tr class="bg-yellow"><td>系统</td><td>C</td><td>会议</td><td>27</td><td>NAS</td><td>International Conference on Networking, Architecture and Storages</td><td>IEEE</td><td>https://dblp...</td></tr>
+    
+    <!-- 网络 (Network) -->
+    <tr><td>网络</td><td>A</td><td>期刊</td><td>1</td><td>JSAC</td><td>IEEE Journal on Selected Areas in Communications</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>网络</td><td>A</td><td>会议</td><td>1</td><td>SIGCOMM</td><td>ACM International Conference on Applications...</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr><td>网络</td><td>A</td><td>会议</td><td>3</td><td>INFOCOM</td><td>IEEE International Conference on Computer Communications</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr class="bg-yellow"><td>网络</td><td>C</td><td>期刊</td><td>12</td><td>TIOT</td><td>ACM Transactions on Internet of Things</td><td>ACM</td><td>https://dblp...</td></tr>
+
+    <!-- 安全 (Security) -->
+    <tr><td>安全</td><td>A</td><td>期刊</td><td>1</td><td>TDSC</td><td>IEEE Transactions on Dependable and Secure Computing</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>安全</td><td>A</td><td>期刊</td><td>2</td><td>TIFS</td><td>IEEE Transactions on Information Forensics and Security</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>安全</td><td>A</td><td>会议</td><td>1</td><td>CCS</td><td>ACM Conference on Computer and Communications Security</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr><td>安全</td><td>A</td><td>会议</td><td>3</td><td>S&P</td><td>IEEE Symposium on Security and Privacy</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>安全</td><td>A</td><td>会议</td><td>6</td><td>NDSS</td><td>Network and Distributed System Security Symposium</td><td>ISOC</td><td>http://dblp...</td></tr>
+    <tr class="txt-red"><td>安全</td><td>B</td><td>期刊</td><td>5</td><td>Cybersecurity</td><td>Cybersecurity</td><td>Science Press</td><td>https://dblp...</td></tr>
+    <tr class="bg-yellow"><td>安全</td><td>C</td><td>期刊</td><td>9</td><td>HCC</td><td>High-Confidence Computing</td><td>Elsevier</td><td></td></tr>
+    <tr class="bg-yellow"><td>安全</td><td>C</td><td>会议</td><td>27</td><td>CODASPY</td><td>Conference on Data and Application Security and Privacy</td><td>ACM</td><td>https://dblp...</td></tr>
+
+    <!-- 软工 (Software Engineering) -->
+    <tr><td>软工</td><td>A</td><td>期刊</td><td>1</td><td>TOPLAS</td><td>ACM Transactions on Programming Languages and Systems</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr><td>软工</td><td>A</td><td>会议</td><td>7</td><td>ICSE</td><td>International Conference on Software Engineering</td><td>ACM/IEEE</td><td>http://dblp...</td></tr>
+
+    <!-- 数据库 (Database) -->
+    <tr><td>数据库</td><td>A</td><td>期刊</td><td>3</td><td>TKDE</td><td>IEEE Transactions on Knowledge and Data Engineering</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>数据库</td><td>A</td><td>会议</td><td>1</td><td>SIGMOD</td><td>ACM SIGMOD Conference</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr><td>数据库</td><td>A</td><td>会议</td><td>2</td><td>SIGKDD</td><td>ACM SIGKDD Conference on Knowledge Discovery and Data Mining</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr class="txt-red"><td>数据库</td><td>B</td><td>会议</td><td>13</td><td>WISE</td><td>Web Information Systems Engineering Conference</td><td>Springer</td><td>http://dblp...</td></tr>
+    <tr class="bg-yellow"><td>数据库</td><td>C</td><td>期刊</td><td>15</td><td>TIST</td><td>ACM Transactions on Intelligent Systems and Technology</td><td>ACM</td><td>https://dblp...</td></tr>
+    <tr class="bg-yellow"><td>数据库</td><td>C</td><td>期刊</td><td>16</td><td>TORS</td><td>ACM Transactions on Recommender Systems</td><td>ACM</td><td>https://dblp...</td></tr>
+    
+    <!-- 理论 (Theory) -->
+    <tr class="txt-red"><td>理论</td><td>B</td><td>会议</td><td>10</td><td>FMCAD</td><td>Formal Methods in Computer-Aided Design</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr class="txt-green"><td>理论</td><td>C</td><td>会议</td><td>6</td><td>FSCD</td><td>International Conference on Formal Structures for Computation and Deduction</td><td>Dagstuhl</td><td>http://dblp...</td></tr>
+    <tr class="bg-yellow"><td>理论</td><td>C</td><td>期刊</td><td>12</td><td>TQC</td><td>ACM Transactions in Quantum Computing</td><td>ACM</td><td>https://dblp...</td></tr>
+
+    <!-- 多媒体 (Multimedia) -->
+    <tr><td>多媒体</td><td>A</td><td>期刊</td><td>2</td><td>TIP</td><td>IEEE Transactions on Image Processing</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>多媒体</td><td>A</td><td>会议</td><td>1</td><td>ACM MM</td><td>ACM International Conference on Multimedia</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr><td>多媒体</td><td>B</td><td>期刊</td><td>6</td><td>TCSVT</td><td>IEEE Transactions on Circuits and Systems for Video Technology</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>多媒体</td><td>B</td><td>会议</td><td>9</td><td>ICASSP</td><td>IEEE International Conference on Acoustics, Speech and Signal Processing</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>多媒体</td><td>B</td><td>会议</td><td>10</td><td>ICME</td><td>IEEE International Conference on Multimedia & Expo</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr class="txt-red"><td>多媒体</td><td>B</td><td>会议</td><td>14</td><td>INTER-SPEECH</td><td>Conference of the International Speech Communication Association</td><td>ISCA</td><td>http://dblp...</td></tr>
+    <tr class="bg-yellow"><td>多媒体</td><td>C</td><td>期刊</td><td>13</td><td>VI</td><td>Visual Informatics</td><td>Zhejiang Univ.</td><td>https://dblp...</td></tr>
+    <tr class="bg-cyan"><td>多媒体</td><td>C</td><td>期刊</td><td>15</td><td>GMOD</td><td>Graphical Models</td><td>Elsevier</td><td>http://dblp...</td></tr>
+    <tr class="bg-yellow"><td>多媒体</td><td>C</td><td>会议</td><td>15</td><td>ICIG</td><td>International Conference on Image and Graphics</td><td>Springer</td><td>https://dblp...</td></tr>
+
+    <!-- AI (人工智能) -->
+    <tr><td>AI</td><td>A</td><td>期刊</td><td>2</td><td>TPAMI</td><td>IEEE Transactions on Pattern Analysis and Machine Intelligence</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>AI</td><td>B</td><td>期刊</td><td>13</td><td>TNNLS</td><td>IEEE Transactions on Neural Networks and learning systems</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>AI</td><td>C</td><td>期刊</td><td>9</td><td>EAAI</td><td>Engineering Applications of Artificial Intelligence</td><td>Elsevier</td><td>http://dblp...</td></tr>
+    <tr><td>AI</td><td>C</td><td>期刊</td><td>11</td><td>ESWA</td><td>Expert Systems with Applications</td><td>Elsevier</td><td>http://dblp...</td></tr>
+    <tr><td>AI</td><td>C</td><td>期刊</td><td>25</td><td>KBS</td><td>Knowledge-Based Systems</td><td>Elsevier</td><td>http://dblp...</td></tr>
+    <tr><td>AI</td><td>A</td><td>会议</td><td>1</td><td>AAAI</td><td>AAAI Conference on Artificial Intelligence</td><td>AAAI</td><td>http://dblp...</td></tr>
+    <tr class="bg-yellow"><td>AI</td><td>A</td><td>会议</td><td>7</td><td>ICLR</td><td>International Conference on Learning Representations</td><td>OpenReview</td><td>https://dblp...</td></tr>
+    <tr class="bg-cyan"><td>AI</td><td>B</td><td>会议</td><td>14</td><td>IJCAI</td><td>International Joint Conference on Artificial Intelligence</td><td>Morgan K.</td><td>http://dblp...</td></tr>
+    <tr><td>AI</td><td>C</td><td>会议</td><td>19</td><td>IJCNN</td><td>International Joint Conference on Neural Networks</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr class="bg-yellow"><td>AI</td><td>C</td><td>期刊</td><td>38</td><td>TELO</td><td>ACM Transactions on Evolutionary Learning and Optimization</td><td>ACM</td><td>https://dblp...</td></tr>
+
+    <!-- 交互 (HCI) -->
+    <tr><td>交互</td><td>A</td><td>会议</td><td>2</td><td>CHI</td><td>ACM Conference on Human Factors in Computing Systems</td><td>ACM</td><td>http://dblp...</td></tr>
+    <tr class="bg-yellow"><td>交互</td><td>B</td><td>期刊</td><td>8</td><td>CCF TPCI</td><td>CCF Transactions on Pervasive Computing and Interaction</td><td>CCF</td><td>https://dblp...</td></tr>
+    <tr class="bg-yellow"><td>交互</td><td>C</td><td>期刊</td><td>5</td><td>THRI</td><td>ACM Transactions on Human-Robot Interaction</td><td>ACM</td><td>https://dblp...</td></tr>
+
+    <!-- 综合 (Interdisciplinary) -->
+    <tr class="bg-yellow"><td>综合</td><td>B</td><td>期刊</td><td>15</td><td>BCRA</td><td>Blockchain: Research and Applications</td><td>Elsevier</td><td>https://dblp...</td></tr>
+    <tr class="bg-cyan"><td>综合</td><td>B</td><td>会议</td><td>7</td><td>WINE</td><td>Conference on Web and Internet Economics</td><td>Springer</td><td>https://dblp...</td></tr>
+    <tr><td>综合</td><td>B</td><td>会议</td><td>2</td><td>BIBM</td><td>IEEE International Conference on Bioinformatics and Biomedicine</td><td>IEEE</td><td>http://dblp...</td></tr>
+    <tr><td>综合</td><td>B</td><td>会议</td><td>6</td><td>MICCAI</td><td>International Conference on Medical Image Computing and Computer-Assisted Intervention</td><td>Springer</td><td>https://dblp...</td></tr>
+    <tr class="bg-yellow"><td>综合</td><td>C</td><td>期刊</td><td>15</td><td>HEALTH</td><td>ACM Transactions on Computing for Healthcare</td><td>ACM</td><td>https://dblp...</td></tr>
+
+    <!-- ==========================================
+      说明：您可以通过复制上方的 <tr> 标签格式，
+      对照最新的 2026 PDF，将剩余的条目添加到此处。
+    =========================================== -->
+
+  </tbody>
+</table>
+
+<script>
+const keys = {'#subj':'全部', '#rank':'全部', '#kind':'全部'};
+const prev = {'#subj': null, '#rank': null, '#kind': null};
+
+// 初始化事件绑定
+for(let k in keys) {
+  document.querySelectorAll(k +' td').forEach(td => {
+    td.onclick = () => update(k, td);
+    if(keys[k] === td.textContent) { update(k, td, false); }
+  });
+}
+
+function update(k, td, executeFilter=true) {
+  if(td.textContent === "") return;
+  td.className = "highlight";
+  keys[k] = td.textContent;
+  if(prev[k] && prev[k] !== td){ prev[k].className = ""; }
+  prev[k] = td;
+  if(executeFilter) filter();
+}
+
+function filter(){
+  let visibleCount = 0;
+  document.querySelectorAll('#all tr').forEach(row => {
+    let hit = (keys['#subj'] === row.childNodes[0].textContent || keys['#subj'] === '全部' ) &&
+              (keys['#rank'] === row.childNodes[1].textContent || keys['#rank'] === '全部' ) &&
+              (keys['#kind'] === row.childNodes[2].textContent || keys['#kind'] === '全部' );
+    
+    row.classList.toggle("hide", !hit);
+    
+    // 处理斑马线变色，但避开特定背景色的类 (bg-yellow, bg-cyan)
+    if(hit) {
+      visibleCount++;
+      if(!row.classList.contains('bg-yellow') && !row.classList.contains('bg-cyan')) {
+         row.style.backgroundColor = (visibleCount % 2 === 1) ? "#fcfcfc" : "#ffffff";
+      }
+    }
+  });
+}
+
+// 页面加载完成后执行一次初始过滤
+window.onload = filter;
+</script>
+
+</body>
+</html>

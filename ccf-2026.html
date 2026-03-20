@@ -7,54 +7,86 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #ffffff;
-      --text-color: #333333;
-      --link-color: #1F77B4;
+      --bg-color: #f8fafc;
+      --text-color: #334155;
       --border-color: #cbd5e1;
-      --th-bg: #f1f5f9;
-      --highlight-bg: #ffe4b5; 
+      --th-bg: #e2e8f0;
+      --highlight-bg: #1e293b; 
     }
-    body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; line-height: 1.5; }
-    a { color: var(--link-color); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    header { margin-bottom: 20px; text-align: center; }
-    h1 { font-size: 1.8rem; color: #1e293b; margin-bottom: 10px; }
-    .note { text-align: center; font-size: 0.9rem; color: #64748b; margin-bottom: 20px; }
-    .note span { display: inline-block; margin: 0 8px; padding: 4px 8px; border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
     
-    /* 颜色图例 */
-    .bg-yellow { background-color: #fef08a !important; color: #854d0e; font-weight: 600; }  /* 新增 */
-    .bg-cyan { background-color: #a5f3fc !important; color: #0f766e; font-weight: 600;}    /* 降级 */
-    .txt-red { color: #dc2626 !important; font-weight: 700; background-color: #fef2f2 !important; border: 1px solid #fecaca !important;}  /* 晋级 */
-    .txt-green { color: #16a34a !important; font-weight: 700; background-color: #f0fdf4 !important; border: 1px solid #bbf7d0 !important;}/* 更名 */
-    .txt-strike { text-decoration: line-through; color: #94a3b8 !important; background-color: #f8fafc !important;} /* 删除 */
-
-    table { width: 100%; max-width: 1200px; margin: 0 auto; border-collapse: collapse; font-size: 0.85rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); background: white; }
-    th, td { border: 1px solid var(--border-color); padding: 10px 12px; text-align: left; }
-    th { background-color: var(--th-bg); font-weight: 700; color: #334155; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    body { 
+      font-family: 'Inter', 'Noto Sans SC', sans-serif; 
+      background-color: var(--bg-color); 
+      color: var(--text-color); 
+      margin: 0; 
+      padding: 20px; 
+      line-height: 1.6; 
+    }
     
-    #filter { margin-bottom: 25px; box-shadow: none; border: none; }
-    #filter th, #filter td { text-align: center; cursor: pointer; user-select: none; border-color: #e2e8f0; }
-    #filter th { cursor: default; background-color: #e2e8f0; width: 60px; font-weight: 600; }
-    #filter td:hover { background-color: #f8fafc; }
-    #filter .highlight { background-color: #1e293b; font-weight: bold; color: #ffffff; border-color: #1e293b; border-radius: 4px; }
+    header { margin-bottom: 25px; text-align: center; }
+    h1 { font-size: 1.8rem; color: #0f172a; margin-bottom: 15px; }
+    
+    /* 颜色图例说明区 */
+    .legend-box {
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .legend-item { display: flex; align-items: center; font-size: 0.9rem; font-weight: 500; }
+    .color-block { width: 16px; height: 16px; border-radius: 4px; margin-right: 8px; border: 1px solid rgba(0,0,0,0.1); }
+    
+    /* 图例与表格高亮颜色定义 */
+    .bg-yellow { background-color: #fef08a !important; color: #854d0e; }
+    .txt-red   { color: #dc2626 !important; font-weight: bold; background-color: #fef2f2 !important; }
+    .bg-cyan   { background-color: #cffafe !important; color: #0f766e; }
+    .txt-green { color: #16a34a !important; font-weight: bold; background-color: #f0fdf4 !important; }
 
-    #data-table th:nth-child(1), #data-table td:nth-child(1) { width: 80px; text-align: center; font-weight: 600; }
-    #data-table th:nth-child(2), #data-table td:nth-child(2) { width: 50px; text-align: center; font-weight: bold; color: #1F77B4; }
-    #data-table th:nth-child(3), #data-table td:nth-child(3) { width: 50px; text-align: center; }
-    #data-table th:nth-child(4), #data-table td:nth-child(4) { width: 50px; text-align: center; color: #94a3b8; }
-    #data-table th:nth-child(5) { width: 130px; font-weight: 600;}
+    /* 筛选器表格 */
+    #filter { 
+      margin: 0 auto 20px; 
+      background: #ffffff; 
+      border-radius: 8px; 
+      overflow: hidden; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+      border-collapse: collapse;
+    }
+    #filter th, #filter td { padding: 10px 15px; text-align: center; cursor: pointer; user-select: none; border: 1px solid var(--border-color); }
+    #filter th { background-color: var(--th-bg); font-weight: 600; cursor: default; width: 70px; color: #1e293b; }
+    #filter td:hover { background-color: #f1f5f9; }
+    #filter .highlight { background-color: var(--highlight-bg); color: #ffffff; font-weight: bold; }
 
-    .hide { display: none; }
-    .row-even { background-color: #f8fafc; }
+    /* 数据主表格 */
+    .table-container { overflow-x: auto; background: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+    #data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    #data-table th, #data-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border-color); }
+    #data-table th { background-color: var(--th-bg); color: #1e293b; position: sticky; top: 0; z-index: 10; font-weight: 600; white-space: nowrap; }
+    
+    #data-table td:nth-child(1) { font-weight: 600; color: #475569; white-space: nowrap; }
+    #data-table td:nth-child(2) { font-weight: bold; color: #2563eb; text-align: center; }
+    #data-table td:nth-child(3) { text-align: center; white-space: nowrap; }
+    #data-table td:nth-child(4) { text-align: center; color: #64748b; }
+    #data-table td:nth-child(5) { font-weight: 600; white-space: nowrap; }
+
+    .hide { display: none !important; }
   </style>
 </head>
 <body>
 
 <header>
   <h1>中国计算机学会（CCF）推荐国际学术会议和期刊目录（2026年版）</h1>
-  <div class="note">
-    <span>注：本页面已收录 2026 版全部 680 余条完整数据，支持点击下方表格进行组合筛选。</span>
+  
+  <div class="legend-box">
+    <div class="legend-item"><div class="color-block bg-yellow"></div>标黄：表示目录新增会议或期刊</div>
+    <div class="legend-item"><div class="color-block" style="background: #fef2f2; border: 1px solid #dc2626;"></div><span style="color:#dc2626; font-weight:bold;">红字</span>：表示从2022年第六版目录中晋级</div>
+    <div class="legend-item"><div class="color-block bg-cyan"></div>标蓝：表示从2022年第六版目录中降级</div>
+    <div class="legend-item"><div class="color-block" style="background: #f0fdf4; border: 1px solid #16a34a;"></div><span style="color:#16a34a; font-weight:bold;">绿字</span>：表示名称更新</div>
   </div>
 </header>
 
@@ -69,30 +101,34 @@
     <tr id="rank">
       <th>级别</th>
       <td class="highlight">全部</td>
-      <td>A</td><td>B</td><td>C</td><td colspan="7" style="cursor:default; border:none;"></td>
+      <td>A</td><td>B</td><td>C</td><td colspan="7" style="background: #fff; cursor: default;"></td>
     </tr>
     <tr id="kind">
       <th>类型</th>
       <td class="highlight">全部</td>
-      <td>期刊</td><td>会议</td><td colspan="8" style="cursor:default; border:none;"></td>
+      <td>期刊</td><td>会议</td><td colspan="8" style="background: #fff; cursor: default;"></td>
     </tr>
   </tbody>
 </table>
 
-<table id="data-table">
-  <thead>
-    <tr>
-      <th>方向</th><th>级别</th><th>类型</th><th>序号</th>
-      <th>刊物简称</th><th>刊物全称</th><th>出版社</th>
-    </tr>
-  </thead>
-  <tbody id="all">
-    <!-- 数据由底部 JS 动态生成填充，确保页面秒开 -->
-  </tbody>
-</table>
+<div class="table-container">
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>方向</th><th>级别</th><th>类型</th><th>序号</th>
+        <th>刊物简称</th><th>刊物全称</th><th>出版社</th>
+      </tr>
+    </thead>
+    <tbody id="all">
+      <!-- 数据将由 JS 动态生成 -->
+    </tbody>
+  </table>
+</div>
 
 <script>
-  // 完整无删减数据源，采用紧凑编码以确保加载速度
+  // ==========================================
+  // 1. 完整无删减数据源录入 (格式: 方向|级别|类型|简称|全称|出版社)
+  // ==========================================
   const rawData = [
     // === 1. 计算机体系结构/并行与分布计算/存储系统 (系统) ===
     "系统|A|期刊|TOCS|ACM Transactions on Computer Systems|ACM",
@@ -509,7 +545,7 @@
     "理论|B|会议|COCOON|International Computing and Combinatorics Conference|Springer",
     "理论|B|会议|FMCAD|Formal Methods in Computer-Aided Design|ACM",
     "理论|C|会议|CSL|Computer Science Logic|Springer",
-    "理论|C|会议|FSTTCS|Foundations of Software Technology and Theoretical Computer Science|Indian Association for Research in Computing Science",
+    "理论|C|会议|FSTTCS|Foundations of Software Technology and Theoretical Computer Science|Indian Association",
     "理论|C|会议|DSAA|IEEE International Conference on Data Science and Advanced Analytics|IEEE",
     "理论|C|会议|ICTAC|International Colloquium on Theoretical Aspects of Computing|Springer",
     "理论|C|会议|IPCO|International Conference on Integer Programming and Combinatorial Optimization|Springer",
@@ -797,7 +833,7 @@
     "综合|C|会议|IJTCS-FAW|International Joint Conference on Theoretical Computer Science - Frontier of Algorithmic Wisdom|Springer"
   ];
 
-  // 定义升级变色集合 (参考2022-2026变动记录)
+  // 变动记录 (新增黄、晋级红、降级青、更名绿)
   const up_red = ["TCC", "TCASI", "CCF-THPC", "TSUSC", "HPDC", "ISCAS", "IOT", "Cybersecurity", "WISE", "COCOON", "FMCAD", "TMM", "CVMJ", "INTER-SPEECH", "TACL", "TIIS", "ICWSM", "Bioinformatics", "TII", "TCPS", "TOCE", "FITEE", "TCSS", "IEEE Transactions on Reliability", "WINE"];
   const up_green = ["ACM SIGOPS ATC", "FSCD"];
   const down_cyan = ["IJCAI", "GMOD"];
@@ -809,24 +845,23 @@
   let group_count = 1;
   let last_cat_rank_type = '';
 
+  // 2. 渲染表格数据
   rawData.forEach((line) => {
     let [cat, rank, type, abbr, name, pub] = line.split('|');
     
-    // 动态生成序号
     let current_group = cat + rank + type;
     if(current_group !== last_cat_rank_type) {
         group_count = 1;
         last_cat_rank_type = current_group;
     }
 
-    // 颜色判断
     let trClass = '';
     if(new_yellow.includes(abbr) || new_yellow.includes(name)) trClass = 'bg-yellow';
     else if(up_red.includes(abbr) || up_red.includes(name)) trClass = 'txt-red';
     else if(up_green.includes(abbr) || up_green.includes(name)) trClass = 'txt-green';
     else if(down_cyan.includes(abbr) || down_cyan.includes(name)) trClass = 'bg-cyan';
 
-    html += `<tr class="${trClass}">
+    html += `<tr class="${trClass}" data-cat="${cat}" data-rank="${rank}" data-type="${type}">
       <td>${cat}</td><td>${rank}</td><td>${type}</td><td>${group_count}</td>
       <td>${abbr === '-' ? '' : abbr}</td><td>${name}</td><td>${pub}</td>
     </tr>`;
@@ -836,45 +871,85 @@
 
   tbody.innerHTML = html;
 
-  // 筛选引擎
-  const keys = {'#subj':'全部', '#rank':'全部', '#kind':'全部'};
-  const prev = {'#subj': null, '#rank': null, '#kind': null};
+  // ==========================================
+  // 3. 完美筛选引擎
+  // ==========================================
+  const activeFilters = { cat: '全部', rank: '全部', type: '全部' };
+  let prevActiveCells = { cat: null, rank: null, type: null };
 
-  for(let k in keys) {
-    document.querySelectorAll(k +' td').forEach(td => {
-      td.onclick = () => update(k, td);
-      if(keys[k] === td.textContent) { update(k, td, false); }
+  function initFilters() {
+    // 方向 (cat)
+    document.querySelectorAll('#subj td').forEach(td => {
+      if(td.textContent === '全部') { td.classList.add('highlight'); prevActiveCells.cat = td; }
+      td.addEventListener('click', function() {
+        if(prevActiveCells.cat) prevActiveCells.cat.classList.remove('highlight');
+        this.classList.add('highlight');
+        prevActiveCells.cat = this;
+        activeFilters.cat = this.textContent;
+        applyFilters();
+      });
+    });
+
+    // 级别 (rank)
+    document.querySelectorAll('#rank td').forEach(td => {
+      if(td.textContent === '全部') { td.classList.add('highlight'); prevActiveCells.rank = td; }
+      td.addEventListener('click', function() {
+        if(prevActiveCells.rank) prevActiveCells.rank.classList.remove('highlight');
+        this.classList.add('highlight');
+        prevActiveCells.rank = this;
+        activeFilters.rank = this.textContent;
+        applyFilters();
+      });
+    });
+
+    // 类型 (type)
+    document.querySelectorAll('#kind td').forEach(td => {
+      if(td.textContent === '全部') { td.classList.add('highlight'); prevActiveCells.type = td; }
+      td.addEventListener('click', function() {
+        if(prevActiveCells.type) prevActiveCells.type.classList.remove('highlight');
+        this.classList.add('highlight');
+        prevActiveCells.type = this;
+        activeFilters.type = this.textContent;
+        applyFilters();
+      });
     });
   }
 
-  function update(k, td, executeFilter=true) {
-    if(td.textContent === "") return;
-    td.className = "highlight";
-    keys[k] = td.textContent;
-    if(prev[k] && prev[k] !== td){ prev[k].className = ""; }
-    prev[k] = td;
-    if(executeFilter) filter();
-  }
-
-  function filter(){
+  function applyFilters() {
     let visibleCount = 0;
-    document.querySelectorAll('#all tr').forEach(row => {
-      let hit = (keys['#subj'] === row.childNodes[0].textContent || keys['#subj'] === '全部' ) &&
-                (keys['#rank'] === row.childNodes[1].textContent || keys['#rank'] === '全部' ) &&
-                (keys['#kind'] === row.childNodes[2].textContent || keys['#kind'] === '全部' );
-      
-      row.classList.toggle("hide", !hit);
-      
-      if(hit) {
+    const rows = document.querySelectorAll('#all tr');
+    
+    rows.forEach(row => {
+      let rCat = row.getAttribute('data-cat');
+      let rRank = row.getAttribute('data-rank');
+      let rType = row.getAttribute('data-type');
+
+      let matchCat = (activeFilters.cat === '全部' || rCat === activeFilters.cat);
+      let matchRank = (activeFilters.rank === '全部' || rRank === activeFilters.rank);
+      let matchType = (activeFilters.type === '全部' || rType === activeFilters.type);
+
+      if (matchCat && matchRank && matchType) {
+        row.classList.remove('hide');
         visibleCount++;
-        if(!row.classList.contains('bg-yellow') && !row.classList.contains('bg-cyan')) {
-           row.style.backgroundColor = (visibleCount % 2 === 1) ? "#fcfcfc" : "#ffffff";
+        // 斑马线：如果该行没有被特殊颜色标记(class为空)，才进行斑马线填充
+        if (row.className === '') {
+          if (visibleCount % 2 === 0) {
+            row.classList.add('row-even');
+          } else {
+            row.classList.remove('row-even');
+          }
         }
+      } else {
+        row.classList.add('hide');
       }
     });
   }
-  
-  window.onload = filter;
+
+  // 启动
+  window.onload = function() {
+    initFilters();
+    applyFilters();
+  };
 </script>
 
 </body>

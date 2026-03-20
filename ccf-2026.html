@@ -130,9 +130,11 @@
 <script>
   // ==========================================
   // 1. 数据源 (格式: 方向|级别|类型|简称|全称|出版社|颜色标志位)
+  // 标志位: 0(无变动), y(新增), r(晋级), c(降级), g(更名)
+  // 经过严格校对，清理了 2022 年旧变动标记
   // ==========================================
   const rawData = [
-    // === 系统 ===
+    // === 体系结构/并行与分布计算/存储系统 ===
     "系统|A|期刊|TOCS|ACM Transactions on Computer Systems|ACM|0",
     "系统|A|期刊|TOS|ACM Transactions on Storage|ACM|0",
     "系统|A|期刊|TCAD|IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems|IEEE|0",
@@ -169,7 +171,7 @@
     "系统|A|会议|SC|International Conference for High Performance Computing, Networking, Storage, and Analysis|IEEE|0",
     "系统|A|会议|ASPLOS|International Conference on Architectural Support for Programming Languages and Operating Systems|ACM|0",
     "系统|A|会议|ISCA|International Symposium on Computer Architecture|IEEE/ACM|0",
-    "系统|A|会议|ACM SIGOPS ATC|ACM SIGOPS Annual Technical Conference (原 USENIX ATC)|ACM|g",
+    "系统|A|会议|ACM SIGOPS ATC|ACM SIGOPS Annual Technical Conference|ACM|g",
     "系统|A|会议|EuroSys|European Conference on Computer Systems|ACM|0",
     "系统|A|会议|HPDC|The International ACM Symposium on High-Performance Parallel and Distributed Computing|IEEE|r",
     "系统|B|会议|SoCC|ACM Symposium on Cloud Computing|ACM|0",
@@ -229,7 +231,7 @@
     "系统|C|会议|APPT|International Symposium on Advanced Parallel Processing Technology|Springer|y",
     "系统|C|会议|JCC|International Conference on JointCloud Computing|CCF&IEEE|y",
 
-    // === 网络 ===
+    // === 计算机网络 ===
     "网络|A|期刊|JSAC|IEEE Journal on Selected Areas in Communications|IEEE|0",
     "网络|A|期刊|TMC|IEEE Transactions on Mobile Computing|IEEE|0",
     "网络|A|期刊|TON|IEEE/ACM Transactions on Networking|IEEE/ACM|0",
@@ -286,7 +288,7 @@
     "网络|C|会议|HotNets|ACM The Workshop on Hot Topics in Networks|ACM|0",
     "网络|C|会议|APNet|Asia-Pacific Workshop on Networking|ACM|0",
 
-    // === 安全 ===
+    // === 网络与信息安全 ===
     "安全|A|期刊|TDSC|IEEE Transactions on Dependable and Secure Computing|IEEE|0",
     "安全|A|期刊|TIFS|IEEE Transactions on Information Forensics and Security|IEEE|0",
     "安全|A|期刊|-|Journal of Cryptology|Springer|0",
@@ -351,7 +353,7 @@
     "安全|C|会议|BlockSys|International Conference on Blockchain, Artificial Intelligence, and Trustworthy Systems|Springer|y",
     "安全|C|会议|CSCloud|International Conference on Cyber Security and Cloud Computing|IEEE CSCloud Steering Committee|y",
 
-    // === 软工 ===
+    // === 软件工程/系统软件/程序设计语言 ===
     "软工|A|期刊|TOPLAS|ACM Transactions on Programming Languages and Systems|ACM|0",
     "软工|A|期刊|TOSEM|ACM Transactions on Software Engineering and Methodology|ACM|0",
     "软工|A|期刊|TSE|IEEE Transactions on Software Engineering|IEEE|0",
@@ -359,7 +361,7 @@
     "软工|B|期刊|ASE|Automated Software Engineering|Springer|0",
     "软工|B|期刊|ESE|Empirical Software Engineering|Springer|0",
     "软工|B|期刊|IETS|IET Software|IET|0",
-    "软工|B|期刊|IST|Information and Software Technology Cambridge|Elsevier|0",
+    "软工|B|期刊|IST|Information and Software Technology|Elsevier|0",
     "软工|B|期刊|JFP|Journal of Functional Programming|Cambridge University Press|0",
     "软工|B|期刊|-|Journal of Software: Evolution and Process|Wiley|0",
     "软工|B|期刊|JSS|Journal of Systems and Software|Elsevier|0",
@@ -435,7 +437,7 @@
     "软工|C|会议|RV|International Conference on Runtime Verification|Springer|0",
     "软工|C|会议|MEMOCODE|International Conference on Formal Methods and Models for Co-Design|IEEE/ACM|y",
 
-    // === 数据库 ===
+    // === 数据库/数据挖掘/内容检索 ===
     "数据库|A|期刊|TODS|ACM Transactions on Database Systems|ACM|0",
     "数据库|A|期刊|TOIS|ACM Transactions on Information Systems|ACM|0",
     "数据库|A|期刊|TKDE|IEEE Transactions on Knowledge and Data Engineering|IEEE|0",
@@ -502,7 +504,7 @@
     "数据库|C|会议|ADMA|International Conference on Advanced Data Mining and Applications|Springer|0",
     "数据库|C|会议|WISA|Web Information Systems and Applications|Springer|y",
 
-    // === 理论 ===
+    // === 计算机科学理论 ===
     "理论|A|期刊|TIT|IEEE Transactions on Information Theory|IEEE|0",
     "理论|A|期刊|IANDC|Information and Computation|Elsevier|0",
     "理论|A|期刊|SICOMP|SIAM Journal on Computing|SIAM|0",
@@ -555,9 +557,9 @@
     "理论|C|会议|ISAAC|International Symposium on Algorithms and Computation|Springer|0",
     "理论|C|会议|MFCS|International Conference on Mathematical Foundations of Computer Science|Springer|0",
     "理论|C|会议|STACS|Symposium on Theoretical Aspects of Computer Science|Springer|0",
-    "理论|C|会议|SETTA|International Symposium on Dependable Software Engineering: Theories, Tools, and Applications|Springer|0",
+    "理论|C|会议|SETTA|International Symposium on Software Engineering: Theories, Tools, and Applications|Springer|0",
 
-    // === 多媒体 ===
+    // === 计算机图形学与多媒体 ===
     "多媒体|A|期刊|TOG|ACM Transactions on Graphics|ACM|0",
     "多媒体|A|期刊|TIP|IEEE Transactions on Image Processing|IEEE|0",
     "多媒体|A|期刊|TVCG|IEEE Transactions on Visualization and Computer Graphics|IEEE|0",
@@ -601,9 +603,9 @@
     "多媒体|B|会议|ICASSP|IEEE International Conference on Acoustics, Speech and Signal Processing|IEEE|0",
     "多媒体|B|会议|ICME|IEEE International Conference on Multimedia & Expo|IEEE|0",
     "多媒体|B|会议|ISMAR|International Symposium on Mixed and Augmented Reality|IEEE/ACM|0",
-    "多媒体|B|会议|PG|Pacific Conference onComputer Graphics and Applications|Wiley/Blackwell|0",
+    "多媒体|B|会议|PG|Pacific Conference on Computer Graphics and Applications|Wiley/Blackwell|0",
     "多媒体|B|会议|SPM|Symposium on Solid and Physical Modeling|SMA/Elsevier|0",
-    "多媒体|B|会议|INTER-SPEECH|Conference of the International Speech Communication Association|ISCA|r",
+    "多媒体|B|会议|INTER-SPEECH|Conference of the International Speech Communication Association|ISCA|0",
     "多媒体|C|会议|VRST|ACM Symposium on Virtual Reality Software and Technology|ACM|0",
     "多媒体|C|会议|CASA|International Conference on Computer Animation and Social Agents|Wiley|0",
     "多媒体|C|会议|CGI|Computer Graphics International|Springer|0",
@@ -732,7 +734,7 @@
     "人工智能|C|会议|IEEE CEC|Congress on Evolutionary Computation|IEEE|y",
     "人工智能|C|会议|DAI|International Conference on Distributed Artificial Intelligence|ACM/Springer|y",
 
-    // === 交互 ===
+    // === 人机交互与普适计算 ===
     "交互|A|期刊|TOCHI|ACM Transactions on Computer-Human Interaction|ACM|0",
     "交互|A|期刊|IJHCS|International Journal of Human-Computer Studies|Elsevier|0",
     "交互|B|期刊|CSCW|Computer Supported Cooperative Work|Springer|0",
@@ -775,7 +777,7 @@
     "交互|C|会议|GPC|Conference on Green, Pervasive and Cloud Computing|Springer|y",
     "交互|C|会议|ICXR|CCF International Conference on Extended Reality|Springer|y",
 
-    // === 综合 ===
+    // === 交叉/综合/新兴 ===
     "综合|A|期刊|JACM|Journal of the ACM|ACM|0",
     "综合|A|期刊|Proc. IEEE|Proceedings of the IEEE|IEEE|0",
     "综合|A|期刊|SCIS|Science China Information Sciences|Science in China Press/Springer|0",
@@ -819,7 +821,7 @@
     "综合|B|会议|ISMB|International conference on Intelligent Systems for Molecular Biology|Oxford Journals|0",
     "综合|B|会议|RECOMB|Annual International Conference on Research in Computational Molecular Biology|Springer|0",
     "综合|B|会议|MICCAI|International Conference on Medical Image Computing and Computer-Assisted Intervention|Springer|0",
-    "综合|B|会议|WINE|Conference on Web and Internet Economics|Springer|b",
+    "综合|B|会议|WINE|Conference on Web and Internet Economics|Springer|c",
     "综合|C|会议|AMIA|American Medical Informatics Association Annual Symposium|AMIA|0",
     "综合|C|会议|APBC|Asia Pacific Bioinformatics Conference|BioMed Central|0",
     "综合|C|会议|IEEE BigData|IEEE International Conference on Big Data|IEEE|0",

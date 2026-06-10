@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>个人主页 | 聂何望 (Hewang Nie)</title>
+  <meta name="description" content="聂何望的学术个人主页 - 广西师范大学讲师 / 硕士生导师；研究方向包括人工智能安全、模型水印、联邦学习安全等。" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="color-scheme" content="light dark" />
+  <meta property="og:title" content="个人主页 | 聂何望 (Hewang Nie)" />
+  <meta property="og:description" content="人工智能安全、模型版权保护、联邦学习安全、神经网络水印与数据水印。" />
+  <meta property="og:type" content="website" />
+  <style>
+
+:root {
+  color-scheme: light dark;
+  --bg0:#f7fbff; --bg1:#eef6ff; --bg2:#f4fff8;
+  --surface:rgba(255,255,255,.78); --surface-strong:rgba(255,255,255,.94);
+  --surface-soft:rgba(248,250,252,.82); --line:rgba(148,163,184,.22);
+  --text:#0f172a; --muted:#475569; --faint:#64748b;
+  --brand:#2563eb; --brand2:#06b6d4; --brand3:#10b981; --hot:#f43f5e; --gold:#f59e0b; --violet:#7c3aed;
+  --shadow-sm:0 8px 22px rgba(15,23,42,.07);
+  --shadow-md:0 18px 48px rgba(15,23,42,.12);
+  --shadow-lg:0 32px 95px rgba(15,23,42,.18);
+  --glow:0 0 0 1px rgba(255,255,255,.62), 0 25px 80px rgba(37,99,235,.22);
+  --radius-xl:34px; --radius-lg:24px; --radius-md:18px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+html[data-theme="dark"] {
+  --bg0:#020617; --bg1:#07111f; --bg2:#071b18;
+  --surface:rgba(15,23,42,.72); --surface-strong:rgba(15,23,42,.9);
+  --surface-soft:rgba(30,41,59,.58); --line:rgba(148,163,184,.22);
+  --text:#e5eefc; --muted:#cbd5e1; --faint:#94a3b8;
+  --brand:#60a5fa; --brand2:#22d3ee; --brand3:#34d399; --hot:#fb7185; --gold:#fbbf24; --violet:#a78bfa;
+  --shadow-sm:0 8px 22px rgba(0,0,0,.22);
+  --shadow-md:0 18px 48px rgba(0,0,0,.30);
+  --shadow-lg:0 32px 95px rgba(0,0,0,.42);
+  --glow:0 0 0 1px rgba(148,163,184,.16), 0 25px 80px rgba(96,165,250,.14);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; min-height:100vh; overflow-x:hidden;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
+  color:var(--text); line-height:1.72;
+  background:
+    radial-gradient(circle at 8% 8%, color-mix(in srgb, var(--brand) 24%, transparent), transparent 32%),
+    radial-gradient(circle at 92% 12%, color-mix(in srgb, var(--brand3) 22%, transparent), transparent 30%),
+    radial-gradient(circle at 52% 92%, color-mix(in srgb, var(--violet) 18%, transparent), transparent 32%),
+    linear-gradient(135deg,var(--bg1),var(--bg0) 48%,var(--bg2));
+  background-attachment: fixed;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:-2;
+  background-image:linear-gradient(rgba(148,163,184,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.11) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.8) 54%,transparent 100%);
+}
+body::after{
+  content:""; position:fixed; inset:-120px; z-index:-3; pointer-events:none;
+  background:conic-gradient(from 180deg at 50% 50%, rgba(37,99,235,.08), rgba(16,185,129,.08), rgba(124,58,237,.08), rgba(37,99,235,.08));
+  filter:blur(70px); animation:aurora 20s linear infinite alternate;
+}
+@keyframes aurora{from{transform:rotate(0deg) scale(1)}to{transform:rotate(14deg) scale(1.08)}}
+a{color:var(--brand);text-decoration:none;transition:color .2s var(--ease), transform .2s var(--ease)}
+a:hover{text-decoration:underline}
+::selection{background:color-mix(in srgb, var(--brand) 22%, transparent)}
+.page{position:relative;width:min(1280px,calc(100% - 38px));margin:0 auto;padding:28px 0 58px}
+.floating-orb{position:fixed;border-radius:999px;pointer-events:none;z-index:-1;opacity:.55;filter:blur(4px)}
+.orb-a{width:310px;height:310px;left:4%;top:18%;background:radial-gradient(circle,color-mix(in srgb,var(--brand) 30%,transparent),transparent 70%);animation:floatA 12s ease-in-out infinite}
+.orb-b{width:360px;height:360px;right:3%;bottom:8%;background:radial-gradient(circle,color-mix(in srgb,var(--brand3) 26%,transparent),transparent 70%);animation:floatB 14s ease-in-out infinite}
+@keyframes floatA{50%{transform:translate(22px,-26px)}} @keyframes floatB{50%{transform:translate(-24px,24px)}}
+.toolbar{
+  position:sticky;top:14px;z-index:20;display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;
+  padding:8px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:blur(18px);box-shadow:var(--shadow-sm);width:max-content;max-width:100%;margin-left:auto
+}
+.toolbar-btn{
+  border:1px solid var(--line);background:var(--surface-strong);color:var(--muted);border-radius:999px;padding:9px 15px;font-size:.9rem;font-weight:900;cursor:pointer;
+  box-shadow:0 1px 0 rgba(255,255,255,.22) inset;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .24s var(--ease);white-space:nowrap
+}
+.toolbar-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);text-decoration:none}
+.toolbar-btn.active,#theme-toggle[data-active="true"]{background:linear-gradient(135deg,var(--brand),var(--brand2));border-color:transparent;color:white;box-shadow:0 16px 38px color-mix(in srgb,var(--brand) 28%,transparent)}
+.toolbar-btn.ccf{background:linear-gradient(135deg,color-mix(in srgb,var(--brand3) 16%,var(--surface-strong)),var(--surface-strong));color:color-mix(in srgb,var(--brand3) 78%,var(--text));}
+.toolbar-btn.ghost{opacity:.92}
+.hero{
+  position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.48);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.52);
+  background:linear-gradient(135deg,color-mix(in srgb,var(--surface-strong) 92%,transparent),color-mix(in srgb,var(--surface) 82%,transparent));backdrop-filter:blur(24px);
+  padding:38px;display:grid;grid-template-columns:242px 1fr;gap:38px;align-items:center;isolation:isolate
+}
+.hero::before{content:"";position:absolute;width:640px;height:640px;right:-220px;top:-360px;background:radial-gradient(circle,color-mix(in srgb,var(--brand) 26%,transparent),transparent 68%);z-index:-1}
+.hero::after{content:"";position:absolute;inset:auto 8% -70px 18%;height:120px;background:linear-gradient(90deg,var(--brand),var(--brand2),var(--brand3));filter:blur(55px);opacity:.22;z-index:-1}
+.photo-wrap{position:relative;width:226px;border-radius:32px;padding:13px;background:linear-gradient(145deg,color-mix(in srgb,var(--brand) 24%,transparent),color-mix(in srgb,var(--brand2) 16%,transparent),color-mix(in srgb,var(--brand3) 22%,transparent));box-shadow:var(--glow);transform:perspective(900px) rotateY(-2deg)}
+.photo-wrap::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.8),transparent,var(--brand2));mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none}
+.photo-wrap::after{content:"GXNU";position:absolute;left:50%;bottom:-13px;transform:translateX(-50%);padding:6px 13px;border-radius:999px;background:color-mix(in srgb,var(--text) 92%,transparent);color:var(--bg0);font-size:.72rem;font-weight:950;letter-spacing:.12em;box-shadow:var(--shadow-md)}
+.photo{width:200px;height:266px;overflow:hidden;border-radius:24px;background:var(--surface-strong);border:5px solid rgba(255,255,255,.72);box-shadow:inset 0 0 0 1px var(--line)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s var(--ease), filter .55s var(--ease)}
+.photo-wrap:hover img{transform:scale(1.045);filter:saturate(1.06)}
+.hero-content{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--brand) 24%,var(--line));background:color-mix(in srgb,var(--brand) 10%,var(--surface-strong));color:var(--brand);font-weight:950;font-size:.82rem;letter-spacing:.02em;box-shadow:var(--shadow-sm)}
+.eyebrow-dot{width:8px;height:8px;border-radius:999px;background:var(--brand3);box-shadow:0 0 0 7px color-mix(in srgb,var(--brand3) 16%,transparent)}
+.hero-title{margin:18px 0 0;font-size:clamp(2.35rem,5vw,4.45rem);line-height:1;letter-spacing:-.075em;font-weight:950;color:var(--text)}
+.hero-title::after{content:"";display:block;width:min(220px,42vw);height:7px;margin-top:12px;border-radius:999px;background:linear-gradient(90deg,var(--brand),var(--brand2),var(--brand3));box-shadow:0 14px 26px color-mix(in srgb,var(--brand) 28%,transparent)}
+.hero-subtitle{margin-top:13px;font-size:clamp(1.02rem,2vw,1.34rem);color:var(--muted);font-weight:900;letter-spacing:-.015em}
+.hero-desc{max-width:890px;margin:18px 0 0;color:var(--muted);font-size:1.02rem;text-align:justify}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.pill-link{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:9px 15px;background:var(--surface-strong);border:1px solid var(--line);color:var(--muted);font-weight:850;font-size:.9rem;box-shadow:var(--shadow-sm);transition:all .24s var(--ease)}
+.pill-link:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);color:var(--brand);text-decoration:none;border-color:color-mix(in srgb,var(--brand) 28%,var(--line))}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:25px}
+.stat{position:relative;overflow:hidden;padding:17px;border-radius:21px;background:linear-gradient(135deg,var(--surface-strong),var(--surface-soft));border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:all .25s var(--ease)}
+.stat:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.stat::after{content:"";position:absolute;width:80px;height:80px;right:-35px;bottom:-38px;border-radius:999px;background:color-mix(in srgb,var(--brand) 12%,transparent)}
+.stat-number{position:relative;z-index:1;font-size:1.6rem;line-height:1.05;color:var(--brand);font-weight:950;letter-spacing:-.045em}
+.stat-label{position:relative;z-index:1;margin-top:7px;color:var(--muted);font-weight:750;font-size:.83rem;line-height:1.45}
+.layout{display:grid;grid-template-columns:318px minmax(0,1fr);gap:24px;margin-top:24px;align-items:start}
+.sidebar{position:sticky;top:92px;display:grid;gap:18px}
+.side-card,.content-card{border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,.42);background:var(--surface);backdrop-filter:blur(22px);box-shadow:var(--shadow-md)}
+.side-card{padding:22px}
+.side-heading{margin:0 0 15px;font-size:.82rem;font-weight:950;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);display:flex;align-items:center;gap:9px}
+.side-heading::before{content:"";width:9px;height:9px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand3));box-shadow:0 0 0 5px color-mix(in srgb,var(--brand) 12%,transparent)}
+.contact-list{display:grid;gap:12px}
+.contact-item{display:grid;grid-template-columns:34px 1fr;gap:11px;align-items:start;color:var(--muted);font-size:.92rem}
+.icon-box{width:34px;height:34px;border-radius:13px;background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 10%,var(--surface-strong)),color-mix(in srgb,var(--brand2) 10%,var(--surface-strong)));display:inline-flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--brand) 18%,var(--line))}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--brand) 10%,var(--surface-strong));border:1px solid color-mix(in srgb,var(--brand) 22%,var(--line));color:var(--brand);font-size:.82rem;font-weight:850}
+.nav-list{display:grid;gap:8px}
+.nav-link{position:relative;padding:10px 12px 10px 34px;border-radius:15px;color:var(--muted);font-size:.92rem;font-weight:850;border:1px solid transparent;transition:all .22s var(--ease)}
+.nav-link::before{content:"";position:absolute;left:14px;top:50%;width:7px;height:7px;border-radius:999px;background:color-mix(in srgb,var(--faint) 40%,transparent);transform:translateY(-50%);transition:all .22s var(--ease)}
+.nav-link:hover,.nav-link.active{background:color-mix(in srgb,var(--brand) 11%,var(--surface-strong));border-color:color-mix(in srgb,var(--brand) 20%,var(--line));color:var(--brand);text-decoration:none;transform:translateX(3px)}
+.nav-link:hover::before,.nav-link.active::before{background:var(--brand);box-shadow:0 0 0 6px color-mix(in srgb,var(--brand) 13%,transparent)}
+.content-card{padding:36px}
+section{margin-bottom:48px;scroll-margin-top:105px}
+section:last-child{margin-bottom:0}
+.section-title{margin:0 0 22px;display:flex;align-items:center;gap:13px;color:var(--text);font-size:1.52rem;line-height:1.24;letter-spacing:-.035em;font-weight:950}
+.section-title::before{content:"";width:10px;height:32px;border-radius:999px;background:linear-gradient(180deg,var(--brand),var(--brand2),var(--brand3));box-shadow:0 12px 24px color-mix(in srgb,var(--brand) 25%,transparent);flex:0 0 auto}
+h3{margin:31px 0 15px;padding-bottom:10px;border-bottom:1px solid var(--line);color:var(--text);font-size:1.18rem;font-weight:950;letter-spacing:-.02em}
+h4{margin:25px 0 13px;color:var(--brand);font-size:1.04rem;font-weight:950;display:inline-flex;align-items:center;gap:8px}
+h4::before{content:"";width:7px;height:7px;border-radius:999px;background:var(--brand);box-shadow:0 0 0 6px color-mix(in srgb,var(--brand) 13%,transparent)}
+p{margin:0 0 15px;color:var(--muted);text-align:justify}
+li{color:var(--muted);margin-bottom:8px}
+li::marker{color:var(--brand)}
+.plain-list{padding-left:21px;margin-bottom:0}
+.intro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
+.mini-card{padding:16px;border-radius:19px;background:var(--surface-soft);border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:all .22s var(--ease)}
+.mini-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.mini-card strong{display:block;color:var(--text);font-weight:950;margin-bottom:4px}
+.mini-card span{color:var(--muted);font-size:.9rem}
+.service-grid,.project-list,.pub-list{display:grid;gap:12px}
+.service-card{position:relative;overflow:hidden;display:grid;grid-template-columns:40px 1fr;gap:13px;align-items:start;padding:18px;border-radius:19px;background:linear-gradient(135deg,var(--surface-strong),var(--surface-soft));border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:all .24s var(--ease)}
+.service-card:hover,.pub-item:hover,.project-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:color-mix(in srgb,var(--brand) 28%,var(--line))}
+.service-mark{width:40px;height:40px;border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 12%,var(--surface-strong)),color-mix(in srgb,var(--brand2) 12%,var(--surface-strong)));border:1px solid color-mix(in srgb,var(--brand) 22%,var(--line));color:var(--brand);display:inline-flex;align-items:center;justify-content:center;font-weight:950}
+.service-body{color:var(--muted);font-size:.96rem}.service-body strong{color:var(--text);font-weight:950}
+.grid-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 12px;padding:0;list-style:none;margin-bottom:0}
+.grid-list li{position:relative;padding:10px 12px 10px 31px;margin:0;border-radius:15px;background:var(--surface-soft);border:1px solid var(--line);color:var(--muted);font-size:.9rem;font-weight:650}
+.grid-list li::before{content:"";position:absolute;left:13px;top:18px;width:7px;height:7px;border-radius:999px;background:var(--brand)}
+.project-card{position:relative;overflow:hidden;padding:18px 19px 18px 22px;border-radius:19px;background:var(--surface-strong);border:1px solid var(--line);box-shadow:var(--shadow-sm);color:var(--muted);transition:all .24s var(--ease)}
+.project-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--brand),var(--brand3))}
+.project-card strong{color:var(--text);font-weight:950}
+.pub-note{display:inline-flex;align-items:center;gap:14px;margin-bottom:14px;padding:8px 13px;border-radius:999px;background:var(--surface-strong);border:1px solid var(--line);box-shadow:var(--shadow-sm);color:var(--muted);font-size:.84rem;font-weight:750}
+.sym{font-weight:950;cursor:help}.sym-corr{color:var(--hot)}.sym-co{color:var(--gold)}
+.pub-list{padding:0;list-style:none;margin-bottom:0}
+.pub-item{position:relative;display:grid;grid-template-columns:50px 1fr;gap:13px;padding:18px;border-radius:20px;background:var(--surface-strong);border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:all .24s var(--ease)}
+.pub-index{width:44px;height:44px;border-radius:17px;background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 12%,var(--surface-strong)),color-mix(in srgb,var(--brand2) 12%,var(--surface-strong)));border:1px solid color-mix(in srgb,var(--brand) 24%,var(--line));color:var(--brand);display:inline-flex;align-items:center;justify-content:center;font-size:.88rem;font-weight:950}
+.pub-title{display:block;margin-bottom:6px;color:var(--text);font-weight:950;line-height:1.48}
+.pub-meta{color:var(--muted);font-size:.92rem}.author-me{color:var(--brand);font-weight:950}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font-size:.72rem;line-height:1.45;font-weight:950;border:1px solid transparent}
+.badge-ccf-a{color:#dc2626;background:#fef2f2;border-color:#fecaca}.badge-ccf-b{color:#1d4ed8;background:#eff6ff;border-color:#bfdbfe}.badge-ccf-c{color:#6d28d9;background:#f5f3ff;border-color:#ddd6fe}
+.badge-sci-1{color:#b45309;background:#fffbeb;border-color:#fde68a}.badge-sci-2{color:#047857;background:#ecfdf5;border-color:#bbf7d0}.badge-sci-3{color:#0f766e;background:#f0fdfa;border-color:#99f6e4}.badge-sci-4{color:#475569;background:#f8fafc;border-color:#e2e8f0}.badge-top{color:#e11d48;background:#fff1f2;border-color:#ffe4e6}
+html[data-theme="dark"] .badge{filter:saturate(.95) brightness(.96)}
+.timeline{position:relative;display:grid;gap:14px;margin-top:4px}
+.timeline-item{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start;color:var(--muted)}
+.timeline-dot-wrap{width:30px;height:30px;display:flex;align-items:center;justify-content:center;padding-top:1px}.timeline-dot{width:15px;height:15px;border-radius:999px;background:var(--surface-strong);border:4px solid var(--brand);box-shadow:0 0 0 7px color-mix(in srgb,var(--brand) 12%,transparent)}
+.timeline-content{padding:2px 0 0}.timeline-content strong{color:var(--brand);font-weight:950}
+.callout{position:relative;overflow:hidden;padding:26px;border-radius:28px;background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 12%,var(--surface-strong)),color-mix(in srgb,var(--brand3) 11%,var(--surface-strong)));border:1px solid color-mix(in srgb,var(--brand) 24%,var(--line));box-shadow:var(--shadow-md)}
+.callout::after{content:"";position:absolute;width:250px;height:250px;right:-100px;bottom:-120px;border-radius:999px;background:radial-gradient(circle,color-mix(in srgb,var(--brand) 18%,transparent),transparent 70%)}
+.callout h3{margin-top:0;border:none;padding:0;color:var(--brand)}.callout>*{position:relative;z-index:1}.highlight{color:var(--brand);font-weight:950}
+footer{padding:24px 0 4px;text-align:center;color:var(--faint);font-size:.86rem}
+.fade{animation:fadeIn .32s var(--ease)}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease), transform .7s var(--ease)}.reveal.is-visible{opacity:1;transform:none}
+.scroll-progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2),var(--brand3));z-index:100;box-shadow:0 0 18px color-mix(in srgb,var(--brand) 42%,transparent)}
+.back-to-top{position:fixed;right:18px;bottom:18px;z-index:80;width:46px;height:46px;border-radius:999px;border:1px solid var(--line);background:var(--surface-strong);color:var(--brand);box-shadow:var(--shadow-md);font-weight:950;font-size:1.15rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:all .22s var(--ease);backdrop-filter:blur(16px)}
+.back-to-top.visible{opacity:1;pointer-events:auto;transform:none}.back-to-top:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+@media(max-width:1040px){.hero{grid-template-columns:1fr;text-align:center}.photo-wrap{margin:0 auto}.hero-title::after{margin-left:auto;margin-right:auto}.hero-desc{text-align:center;margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.layout{grid-template-columns:1fr}.sidebar{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.side-card.nav-card{grid-column:1/-1}.nav-list{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:760px){.page{width:min(100% - 22px,1280px);padding-top:14px}.toolbar{justify-content:center;width:100%;border-radius:24px;top:8px}.toolbar-btn{flex:1 1 auto;padding:9px 12px}.hero{padding:24px;border-radius:27px}.photo-wrap{width:190px;padding:11px}.photo{width:168px;height:224px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.sidebar{grid-template-columns:1fr}.nav-list{grid-template-columns:repeat(2,minmax(0,1fr))}.content-card{padding:23px 16px}.intro-grid,.grid-list{grid-template-columns:1fr}.pub-item{grid-template-columns:1fr}.pub-index{width:auto;justify-content:flex-start;padding:0 13px}.section-title{font-size:1.32rem}section{scroll-margin-top:140px}}
+@media(max-width:460px){.stats{grid-template-columns:1fr}.nav-list{grid-template-columns:1fr}.hero-title{letter-spacing:-.045em}.pub-note{border-radius:16px;align-items:flex-start;flex-direction:column;gap:5px}.hero-actions .pill-link{width:100%;justify-content:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{body{background:#fff;color:#000}body::before,body::after,.floating-orb,.toolbar,.sidebar,.scroll-progress,.back-to-top{display:none!important}.page{width:100%;padding:0}.hero,.content-card,.side-card{box-shadow:none;border:none;border-radius:0;background:#fff}.layout{display:block}.pub-item,.service-card,.project-card,.mini-card,.callout{break-inside:avoid;box-shadow:none}}
+
+  </style>
+</head>
+<body>
+
+<div class="floating-orb orb-a"></div>
+<div class="floating-orb orb-b"></div>
+<div class="page">
+<div class="toolbar"><button class="toolbar-btn" id="theme-toggle" type="button">🌙 深色</button>
+<button class="toolbar-btn active" id="btn-zh" onclick="setLang('zh')" type="button">🇨🇳 中文</button>
+<button class="toolbar-btn" id="btn-en" onclick="setLang('en')" type="button">🇺🇸 English</button>
+<a class="toolbar-btn ccf" href="ccf-2026.html" rel="noopener noreferrer" target="_blank">📚 CCF目录(2026)</a></div>
+<header class="hero">
+<div class="photo-wrap">
+<div class="photo">
+<img alt="Hewang Nie" decoding="async" id="profile-photo" loading="eager" src="photo.jpg" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20420%20560%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23eff6ff%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ecfdf5%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22420%22%20height%3D%22560%22%20rx%3D%2228%22%20fill%3D%22url%28%23g%29%22/%3E%3Ccircle%20cx%3D%22210%22%20cy%3D%22170%22%20r%3D%2276%22%20fill%3D%22%23bfdbfe%22/%3E%3Cpath%20d%3D%22M84%20505c18-132%2096-195%20126-195s108%2063%20126%20195%22%20fill%3D%22%231d4ed8%22%20opacity%3D%22.9%22/%3E%3Cpath%20d%3D%22M150%20326l60%2078%2060-78%22%20fill%3D%22%23fff%22%20opacity%3D%22.95%22/%3E%3Ctext%20x%3D%22210%22%20y%3D%22510%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%230f172a%22%3EHewang%20Nie%3C/text%3E%3C/svg%3E';" />
+</div>
+</div>
+<div class="hero-content" id="hero-zh">
+<div class="eyebrow"><span class="eyebrow-dot"></span> AI Security · Model Watermarking · Federated Learning</div>
+<h1 class="hero-title">聂何望</h1>
+<div class="hero-subtitle">博士 / 讲师 / 硕士生导师 · 广西师范大学</div>
+<p class="hero-desc">
+          主要研究方向包括人工智能安全、模型版权保护、联邦学习安全、神经网络模型水印、数据水印、可逆信息隐藏与图像处理等。
+          主持中央网信办创新资助计划项目，参与国家重点研发计划、国家自然科学基金等项目。
+        </p>
+<div class="hero-actions">
+<a class="pill-link" href="/cdn-cgi/l/email-protection#5e3036291e3926302b703b3a2b703d30">📧 <span class="__cf_email__" data-cfemail="224c4a5562455a4c570c4746570c414c">[email&#160;protected]</span></a>
+<span class="pill-link">🏛️ 广西师范大学</span>
+<span class="pill-link">📍 育才校区 文二楼南楼 813室</span>
+</div>
+<div class="stats">
+<div class="stat">
+<div class="stat-number">18+</div>
+<div class="stat-label">论文发表</div>
+</div>
+<div class="stat">
+<div class="stat-number">6</div>
+<div class="stat-label">SCI一区TOP期刊论文</div>
+</div>
+<div class="stat">
+<div class="stat-number">10</div>
+<div class="stat-label">CCF-A/B类高水平论文</div>
+</div>
+<div class="stat">
+<div class="stat-number">6</div>
+<div class="stat-label">专利与软件著作权</div>
+</div>
+</div>
+</div>
+<div class="hero-content" id="hero-en" style="display: none;">
+<div class="eyebrow"><span class="eyebrow-dot"></span> AI Security · Model Watermarking · Federated Learning</div>
+<h1 class="hero-title">Hewang Nie</h1>
+<div class="hero-subtitle">Ph.D. / Lecturer / Master's Supervisor · Guangxi Normal University</div>
+<p class="hero-desc">
+          His research interests include AI security, model intellectual property protection, federated learning security,
+          neural network watermarking, data watermarking, reversible information hiding, and image processing.
+        </p>
+<div class="hero-actions">
+<a class="pill-link" href="/cdn-cgi/l/email-protection#ec82849bac8b948299c2898899c28f82">📧 <span class="__cf_email__" data-cfemail="7917110e391e01170c571c1d0c571a17">[email&#160;protected]</span></a>
+<span class="pill-link">🏛️ Guangxi Normal University</span>
+<span class="pill-link">📍 Room 813, South Building of Wen Building 2</span>
+</div>
+<div class="stats">
+<div class="stat">
+<div class="stat-number">18+</div>
+<div class="stat-label">Publications</div>
+</div>
+<div class="stat">
+<div class="stat-number">6</div>
+<div class="stat-label">SCI Q1 TOP Journal Papers</div>
+</div>
+<div class="stat">
+<div class="stat-number">10</div>
+<div class="stat-label">CCF-A/B High-level Papers</div>
+</div>
+<div class="stat">
+<div class="stat-number">6</div>
+<div class="stat-label">Patents &amp; Copyrights</div>
+</div>
+</div>
+</div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+<div class="side-card">
+<h2 class="side-heading" id="side-contact-title">联系方式</h2>
+<div class="contact-list" id="contact-zh">
+<div class="contact-item">
+<span class="icon-box">🏛️</span>
+<span>广西师范大学<br/>2025.07 至今</span>
+</div>
+<div class="contact-item">
+<span class="icon-box">📍</span>
+<span>育才校区 文二楼南楼 813室</span>
+</div>
+<div class="contact-item">
+<span class="icon-box">📧</span>
+<span><a href="/cdn-cgi/l/email-protection#6806001f280f10061d460d0c1d460b06"><span class="__cf_email__" data-cfemail="67090f1027001f091249020312490409">[email&#160;protected]</span></a></span>
+</div>
+</div>
+<div class="contact-list" id="contact-en" style="display: none;">
+<div class="contact-item">
+<span class="icon-box">🏛️</span>
+<span>Guangxi Normal University<br/>Since July 2025</span>
+</div>
+<div class="contact-item">
+<span class="icon-box">📍</span>
+<span>Room 813, South Building of Wen Building 2, Yucai Campus</span>
+</div>
+<div class="contact-item">
+<span class="icon-box">📧</span>
+<span><a href="/cdn-cgi/l/email-protection#83edebf4c3e4fbedf6ade6e7f6ade0ed"><span class="__cf_email__" data-cfemail="88e6e0ffc8eff0e6fda6edecfda6ebe6">[email&#160;protected]</span></a></span>
+</div>
+</div>
+</div>
+<div class="side-card">
+<h2 class="side-heading" id="side-tag-title">研究方向</h2>
+<div class="tag-cloud" id="tags-zh">
+<span class="tag">AI安全</span>
+<span class="tag">模型版权保护</span>
+<span class="tag">联邦学习</span>
+<span class="tag">神经网络水印</span>
+<span class="tag">数据水印</span>
+<span class="tag">图像处理</span>
+</div>
+<div class="tag-cloud" id="tags-en" style="display: none;">
+<span class="tag">AI Security</span>
+<span class="tag">Model IP Protection</span>
+<span class="tag">Federated Learning</span>
+<span class="tag">NN Watermarking</span>
+<span class="tag">Data Watermarking</span>
+<span class="tag">Image Processing</span>
+</div>
+</div>
+<div class="side-card nav-card">
+<h2 class="side-heading" id="side-nav-title">页面导航</h2>
+<nav class="nav-list" id="nav-zh">
+<a class="nav-link" href="#about-zh">个人简介</a>
+<a class="nav-link" href="#service-zh">学术任职</a>
+<a class="nav-link" href="#projects-zh">科研项目</a>
+<a class="nav-link" href="#publications-zh">论文发表</a>
+<a class="nav-link" href="#patents-zh">专利软著</a>
+<a class="nav-link" href="#exchanges-zh">学术交流</a>
+<a class="nav-link" href="#honors-zh">荣誉奖项</a>
+<a class="nav-link" href="#admission-zh">招生启事</a>
+</nav>
+<nav class="nav-list" id="nav-en" style="display: none;">
+<a class="nav-link" href="#about-en">About</a>
+<a class="nav-link" href="#service-en">Service</a>
+<a class="nav-link" href="#projects-en">Projects</a>
+<a class="nav-link" href="#publications-en">Publications</a>
+<a class="nav-link" href="#patents-en">Patents</a>
+<a class="nav-link" href="#exchanges-en">Exchanges</a>
+<a class="nav-link" href="#honors-en">Honors</a>
+<a class="nav-link" href="#admission-en">Admission</a>
+</nav>
+</div>
+</aside>
+<main class="content-card">
+<div class="fade" id="content-zh">
+<section id="about-zh">
+<h2 class="section-title">个人简介</h2>
+<p>
+              聂何望，男，汉族，籍贯江西省九江市，博士 / 讲师。2025年6月毕业于华中科技大学，获网络与信息安全博士学位。
+              长期致力于人工智能安全、可逆信息隐藏、神经网络模型水印等领域的研究。
+            </p>
+<p>
+              主持中央网信办创新资助计划项目，参与国家重点研发计划、国家科学自然基金地区科学基金项目、
+              广西高校中青年教师基础能力提升项目等重要科研项目研究。已在国内外著名期刊和会议发表论文十余篇，
+              其中SCI一区TOP国际期刊论文6篇，CCF-A/B类高水平论文10篇，获发明专利3件，软件著作权3件。
+            </p>
+<div class="intro-grid">
+<div class="mini-card">
+<strong>研究主线</strong>
+<span>人工智能安全与模型版权保护</span>
+</div>
+<div class="mini-card">
+<strong>技术方向</strong>
+<span>联邦学习安全、模型水印、数据水印</span>
+</div>
+<div class="mini-card">
+<strong>招生方向</strong>
+<span>计算机科学与技术、软件工程、电子信息</span>
+</div>
+</div>
+</section>
+<section id="service-zh">
+<h2 class="section-title">学术任职</h2>
+<div class="service-grid">
+<div class="service-card">
+<span class="service-mark">01</span>
+<div class="service-body">
+<strong><em>Scientific Reports</em></strong> 编委 (Editorial Board Member)
+                </div>
+</div>
+<div class="service-card">
+<span class="service-mark">02</span>
+<div class="service-body">
+<strong>中国图象图形学学会数字媒体取证与安全专委会</strong> 委员
+                </div>
+</div>
+<div class="service-card">
+<span class="service-mark">03</span>
+<div class="service-body">
+<strong>Pacific Graphics 2026 (PG 2026, Singapore)</strong> 程序委员会委员
+                  (International Program Committee Member)
+                </div>
+</div>
+<div class="service-card">
+<span class="service-mark">04</span>
+<div class="service-body">
+<strong>The 2nd SMPP Workshop (2026 IEEE BIBM)</strong> 程序委员会委员 (PC Member)
+                </div>
+</div>
+<div class="service-card">
+<span class="service-mark">05</span>
+<div class="service-body">
+<strong>“新一代图像安全技术研讨会”</strong> 程序委员会委员 (PC Member)
+                </div>
+</div>
+</div>
+<h3>期刊审稿人</h3>
+<ul class="grid-list">
+<li>IEEE Transactions on Artificial Intelligence</li>
+<li>IEEE Transactions on Circuits and Systems for Video Technology</li>
+<li>IEEE Transactions on Information Forensics &amp; Security</li>
+<li>IEEE Access</li>
+<li>Knowledge-Based Systems</li>
+<li>Expert Systems with Applications</li>
+<li>Engineering Applications of Artificial Intelligence</li>
+<li>Information Processing &amp; Management</li>
+<li>Information Fusion</li>
+<li>Information Sciences</li>
+<li>Applied Soft Computing</li>
+<li>Neural Networks</li>
+<li>Neurocomputing</li>
+<li>Signal Processing</li>
+<li>Ad Hoc Networks</li>
+<li>Cluster Computing</li>
+<li>Complex &amp; Intelligent Systems</li>
+<li>EURASIP Journal on Image and Video Processing</li>
+<li>IET Image Processing</li>
+<li>PLOS ONE</li>
+<li>Journal of King Saud University -- Computer and Information Sciences</li>
+<li>Smart Health</li>
+<li>Computer Law &amp; Security Review</li>
+<li>International Journal of Computational Intelligence Systems</li>
+</ul>
+<h3>会议审稿人</h3>
+<ul class="grid-list">
+<li>ICASSP</li>
+<li>ICME</li>
+<li>IJCNN</li>
+</ul>
+</section>
+<section id="projects-zh">
+<h2 class="section-title">科研项目</h2>
+<div class="project-list">
+<div class="project-card">
+<strong>中央网信办</strong>，网络安全学院学生创新资助计划，AI数据模型防泄露检测工具，2024.04-2025.04，5万元，结题，<strong>主持</strong>
+</div>
+<div class="project-card">
+<strong>国家重点研发计划</strong> (2021YFB2012200)，开放式数控系统安全可信技术，2021.11-2024.10，2297万元，结题，参与
+              </div>
+<div class="project-card">
+<strong>广西教育厅</strong> (2021KY0861)，基于注意力卷积神经网络的目标检测算法研究，2021.01-2025.04，2万元，结题，参与
+              </div>
+<div class="project-card">
+<strong>国家自然科学基金</strong> (61962008)，基于矩阵分解的彩色图像哈希算法研究，2020.01-2023.12，40万元，结题，参与
+              </div>
+</div>
+</section>
+<section id="publications-zh">
+<h2 class="section-title">论文发表</h2>
+<div class="pub-note">
+<span><span class="sym sym-corr">†</span> 通讯作者</span>
+<span><span class="sym sym-co">∗</span> 共同一作</span>
+</div>
+<h3>期刊论文</h3>
+<h4>2026</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">1</span>
+<div>
+<span class="pub-title">Watermarking for Model Ownership Verification: Invisible at Deployment, Activated by Updates</span>
+<div class="pub-meta">
+<span class="author-me">Nie Hewang</span>, Jue Xiao, Zhi Lu, Renfei Shen, Chunqiang Yu, Zhenjun Tang<span class="sym sym-corr">†</span>.<br/>
+<em>ACM Transactions on Privacy and Security</em>, 2026.
+                    <div class="badges">
+<span class="badge badge-sci-3">SCI三区</span>
+<span class="badge badge-ccf-b">CCF B类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">2</span>
+<div>
+<span class="pub-title">Exclusive and Updateable Watermarking for Neural Network Model Trading</span>
+<div class="pub-meta">
+<span class="author-me">Nie Hewang</span>, Xuemei Yuan, Jue Xiao.<br/>
+<em>IEEE Transactions on Circuits and Systems for Video Technology</em>, 2026.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI一区</span>
+<span class="badge badge-top">TOP期刊</span>
+<span class="badge badge-ccf-b">CCF B类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">3</span>
+<div>
+<span class="pub-title">Delete but Not Gone: Reactivation of Neural Network Watermarks</span>
+<div class="pub-meta">
+<span class="author-me">Nie Hewang</span>, Jue Xiao, Zhi Lu, Renfei Shen, Songfeng Lu.<br/>
+<em>ACM Transactions on Intelligent Systems and Technology</em>, 2026.
+                    <div class="badges">
+<span class="badge badge-sci-2">SCI二区</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">4</span>
+<div>
+<span class="pub-title">零信任与零知识融合的匿名身份认证</span>
+<div class="pub-meta">
+                    路直, 沈任飞, <span class="author-me">聂何望</span>, 骆婷, 路松峰.<br/>
+<em>计算机学报</em>, 2026.
+                    <div class="badges">
+<span class="badge badge-ccf-a">CCF A类中文期刊</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h4>2025</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">5</span>
+<div>
+<span class="pub-title">Compression Is No Barrier: Dataset Copyright Protection with Compression-Resistant Backdoor Watermarks</span>
+<div class="pub-meta">
+<span class="author-me">Nie Hewang</span>, Xuemei Yuan.<br/>
+<em>Information Processing &amp; Management</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI一区</span>
+<span class="badge badge-top">TOP期刊</span>
+<span class="badge badge-ccf-b">CCF B类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">6</span>
+<div>
+<span class="pub-title">Beyond Protection: Unveiling Neural Network Copyright Trading</span>
+<div class="pub-meta">
+                    Xuemei Yuan, <span class="author-me">Nie Hewang</span><span class="sym sym-corr">†</span>.<br/>
+<em>Knowledge-Based Systems</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI一区</span>
+<span class="badge badge-top">TOP期刊</span>
+<span class="badge badge-ccf-c">CCF C类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">7</span>
+<div>
+<span class="pub-title">Secure Industrial Federated Learning: Label Encryption for Model Protection</span>
+<div class="pub-meta">
+                    Xuemei Yuan, <span class="author-me">Nie Hewang</span><span class="sym sym-corr">†</span>.<br/>
+<em>Engineering Applications of Artificial Intelligence</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI一区</span>
+<span class="badge badge-top">TOP期刊</span>
+<span class="badge badge-ccf-c">CCF C类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">8</span>
+<div>
+<span class="pub-title">Federated Learning with Bilateral Defense via Blockchain</span>
+<div class="pub-meta">
+                    Jue Xiao<span class="sym sym-co">∗</span>, <span class="author-me">Nie Hewang</span><span class="sym sym-co">∗</span>, Xueming Tang, Songfeng Lu.<br/>
+<em>Neural Networks</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-sci-2">SCI二区</span>
+<span class="badge badge-ccf-b">CCF B类</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h4>2024</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">9</span>
+<div>
+<span class="pub-title">Deep Model Intellectual Property Protection with Compression-Resistant Model Watermarking</span>
+<div class="pub-meta">
+<span class="author-me">Nie Hewang</span>, Songfeng Lu, Junjun Wu, Jianxin Zhu.<br/>
+<em>IEEE Transactions on Artificial Intelligence</em>, 2024.
+                  </div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">10</span>
+<div>
+<span class="pub-title">PersistVerifty: Federated model ownership verification with spatial attention and boundary sampling</span>
+<div class="pub-meta">
+<span class="author-me">Nie Hewang</span>, Songfeng Lu.<br/>
+<em>Knowledge-Based Systems</em>, 2024.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI一区</span>
+<span class="badge badge-top">TOP期刊</span>
+<span class="badge badge-ccf-c">CCF C类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">11</span>
+<div>
+<span class="pub-title">FedCRMW: Federated model ownership verification with compression-resistant model watermarking</span>
+<div class="pub-meta">
+<span class="author-me">Nie Hewang</span>, Songfeng Lu.<br/>
+<em>Expert Systems with Applications</em>, 2024.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI一区</span>
+<span class="badge badge-top">TOP期刊</span>
+<span class="badge badge-ccf-c">CCF C类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">12</span>
+<div>
+<span class="pub-title">Securing IP in Edge AI: Neural Network Watermarking for Multimodal Models</span>
+<div class="pub-meta">
+<span class="author-me">Nie Hewang</span>, Songfeng Lu.<br/>
+<em>Applied Intelligence</em>, 2024.
+                    <div class="badges">
+<span class="badge badge-sci-3">SCI三区</span>
+<span class="badge badge-ccf-c">CCF C类</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h4>2020</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">13</span>
+<div>
+<span class="pub-title">Color image reversible data hiding with double-layer embedding</span>
+<div class="pub-meta">
+                    Zhenjun Tang, <span class="author-me">Nie Hewang</span>, Chi-Man Pun, Heng Yao, Chunqiang Yu, Xianquan Zhang.<br/>
+<em>IEEE Access</em>, 2020.
+                    <div class="badges">
+<span class="badge badge-sci-4">SCI四区</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h3>会议论文</h3>
+<h4>2025</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">14</span>
+<div>
+<span class="pub-title">Optimized Dynamic Watermarking for Audio DNNs with Adaptive Embedding and Boundary Sampling</span>
+<div class="pub-meta">
+                    Hao Fei<span class="sym sym-co">∗</span>, <span class="author-me">Nie Hewang</span><span class="sym sym-co">∗</span>, Siqi Sun, Songfeng Lu, Ting Luo, Dunbo Cai, Zhiguo Huang, Runqing Zhang.<br/>
+<em>ICASSP 2025</em>.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">15</span>
+<div>
+<span class="pub-title">FedDiT: Federated Learning by Distillation Token Enhanced Vision Transformer</span>
+<div class="pub-meta">
+                    Jue Xiao, Zepu Yi, <span class="author-me">Nie Hewang</span>, Zhi Lu, Xueming Tang, Songfeng Lu, Zhiguo Huang, Runqing Zhang.<br/>
+<em>ICASSP 2025</em>.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">16</span>
+<div>
+<span class="pub-title">VSDA: Privacy-Preserving Verifiable Secure Distributed Aggregation for Multi-Center Clinical and Genomic Data</span>
+<div class="pub-meta">
+                    Zhe Dong, Zhi Lu, Renfei Shen, <span class="author-me">Nie Hewang</span>, Jue Xiao, Junming Li, Songfeng Lu.<br/>
+<em>IEEE International Conference on Bioinformatics and Biomedicine (BIBM)</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B类</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h4>2024</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">17</span>
+<div>
+<span class="pub-title">VeriChroma: Ownership Verification for Federated Models via RGB Filters</span>
+<div class="pub-meta">
+<span class="author-me">Nie Hewang</span>, Songfeng Lu, Mu Wang, Jue Xiao, Zhi Lu, Zepu Yi.<br/>
+<em>Euro-Par 2024</em>.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B类</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">18</span>
+<div>
+<span class="pub-title">Lightweight Byzantine-Robust and Privacy-Preserving Federated Learning</span>
+<div class="pub-meta">
+                    Zhi Lu, Songfeng Lu, Yongquan Cui, Junjun Wu, <span class="author-me">Nie Hewang</span>, Jue Xiao, Zepu Yi.<br/>
+<em>Euro-Par 2024</em>.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B类</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</section>
+<section id="patents-zh">
+<h2 class="section-title">发明专利与软件著作权</h2>
+<h3>发明专利</h3>
+<ul class="plain-list">
+<li>路松峰, 路直, <strong>聂何望</strong>, 杨豪. 一种基于国产密码的工控数据安全防护系统及其工作方法. CN118133298A (2024).</li>
+<li>路松峰, 周立天, 朱建新, 罗勇, <strong>聂何望</strong>. 一种基于LSTM的数控系统日志审计方法及终端. CN116781321A (2023).</li>
+<li>路松峰, 肖珏, 路直, <strong>聂何望</strong>, 杨豪. 一种适用于数控系统的流加密机及其工作方法. CN116684076A (2023).</li>
+</ul>
+<h3>软件著作权</h3>
+<ul class="plain-list">
+<li><strong>聂何望</strong>, 唐振军, 梁晓萍, 广西师范大学. 抗压缩的联邦学习模型水印系统V1.0，登记号：2025R11L2606607</li>
+<li><strong>聂何望</strong>, 唐振军, 陈旅, 广西师范大学. 基于边界采样的音频深度神经网络模型水印系统V1.0，登记号：2025SR2186923</li>
+<li><strong>聂何望</strong>, 唐振军, 凌曼, 广西师范大学. 基于SVM的车牌识别软件V1.0，登记号：2018SR219059</li>
+</ul>
+</section>
+<section id="exchanges-zh">
+<h2 class="section-title">学术交流</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-dot-wrap"><span class="timeline-dot"></span></div>
+<div class="timeline-content"><strong>2025.11</strong>（海南海口）：第六届 CSIG 中国媒体取证与安全大会 (ChinaMFS 2025)</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot-wrap"><span class="timeline-dot"></span></div>
+<div class="timeline-content"><strong>2025.11</strong>（广西桂林）：新一代图像安全技术研讨会 (Workshop on New-Generation Image Security Technologies)</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot-wrap"><span class="timeline-dot"></span></div>
+<div class="timeline-content"><strong>2024.08</strong>（西班牙马德里）：Euro-Par 2024 第30届并行与分布式计算国际欧洲大会</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot-wrap"><span class="timeline-dot"></span></div>
+<div class="timeline-content"><strong>2019.10</strong>（福建厦门）：第十五届全国信息隐藏暨多媒体信息安全学术大会 (CIHW 2019)</div>
+</div>
+</div>
+</section>
+<section id="honors-zh">
+<h2 class="section-title">荣誉奖项</h2>
+<ul class="plain-list">
+<li>优秀毕业博士研究生 (2025)</li>
+<li>博士研究生国家奖学金 (2023-2024)</li>
+</ul>
+</section>
+<section id="teaching-zh">
+<h2 class="section-title">教学与指导</h2>
+<p><strong>指导本科生获奖：</strong></p>
+<ul class="plain-list">
+<li>高锐 (2019级)：全国蓝桥杯大赛广西赛区三等奖</li>
+<li>韩林荣 (2019级)：全国蓝桥杯大赛广西赛区二等奖</li>
+</ul>
+</section>
+<section id="admission-zh">
+<div class="callout">
+<h3>招生启事</h3>
+<p>
+                欢迎对人工智能安全、联邦学习与模型水印等方向感兴趣的同学报考与加入课题组！
+                <strong>同时欢迎踏实勤奋、积极上进的本科生加入。</strong>
+</p>
+<ul class="plain-list">
+<li><strong>招生专业（学硕）：</strong>计算机科学与技术、软件工程</li>
+<li><strong>招生专业（专硕）：</strong>电子信息</li>
+<li><strong>研究方向：</strong>模型版权保护、联邦学习所有权验证、数据 / 模型水印、AI安全评测等</li>
+<li><strong>期望背景：</strong>具备良好的编程基础（Python / PyTorch优先），对科研有热情与自驱力</li>
+<li><strong>联系方式：</strong>请附<span class="highlight">个人简历</span>、<span class="highlight">成绩单</span>及代表性成果发送至：<a href="/cdn-cgi/l/email-protection#96f8fee1d6f1eef8e3b8f3f2e3b8f5f8"><span class="__cf_email__" data-cfemail="026c6a7542657a6c772c6766772c616c">[email&#160;protected]</span></a></li>
+</ul>
+</div>
+</section>
+</div>
+<div class="fade" id="content-en" style="display: none;">
+<section id="about-en">
+<h2 class="section-title">About</h2>
+<p>
+              Hewang Nie is a Lecturer with a Ph.D. in Cyberspace Security from Huazhong University of Science and Technology.
+              He received his doctoral degree in June 2025. His research focuses on AI security, reversible information hiding,
+              and neural network watermarking.
+            </p>
+<p>
+              He has led a student innovation funding project from the Cyberspace Administration of China and participated in major
+              research programs including the National Key R&amp;D Program of China and the National Natural Science Foundation of China.
+              He has published over ten papers in well-known journals and conferences, including 6 papers in SCI Q1 TOP journals and
+              10 CCF-A/B high-level papers. He holds 3 invention patents and 3 software copyrights.
+            </p>
+<div class="intro-grid">
+<div class="mini-card">
+<strong>Research Focus</strong>
+<span>AI security and model intellectual property protection</span>
+</div>
+<div class="mini-card">
+<strong>Technical Areas</strong>
+<span>Federated learning security, model watermarking, and data watermarking</span>
+</div>
+<div class="mini-card">
+<strong>Admission Areas</strong>
+<span>Computer Science, Software Engineering, and Electronic Information</span>
+</div>
+</div>
+</section>
+<section id="interests-en">
+<h2 class="section-title">Research Interests</h2>
+<ul class="plain-list">
+<li>AI Security; Intellectual Property Protection for Neural Network Models</li>
+<li>Multimedia Information Security; Neural Network Watermarking; Reversible Information Hiding; Image Watermarking</li>
+<li>Federated Learning Security; Model Ownership Verification</li>
+<li>Artificial Intelligence in Healthcare; Image Processing</li>
+</ul>
+</section>
+<section id="service-en">
+<h2 class="section-title">Academic Service</h2>
+<div class="service-grid">
+<div class="service-card">
+<span class="service-mark">01</span>
+<div class="service-body">
+<strong>Editorial Board Member</strong> for <em>Scientific Reports</em>.
+                </div>
+</div>
+<div class="service-card">
+<span class="service-mark">02</span>
+<div class="service-body">
+<strong>Member</strong> of the Digital Media Forensics and Security Committee, CSIG.
+                </div>
+</div>
+<div class="service-card">
+<span class="service-mark">03</span>
+<div class="service-body">
+<strong>International Program Committee Member</strong> for <em>Pacific Graphics 2026 (PG 2026, Singapore)</em>.
+                </div>
+</div>
+<div class="service-card">
+<span class="service-mark">04</span>
+<div class="service-body">
+<strong>PC Member</strong> for <em>The 2nd SMPP Workshop (2026 IEEE BIBM)</em>.
+                </div>
+</div>
+<div class="service-card">
+<span class="service-mark">05</span>
+<div class="service-body">
+<strong>PC Member</strong> for <em>Workshop on New-Generation Image Security Technologies</em>.
+                </div>
+</div>
+</div>
+<h3>Journal Reviewer</h3>
+<ul class="grid-list">
+<li>IEEE Transactions on Artificial Intelligence</li>
+<li>IEEE Transactions on Circuits and Systems for Video Technology</li>
+<li>IEEE Transactions on Information Forensics &amp; Security</li>
+<li>IEEE Access</li>
+<li>Knowledge-Based Systems</li>
+<li>Expert Systems with Applications</li>
+<li>Engineering Applications of Artificial Intelligence</li>
+<li>Information Processing &amp; Management</li>
+<li>Information Fusion</li>
+<li>Information Sciences</li>
+<li>Applied Soft Computing</li>
+<li>Neural Networks</li>
+<li>Neurocomputing</li>
+<li>Signal Processing</li>
+<li>Ad Hoc Networks</li>
+<li>Cluster Computing</li>
+<li>Complex &amp; Intelligent Systems</li>
+<li>EURASIP Journal on Image and Video Processing</li>
+<li>IET Image Processing</li>
+<li>PLOS ONE</li>
+<li>Journal of King Saud University -- Computer and Information Sciences</li>
+<li>Smart Health</li>
+<li>Computer Law &amp; Security Review</li>
+<li>International Journal of Computational Intelligence Systems</li>
+</ul>
+<h3>Conference Reviewer</h3>
+<ul class="grid-list">
+<li>ICASSP</li>
+<li>ICME</li>
+<li>IJCNN</li>
+</ul>
+</section>
+<section id="projects-en">
+<h2 class="section-title">Projects</h2>
+<div class="project-list">
+<div class="project-card">
+<strong>Cyberspace Administration of China</strong>, AI Data / Model Leakage Detection Tool, 2024.04-2025.04, PI.
+              </div>
+<div class="project-card">
+<strong>National Key R&amp;D Program</strong> (2021YFB2012200), Security for Open CNC Systems, 2021.11-2024.10, Participant.
+              </div>
+<div class="project-card">
+<strong>Guangxi Education Department</strong>, Object Detection with Attention-based CNN, 2021.01-2025.04, Participant.
+              </div>
+<div class="project-card">
+<strong>National Natural Science Foundation of China</strong> (61962008), Color Image Hashing, 2020.01-2023.12, Participant.
+              </div>
+</div>
+</section>
+<section id="publications-en">
+<h2 class="section-title">Publications</h2>
+<div class="pub-note">
+<span><span class="sym sym-corr">†</span> Corresponding Author</span>
+<span><span class="sym sym-co">∗</span> Co-first Author</span>
+</div>
+<h3>Journal Papers</h3>
+<h4>2026</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">1</span>
+<div>
+<span class="pub-title">Watermarking for Model Ownership Verification: Invisible at Deployment, Activated by Updates</span>
+<div class="pub-meta">
+<span class="author-me">Hewang Nie</span>, Jue Xiao, Zhi Lu, Renfei Shen, Chunqiang Yu, Zhenjun Tang<span class="sym sym-corr">†</span>.<br/>
+<em>ACM Transactions on Privacy and Security</em>, 2026.
+                    <div class="badges">
+<span class="badge badge-sci-3">SCI Q3</span>
+<span class="badge badge-ccf-b">CCF B</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">2</span>
+<div>
+<span class="pub-title">Exclusive and Updateable Watermarking for Neural Network Model Trading</span>
+<div class="pub-meta">
+<span class="author-me">Hewang Nie</span>, Xuemei Yuan, Jue Xiao.<br/>
+<em>IEEE Transactions on Circuits and Systems for Video Technology</em>, 2026.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI Q1</span>
+<span class="badge badge-top">TOP</span>
+<span class="badge badge-ccf-b">CCF B</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">3</span>
+<div>
+<span class="pub-title">Delete but Not Gone: Reactivation of Neural Network Watermarks</span>
+<div class="pub-meta">
+<span class="author-me">Hewang Nie</span>, Jue Xiao, Zhi Lu, Renfei Shen, Songfeng Lu.<br/>
+<em>ACM Transactions on Intelligent Systems and Technology</em>, 2026.
+                    <div class="badges">
+<span class="badge badge-sci-2">SCI Q2</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">4</span>
+<div>
+<span class="pub-title">Anonymous Identity Authentication Combining Zero-Trust and Zero-Knowledge</span>
+<div class="pub-meta">
+                    Zhi Lu, Renfei Shen, <span class="author-me">Hewang Nie</span>, Ting Luo, Songfeng Lu.<br/>
+<em>Chinese Journal of Computers</em>, 2026.
+                    <div class="badges">
+<span class="badge badge-ccf-a">CCF A</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h4>2025</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">5</span>
+<div>
+<span class="pub-title">Compression Is No Barrier: Dataset Copyright Protection with Compression-Resistant Backdoor Watermarks</span>
+<div class="pub-meta">
+<span class="author-me">Hewang Nie</span>, Xuemei Yuan.<br/>
+<em>Information Processing &amp; Management</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI Q1</span>
+<span class="badge badge-top">TOP</span>
+<span class="badge badge-ccf-b">CCF B</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">6</span>
+<div>
+<span class="pub-title">Beyond Protection: Unveiling Neural Network Copyright Trading</span>
+<div class="pub-meta">
+                    Xuemei Yuan, <span class="author-me">Hewang Nie</span><span class="sym sym-corr">†</span>.<br/>
+<em>Knowledge-Based Systems</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI Q1</span>
+<span class="badge badge-top">TOP</span>
+<span class="badge badge-ccf-c">CCF C</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">7</span>
+<div>
+<span class="pub-title">Secure Industrial Federated Learning: Label Encryption for Model Protection</span>
+<div class="pub-meta">
+                    Xuemei Yuan, <span class="author-me">Hewang Nie</span><span class="sym sym-corr">†</span>.<br/>
+<em>Engineering Applications of Artificial Intelligence</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI Q1</span>
+<span class="badge badge-top">TOP</span>
+<span class="badge badge-ccf-c">CCF C</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">8</span>
+<div>
+<span class="pub-title">Federated Learning with Bilateral Defense via Blockchain</span>
+<div class="pub-meta">
+                    Jue Xiao<span class="sym sym-co">∗</span>, <span class="author-me">Hewang Nie</span><span class="sym sym-co">∗</span>, Xueming Tang, Songfeng Lu.<br/>
+<em>Neural Networks</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-sci-2">SCI Q2</span>
+<span class="badge badge-ccf-b">CCF B</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h4>2024</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">9</span>
+<div>
+<span class="pub-title">Deep Model Intellectual Property Protection with Compression-Resistant Model Watermarking</span>
+<div class="pub-meta">
+<span class="author-me">Hewang Nie</span>, Songfeng Lu, Junjun Wu, Jianxin Zhu.<br/>
+<em>IEEE Transactions on Artificial Intelligence</em>, 2024.
+                  </div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">10</span>
+<div>
+<span class="pub-title">PersistVerifty: Federated model ownership verification with spatial attention and boundary sampling</span>
+<div class="pub-meta">
+<span class="author-me">Hewang Nie</span>, Songfeng Lu.<br/>
+<em>Knowledge-Based Systems</em>, 2024.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI Q1</span>
+<span class="badge badge-top">TOP</span>
+<span class="badge badge-ccf-c">CCF C</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">11</span>
+<div>
+<span class="pub-title">FedCRMW: Federated model ownership verification with compression-resistant model watermarking</span>
+<div class="pub-meta">
+<span class="author-me">Hewang Nie</span>, Songfeng Lu.<br/>
+<em>Expert Systems with Applications</em>, 2024.
+                    <div class="badges">
+<span class="badge badge-sci-1">SCI Q1</span>
+<span class="badge badge-top">TOP</span>
+<span class="badge badge-ccf-c">CCF C</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">12</span>
+<div>
+<span class="pub-title">Securing IP in Edge AI: Neural Network Watermarking for Multimodal Models</span>
+<div class="pub-meta">
+<span class="author-me">Hewang Nie</span>, Songfeng Lu.<br/>
+<em>Applied Intelligence</em>, 2024.
+                    <div class="badges">
+<span class="badge badge-sci-3">SCI Q3</span>
+<span class="badge badge-ccf-c">CCF C</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h4>2020</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">13</span>
+<div>
+<span class="pub-title">Color image reversible data hiding with double-layer embedding</span>
+<div class="pub-meta">
+                    Zhenjun Tang, <span class="author-me">Hewang Nie</span>, Chi-Man Pun, Heng Yao, Chunqiang Yu, Xianquan Zhang.<br/>
+<em>IEEE Access</em>, 2020.
+                    <div class="badges">
+<span class="badge badge-sci-4">SCI Q4</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h3>Conference Papers</h3>
+<h4>2025</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">14</span>
+<div>
+<span class="pub-title">Optimized Dynamic Watermarking for Audio DNNs with Adaptive Embedding and Boundary Sampling</span>
+<div class="pub-meta">
+                    Hao Fei<span class="sym sym-co">∗</span>, <span class="author-me">Hewang Nie</span><span class="sym sym-co">∗</span>, Siqi Sun, Songfeng Lu, Ting Luo, Dunbo Cai, Zhiguo Huang, Runqing Zhang.<br/>
+<em>ICASSP 2025</em>.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">15</span>
+<div>
+<span class="pub-title">FedDiT: Federated Learning by Distillation Token Enhanced Vision Transformer</span>
+<div class="pub-meta">
+                    Jue Xiao, Zepu Yi, <span class="author-me">Hewang Nie</span>, Zhi Lu, Xueming Tang, Songfeng Lu, Zhiguo Huang, Runqing Zhang.<br/>
+<em>ICASSP 2025</em>.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">16</span>
+<div>
+<span class="pub-title">VSDA: Privacy-Preserving Verifiable Secure Distributed Aggregation for Multi-Center Clinical and Genomic Data</span>
+<div class="pub-meta">
+                    Zhe Dong, Zhi Lu, Renfei Shen, <span class="author-me">Hewang Nie</span>, Jue Xiao, Junming Li, Songfeng Lu.<br/>
+<em>IEEE International Conference on Bioinformatics and Biomedicine (BIBM)</em>, 2025.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h4>2024</h4>
+<ul class="pub-list">
+<li class="pub-item">
+<span class="pub-index">17</span>
+<div>
+<span class="pub-title">VeriChroma: Ownership Verification for Federated Models via RGB Filters</span>
+<div class="pub-meta">
+<span class="author-me">Hewang Nie</span>, Songfeng Lu, Mu Wang, Jue Xiao, Zhi Lu, Zepu Yi.<br/>
+<em>Euro-Par 2024</em>.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B</span>
+</div>
+</div>
+</div>
+</li>
+<li class="pub-item">
+<span class="pub-index">18</span>
+<div>
+<span class="pub-title">Lightweight Byzantine-Robust and Privacy-Preserving Federated Learning</span>
+<div class="pub-meta">
+                    Zhi Lu, Songfeng Lu, Yongquan Cui, Junjun Wu, <span class="author-me">Hewang Nie</span>, Jue Xiao, Zepu Yi.<br/>
+<em>Euro-Par 2024</em>.
+                    <div class="badges">
+<span class="badge badge-ccf-b">CCF B</span>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</section>
+<section id="patents-en">
+<h2 class="section-title">Patents &amp; Software Copyrights</h2>
+<h3>Patents</h3>
+<ul class="plain-list">
+<li>Songfeng Lu, Zhi Lu, <strong>Hewang Nie</strong>, Hao Yang. Industrial Control Data Security Protection System. CN118133298A (2024).</li>
+<li>Songfeng Lu, Litian Zhou, Jianxin Zhu, Yong Luo, <strong>Hewang Nie</strong>. Log Audit Method for CNC Systems based on LSTM. CN116781321A (2023).</li>
+<li>Songfeng Lu, Jue Xiao, Zhi Lu, <strong>Hewang Nie</strong>, Hao Yang. Stream Cipher Device for CNC Systems. CN116684076A (2023).</li>
+</ul>
+<h3>Software Copyrights</h3>
+<ul class="plain-list">
+<li><strong>Hewang Nie</strong>, Zhenjun Tang, Xiaoping Liang. Compression-Resistant Federated Learning Model Watermarking System V1.0. No. 2025R11L2606607.</li>
+<li><strong>Hewang Nie</strong>, Zhenjun Tang, Lv Chen. Audio DNN Model Watermarking System Based on Boundary Sampling V1.0. No. 2025SR2186923.</li>
+<li><strong>Hewang Nie</strong>, Zhenjun Tang, Man Ling. License Plate Recognition Software V1.0 based on SVM. No. 2018SR219059.</li>
+</ul>
+</section>
+<section id="exchanges-en">
+<h2 class="section-title">Academic Exchanges</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-dot-wrap"><span class="timeline-dot"></span></div>
+<div class="timeline-content"><strong>Nov 2025</strong> (Haikou, China): The 6th CSIG Chinese Conference on Media Forensics and Security (ChinaMFS 2025).</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot-wrap"><span class="timeline-dot"></span></div>
+<div class="timeline-content"><strong>Nov 2025</strong> (Guilin, China): Workshop on New-Generation Image Security Technologies.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot-wrap"><span class="timeline-dot"></span></div>
+<div class="timeline-content"><strong>Aug 2024</strong> (Madrid, Spain): Euro-Par 2024: 30th International European Conference on Parallel and Distributed Computing.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot-wrap"><span class="timeline-dot"></span></div>
+<div class="timeline-content"><strong>Oct 2019</strong> (Xiamen, China): The 15th China Information Hiding and Multimedia Security Workshop (CIHW 2019).</div>
+</div>
+</div>
+</section>
+<section id="honors-en">
+<h2 class="section-title">Honors</h2>
+<ul class="plain-list">
+<li>Outstanding Graduating Ph.D. Student (2025)</li>
+<li>National Scholarship for Doctoral Students (2023-2024)</li>
+</ul>
+</section>
+<section id="teaching-en">
+<h2 class="section-title">Teaching &amp; Supervision</h2>
+<p><strong>Undergraduate Supervision:</strong></p>
+<ul class="plain-list">
+<li>Rui Gao (Class of 2019): Third Prize, LanQiao Cup (Guangxi Division).</li>
+<li>Linrong Han (Class of 2019): Second Prize, LanQiao Cup (Guangxi Division).</li>
+</ul>
+</section>
+<section id="admission-en">
+<div class="callout">
+<h3>Admission</h3>
+<p>
+                We welcome motivated students interested in AI security, federated learning, and model watermarking to join our group.
+                <strong>Diligent and proactive undergraduates are also welcome.</strong>
+</p>
+<ul class="plain-list">
+<li><strong>Master's Academic Programs:</strong> Computer Science and Technology; Software Engineering</li>
+<li><strong>Master's Professional Program:</strong> Electronic Information</li>
+<li><strong>Research Topics:</strong> Model IP protection, federated learning ownership verification, data / model watermarking, AI security evaluation</li>
+<li><strong>Preferred Background:</strong> Solid programming skills, preferably Python / PyTorch, and strong research motivation</li>
+<li><strong>Contact:</strong> Please email your <span class="highlight">CV</span>, <span class="highlight">transcript</span>, and representative achievements to <a href="/cdn-cgi/l/email-protection#0e6066794e6976607b206b6a7b206d60"><span class="__cf_email__" data-cfemail="1a74726d5a7d62746f347f7e6f347974">[email&#160;protected]</span></a></li>
+</ul>
+</div>
+</section>
+</div>
+</main>
+</div>
+<footer>
+<p>© 2026 Hewang Nie. All rights reserved.</p>
+</footer>
+</div>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+(function(){
+  "use strict";
+  const STORAGE_LANG = "hewang-homepage-lang-v2";
+  const STORAGE_THEME = "hewang-homepage-theme-v2";
+  const pairs = [
+    ["hero-zh","hero-en"],["content-zh","content-en"],["contact-zh","contact-en"],["tags-zh","tags-en"],["nav-zh","nav-en"]
+  ];
+  const copy = {
+    zh:{title:"个人主页 | 聂何望 (Hewang Nie)", htmlLang:"zh-CN", contact:"联系方式", tag:"研究方向", nav:"页面导航", dark:"🌙 深色", light:"☀️ 浅色"},
+    en:{title:"Homepage | Hewang Nie", htmlLang:"en", contact:"Contact", tag:"Research", nav:"Navigation", dark:"🌙 Dark", light:"☀️ Light"}
+  };
+  const $ = (id)=>document.getElementById(id);
+  function currentLang(){ return (localStorage.getItem(STORAGE_LANG) || "zh") === "en" ? "en" : "zh"; }
+  function currentTheme(){ return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
+  function updateThemeButton(){
+    const btn = $("theme-toggle"); if(!btn) return;
+    const c = copy[currentLang()];
+    btn.textContent = currentTheme() === "dark" ? c.light : c.dark;
+    btn.setAttribute("aria-label", btn.textContent);
+    btn.setAttribute("aria-pressed", String(currentTheme() === "dark"));
+    btn.dataset.active = String(currentTheme() === "dark");
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if(meta) meta.setAttribute("content", currentTheme() === "dark" ? "#020617" : "#2563eb");
+  }
+  function setTheme(theme){
+    const next = theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem(STORAGE_THEME, next);
+    updateThemeButton();
+  }
+  window.toggleTheme = function(){
+    setTheme(currentTheme() === "dark" ? "light" : "dark");
+  };
+  window.setLang = function(lang, opts){
+    const next = lang === "en" ? "en" : "zh";
+    pairs.forEach(([zh,en])=>{
+      const z=$(zh), e=$(en);
+      if(z){ z.style.display = next === "zh" ? "" : "none"; if(next==="zh") z.classList.add("fade"); }
+      if(e){ e.style.display = next === "en" ? "" : "none"; if(next==="en") e.classList.add("fade"); }
+    });
+    const btnZh=$("btn-zh"), btnEn=$("btn-en");
+    if(btnZh){ btnZh.classList.toggle("active",next==="zh"); btnZh.setAttribute("aria-pressed",String(next==="zh")); }
+    if(btnEn){ btnEn.classList.toggle("active",next==="en"); btnEn.setAttribute("aria-pressed",String(next==="en")); }
+    document.documentElement.lang = copy[next].htmlLang;
+    document.title = copy[next].title;
+    const sideContact=$("side-contact-title"), sideTag=$("side-tag-title"), sideNav=$("side-nav-title");
+    if(sideContact) sideContact.textContent = copy[next].contact;
+    if(sideTag) sideTag.textContent = copy[next].tag;
+    if(sideNav) sideNav.textContent = copy[next].nav;
+    localStorage.setItem(STORAGE_LANG,next);
+    updateThemeButton();
+    bindActiveNav();
+    if(!opts || opts.scroll !== false) window.scrollTo({top:0,behavior:"smooth"});
+  };
+  function bindActiveNav(){
+    const lang=currentLang();
+    const nav=$(lang==="zh"?"nav-zh":"nav-en"); if(!nav) return;
+    const links=Array.from(nav.querySelectorAll(".nav-link"));
+    const sections=links.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);
+    if(window.__hewangNavObserver) window.__hewangNavObserver.disconnect();
+    if(!("IntersectionObserver" in window) || !sections.length) return;
+    window.__hewangNavObserver = new IntersectionObserver((entries)=>{
+      const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if(!visible) return;
+      links.forEach(a=>a.classList.toggle("active", a.getAttribute("href") === "#"+visible.target.id));
+    },{rootMargin:"-18% 0px -68% 0px",threshold:[.01,.08,.16,.32]});
+    sections.forEach(s=>window.__hewangNavObserver.observe(s));
+  }
+  function initReveal(){
+    const targets=document.querySelectorAll("section,.side-card,.stat,.pub-item,.service-card,.project-card,.mini-card,.callout");
+    targets.forEach(el=>el.classList.add("reveal"));
+    if(!("IntersectionObserver" in window)){ targets.forEach(el=>el.classList.add("is-visible")); return; }
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add("is-visible"); io.unobserve(entry.target); }});
+    },{threshold:.06,rootMargin:"0px 0px -4% 0px"});
+    targets.forEach(el=>io.observe(el));
+  }
+  function initScrollTools(){
+    if(!document.querySelector(".scroll-progress")){
+      const progress=document.createElement("div"); progress.className="scroll-progress"; progress.setAttribute("aria-hidden","true"); document.body.prepend(progress);
+    }
+    if(!$("back-to-top")){
+      const btn=document.createElement("button"); btn.id="back-to-top"; btn.className="back-to-top"; btn.type="button"; btn.textContent="↑"; btn.setAttribute("aria-label","Back to top"); document.body.appendChild(btn);
+      btn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+    }
+    const progress=document.querySelector(".scroll-progress"), topBtn=$("back-to-top");
+    const update=()=>{
+      const st=window.scrollY || document.documentElement.scrollTop;
+      const h=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+      if(progress) progress.style.width=Math.min(100,Math.max(0,st/h*100))+"%";
+      if(topBtn) topBtn.classList.toggle("visible",st>520);
+    };
+    update(); window.addEventListener("scroll",update,{passive:true}); window.addEventListener("resize",update);
+  }
+  function init(){
+    const savedTheme=localStorage.getItem(STORAGE_THEME);
+    const prefersDark=window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setTheme(savedTheme || (prefersDark ? "dark" : "light"));
+    const themeBtn=$("theme-toggle"); if(themeBtn) themeBtn.addEventListener("click",window.toggleTheme);
+    const zh=$("btn-zh"), en=$("btn-en");
+    if(zh) zh.addEventListener("click",(e)=>{e.preventDefault(); window.setLang("zh");});
+    if(en) en.addEventListener("click",(e)=>{e.preventDefault(); window.setLang("en");});
+    window.setLang(localStorage.getItem(STORAGE_LANG) || "zh",{scroll:false});
+    initReveal(); initScrollTools(); bindActiveNav();
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init); else init();
+})();
+
+</script>
+</body>
+</html>

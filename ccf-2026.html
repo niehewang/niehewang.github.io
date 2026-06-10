@@ -1,0 +1,2420 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CCF 2026 期刊会议速查 | 中国计算机学会推荐目录</title>
+  <meta name="description" content="中国计算机学会（CCF）推荐国际学术会议和期刊目录 2026 版速查工具：支持按简称、全称、方向、级别、类型快速检索。">
+  <meta name="theme-color" content="#2563eb">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8ff;
+      --bg2: #eef8ff;
+      --card: rgba(255,255,255,.86);
+      --card-strong: rgba(255,255,255,.96);
+      --text: #0f172a;
+      --muted: #64748b;
+      --muted2: #94a3b8;
+      --line: rgba(148,163,184,.26);
+      --line2: rgba(148,163,184,.42);
+      --primary: #2563eb;
+      --primary2: #06b6d4;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --purple: #8b5cf6;
+      --cyan: #06b6d4;
+      --shadow: 0 24px 70px rgba(15,23,42,.12);
+      --shadow2: 0 12px 32px rgba(15,23,42,.10);
+      --radius: 28px;
+      --radius2: 18px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #07111f;
+      --bg2: #0c182a;
+      --card: rgba(15,23,42,.78);
+      --card-strong: rgba(15,23,42,.94);
+      --text: #e5eefc;
+      --muted: #a8b3c7;
+      --muted2: #64748b;
+      --line: rgba(148,163,184,.18);
+      --line2: rgba(148,163,184,.30);
+      --primary: #60a5fa;
+      --primary2: #22d3ee;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --red: #fb7185;
+      --purple: #a78bfa;
+      --shadow: 0 24px 80px rgba(0,0,0,.38);
+      --shadow2: 0 12px 36px rgba(0,0,0,.28);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% -10%, rgba(37,99,235,.25), transparent 30%),
+        radial-gradient(circle at 92% 4%, rgba(6,182,212,.18), transparent 28%),
+        radial-gradient(circle at 48% 105%, rgba(16,185,129,.16), transparent 32%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(148,163,184,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148,163,184,.12) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, #000, transparent 78%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 540px;
+      height: 540px;
+      right: -210px;
+      top: 18%;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(59,130,246,.16), transparent 68%);
+      filter: blur(3px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .progress {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 4px;
+      width: 0;
+      z-index: 1000;
+      background: linear-gradient(90deg, var(--primary), var(--primary2), var(--green));
+      box-shadow: 0 0 18px rgba(37,99,235,.45);
+    }
+
+    .wrap {
+      width: min(1480px, calc(100% - 34px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.62);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 30px rgba(15,23,42,.06);
+    }
+
+    html[data-theme="dark"] .topbar { background: rgba(15,23,42,.62); }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      padding-left: 8px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, #2563eb, #06b6d4 55%, #10b981);
+      box-shadow: 0 12px 28px rgba(37,99,235,.25);
+      font-weight: 1000;
+      letter-spacing: -.06em;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--card-strong);
+      color: var(--text);
+      min-height: 38px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: .9rem;
+      font-weight: 850;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(37,99,235,.40);
+      box-shadow: var(--shadow2);
+      text-decoration: none;
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      border-color: transparent;
+      box-shadow: 0 14px 34px rgba(37,99,235,.28);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(26px, 5vw, 58px);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.72);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.93), rgba(255,255,255,.76)),
+        radial-gradient(circle at 12% 18%, rgba(37,99,235,.13), transparent 28%),
+        radial-gradient(circle at 92% 12%, rgba(16,185,129,.12), transparent 26%);
+      backdrop-filter: blur(22px);
+      box-shadow: var(--shadow);
+    }
+
+    html[data-theme="dark"] .hero {
+      border-color: rgba(148,163,184,.20);
+      background:
+        linear-gradient(135deg, rgba(15,23,42,.94), rgba(15,23,42,.72)),
+        radial-gradient(circle at 12% 18%, rgba(96,165,250,.16), transparent 28%),
+        radial-gradient(circle at 92% 12%, rgba(52,211,153,.12), transparent 26%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 720px;
+      height: 720px;
+      right: -280px;
+      top: -380px;
+      border-radius: 50%;
+      background: conic-gradient(from 120deg, rgba(37,99,235,.18), rgba(6,182,212,.14), rgba(16,185,129,.12), rgba(37,99,235,.18));
+      filter: blur(8px);
+      opacity: .86;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) 360px;
+      gap: 34px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(37,99,235,.18);
+      background: rgba(239,246,255,.72);
+      color: #1d4ed8;
+      font-size: .82rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    html[data-theme="dark"] .eyebrow {
+      background: rgba(37,99,235,.16);
+      color: #bfdbfe;
+      border-color: rgba(96,165,250,.24);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(16,185,129,.15);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(2.2rem, 5.2vw, 5rem);
+      line-height: .98;
+      letter-spacing: -.075em;
+      font-weight: 1000;
+    }
+
+    .grad {
+      background: linear-gradient(135deg, var(--text), #2563eb 48%, #06b6d4 72%, #10b981);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    html[data-theme="dark"] .grad {
+      background: linear-gradient(135deg, #f8fafc, #93c5fd 48%, #67e8f9 72%, #86efac);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      max-width: 920px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.7vw, 1.18rem);
+      font-weight: 620;
+    }
+
+    .hero-panel {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow2);
+      padding: 18px;
+    }
+
+    html[data-theme="dark"] .hero-panel { background: rgba(15,23,42,.66); }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 850;
+      margin-bottom: 12px;
+    }
+
+    .data-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--green);
+      font-weight: 950;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(248,250,252,.78);
+      overflow: hidden;
+      position: relative;
+    }
+
+    html[data-theme="dark"] .stat { background: rgba(30,41,59,.58); }
+
+    .stat::after {
+      content: "";
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      right: -26px;
+      bottom: -28px;
+      border-radius: 50%;
+      background: rgba(37,99,235,.12);
+    }
+
+    .stat strong {
+      display: block;
+      position: relative;
+      z-index: 1;
+      font-size: 1.54rem;
+      line-height: 1;
+      letter-spacing: -.05em;
+      font-weight: 1000;
+      color: var(--primary);
+    }
+
+    .stat span {
+      display: block;
+      position: relative;
+      z-index: 1;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    .search-zone {
+      position: sticky;
+      top: 78px;
+      z-index: 40;
+      margin-top: 20px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(24px);
+      box-shadow: var(--shadow2);
+      padding: 14px;
+    }
+
+    html[data-theme="dark"] .search-zone { background: rgba(15,23,42,.68); }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      height: 56px;
+      border: 1px solid var(--line2);
+      border-radius: 20px;
+      padding: 0 52px 0 50px;
+      background: var(--card-strong);
+      color: var(--text);
+      outline: none;
+      font-size: 1.05rem;
+      font-weight: 760;
+      letter-spacing: -.01em;
+      transition: border-color .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
+    }
+
+    .search-box input:focus {
+      border-color: rgba(37,99,235,.55);
+      box-shadow: 0 0 0 5px rgba(37,99,235,.12);
+    }
+
+    .search-icon,
+    .clear-search {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+    }
+
+    .search-icon { left: 11px; color: var(--primary); }
+    .clear-search {
+      right: 11px;
+      border: 0;
+      background: transparent;
+      color: var(--muted2);
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .clear-search:hover { color: var(--red); background: rgba(239,68,68,.08); }
+
+    .select {
+      height: 56px;
+      border: 1px solid var(--line2);
+      border-radius: 18px;
+      background: var(--card-strong);
+      color: var(--text);
+      padding: 0 14px;
+      font-weight: 850;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .quick-examples {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 12px 2px 0;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 760;
+    }
+
+    .example {
+      border: 1px solid var(--line);
+      background: rgba(248,250,252,.82);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-weight: 850;
+      transition: all .18s var(--ease);
+    }
+
+    html[data-theme="dark"] .example { background: rgba(30,41,59,.70); }
+
+    .example:hover {
+      color: var(--primary);
+      border-color: rgba(37,99,235,.34);
+      transform: translateY(-1px);
+    }
+
+    .filters-layout {
+      display: grid;
+      grid-template-columns: 292px minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+      align-items: start;
+    }
+
+    .filters {
+      position: sticky;
+      top: 190px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .filter-card,
+    .result-card,
+    .matrix-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 34px rgba(15,23,42,.07);
+    }
+
+    .filter-card { padding: 17px; }
+
+    .filter-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: .80rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+    }
+
+    .chipset { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(248,250,252,.72);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: .84rem;
+      transition: all .18s var(--ease);
+      user-select: none;
+    }
+
+    html[data-theme="dark"] .chip { background: rgba(30,41,59,.50); }
+
+    .chip:hover {
+      transform: translateY(-1px);
+      border-color: rgba(37,99,235,.38);
+      color: var(--primary);
+    }
+
+    .chip.active {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      box-shadow: 0 10px 24px rgba(37,99,235,.20);
+    }
+
+    .flag-help {
+      display: grid;
+      gap: 8px;
+      font-size: .84rem;
+      color: var(--muted);
+      font-weight: 730;
+    }
+
+    .flag-line { display: flex; align-items: center; gap: 8px; }
+    .flag-swatch { width: 14px; height: 14px; border-radius: 5px; border: 1px solid var(--line); flex: 0 0 auto; }
+    .sw-y { background: #fef08a; }
+    .sw-r { background: #fee2e2; border-color: rgba(239,68,68,.30); }
+    .sw-c { background: #cffafe; border-color: rgba(6,182,212,.30); }
+    .sw-g { background: #dcfce7; border-color: rgba(34,197,94,.30); }
+
+    html[data-theme="dark"] .sw-y { background: rgba(250,204,21,.30); }
+    html[data-theme="dark"] .sw-r { background: rgba(239,68,68,.22); }
+    html[data-theme="dark"] .sw-c { background: rgba(6,182,212,.22); }
+    html[data-theme="dark"] .sw-g { background: rgba(34,197,94,.22); }
+
+    .main { min-width: 0; }
+
+    .smart-answer {
+      display: none;
+      margin-bottom: 14px;
+      padding: 17px;
+      border-radius: 24px;
+      border: 1px solid rgba(37,99,235,.22);
+      background: linear-gradient(135deg, rgba(239,246,255,.88), rgba(236,253,245,.75));
+      box-shadow: var(--shadow2);
+    }
+
+    html[data-theme="dark"] .smart-answer {
+      background: linear-gradient(135deg, rgba(30,64,175,.20), rgba(6,78,59,.18));
+      border-color: rgba(96,165,250,.22);
+    }
+
+    .smart-answer.show { display: block; animation: pop .25s var(--ease); }
+
+    @keyframes pop {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .answer-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 850;
+    }
+
+    .answer-body {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 13px;
+      align-items: center;
+    }
+
+    .answer-rank {
+      width: 54px;
+      height: 54px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 1.55rem;
+      font-weight: 1000;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      box-shadow: 0 14px 34px rgba(37,99,235,.25);
+    }
+
+    .answer-title {
+      margin: 0;
+      font-size: 1.18rem;
+      line-height: 1.34;
+      font-weight: 950;
+      letter-spacing: -.02em;
+    }
+
+    .answer-meta {
+      color: var(--muted);
+      margin-top: 3px;
+      font-size: .92rem;
+      font-weight: 720;
+    }
+
+    .result-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .result-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-weight: 870;
+    }
+
+    .count-number {
+      color: var(--primary);
+      font-weight: 1000;
+      font-size: 1.18rem;
+    }
+
+    .view-tabs {
+      display: inline-flex;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      gap: 4px;
+    }
+
+    .view-tab {
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      padding: 7px 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .view-tab.active {
+      color: #fff;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .paper-card {
+      position: relative;
+      overflow: hidden;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--card-strong);
+      box-shadow: 0 8px 26px rgba(15,23,42,.06);
+      transition: transform .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease);
+    }
+
+    .paper-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(37,99,235,.32);
+      box-shadow: var(--shadow2);
+    }
+
+    .paper-card.flag-y { background: linear-gradient(135deg, rgba(254,240,138,.46), var(--card-strong) 54%); }
+    .paper-card.flag-r { background: linear-gradient(135deg, rgba(254,226,226,.70), var(--card-strong) 56%); }
+    .paper-card.flag-c { background: linear-gradient(135deg, rgba(207,250,254,.62), var(--card-strong) 56%); }
+    .paper-card.flag-g { background: linear-gradient(135deg, rgba(220,252,231,.62), var(--card-strong) 56%); }
+
+    html[data-theme="dark"] .paper-card.flag-y { background: linear-gradient(135deg, rgba(250,204,21,.18), var(--card-strong) 58%); }
+    html[data-theme="dark"] .paper-card.flag-r { background: linear-gradient(135deg, rgba(239,68,68,.16), var(--card-strong) 58%); }
+    html[data-theme="dark"] .paper-card.flag-c { background: linear-gradient(135deg, rgba(6,182,212,.16), var(--card-strong) 58%); }
+    html[data-theme="dark"] .paper-card.flag-g { background: linear-gradient(135deg, rgba(34,197,94,.16), var(--card-strong) 58%); }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .abbr {
+      color: var(--text);
+      font-weight: 1000;
+      font-size: 1.16rem;
+      letter-spacing: -.03em;
+      word-break: break-word;
+    }
+
+    .abbr.empty { color: var(--muted2); }
+
+    .rank-badge,
+    .kind-badge,
+    .subject-badge,
+    .flag-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-size: .74rem;
+      font-weight: 950;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .rank-badge {
+      color: #fff;
+      min-width: 38px;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      border: 0;
+    }
+
+    .rank-badge.rank-A { background: linear-gradient(135deg, #ef4444, #f97316); }
+    .rank-badge.rank-B { background: linear-gradient(135deg, #2563eb, #06b6d4); }
+    .rank-badge.rank-C { background: linear-gradient(135deg, #64748b, #94a3b8); }
+
+    .kind-badge { color: var(--primary); background: rgba(37,99,235,.08); }
+    .subject-badge { color: var(--green); background: rgba(16,185,129,.08); }
+    .flag-badge.flag-y { color: #a16207; background: rgba(250,204,21,.18); border-color: rgba(250,204,21,.34); }
+    .flag-badge.flag-r { color: var(--red); background: rgba(239,68,68,.10); border-color: rgba(239,68,68,.28); }
+    .flag-badge.flag-c { color: var(--cyan); background: rgba(6,182,212,.10); border-color: rgba(6,182,212,.28); }
+    .flag-badge.flag-g { color: var(--green); background: rgba(34,197,94,.10); border-color: rgba(34,197,94,.28); }
+
+    .paper-name {
+      color: var(--text);
+      font-weight: 850;
+      line-height: 1.48;
+      margin: 0 0 10px;
+      word-break: break-word;
+    }
+
+    .publisher {
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 720;
+      margin-bottom: 10px;
+    }
+
+    .card-tags {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .copy-btn {
+      margin-left: auto;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(248,250,252,.65);
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-weight: 900;
+      font-size: .78rem;
+      cursor: pointer;
+    }
+
+    html[data-theme="dark"] .copy-btn { background: rgba(30,41,59,.55); }
+    .copy-btn:hover { color: var(--primary); border-color: rgba(37,99,235,.35); }
+
+    .table-wrap {
+      display: none;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--card-strong);
+      box-shadow: 0 8px 26px rgba(15,23,42,.06);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 930px;
+      font-size: .92rem;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      background: var(--card-strong);
+      color: var(--muted);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 950;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    td.center { text-align: center; white-space: nowrap; }
+    .t-abbr { color: var(--text); font-weight: 1000; }
+    .t-name { color: var(--text); font-weight: 780; }
+
+    .cards.hidden,
+    .table-wrap.hidden { display: none !important; }
+    .table-wrap.visible { display: block; }
+
+    .empty-state {
+      display: none;
+      padding: 48px 22px;
+      text-align: center;
+      border-radius: 24px;
+      border: 1px dashed var(--line2);
+      background: var(--card);
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .empty-state.show { display: block; }
+
+    .matrix-card {
+      margin-top: 18px;
+      padding: 18px;
+    }
+
+    .matrix-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .matrix-title {
+      margin: 0;
+      font-size: 1.1rem;
+      letter-spacing: -.02em;
+      font-weight: 950;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: 1.1fr repeat(6, minmax(70px, 1fr));
+      gap: 8px;
+      font-size: .86rem;
+    }
+
+    .matrix-cell {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(248,250,252,.62);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px;
+      color: var(--muted);
+      font-weight: 850;
+    }
+
+    html[data-theme="dark"] .matrix-cell { background: rgba(30,41,59,.48); }
+
+    .matrix-cell.head {
+      color: var(--text);
+      font-weight: 1000;
+      background: var(--card-strong);
+    }
+
+    .matrix-cell.clickable {
+      cursor: pointer;
+      transition: all .18s var(--ease);
+    }
+
+    .matrix-cell.clickable:hover {
+      transform: translateY(-1px);
+      border-color: rgba(37,99,235,.32);
+      color: var(--primary);
+      box-shadow: 0 8px 22px rgba(15,23,42,.08);
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 999;
+      transform: translateY(24px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 12px 15px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.92);
+      color: #fff;
+      box-shadow: var(--shadow2);
+      font-weight: 850;
+      transition: all .22s var(--ease);
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    .backtop {
+      position: fixed;
+      right: 18px;
+      bottom: 74px;
+      z-index: 60;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card-strong);
+      color: var(--primary);
+      box-shadow: var(--shadow2);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all .22s var(--ease);
+      font-weight: 1000;
+    }
+
+    .backtop.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    mark {
+      background: rgba(250,204,21,.35);
+      color: inherit;
+      border-radius: 6px;
+      padding: 0 .12em;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted2);
+      font-size: .86rem;
+      font-weight: 720;
+    }
+
+    @media (max-width: 1120px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-panel { max-width: 620px; }
+      .filters-layout { grid-template-columns: 1fr; }
+      .filters { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .filter-card.wide { grid-column: 1 / -1; }
+      .search-zone { top: 76px; }
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 22px, 1480px); padding-top: 12px; }
+      .topbar { position: static; border-radius: 24px; align-items: stretch; flex-direction: column; }
+      .brand { white-space: normal; }
+      .top-actions { justify-content: stretch; }
+      .top-actions .btn { flex: 1 1 auto; }
+      .hero { padding: 24px 18px; border-radius: 24px; }
+      h1 { letter-spacing: -.055em; }
+      .search-zone { position: static; border-radius: 24px; }
+      .search-row { grid-template-columns: 1fr; }
+      .search-box input { height: 54px; font-size: .98rem; }
+      .filters { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .answer-body { grid-template-columns: 1fr; }
+      .answer-rank { width: 46px; height: 46px; border-radius: 17px; font-size: 1.25rem; }
+      .matrix { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .matrix-cell.head:first-child { grid-column: 1 / -1; }
+      .matrix-cell.head:not(:first-child) { display: none; }
+      .matrix-row-label { justify-content: flex-start; color: var(--text); }
+    }
+
+    @media (max-width: 480px) {
+      .stat-grid { grid-template-columns: 1fr; }
+      .paper-card { padding: 14px; border-radius: 18px; }
+      .card-top { flex-direction: column; }
+      .answer-head { align-items: flex-start; flex-direction: column; }
+      .result-toolbar { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <div class="wrap">
+    <nav class="topbar" aria-label="顶部工具栏">
+      <a class="brand" href="index.html" title="返回个人主页">
+        <span class="brand-mark">CCF</span>
+        <span>2026 期刊会议速查</span>
+      </a>
+      <div class="top-actions">
+        <a class="btn" href="index.html">← 返回主页</a>
+        <button class="btn" type="button" id="themeBtn">🌙 深色</button>
+        <button class="btn primary" type="button" id="focusBtn">⌘ 快速查询</button>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> 中国计算机学会推荐国际学术会议和期刊目录 · 2026 年 3 月更新</div>
+          <h1>一个页面，<span class="grad">最快查 CCF 级别</span></h1>
+          <p class="subtitle">
+            输入简称、全称或关键词即可查询某个期刊 / 会议的 CCF 方向与级别；也可直接输入
+            <strong>“安全 A 会议”</strong>、<strong>“人工智能 B 期刊”</strong> 这类组合条件，快速列出对应目录。
+          </p>
+        </div>
+
+        <aside class="hero-panel" aria-label="目录统计">
+          <div class="panel-title">
+            <span>数据概览</span>
+            <span class="data-stamp">● 内置离线数据</span>
+          </div>
+          <div class="stat-grid" id="stats"></div>
+        </aside>
+      </div>
+    </header>
+
+    <section class="search-zone" aria-label="搜索与排序">
+      <div class="search-row">
+        <div class="search-box">
+          <span class="search-icon">⌕</span>
+          <input id="q" type="search" placeholder="输入 TIFS / ICML / ACM MM / Computers & Security / 安全 A 会议 ..." autocomplete="off" spellcheck="false" autofocus />
+          <button class="clear-search" type="button" id="clearBtn" aria-label="清空搜索">×</button>
+        </div>
+        <select class="select" id="sortBy" aria-label="排序方式">
+          <option value="relevance">按相关度排序</option>
+          <option value="rank">按级别 A → C</option>
+          <option value="subject">按方向排序</option>
+          <option value="kind">按类型排序</option>
+          <option value="name">按名称排序</option>
+        </select>
+        <button class="btn primary" type="button" id="resetBtn">重置筛选</button>
+      </div>
+
+      <div class="quick-examples">
+        <span>示例：</span>
+        <button class="example" type="button" data-query="TIFS">TIFS</button>
+        <button class="example" type="button" data-query="ICML">ICML</button>
+        <button class="example" type="button" data-query="ACM MM">ACM MM</button>
+        <button class="example" type="button" data-query="安全 A 会议">安全 A 会议</button>
+        <button class="example" type="button" data-query="人工智能 B 期刊">人工智能 B 期刊</button>
+        <button class="example" type="button" data-query="新增">新增</button>
+      </div>
+    </section>
+
+    <div class="filters-layout">
+      <aside class="filters" aria-label="筛选器">
+        <section class="filter-card">
+          <div class="filter-title"><span>方向</span><span id="subjectHint">全部</span></div>
+          <div class="chipset" id="subjectChips"></div>
+        </section>
+
+        <section class="filter-card">
+          <div class="filter-title"><span>级别</span><span id="rankHint">全部</span></div>
+          <div class="chipset" id="rankChips"></div>
+        </section>
+
+        <section class="filter-card">
+          <div class="filter-title"><span>类型</span><span id="kindHint">全部</span></div>
+          <div class="chipset" id="kindChips"></div>
+        </section>
+
+        <section class="filter-card wide">
+          <div class="filter-title"><span>变动标记</span><span id="flagHint">全部</span></div>
+          <div class="chipset" id="flagChips"></div>
+          <div class="flag-help" style="margin-top: 13px;">
+            <div class="flag-line"><span class="flag-swatch sw-y"></span>标黄：目录新增会议或期刊</div>
+            <div class="flag-line"><span class="flag-swatch sw-r"></span>红字：从 2022 第六版目录中晋级</div>
+            <div class="flag-line"><span class="flag-swatch sw-c"></span>标蓝：从 2022 第六版目录中降级</div>
+            <div class="flag-line"><span class="flag-swatch sw-g"></span>绿字：名称更新</div>
+          </div>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section class="smart-answer" id="smartAnswer" aria-live="polite"></section>
+
+        <div class="result-toolbar">
+          <div class="result-count">当前显示 <span class="count-number" id="count">0</span> 条结果 <span id="filterSummary"></span></div>
+          <div class="view-tabs" aria-label="视图切换">
+            <button class="view-tab active" type="button" id="cardViewBtn">卡片</button>
+            <button class="view-tab" type="button" id="tableViewBtn">表格</button>
+          </div>
+        </div>
+
+        <section class="cards" id="cards"></section>
+
+        <section class="table-wrap" id="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>方向</th>
+                <th>级别</th>
+                <th>类型</th>
+                <th>简称</th>
+                <th>全称</th>
+                <th>出版社</th>
+                <th>变动</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </section>
+
+        <section class="empty-state" id="emptyState">
+          没有找到匹配结果。建议尝试简称、英文全称中的关键词，或点击“重置筛选”。
+        </section>
+
+        <section class="matrix-card">
+          <div class="matrix-head">
+            <h2 class="matrix-title">快速分布矩阵</h2>
+            <span class="result-count">点击任一格，可直接筛选对应方向 / 级别 / 类型</span>
+          </div>
+          <div class="matrix" id="matrix"></div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      数据来自《中国计算机学会推荐国际学术会议和期刊目录（第七版，2026 年 3 月更新）》；本页面用于快速检索与浏览，最终以 CCF 官方目录为准。
+    </footer>
+  </div>
+
+  <button class="backtop" id="backtop" type="button" aria-label="返回顶部">↑</button>
+  <div class="toast" id="toast">已复制</div>
+
+  <script>
+    "use strict";
+
+    const rawData = [
+  "系统|A|期刊|TOCS|ACM Transactions on Computer Systems|ACM|0",
+  "系统|A|期刊|TOS|ACM Transactions on Storage|ACM|0",
+  "系统|A|期刊|TCAD|IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems|IEEE|0",
+  "系统|A|期刊|TC|IEEE Transactions on Computers|IEEE|0",
+  "系统|A|期刊|TPDS|IEEE Transactions on Parallel and Distributed Systems|IEEE|0",
+  "系统|A|期刊|TACO|ACM Transactions on Architecture and Code Optimization|ACM|0",
+  "系统|B|期刊|TAAS|ACM Transactions on Autonomous and Adaptive Systems|ACM|0",
+  "系统|B|期刊|TODAES|ACM Transactions on Design Automation of Electronic Systems|ACM|0",
+  "系统|B|期刊|TECS|ACM Transactions on Embedded Computing Systems|ACM|0",
+  "系统|B|期刊|TRETS|ACM Transactions on Reconfigurable Technology and Systems|ACM|0",
+  "系统|B|期刊|TVLSI|IEEE Transactions on Very Large Scale Integration (VLSI) Systems|IEEE|0",
+  "系统|B|期刊|JPDC|Journal of Parallel and Distributed Computing|Elsevier|0",
+  "系统|B|期刊|JSA|Journal of Systems Architecture: Embedded Software Design|Elsevier|0",
+  "系统|B|期刊|-|Parallel Computing|Elsevier|0",
+  "系统|B|期刊|-|Performance Evaluation: An International Journal|Elsevier|0",
+  "系统|B|期刊|TCC|IEEE Transactions on Cloud Computing|IEEE|r",
+  "系统|C|期刊|JETC|ACM Journal on Emerging Technologies in Computing Systems|ACM|0",
+  "系统|C|期刊|-|Concurrency and Computation: Practice and Experience|Wiley|0",
+  "系统|C|期刊|DC|Distributed Computing|Springer|0",
+  "系统|C|期刊|FGCS|Future Generation Computer Systems|Elsevier|0",
+  "系统|C|期刊|Integration|Integration, the VLSI Journal|Elsevier|0",
+  "系统|C|期刊|JETTA|Journal of Electronic Testing-Theory and Applications|Springer|0",
+  "系统|C|期刊|JGC|Journal of Grid computing|Springer|0",
+  "系统|C|期刊|RTS|Real-Time Systems|Springer|0",
+  "系统|C|期刊|TJSC|The Journal of Supercomputing|Springer|0",
+  "系统|C|期刊|TCASI|IEEE Transactions on Circuits and Systems I: Regular Papers|IEEE|0",
+  "系统|C|期刊|CCF-THPC|CCF Transactions on High Performance Computing|CCF|0",
+  "系统|C|期刊|TSUSC|IEEE Transactions on Sustainable Computing|IEEE|0",
+  "系统|A|会议|PPoPP|ACM SIGPLAN Symposium on Principles & Practice of Parallel Programming|ACM|0",
+  "系统|A|会议|FAST|USENIX Conference on File and Storage Technologies|USENIX|0",
+  "系统|A|会议|DAC|Design Automation Conference|ACM|0",
+  "系统|A|会议|HPCA|IEEE International Symposium on High Performance Computer Architecture|IEEE|0",
+  "系统|A|会议|MICRO|IEEE/ACM International Symposium on Microarchitecture|IEEE/ACM|0",
+  "系统|A|会议|SC|International Conference for High Performance Computing, Networking, Storage, and Analysis|IEEE|0",
+  "系统|A|会议|ASPLOS|International Conference on Architectural Support for Programming Languages and Operating Systems|ACM|0",
+  "系统|A|会议|ISCA|International Symposium on Computer Architecture|IEEE/ACM|0",
+  "系统|A|会议|ACM SIGOPS ATC|ACM SIGOPS Annual Technical Conference|ACM|g",
+  "系统|A|会议|EuroSys|European Conference on Computer Systems|ACM|0",
+  "系统|A|会议|HPDC|The International ACM Symposium on High-Performance Parallel and Distributed Computing|IEEE|r",
+  "系统|B|会议|SoCC|ACM Symposium on Cloud Computing|ACM|0",
+  "系统|B|会议|SPAA|ACM Symposium on Parallelism in Algorithms and Architectures|ACM|0",
+  "系统|B|会议|PODC|ACM Symposium on Principles of Distributed Computing|ACM|0",
+  "系统|B|会议|FPGA|ACM/SIGDA International Symposium on Field-Programmable Gate Arrays|ACM|0",
+  "系统|B|会议|CGO|The International Symposium on Code Generation and Optimization|IEEE/ACM|0",
+  "系统|B|会议|DATE|Design, Automation & Test in Europe|IEEE/ACM|0",
+  "系统|B|会议|HOT CHIPS|Hot Chips: A Symposium on High Performance Chips|IEEE|0",
+  "系统|B|会议|CLUSTER|IEEE International Conference on Cluster Computing|IEEE|0",
+  "系统|B|会议|ICCD|International Conference on Computer Design|IEEE|0",
+  "系统|B|会议|ICCAD|International Conference on Computer-Aided Design|IEEE/ACM|0",
+  "系统|B|会议|ICDCS|IEEE International Conference on Distributed Computing Systems|IEEE|0",
+  "系统|B|会议|CODES+ISSS|International Conference on Hardware/Software Co-design and System Synthesis|IEEE/ACM|0",
+  "系统|B|会议|HiPEAC|International Conference on High Performance and Embedded Architectures and Compilers|ACM|0",
+  "系统|B|会议|SIGMETRICS|International Conference on Measurement and Modeling of Computer Systems|ACM|0",
+  "系统|B|会议|PACT|International Conference on Parallel Architectures and Compilation Techniques|IEEE/ACM|0",
+  "系统|B|会议|ICPP|International Conference on Parallel Processing|ACM|0",
+  "系统|B|会议|ICS|International Conference on Supercomputing|ACM|0",
+  "系统|B|会议|VEE|International Conference on Virtual Execution Environments|ACM|0",
+  "系统|B|会议|IPDPS|IEEE International Parallel & Distributed Processing Symposium|IEEE|0",
+  "系统|B|会议|Performance|International Symposium on Computer Performance, Modeling, Measurements and Evaluation|ACM|0",
+  "系统|B|会议|ITC|International Test Conference|IEEE|0",
+  "系统|B|会议|LISA|Large Installation System Administration Conference|USENIX|0",
+  "系统|B|会议|MSST|Mass Storage Systems and Technologies|IEEE|0",
+  "系统|B|会议|RTAS|IEEE Real-Time and Embedded Technology and Applications Symposium|IEEE|0",
+  "系统|B|会议|Euro-Par|European Conference on Parallel and Distributed Computing|Springer|0",
+  "系统|B|会议|ISCAS|IEEE International Symposium on Circuits and Systems|IEEE|r",
+  "系统|C|会议|CF|ACM International Conference on Computing Frontiers|ACM|0",
+  "系统|C|会议|SYSTOR|ACM International Systems and Storage Conference|ACM|0",
+  "系统|C|会议|NOCS|ACM/IEEE International Symposium on Networks-on-Chip|IEEE/ACM|0",
+  "系统|C|会议|ASAP|IEEE International Conference on Application-Specific Systems, Architectures, and Processors|IEEE|0",
+  "系统|C|会议|ASP-DAC|Asia and South Pacific Design Automation Conference|IEEE/ACM|0",
+  "系统|C|会议|ETS|IEEE European Test Symposium|IEEE|0",
+  "系统|C|会议|FPL|International Conference on Field-Programmable Logic and Applications|IEEE|0",
+  "系统|C|会议|FCCM|IEEE Symposium on Field-Programmable Custom Computing Machines|IEEE|0",
+  "系统|C|会议|GLSVLSI|Great Lakes Symposium on VLSI|IEEE/ACM|0",
+  "系统|C|会议|ATS|IEEE Asian Test Symposium|IEEE|0",
+  "系统|C|会议|HPCC|IEEE International Conference on High Performance Computing and Communications|IEEE|0",
+  "系统|C|会议|HiPC|IEEE International Conference on High Performance Computing, Data and Analytics|IEEE/ACM|0",
+  "系统|C|会议|MASCOTS|International Symposium on Modeling, Analysis, and Simulation of Computer and Telecommunication Systems|IEEE|0",
+  "系统|C|会议|ISPA|IEEE International Symposium on Parallel and Distributed Processing with Applications|IEEE|0",
+  "系统|C|会议|CCGRID|IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing|IEEE/ACM|0",
+  "系统|C|会议|NPC|IFIP International Conference on Network and Parallel Computing|Springer|0",
+  "系统|C|会议|ICA3PP|International Conference on Algorithms and Architectures for Parallel Processing|IEEE|0",
+  "系统|C|会议|CASES|International Conference on Compilers, Architectures, and Synthesis for Embedded Systems|ACM|0",
+  "系统|C|会议|FPT|International Conference on Field-Programmable Technology|IEEE|0",
+  "系统|C|会议|ICPADS|International Conference on Parallel and Distributed Systems|IEEE|0",
+  "系统|C|会议|ISLPED|International Symposium on Low Power Electronics and Design|IEEE/ACM|0",
+  "系统|C|会议|ISPD|International Symposium on Physical Design|ACM|0",
+  "系统|C|会议|HOTI|IEEE Symposium on High-Performance Interconnects|IEEE|0",
+  "系统|C|会议|VTS|IEEE VLSI Test Symposium|IEEE|0",
+  "系统|C|会议|ITC-Asia|International Test Conference in Asia|IEEE|0",
+  "系统|C|会议|SEC|ACM/IEEE Symposium on Edge Computing|IEEE/ACM|y",
+  "系统|C|会议|NAS|International Conference on Networking, Architecture and Storages|IEEE|y",
+  "系统|C|会议|HotStorage|HotStorage|USENIX Association|y",
+  "系统|C|会议|APPT|International Symposium on Advanced Parallel Processing Technology|Springer|y",
+  "系统|C|会议|JCC|International Conference on JointCloud Computing|CCF&IEEE|y",
+  "网络|A|期刊|JSAC|IEEE Journal on Selected Areas in Communications|IEEE|0",
+  "网络|A|期刊|TMC|IEEE Transactions on Mobile Computing|IEEE|0",
+  "网络|A|期刊|TON|IEEE/ACM Transactions on Networking|IEEE/ACM|0",
+  "网络|B|期刊|TOIT|ACM Transactions on Internet Technology|ACM|0",
+  "网络|B|期刊|TOMM|ACM Transactions on Multimedia Computing, Communications and Applications|ACM|0",
+  "网络|B|期刊|TOSN|ACM Transactions on Sensor Networks|ACM|0",
+  "网络|B|期刊|CN|Computer Networks|Elsevier|0",
+  "网络|B|期刊|TCOM|IEEE Transactions on Communications|IEEE|0",
+  "网络|B|期刊|TWC|IEEE Transactions on Wireless Communications|IEEE|0",
+  "网络|C|期刊|-|Ad Hoc Networks|Elsevier|0",
+  "网络|C|期刊|CC|Computer Communications|Elsevier|0",
+  "网络|C|期刊|TNSM|IEEE Transactions on Network and Service Management|IEEE|0",
+  "网络|C|期刊|-|IET Communications|IET|0",
+  "网络|C|期刊|JNCA|Journal of Network and Computer Applications|Elsevier|0",
+  "网络|C|期刊|MONET|Mobile Networks and Applications|Springer|0",
+  "网络|C|期刊|-|Networks|Wiley|0",
+  "网络|C|期刊|PPNA|Peer-to-Peer Networking and Applications|Springer|0",
+  "网络|C|期刊|WCMC|Wireless Communications and Mobile Computing|Wiley|0",
+  "网络|C|期刊|-|Wireless Networks|Springer|0",
+  "网络|C|期刊|IOT|IEEE Internet of Things Journal|IEEE|0",
+  "网络|C|期刊|TIOT|ACM Transactions on Internet of Things|ACM|y",
+  "网络|A|会议|SIGCOMM|ACM International Conference on Applications, Technologies, Architectures, and Protocols for Computer Communication|ACM|0",
+  "网络|A|会议|MobiCom|ACM International Conference on Mobile Computing and Networking|ACM|0",
+  "网络|A|会议|INFOCOM|IEEE International Conference on Computer Communications|IEEE|0",
+  "网络|A|会议|NSDI|Symposium on Network System Design and Implementation|USENIX|0",
+  "网络|B|会议|SenSys|ACM Conference on Embedded Networked Sensor Systems|ACM|0",
+  "网络|B|会议|CoNEXT|ACM International Conference on Emerging Networking Experiments and Technologies|ACM|0",
+  "网络|B|会议|SECON|IEEE International Conference on Sensing, Communication, and Networking|IEEE|0",
+  "网络|B|会议|IPSN|International Conference on Information Processing in Sensor Networks|IEEE/ACM|0",
+  "网络|B|会议|MobiSys|ACM International Conference on Mobile Systems, Applications, and Services|ACM|0",
+  "网络|B|会议|ICNP|IEEE International Conference on Network Protocols|IEEE|0",
+  "网络|B|会议|MobiHoc|International Symposium on Theory, Algorithmic Foundations, and Protocol Design for Mobile Networks and Mobile Computing|IEEE/ACM|0",
+  "网络|B|会议|NOSSDAV|International Workshop on Network and Operating System Support for Digital Audio and Video|ACM|0",
+  "网络|B|会议|IWQoS|IEEE/ACM International Workshop on Quality of Service|IEEE|0",
+  "网络|B|会议|IMC|ACM Internet Measurement Conference|ACM/USENIX|0",
+  "网络|C|会议|ANCS|ACM/IEEE Symposium on Architectures for Networking and Communication Systems|IEEE/ACM|0",
+  "网络|C|会议|APNOMS|Asia-Pacific Network Operations and Management Symposium|IFIP/IEEE|0",
+  "网络|C|会议|FORTE|International Conference on Formal Techniques for Distributed Objects, Components, and Systems|Springer|0",
+  "网络|C|会议|LCN|IEEE Conference on Local Computer Networks|IEEE|0",
+  "网络|C|会议|GLOBECOM|IEEE Global Communications Conference|IEEE|0",
+  "网络|C|会议|ICC|IEEE International Conference on Communications|IEEE|0",
+  "网络|C|会议|ICCCN|IEEE International Conference on Computer Communications and Networks|IEEE|0",
+  "网络|C|会议|MASS|IEEE International Conference on Mobile Adhoc and Sensor Systems|IEEE|0",
+  "网络|C|会议|P2P|IEEE International Conference on Peer-to-Peer Computing|IEEE|0",
+  "网络|C|会议|IPCCC|IEEE International Performance Computing and Communications Conference|IEEE|0",
+  "网络|C|会议|WoWMoM|IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks|IEEE|0",
+  "网络|C|会议|ISCC|IEEE Symposium on Computers and Communications|IEEE|0",
+  "网络|C|会议|WCNC|IEEE Wireless Communications and Networking Conference|IEEE|0",
+  "网络|C|会议|Networking|IFIP International Conferences on Networking|IFIP|0",
+  "网络|C|会议|IM|IFIP/IEEE International Symposium on Integrated Network Management|IFIP/IEEE|0",
+  "网络|C|会议|MSN|International Conference on Mobility, Sensing and Networking|IEEE|0",
+  "网络|C|会议|MSWiM|International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems|ACM|0",
+  "网络|C|会议|WASA|The International Conference on Wireless Artificial Intelligent Computing Systems and Applications|Springer|0",
+  "网络|C|会议|HotNets|ACM The Workshop on Hot Topics in Networks|ACM|0",
+  "网络|C|会议|APNet|Asia-Pacific Workshop on Networking|ACM|0",
+  "安全|A|期刊|TDSC|IEEE Transactions on Dependable and Secure Computing|IEEE|0",
+  "安全|A|期刊|TIFS|IEEE Transactions on Information Forensics and Security|IEEE|0",
+  "安全|A|期刊|-|Journal of Cryptology|Springer|0",
+  "安全|B|期刊|TOPS|ACM Transactions on Privacy and Security|ACM|0",
+  "安全|B|期刊|-|Computers & Security|Elsevier|0",
+  "安全|B|期刊|-|Designs, Codes and Cryptography|Springer|0",
+  "安全|B|期刊|JCS|Journal of Computer Security|IOS Press|0",
+  "安全|B|期刊|Cybersecurity|Cybersecurity|中国科学院信息工程研究所/科学出版社|r",
+  "安全|C|期刊|CLSR|Computer Law & Security Review|Elsevier|0",
+  "安全|C|期刊|-|EURASIP Journal on Information Security|Springer|0",
+  "安全|C|期刊|-|IET Information Security|IET|0",
+  "安全|C|期刊|IMCS|Information and Computer Security|Emerald|0",
+  "安全|C|期刊|IJICS|International Journal of Information and Computer Security|Inderscience|0",
+  "安全|C|期刊|IJISP|International Journal of Information Security and Privacy|IGI Global|0",
+  "安全|C|期刊|JISA|Journal of Information Security and Applications|Elsevier|0",
+  "安全|C|期刊|SCN|Security and Communication Networks|Wiley|0",
+  "安全|C|期刊|HCC|High-Confidence Computing|Elsevier|y",
+  "安全|A|会议|CCS|ACM Conference on Computer and Communications Security|ACM|0",
+  "安全|A|会议|EUROCRYPT|International Conference on the Theory and Applications of Cryptographic Techniques|Springer|0",
+  "安全|A|会议|S&P|IEEE Symposium on Security and Privacy|IEEE|0",
+  "安全|A|会议|CRYPTO|International Cryptology Conference|Springer|0",
+  "安全|A|会议|USENIX Security|USENIX Security Symposium|USENIX Association|0",
+  "安全|A|会议|NDSS|Network and Distributed System Security Symposium|ISOC|0",
+  "安全|B|会议|ACSAC|Annual Computer Security Applications Conference|IEEE|0",
+  "安全|B|会议|ASIACRYPT|Annual International Conference on the Theory and Application of Cryptology and Information Security|Springer|0",
+  "安全|B|会议|ESORICS|European Symposium on Research in Computer Security|Springer|0",
+  "安全|B|会议|FSE|Fast Software Encryption|Springer|0",
+  "安全|B|会议|CSFW|IEEE Computer Security Foundations Workshop|IEEE|0",
+  "安全|B|会议|SRDS|IEEE International Symposium on Reliable Distributed Systems|IEEE|0",
+  "安全|B|会议|CHES|International Conference on Cryptographic Hardware and Embedded Systems|Springer|0",
+  "安全|B|会议|DSN|International Conference on Dependable Systems and Networks|IEEE/IFIP|0",
+  "安全|B|会议|RAID|International Symposium on Recent Advances in Intrusion Detection|Springer|0",
+  "安全|B|会议|PKC|International Workshop on Practice and Theory in Public Key Cryptography|Springer|0",
+  "安全|B|会议|TCC|Theory of Cryptography Conference|Springer|0",
+  "安全|C|会议|WiSec|ACM Conference on Security and Privacy in Wireless and Mobile Networks|ACM|0",
+  "安全|C|会议|SACMAT|ACM Symposium on Access Control Models and Technologies|ACM|0",
+  "安全|C|会议|DRM|ACM Workshop on Digital Rights Management|ACM|0",
+  "安全|C|会议|IH&MMSec|ACM Workshop on Information Hiding and Multimedia Security|ACM|0",
+  "安全|C|会议|ACNS|International Conference on Applied Cryptography and Network Security|Springer|0",
+  "安全|C|会议|AsiaCCS|ACM Asia Conference on Computer and Communications Security|ACM|0",
+  "安全|C|会议|ACISP|Australasia Conference on Information Security and Privacy|Springer|0",
+  "安全|C|会议|CT-RSA|The Cryptographer's Track at RSA Conference|Springer|0",
+  "安全|C|会议|DIMVA|Conference on Detection of Intrusions and Malware & Vulnerability Assessment|Springer|0",
+  "安全|C|会议|DFRWS|Digital Forensic Research Workshop|Elsevier|0",
+  "安全|C|会议|FC|Financial Cryptography and Data Security|Springer|0",
+  "安全|C|会议|TrustCom|IEEE International Conference on Trust, Security and Privacy in Computing and Communications|IEEE|0",
+  "安全|C|会议|SEC|IFIP International Information Security Conference|Springer|0",
+  "安全|C|会议|IFIP WG 11.9|IFIP Working Group 11.9 International Conference on Digital Forensics|Springer|0",
+  "安全|C|会议|ISC|Information Security Conference|Springer|0",
+  "安全|C|会议|ICDF2C|International Conference on Digital Forensics & Cyber Crime|Springer|0",
+  "安全|C|会议|ICICS|International Conference on Information and Communications Security|Springer|0",
+  "安全|C|会议|SecureComm|International Conference on Security and Privacy in Communication Networks|ACM|0",
+  "安全|C|会议|NSPW|New Security Paradigms Workshop|ACM|0",
+  "安全|C|会议|PAM|Passive and Active Measurement Conference|Springer|0",
+  "安全|C|会议|PETS|Privacy Enhancing Technologies Symposium|Springer|0",
+  "安全|C|会议|SAC|Selected Areas in Cryptography|Springer|0",
+  "安全|C|会议|SOUPS|Symposium On Usable Privacy and Security|USENIX|0",
+  "安全|C|会议|HotSec|USENIX Workshop on Hot Topics in Security|USENIX|0",
+  "安全|C|会议|EuroS&P|IEEE European Symposium on Security and Privacy|IEEE|0",
+  "安全|C|会议|Inscrypt|International Conference on Information Security and Cryptology|Springer|0",
+  "安全|C|会议|CODASPY|Conference on Data and Application Security and Privacy|ACM|y",
+  "安全|C|会议|BlockSys|International Conference on Blockchain, Artificial Intelligence, and Trustworthy Systems|Springer|y",
+  "安全|C|会议|CSCloud|International Conference on Cyber Security and Cloud Computing|IEEE CSCloud Steering Committee|y",
+  "软工|A|期刊|TOPLAS|ACM Transactions on Programming Languages and Systems|ACM|0",
+  "软工|A|期刊|TOSEM|ACM Transactions on Software Engineering and Methodology|ACM|0",
+  "软工|A|期刊|TSE|IEEE Transactions on Software Engineering|IEEE|0",
+  "软工|A|期刊|TSC|IEEE Transactions on Services Computing|IEEE|0",
+  "软工|B|期刊|ASE|Automated Software Engineering|Springer|0",
+  "软工|B|期刊|ESE|Empirical Software Engineering|Springer|0",
+  "软工|B|期刊|IETS|IET Software|IET|0",
+  "软工|B|期刊|IST|Information and Software Technology|Elsevier|0",
+  "软工|B|期刊|JFP|Journal of Functional Programming|Cambridge University Press|0",
+  "软工|B|期刊|-|Journal of Software: Evolution and Process|Wiley|0",
+  "软工|B|期刊|JSS|Journal of Systems and Software|Elsevier|0",
+  "软工|B|期刊|RE|Requirements Engineering|Springer|0",
+  "软工|B|期刊|SCP|Science of Computer Programming|Elsevier|0",
+  "软工|B|期刊|SoSyM|Software and Systems Modeling|Springer|0",
+  "软工|B|期刊|STVR|Software Testing, Verification and Reliability|Wiley|0",
+  "软工|B|期刊|SPE|Software: Practice and Experience|Wiley|0",
+  "软工|C|期刊|CL|Computer Languages, Systems and Structures|Elsevier|0",
+  "软工|C|期刊|IJSEKE|International Journal of Software Engineering and Knowledge Engineering|World Scientific|0",
+  "软工|C|期刊|STTT|International Journal of Software Tools for Technology Transfer|Springer|0",
+  "软工|C|期刊|JLAMP|Journal of Logical and Algebraic Methods in Programming|Elsevier|0",
+  "软工|C|期刊|JWE|Journal of Web Engineering|Rinton Press|0",
+  "软工|C|期刊|SOCA|Service Oriented Computing and Applications|Springer|0",
+  "软工|C|期刊|SQJ|Software Quality Journal|Springer|0",
+  "软工|C|期刊|TPLP|Theory and Practice of Logic Programming|Cambridge University Press|0",
+  "软工|C|期刊|PACM PL|Proceedings of the ACM on Programming Languages|ACM|0",
+  "软工|A|会议|PLDI|ACM SIGPLAN Conference on Programming Language Design and Implementation|ACM|0",
+  "软工|A|会议|POPL|ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages|ACM|0",
+  "软工|A|会议|FSE|ACM International Conference on the Foundations of Software Engineering|ACM|0",
+  "软工|A|会议|SOSP|ACM Symposium on Operating Systems Principles|ACM|0",
+  "软工|A|会议|OOPSLA|Conference on Object-Oriented Programming Systems, Languages, and Applications|ACM|0",
+  "软工|A|会议|ASE|International Conference on Automated Software Engineering|IEEE/ACM|0",
+  "软工|A|会议|ICSE|International Conference on Software Engineering|IEEE/ACM|0",
+  "软工|A|会议|ISSTA|International Symposium on Software Testing and Analysis|ACM|0",
+  "软工|A|会议|OSDI|USENIX Symposium on Operating Systems Design and Implementation|USENIX|0",
+  "软工|A|会议|FM|International Symposium on Formal Methods|FME|0",
+  "软工|B|会议|ECOOP|European Conference on Object-Oriented Programming|AITO|0",
+  "软工|B|会议|ETAPS|European Joint Conferences on Theory and Practice of Software|Springer|0",
+  "软工|B|会议|ICPC|IEEE International Conference on Program Comprehension|IEEE|0",
+  "软工|B|会议|RE|IEEE International Requirements Engineering Conference|IEEE|0",
+  "软工|B|会议|CAiSE|International Conference on Advanced Information Systems Engineering|Springer|0",
+  "软工|B|会议|ICFP|ACM SIGPLAN International Conference on Function Programming|ACM|0",
+  "软工|B|会议|LCTES|ACM SIGPLAN/SIGBED International Conference on Languages, Compilers and Tools for Embedded Systems|ACM|0",
+  "软工|B|会议|MoDELS|ACM/IEEE International Conference on Model Driven EngineeringLanguages and Systems|IEEE/ACM|0",
+  "软工|B|会议|CP|International Conference on Principles and Practice of Constraint Programming|Springer|0",
+  "软工|B|会议|CSOC|International Conference on Service Oriented Computing|Springer|0",
+  "软工|B|会议|SANER|IEEE International Conference on Software Analysis, Evolution, and Reengineering|IEEE|0",
+  "软工|B|会议|ICSME|International Conference on Software Maintenance and Evolution|IEEE|0",
+  "软工|B|会议|VMCAI|International Conference on Verification, Model Checking and Abstract Interpretation|Springer|0",
+  "软工|B|会议|ICWS|IEEE International Conference on Web Services|IEEE|0",
+  "软工|B|会议|Middleware|International Middleware Conference|ACM/IFIP/USENIX|0",
+  "软工|B|会议|SAS|International Static Analysis Symposium|Springer|0",
+  "软工|B|会议|ESEM|International Symposium on Empirical Software Engineering and Measurement|IEEE/ACM|0",
+  "软工|B|会议|ISSRE|IEEE International Symposium on Software Reliability Engineering|IEEE|0",
+  "软工|B|会议|HotOS|USENIX Workshop on Hot Topics in Operating Systems|USENIX|0",
+  "软工|B|会议|CC|International Conference on Compiler Construction|ACM|y",
+  "软工|C|会议|PEPM|ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation|ACM|0",
+  "软工|C|会议|PASTE|ACMSIGPLAN-SIGSOFT Workshop on Program Analysis for Software Tools and Engineering|ACM|0",
+  "软工|C|会议|APLAS|Asian Symposium on Programming Languages and Systems|Springer|0",
+  "软工|C|会议|APSEC|Asia-Pacific Software Engineering Conference|IEEE|0",
+  "软工|C|会议|EASE|International Conference on Evaluation and Assessment in Software Engineering|ACM|0",
+  "软工|C|会议|ICECCS|International Conference on Engineering of Complex Computer Systems|IEEE|0",
+  "软工|C|会议|ICST|IEEE International Conference on Software Testing, Verification and Validation|IEEE|0",
+  "软工|C|会议|ISPASS|IEEE International Symposium on Performance Analysis of Systems and Software|IEEE|0",
+  "软工|C|会议|SCAM|IEEE International Working Conference on Source Code Analysis and Manipulation|IEEE|0",
+  "软工|C|会议|COMPSAC|International Computer Software and Applications Conference|IEEE|0",
+  "软工|C|会议|ICFEM|International Conference on Formal Engineering Methods|Springer|0",
+  "软工|C|会议|SSE|IEEE International Conference on Software Services Engineering|IEEE|0",
+  "软工|C|会议|ICSSP|International Conference on Software and System Process|ACM|0",
+  "软工|C|会议|SEKE|International Conference on Software Engineering and Knowledge Engineering|KSI|0",
+  "软工|C|会议|QRS|International Conference on Software Quality, Reliability and Security|IEEE|0",
+  "软工|C|会议|ICSR|International Conference on Software Reuse|Springer|0",
+  "软工|C|会议|ICWE|International Conference on Web Engineering|Springer|0",
+  "软工|C|会议|SPIN|International Symposium on Model Checking of Software|Springer|0",
+  "软工|C|会议|ATVA|International Symposium on Automated Technology for Verification and Analysis|Springer|0",
+  "软工|C|会议|LOPSTR|International Symposium on Logic-based Program Synthesis and Transformation|Springer|0",
+  "软工|C|会议|TASE|Theoretical Aspects of Software Engineering Conference|IEEE|0",
+  "软工|C|会议|MSR|Mining Software Repositories|IEEE/ACM|0",
+  "软工|C|会议|REFSQ|Requirements Engineering: Foundation for Software Quality|Springer|0",
+  "软工|C|会议|WICSA|Working IEEE/IFIP Conference on Software Architecture|IEEE|0",
+  "软工|C|会议|Internetware|Asia-Pacific Symposium on Internetware|ACM|0",
+  "软工|C|会议|RV|International Conference on Runtime Verification|Springer|0",
+  "软工|C|会议|MEMOCODE|International Conference on Formal Methods and Models for Co-Design|IEEE/ACM|y",
+  "数据库|A|期刊|TODS|ACM Transactions on Database Systems|ACM|0",
+  "数据库|A|期刊|TOIS|ACM Transactions on Information Systems|ACM|0",
+  "数据库|A|期刊|TKDE|IEEE Transactions on Knowledge and Data Engineering|IEEE|0",
+  "数据库|A|期刊|VLDBJ|The VLDB Journal|Springer|0",
+  "数据库|B|期刊|TKDD|ACM Transactions on Knowledge Discovery from Data|ACM|0",
+  "数据库|B|期刊|TWEB|ACM Transactions on the Web|ACM|0",
+  "数据库|B|期刊|AEI|Advanced Engineering Informatics|Elsevier|0",
+  "数据库|B|期刊|DKE|Data & Knowledge Engineering|Elsevier|0",
+  "数据库|B|期刊|DMKD|Data Mining and Knowledge Discovery|Springer|0",
+  "数据库|B|期刊|EJIS|European Journal of Information Systems|Springer|0",
+  "数据库|B|期刊|-|GeoInformatica|Springer|0",
+  "数据库|B|期刊|IPM|Information Processing and Management|Elsevier|0",
+  "数据库|B|期刊|-|Information Sciences|Elsevier|0",
+  "数据库|B|期刊|IS|Information Systems|Elsevier|0",
+  "数据库|B|期刊|JASIST|Journal of the Association for Information Science and Technology|Wiley|0",
+  "数据库|B|期刊|JWS|Journal of Web Semantics|Elsevier|0",
+  "数据库|B|期刊|KAIS|Knowledge and Information Systems|Springer|0",
+  "数据库|B|期刊|DSE|Data Science and Engineering|CCF/Springer Nature|r",
+  "数据库|C|期刊|DPD|Distributed and Parallel Databases|Springer|0",
+  "数据库|C|期刊|I&M|Information & Management|Elsevier|0",
+  "数据库|C|期刊|IPL|Information Processing Letters|Elsevier|0",
+  "数据库|C|期刊|IR|Information Retrieval Journal|Springer|0",
+  "数据库|C|期刊|IJCIS|International Journal of Cooperative Information Systems|World Scientific|0",
+  "数据库|C|期刊|IJGIS|International Journal of Geographical Information Science|Taylor & Francis|0",
+  "数据库|C|期刊|IJIS|International Journal of Intelligent Systems|Wiley|0",
+  "数据库|C|期刊|IJKM|International Journal of Knowledge Management|IGI|0",
+  "数据库|C|期刊|IJSWIS|International Journal on Semantic Web and Information Systems|IGI|0",
+  "数据库|C|期刊|JCIS|Journal of Computer Information Systems|IACIS|0",
+  "数据库|C|期刊|JDM|Journal of Database Management|IGI-Global|0",
+  "数据库|C|期刊|JGITM|Journal of Global Information Technology Management|Ivy League Publishing|0",
+  "数据库|C|期刊|JIIS|Journal of Intelligent Information Systems|Springer|0",
+  "数据库|C|期刊|JSIS|The Journal of Strategic Information Systems|Elsevier|0",
+  "数据库|C|期刊|TIST|ACM Transactions on Intelligent Systems and Technology|ACM|y",
+  "数据库|C|期刊|TORS|ACM Transactions on Recommender Systems|ACM|y",
+  "数据库|A|会议|SIGMOD|ACM SIGMOD Conference|ACM|0",
+  "数据库|A|会议|SIGKDD|ACM SIGKDD Conference on Knowledge Discovery and Data Mining|ACM|0",
+  "数据库|A|会议|ICDE|IEEE International Conference on Data Engineering|IEEE|0",
+  "数据库|A|会议|SIGIR|International ACM SIGIR Conference on Research and Development in Information Retrieval|ACM|0",
+  "数据库|A|会议|VLDB|International Conference on Very Large Data Bases|Morgan Kaufmann/ACM|0",
+  "数据库|B|会议|CIKM|ACM International Conference on Information and Knowledge Management|ACM|0",
+  "数据库|B|会议|WSDM|ACM International Conference on Web Search and Data Mining|ACM|0",
+  "数据库|B|会议|PODS|ACM SIGMOD-SIGACT-SIGAI Symposium on Principles of Database Systems|ACM|0",
+  "数据库|B|会议|DASFAA|International Conference on Database Systems for Advanced Applications|Springer|0",
+  "数据库|B|会议|ECML-PKDD|European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases|Springer|0",
+  "数据库|B|会议|ISWC|IEEE International Semantic Web Conference|IEEE|0",
+  "数据库|B|会议|ICDM|IEEE International Conference on Data Mining|IEEE|0",
+  "数据库|B|会议|ICDT|International Conference on Database Theory|Springer|0",
+  "数据库|B|会议|EDBT|International Conference on Extending Database Technology|Springer|0",
+  "数据库|B|会议|CIDR|Conference on Innovative Data Systems Research|Online Proceeding|0",
+  "数据库|B|会议|SDM|SIAM International Conference on Data Mining|SIAM|0",
+  "数据库|B|会议|RecSys|ACM Conference on Recommender Systems|ACM|0",
+  "数据库|B|会议|WISE|Web Information Systems Engineering Conference|Springer|r",
+  "数据库|C|会议|APWeb|Asia Pacific Web Conference|Springer|0",
+  "数据库|C|会议|DEXA|International Conference on Database and Expert System Applications|Springer|0",
+  "数据库|C|会议|ECIR|European Conference on Information Retrieval|Springer|0",
+  "数据库|C|会议|ESWC|Extended Semantic Web Conference|Springer|0",
+  "数据库|C|会议|WebDB|International Workshop on Web and Databases|ACM|0",
+  "数据库|C|会议|ER|International Conference on Conceptual Modeling|Springer|0",
+  "数据库|C|会议|MDM|International Conference on Mobile Data Management|IEEE|0",
+  "数据库|C|会议|SSDBM|International Conference on Scientific and Statistical Database Management|IEEE|0",
+  "数据库|C|会议|WAIM|International Conference on Web Age Information Management|Springer|0",
+  "数据库|C|会议|SSTD|International Symposium on Spatial and Temporal Databases|Springer|0",
+  "数据库|C|会议|PAKDD|Pacific-Asia Conference on Knowledge Discovery and Data Mining|Springer|0",
+  "数据库|C|会议|ADMA|International Conference on Advanced Data Mining and Applications|Springer|0",
+  "数据库|C|会议|WISA|Web Information Systems and Applications|Springer|y",
+  "理论|A|期刊|TIT|IEEE Transactions on Information Theory|IEEE|0",
+  "理论|A|期刊|IANDC|Information and Computation|Elsevier|0",
+  "理论|A|期刊|SICOMP|SIAM Journal on Computing|SIAM|0",
+  "理论|B|期刊|TALG|ACM Transactions on Algorithms|ACM|0",
+  "理论|B|期刊|TOCL|ACM Transactions on Computational Logic|ACM|0",
+  "理论|B|期刊|TOMS|ACM Transactions on Mathematical Software|ACM|0",
+  "理论|B|期刊|Algorithmica|Algorithmica|Springer|0",
+  "理论|B|期刊|CC|Computational Complexity|Springer|0",
+  "理论|B|期刊|FAC|Formal Aspects of Computing|Springer|0",
+  "理论|B|期刊|FMSD|Formal Methods in System Design|Springer|0",
+  "理论|B|期刊|INFORMS|INFORMS Journal on Computing|INFORMS|0",
+  "理论|B|期刊|JCSS|Journal of Computer and System Sciences|Elsevier|0",
+  "理论|B|期刊|JGO|Journal of Global Optimization|Springer|0",
+  "理论|B|期刊|JSC|Journal of Symbolic Computation|Elsevier|0",
+  "理论|B|期刊|MSCS|Mathematical Structures in Computer Science|Cambridge University Press|0",
+  "理论|B|期刊|TCS|Theoretical Computer Science|Elsevier|0",
+  "理论|C|期刊|ACTA|Acta Informatica|Springer|0",
+  "理论|C|期刊|APAL|Annals of Pure and Applied Logic|Elsevier|0",
+  "理论|C|期刊|DAM|Discrete Applied Mathematics|Elsevier|0",
+  "理论|C|期刊|FUIN|Fundamenta Informaticae|IOS Press|0",
+  "理论|C|期刊|IPL|Information Processing Letters|Elsevier|0",
+  "理论|C|期刊|JCOMPLEXITY|Journal of Complexity|Elsevier|0",
+  "理论|C|期刊|LOGCOM|Journal of Logic and Computation|Oxford University Press|0",
+  "理论|C|期刊|JSL|The Journal of Symbolic Logic|Association for Symbolic Logic|0",
+  "理论|C|期刊|LMCS|Logical Methods in Computer Science|LMCS|0",
+  "理论|C|期刊|SIDMA|SIAM Journal on Discrete Mathematics|SIAM|0",
+  "理论|C|期刊|-|Theory of Computing Systems|Springer|0",
+  "理论|C|期刊|TQC|ACM Transactions in Quantum Computing|ACM|y",
+  "理论|A|会议|STOC|ACM Symposium on the Theory of Computing|ACM|0",
+  "理论|A|会议|SODA|ACM-SIAM Symposium on Discrete Algorithms|SIAM|0",
+  "理论|A|会议|CAV|International Conference on Computer Aided Verification|Springer|0",
+  "理论|A|会议|FOCS|IEEE Annual Symposium on Foundations of Computer Science|IEEE|0",
+  "理论|A|会议|LICS|ACM/IEEE Symposium on Logic in Computer Science|IEEE|0",
+  "理论|B|会议|SoCG|International Symposium on Computational Geometry|ACM|0",
+  "理论|B|会议|ESA|European Symposium on Algorithms|Springer|0",
+  "理论|B|会议|CCC|Conference on Computational Complexity|IEEE|0",
+  "理论|B|会议|ICALP|International Colloquium on Automata, Languages and Programming|Springer|0",
+  "理论|B|会议|CADE|Conference on Automated Deduction|Springer|0",
+  "理论|B|会议|CONCUR|International Conference on Concurrency Theory|Springer|0",
+  "理论|B|会议|HSCC|International Conference on Hybrid Systems: Computation and Control|Springer/ACM|0",
+  "理论|B|会议|SAT|International Conference on Theory and Applications of Satisfiability Testing|Springer|0",
+  "理论|B|会议|COCOON|International Computing and Combinatorics Conference|Springer|0",
+  "理论|B|会议|FMCAD|Formal Methods in Computer-Aided Design|ACM|r",
+  "理论|C|会议|CSL|Computer Science Logic|Springer|0",
+  "理论|C|会议|FSTTCS|Foundations of Software Technology and Theoretical Computer Science|Indian Association|0",
+  "理论|C|会议|DSAA|IEEE International Conference on Data Science and Advanced Analytics|IEEE|0",
+  "理论|C|会议|ICTAC|International Colloquium on Theoretical Aspects of Computing|Springer|0",
+  "理论|C|会议|IPCO|International Conference on Integer Programming and Combinatorial Optimization|Springer|0",
+  "理论|C|会议|FSCD|International Conference on Formal Structures for Computation and Deduction|Dagstuhl Leibniz LIPIcs|g",
+  "理论|C|会议|ISAAC|International Symposium on Algorithms and Computation|Springer|0",
+  "理论|C|会议|MFCS|International Conference on Mathematical Foundations of Computer Science|Springer|0",
+  "理论|C|会议|STACS|Symposium on Theoretical Aspects of Computer Science|Springer|0",
+  "理论|C|会议|SETTA|International Symposium on Software Engineering: Theories, Tools, and Applications|Springer|0",
+  "多媒体|A|期刊|TOG|ACM Transactions on Graphics|ACM|0",
+  "多媒体|A|期刊|TIP|IEEE Transactions on Image Processing|IEEE|0",
+  "多媒体|A|期刊|TVCG|IEEE Transactions on Visualization and Computer Graphics|IEEE|0",
+  "多媒体|A|期刊|TMM|IEEE Transactions on Multimedia|IEEE|r",
+  "多媒体|B|期刊|TOMM|ACM Transactions on Multimedia Computing, Communications and Applications|ACM|0",
+  "多媒体|B|期刊|CAGD|Computer Aided Geometric Design|Elsevier|0",
+  "多媒体|B|期刊|CGF|Computer Graphics Forum|Wiley|0",
+  "多媒体|B|期刊|CAD|Computer-Aided Design|Elsevier|0",
+  "多媒体|B|期刊|TCSVT|IEEE Transactions on Circuits and Systems for Video Technology|IEEE|0",
+  "多媒体|B|期刊|JASA|The Journal of the Acoustical Society of America|AIP|0",
+  "多媒体|B|期刊|SIIMS|SIAM Journal on Imaging Sciences|SIAM|0",
+  "多媒体|B|期刊|SPECOM|Speech Communication|Elsevier|0",
+  "多媒体|B|期刊|CVMJ|Computational Visual Media|Tsinghua University/Springer|r",
+  "多媒体|C|期刊|CGTA|Computational Geometry: Theory and Applications|Elsevier|0",
+  "多媒体|C|期刊|CAVW|Computer animation & virtual worlds|Wiley|0",
+  "多媒体|C|期刊|C&G|Computers & Graphics|Elsevier|0",
+  "多媒体|C|期刊|DCG|Discrete & Computational Geometry|Springer|0",
+  "多媒体|C|期刊|SPL|IEEE Signal Processing Letters|IEEE|0",
+  "多媒体|C|期刊|IET-IPR|IET Image Processing|IET|0",
+  "多媒体|C|期刊|JVCIR|Journal of Visual Communication and Image Representation|Elsevier|0",
+  "多媒体|C|期刊|MS|Multimedia Systems|Springer|0",
+  "多媒体|C|期刊|MTA|Multimedia Tools and Applications|Springer|0",
+  "多媒体|C|期刊|SIGPRO|Signal Processing|Elsevier|0",
+  "多媒体|C|期刊|IMAGE|Signal Processing: Image Communication|Elsevier|0",
+  "多媒体|C|期刊|TVC|The Visual Computer|Springer|0",
+  "多媒体|C|期刊|VI|Visual Informatics|浙江大学出版社|y",
+  "多媒体|C|期刊|VRIH|Virtual Reality & Intelligent Hardware|中国科技出版社/北京航空航天大学|y",
+  "多媒体|C|期刊|GMOD|Graphical Models|Elsevier|c",
+  "多媒体|A|会议|ACM MM|ACM International Conference on Multimedia|ACM|0",
+  "多媒体|A|会议|SIGGRAPH|ACM Special Interest Group on Computer Graphics|ACM|0",
+  "多媒体|A|会议|VR|IEEE Virtual Reality|IEEE|0",
+  "多媒体|A|会议|IEEE VIS|IEEE Visualization Conference|IEEE|0",
+  "多媒体|B|会议|ICMR|ACM SIGMM International Conference on Multimedia Retrieval|ACM|0",
+  "多媒体|B|会议|I3D|ACM SIGGRAPH Symposium on Interactive 3D Graphics and Games|ACM|0",
+  "多媒体|B|会议|SCA|ACM SIGGRAPH/Eurographics Symposium on Computer Animation|ACM|0",
+  "多媒体|B|会议|DCC|Data Compression Conference|IEEE|0",
+  "多媒体|B|会议|Eurographics|Annual Conference of the European Association for Computer Graphics|Wiley/Blackwell|0",
+  "多媒体|B|会议|EuroVis|Eurographics Conference on Visualization|ACM|0",
+  "多媒体|B|会议|SGP|Eurographics Symposium on Geometry Processing|Wiley/Blackwell|0",
+  "多媒体|B|会议|EGSR|Eurographics Symposium on Rendering|Wiley/Blackwell|0",
+  "多媒体|B|会议|ICASSP|IEEE International Conference on Acoustics, Speech and Signal Processing|IEEE|0",
+  "多媒体|B|会议|ICME|IEEE International Conference on Multimedia & Expo|IEEE|0",
+  "多媒体|B|会议|ISMAR|International Symposium on Mixed and Augmented Reality|IEEE/ACM|0",
+  "多媒体|B|会议|PG|Pacific Conference on Computer Graphics and Applications|Wiley/Blackwell|0",
+  "多媒体|B|会议|SPM|Symposium on Solid and Physical Modeling|SMA/Elsevier|0",
+  "多媒体|B|会议|INTER-SPEECH|Conference of the International Speech Communication Association|ISCA|r",
+  "多媒体|C|会议|VRST|ACM Symposium on Virtual Reality Software and Technology|ACM|0",
+  "多媒体|C|会议|CASA|International Conference on Computer Animation and Social Agents|Wiley|0",
+  "多媒体|C|会议|CGI|Computer Graphics International|Springer|0",
+  "多媒体|C|会议|GMP|Geometric Modeling and Processing|Elsevier|0",
+  "多媒体|C|会议|PacificVis|IEEE Pacific Visualization Symposium|IEEE|0",
+  "多媒体|C|会议|3DV|International Conference on 3D Vision|IEEE|0",
+  "多媒体|C|会议|CAD/Graphics|International Conference on Computer-Aided Design and Computer Graphics Processing|IEEE|0",
+  "多媒体|C|会议|ICIP|IEEE International Conference on Image Processing|IEEE|0",
+  "多媒体|C|会议|MMM|International Conference on Multimedia Modeling|Springer|0",
+  "多媒体|C|会议|MMAsia|ACM Multimedia Asia|ACM|0",
+  "多媒体|C|会议|SMI|Shape Modeling International|IEEE|0",
+  "多媒体|C|会议|ICVRV|International Conference on Virtual Reality and Visualization|IEEE|0",
+  "多媒体|C|会议|CVM|Computational Visual Media|Tsinghua University|0",
+  "多媒体|C|会议|PRCV|Chinese Conference on Pattern Recognition and Computer Vision|Springer|0",
+  "多媒体|C|会议|ICIG|International Conference on Image and Graphics|Springer|y",
+  "多媒体|C|会议|NCMMSC|National Conference on Man-Machine Speech Communication|CCF/中国中文信息学会|y",
+  "多媒体|C|会议|ASRU|Automatic Speech Recognition and Understanding Workshop|IEEE SLTC|y",
+  "多媒体|C|会议|SLT|Spoken Language Technology|IEEE SLTC|y",
+  "人工智能|A|期刊|AI|Artificial Intelligence|Elsevier|0",
+  "人工智能|A|期刊|TPAMI|IEEE Transactions on Pattern Analysis and Machine Intelligence|IEEE|0",
+  "人工智能|A|期刊|IJCV|International Journal of Computer Vision|Springer|0",
+  "人工智能|A|期刊|JMLR|Journal of Machine Learning Research|MIT Press|0",
+  "人工智能|B|期刊|TAP|ACM Transactions on Applied Perception|ACM|0",
+  "人工智能|B|期刊|AAMAS|Autonomous Agents and Multi-Agent Systems|Springer|0",
+  "人工智能|B|期刊|-|Computational Linguistics|MIT Press|0",
+  "人工智能|B|期刊|CVIU|Computer Vision and Image Understanding|Elsevier|0",
+  "人工智能|B|期刊|DKE|Data & Knowledge Engineering|Elsevier|0",
+  "人工智能|B|期刊|-|Evolutionary Computation|MIT Press|0",
+  "人工智能|B|期刊|TAC|IEEE Transactions on Affective Computing|IEEE|0",
+  "人工智能|B|期刊|TASLP|IEEE/ACM Transactions on Audio, Speech and Language Processing|IEEE|0",
+  "人工智能|B|期刊|-|IEEE Transactions on Cybernetics|IEEE|0",
+  "人工智能|B|期刊|TEC|IEEE Transactions on Evolutionary Computation|IEEE|0",
+  "人工智能|B|期刊|TFS|IEEE Transactions on Fuzzy Systems|IEEE|0",
+  "人工智能|B|期刊|TNNLS|IEEE Transactions on Neural Networks and learning systems|IEEE|0",
+  "人工智能|B|期刊|IJAR|International Journal of Approximate Reasoning|Elsevier|0",
+  "人工智能|B|期刊|JAIR|Journal of Artificial Intelligence Research|AAAI|0",
+  "人工智能|B|期刊|-|Journal of Automated Reasoning|Springer|0",
+  "人工智能|B|期刊|JSLHR|Journal of Speech, Language, and Hearing Research|American Speech-Language Hearing Association|0",
+  "人工智能|B|期刊|-|Machine Learning|Springer|0",
+  "人工智能|B|期刊|-|Neural Computation|MIT Press|0",
+  "人工智能|B|期刊|-|Neural Networks|Elsevier|0",
+  "人工智能|B|期刊|PR|Pattern Recognition|Elsevier|0",
+  "人工智能|B|期刊|TACL|Transactions of the Association for Computational Linguistics|The Association for Computational Linguistics|0",
+  "人工智能|C|期刊|TALLIP|ACM Transactions on Asian and Low-Resource Language Information Processing|ACM|0",
+  "人工智能|C|期刊|-|Applied Intelligence|Springer|0",
+  "人工智能|C|期刊|AIM|Artificial Intelligence in Medicine|Elsevier|0",
+  "人工智能|C|期刊|-|Artificial Life|MIT Press|0",
+  "人工智能|C|期刊|-|Computational Intelligence|Wiley|0",
+  "人工智能|C|期刊|-|Computer Speech & Language|Elsevier|0",
+  "人工智能|C|期刊|-|Connection Science|Taylor & Francis|0",
+  "人工智能|C|期刊|DSS|Decision Support Systems|Elsevier|0",
+  "人工智能|C|期刊|EAAI|Engineering Applications of Artificial Intelligence|Elsevier|0",
+  "人工智能|C|期刊|-|Intelligence Expert Systems|Blackwell/Wiley|0",
+  "人工智能|C|期刊|ESWA|Expert Systems with Applications|Elsevier|0",
+  "人工智能|C|期刊|-|Fuzzy Sets and Systems|Elsevier|0",
+  "人工智能|C|期刊|TG|IEEE Transactions on Games|IEEE|0",
+  "人工智能|C|期刊|IET-CVI|IET Computer Vision|IET|0",
+  "人工智能|C|期刊|-|IET Signal Processing|IET|0",
+  "人工智能|C|期刊|IVC|Image and Vision Computing|Elsevier|0",
+  "人工智能|C|期刊|IDA|Intelligent Data Analysis|IOS Press|0",
+  "人工智能|C|期刊|IJCIA|International Journal of Computational Intelligence and Applications|World Scientific|0",
+  "人工智能|C|期刊|IJIS|International Journal of Intelligent Systems|Wiley|0",
+  "人工智能|C|期刊|IJNS|International Journal of Neural Systems|World Scientific|0",
+  "人工智能|C|期刊|IJPRAI|International Journal of Pattern Recognition and Artificial Intelligence|World Scientific|0",
+  "人工智能|C|期刊|IJUFKS|International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems|World Scientific|0",
+  "人工智能|C|期刊|IJDAR|International Journal on Document Analysis and Recognition|Springer|0",
+  "人工智能|C|期刊|JETAI|Journal of Experimental and Theoretical Artificial Intelligence|Taylor & Francis|0",
+  "人工智能|C|期刊|KBS|Knowledge-Based Systems|Elsevier|0",
+  "人工智能|C|期刊|-|Machine Translation|Springer|0",
+  "人工智能|C|期刊|-|Machine Vision and Applications|Springer|0",
+  "人工智能|C|期刊|-|Natural Computing|Springer|0",
+  "人工智能|C|期刊|NLE|Natural Language Engineering|Cambridge University Press|0",
+  "人工智能|C|期刊|NCA|Neural Computing and Applications|Springer|0",
+  "人工智能|C|期刊|NPL|Neural Processing Letters|Springer|0",
+  "人工智能|C|期刊|-|Neurocomputing|Elsevier|0",
+  "人工智能|C|期刊|PAA|Pattern Analysis and Applications|Springer|0",
+  "人工智能|C|期刊|PRL|Pattern Recognition Letters|Elsevier|0",
+  "人工智能|C|期刊|-|Soft Computing|Springer|0",
+  "人工智能|C|期刊|WI|Web Intelligence|IOS Press|0",
+  "人工智能|C|期刊|TIIS|ACM Transactions on Interactive Intelligent Systems|ACM|0",
+  "人工智能|C|期刊|TELO|ACM Transactions on Evolutionary Learning and Optimization|ACM|y",
+  "人工智能|C|期刊|JATS|ACM Journal on Autonomous Transportation Systems|ACM|y",
+  "人工智能|A|会议|AAAI|AAAI Conference on Artificial Intelligence|AAAI|0",
+  "人工智能|A|会议|NeurIPS|Conference on Neural Information Processing Systems|MIT Press|0",
+  "人工智能|A|会议|ACL|Annual Meeting of the Association for Computational Linguistics|ACL|0",
+  "人工智能|A|会议|CVPR|IEEE/CVF Computer Vision and Pattern Recognition Conference|IEEE|0",
+  "人工智能|A|会议|ICCV|International Conference on Computer Vision|IEEE|0",
+  "人工智能|A|会议|ICML|International Conference on Machine Learning|ACM|0",
+  "人工智能|A|会议|ICLR|International Conference on Learning Representations|OpenReview|y",
+  "人工智能|B|会议|COLT|Annual Conference on Computational Learning Theory|Springer|0",
+  "人工智能|B|会议|EMNLP|Conference on Empirical Methods in Natural Language Processing|ACL|0",
+  "人工智能|B|会议|ECAI|European Conference on Artificial Intelligence|IOS Press|0",
+  "人工智能|B|会议|ECCV|European Conference on Computer Vision|Springer|0",
+  "人工智能|B|会议|ICRA|IEEE International Conference on Robotics and Automation|IEEE|0",
+  "人工智能|B|会议|ICAPS|International Conference on Automated Planning and Scheduling|AAAI|0",
+  "人工智能|B|会议|ICCBR|International Conference on Case-Based Reasoning|Springer|0",
+  "人工智能|B|会议|COLING|International Conference on Computational Linguistics|International Committee|0",
+  "人工智能|B|会议|KR|International Conference on Principles of Knowledge Representation and Reasoning|Morgan Kaufmann|0",
+  "人工智能|B|会议|UAI|Conference on Uncertainty in Artificial Intelligence|AUAI|0",
+  "人工智能|B|会议|AAMAS|International Joint Conference on Autonomous Agents and Multi-agent Systems|Springer|0",
+  "人工智能|B|会议|PPSN|Parallel Problem Solving from Nature|Springer|0",
+  "人工智能|B|会议|NAACL|North American Chapter of the Association for Computational Linguistics|Association for Computational Linguistics|0",
+  "人工智能|B|会议|IJCAI|International Joint Conference on Artificial Intelligence|Morgan Kaufmann|c",
+  "人工智能|C|会议|AISTATS|International Conference on Artificial Intelligence and Statistics|JMLR|0",
+  "人工智能|C|会议|ACCV|Asian Conference on Computer Vision|Springer|0",
+  "人工智能|C|会议|ACML|Asian Conference on Machine Learning|JMLR|0",
+  "人工智能|C|会议|BMVC|British Machine Vision Conference|British Machine Vision Association|0",
+  "人工智能|C|会议|NLPCC|CCF International Conference on Natural Language Processing and Chinese Computing|Springer|0",
+  "人工智能|C|会议|CoNLL|Conference on Computational Natural Language Learning|Association for Computational Linguistics|0",
+  "人工智能|C|会议|GECCO|Genetic and Evolutionary Computation Conference|ACM|0",
+  "人工智能|C|会议|ICTAI|IEEE International Conference on Tools with Artificial Intelligence|IEEE|0",
+  "人工智能|C|会议|IROS|IEEE\\\\RSJ International Conference on Intelligent Robots and Systems|IEEE|0",
+  "人工智能|C|会议|ALT|International Conference on Algorithmic Learning Theory|Springer|0",
+  "人工智能|C|会议|ICANN|International Conference on Artificial Neural Networks|Springer|0",
+  "人工智能|C|会议|FG|IEEE International Conference on Automatic Face and Gesture Recognition|IEEE|0",
+  "人工智能|C|会议|ICDAR|International Conference on Document Analysis and Recognition|IEEE|0",
+  "人工智能|C|会议|ILP|International Conference on Inductive Logic Programming|Springer|0",
+  "人工智能|C|会议|KSEM|International conference on Knowledge Science, Engineering and Management|Springer|0",
+  "人工智能|C|会议|ICONIP|International Conference on Neural Information Processing|Springer|0",
+  "人工智能|C|会议|ICPR|International Conference on Pattern Recognition|IEEE|0",
+  "人工智能|C|会议|IJCB|International Joint Conference on Biometrics|IEEE|0",
+  "人工智能|C|会议|IJCNN|International Joint Conference on Neural Networks|IEEE|0",
+  "人工智能|C|会议|PRICAI|Pacific Rim International Conference on Artificial Intelligence|Springer|0",
+  "人工智能|C|会议|IEEE CEC|Congress on Evolutionary Computation|IEEE|y",
+  "人工智能|C|会议|DAI|International Conference on Distributed Artificial Intelligence|ACM/Springer|y",
+  "交互|A|期刊|TOCHI|ACM Transactions on Computer-Human Interaction|ACM|0",
+  "交互|A|期刊|IJHCS|International Journal of Human-Computer Studies|Elsevier|0",
+  "交互|B|期刊|CSCW|Computer Supported Cooperative Work|Springer|0",
+  "交互|B|期刊|HCI|Human-Computer Interaction|Taylor & Francis|0",
+  "交互|B|期刊|-|IEEE Transactions on Human-Machine Systems|IEEE|0",
+  "交互|B|期刊|IWC|Interacting with Computers|Oxford University Press|0",
+  "交互|B|期刊|IJHCI|International Journal of Human-Computer Interaction|Taylor & Francis|0",
+  "交互|B|期刊|UMUAI|User Modeling and User-Adapted Interaction|Springer|0",
+  "交互|B|期刊|TSMC|IEEE Transactions on Systems, Man,and Cybernetics: Systems|IEEE|0",
+  "交互|B|期刊|CCF TPCI|CCF Transactions on Pervasive Computing and Interaction|CCF/Springer|y",
+  "交互|C|期刊|BIT|Behaviour & Information Technology|Taylor & Francis|0",
+  "交互|C|期刊|PUC|Personal and Ubiquitous Computing|Springer|0",
+  "交互|C|期刊|PMC|Pervasive and Mobile Computing|Elsevier|0",
+  "交互|C|期刊|PACMHCI|Proceedings of the ACM on Human-Computer Interaction|ACM|0",
+  "交互|C|期刊|THRI|ACM Transactions on Human-Robot Interaction|ACM|y",
+  "交互|A|会议|CSCW|ACM Conference On Computer-Supported Cooperative Work And Social Computing|ACM|0",
+  "交互|A|会议|CHI|ACM Conference on Human Factors in Computing Systems|ACM|0",
+  "交互|A|会议|UbiComp|ACM international joint conference on Pervasive and Ubiquitous Computing|ACM|0",
+  "交互|A|会议|UIST|ACM Symposium on User Interface Software and Technology|ACM|0",
+  "交互|B|会议|GROUP|ACM International Conference on Supporting Group Work|ACM|0",
+  "交互|B|会议|IUI|ACM International Conference on Intelligent User Interfaces|ACM|0",
+  "交互|B|会议|ISS|ACM International Conference on Interactive Surfaces and Spaces|ACM|0",
+  "交互|B|会议|ECSCW|European Conference on Computer Supported Cooperative Work|Springer|0",
+  "交互|B|会议|PERCOM|IEEE International Conference on Pervasive Computing and Communications|IEEE|0",
+  "交互|B|会议|MobileHCI|ACM International Conference on Mobile Human-Computer Interaction|ACM|0",
+  "交互|B|会议|ICWSM|The International AAAI Conference on Web and Social Media|AAAI|0",
+  "交互|C|会议|DIS|ACM SIGCHI Conference on Designing Interactive Systems|ACM|0",
+  "交互|C|会议|ICMI|ACM International Conference on Multimodal Interaction|ACM|0",
+  "交互|C|会议|ASSETS|International ACM SIGACCESS Conference on Computers and Accessibility|ACM|0",
+  "交互|C|会议|GI|Graphics Interface|ACM|0",
+  "交互|C|会议|UIC|IEEE International Conference on Ubiquitous Intelligence and Computing|IEEE|0",
+  "交互|C|会议|-|IEEE World Haptics Conference|IEEE|0",
+  "交互|C|会议|INTERACT|International Conference on Human- Computer Interaction of International Federation for Information Processing|IFIP|0",
+  "交互|C|会议|IDC|ACM Interaction Design and Children|ACM|0",
+  "交互|C|会议|CollaborateCom|International Conference on Collaborative Computing: Networking, Applications and Worksharing|Springer|0",
+  "交互|C|会议|CSCWD|International Conference on Computer Supported Cooperative Work in Design|Springer|0",
+  "交互|C|会议|CoopIS|International Conference on Cooperative Information Systems|Springer|0",
+  "交互|C|会议|MobiQuitous|International Conference on Mobile and Ubiquitous Systems: Computing, Networking and Services|Springer|0",
+  "交互|C|会议|AVI|International Working Conference on Advanced Visual Interfaces|ACM|0",
+  "交互|C|会议|GPC|Conference on Green, Pervasive and Cloud Computing|Springer|y",
+  "交互|C|会议|ICXR|CCF International Conference on Extended Reality|Springer|y",
+  "综合|A|期刊|JACM|Journal of the ACM|ACM|0",
+  "综合|A|期刊|Proc. IEEE|Proceedings of the IEEE|IEEE|0",
+  "综合|A|期刊|SCIS|Science China Information Sciences|Science in China Press/Springer|0",
+  "综合|A|期刊|Bioinformatics|Bioinformatics|Oxford University Press|r",
+  "综合|B|期刊|-|Briefings in Bioinformatics|Oxford University Press|0",
+  "综合|B|期刊|Cognition|Cognition|Elsevier|0",
+  "综合|B|期刊|TASAE|IEEE Transactions on Automation Science and Engineering|IEEE|0",
+  "综合|B|期刊|TGARS|IEEE Transactions on Geoscience and Remote Sensing|IEEE|0",
+  "综合|B|期刊|TITS|IEEE Transactions on Intelligent Transportation Systems|IEEE|0",
+  "综合|B|期刊|TMI|IEEE Transactions on Medical Imaging|IEEE|0",
+  "综合|B|期刊|TR|IEEE Transactions on Robotics|IEEE|0",
+  "综合|B|期刊|TCBB|IEEE/ACM Transactions on Computational Biology and Bioinformatics|IEEE/ACM|0",
+  "综合|B|期刊|JCST|Journal of Computer Science and Technology|SCIENCE PRESS/Springer|0",
+  "综合|B|期刊|JAMIA|Journal of the American Medical Informatics Association|BMJ Journals|0",
+  "综合|B|期刊|-|PLOS Computational Biology|Public Library of Science|0",
+  "综合|B|期刊|-|The Computer Journal|Oxford University Press|0",
+  "综合|B|期刊|WWW|World Wide Web|Springer|0",
+  "综合|B|期刊|FCS|Frontiers of Computer Science|Higher Education Press|0",
+  "综合|B|期刊|BCRA|Blockchain: Research and Applications|浙江大学出版社/Elsevier|y",
+  "综合|C|期刊|-|BMC Bioinformatics|BioMed Central|0",
+  "综合|C|期刊|-|Cybernetics and Systems|Taylor & Francis|0",
+  "综合|C|期刊|-|IEEE Geoscience and Remote Sensing Letters|IEEE|0",
+  "综合|C|期刊|JBHI|IEEE Journal of Biomedical and Health Informatics|IEEE|0",
+  "综合|C|期刊|TBD|IEEE Transactions on Big Data|IEEE|0",
+  "综合|C|期刊|-|IET Intelligent Transport Systems|IET|0",
+  "综合|C|期刊|JBI|Journal of Biomedical Informatics|Elsevier|0",
+  "综合|C|期刊|-|Medical Image Analysis|Elsevier|0",
+  "综合|C|期刊|TII|IEEE Transactions on Industrial Informatics|IEEE|0",
+  "综合|C|期刊|TCPS|ACM Transactions on Cyber-Physical Systems|ACM|0",
+  "综合|C|期刊|TOCE|ACM Transactions on Computing Education|ACM|0",
+  "综合|C|期刊|FITEE|Frontiers of Information Technology & Electronic Engineering|Springer|0",
+  "综合|C|期刊|TCSS|IEEE Transactions on Computational Social Systems|IEEE|0",
+  "综合|C|期刊|-|IEEE Transactions on Reliability|IEEE|0",
+  "综合|C|期刊|HEALTH|ACM Transactions on Computing for Healthcare|ACM|y",
+  "综合|C|期刊|ACM DLT|ACM Distributed Ledger Technologies: Research and Practice|ACM|y",
+  "综合|A|会议|WWW|International World Wide Web Conference|ACM|0",
+  "综合|A|会议|RTSS|IEEE Real-Time Systems Symposium|IEEE|0",
+  "综合|B|会议|CogSci|Annual Meeting of the Cognitive Science Society|Psychology Press|0",
+  "综合|B|会议|BIBM|IEEE International Conference on Bioinformatics and Biomedicine|IEEE|0",
+  "综合|B|会议|EMSOFT|International Conference on Embedded Software|IEEE/ACM/IFIP|0",
+  "综合|B|会议|ISMB|International conference on Intelligent Systems for Molecular Biology|Oxford Journals|0",
+  "综合|B|会议|RECOMB|Annual International Conference on Research in Computational Molecular Biology|Springer|0",
+  "综合|B|会议|MICCAI|International Conference on Medical Image Computing and Computer-Assisted Intervention|Springer|0",
+  "综合|B|会议|WINE|Conference on Web and Internet Economics|Springer|c",
+  "综合|C|会议|AMIA|American Medical Informatics Association Annual Symposium|AMIA|0",
+  "综合|C|会议|APBC|Asia Pacific Bioinformatics Conference|BioMed Central|0",
+  "综合|C|会议|IEEE BigData|IEEE International Conference on Big Data|IEEE|0",
+  "综合|C|会议|IEEE CLOUD|IEEE International Conference on Cloud Computing|IEEE|0",
+  "综合|C|会议|SMC|IEEE International Conference on Systems, Man, and Cybernetics|IEEE|0",
+  "综合|C|会议|COSIT|International Conference on Spatial Information Theory|ACM|0",
+  "综合|C|会议|ISBRA|International Symposium on Bioinformatics Research and Applications|Springer|0",
+  "综合|C|会议|SAGT|International Symposium on Algorithmic Game Theory|Springer|0",
+  "综合|C|会议|SIGSPATIAL|ACM Special Interest Group on Spatial Information|ACM|0",
+  "综合|C|会议|ICIC|International Conference on Intelligent Computing|Springer-Nature|0",
+  "综合|C|会议|ICSS|International Conference on Service Science|CCF/Springer|y",
+  "综合|C|会议|AFT|Advances in Financial Technologies|Springer|y",
+  "综合|C|会议|IJTCS-FAW|International Joint Conference on Theoretical Computer Science|Springer|y"
+];
+
+    const FLAG_META = {
+      "0": { label: "无变动", keyword: "无变动", css: "" },
+      "y": { label: "新增", keyword: "新增 new", css: "flag-y" },
+      "r": { label: "晋级", keyword: "晋级 升级 promoted", css: "flag-r" },
+      "c": { label: "降级", keyword: "降级 demoted", css: "flag-c" },
+      "g": { label: "更名", keyword: "更名 名称更新 renamed", css: "flag-g" }
+    };
+
+    const subjects = ["全部", "系统", "网络", "安全", "软工", "数据库", "理论", "多媒体", "人工智能", "交互", "综合"];
+    const ranks = ["全部", "A", "B", "C"];
+    const kinds = ["全部", "期刊", "会议"];
+    const flags = ["全部", "新增", "晋级", "降级", "更名"];
+
+    const subjectAliases = {
+      "体系": "系统", "体系结构": "系统", "并行": "系统", "分布": "系统", "存储": "系统", "存储系统": "系统", "系统": "系统",
+      "网络": "网络", "计算机网络": "网络",
+      "安全": "安全", "网安": "安全", "信息安全": "安全", "网络安全": "安全",
+      "软工": "软工", "软件": "软工", "软件工程": "软工", "程序设计": "软工",
+      "数据库": "数据库", "数据": "数据库", "数据挖掘": "数据库", "内容检索": "数据库",
+      "理论": "理论", "计算机科学理论": "理论", "算法": "理论",
+      "多媒体": "多媒体", "图形": "多媒体", "图像": "多媒体", "可视化": "多媒体",
+      "人工智能": "人工智能", "ai": "人工智能", "机器学习": "人工智能", "模式识别": "人工智能", "自然语言": "人工智能", "nlp": "人工智能",
+      "交互": "交互", "人机": "交互", "普适": "交互", "普适计算": "交互",
+      "综合": "综合", "交叉": "综合", "新兴": "综合"
+    };
+
+    const rankOrder = { A: 1, B: 2, C: 3 };
+    const subjectOrder = Object.fromEntries(subjects.slice(1).map((s, i) => [s, i]));
+    const kindOrder = { "期刊": 1, "会议": 2 };
+
+    const state = {
+      q: "",
+      subject: "全部",
+      rank: "全部",
+      kind: "全部",
+      flag: "全部",
+      view: localStorage.getItem("ccfView") || "card",
+      sortBy: "relevance"
+    };
+
+    const $ = (sel) => document.querySelector(sel);
+
+    const data = rawData.map((line, idx) => {
+      const [subject, rank, kind, abbr, name, publisher, flag] = line.split("|");
+      const flagMeta = FLAG_META[flag] || FLAG_META["0"];
+      const searchBlob = [subject, rank, kind, abbr, name, publisher, flagMeta.label, flagMeta.keyword].join(" ");
+      return {
+        id: idx + 1,
+        subject,
+        rank,
+        kind,
+        abbr,
+        name,
+        publisher,
+        flag,
+        flagLabel: flagMeta.label,
+        flagCss: flagMeta.css,
+        norm: normalize(searchBlob),
+        abbrNorm: normalize(abbr),
+        nameNorm: normalize(name),
+        publisherNorm: normalize(publisher)
+      };
+    });
+
+    function normalize(input) {
+      return String(input || "")
+        .toLowerCase()
+        .replace(/&/g, " and ")
+        .replace(/[·•，。；：、（）()［\]\[\]【】{}'"“”‘’]/g, " ")
+        .replace(/[_.]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function compact(input) {
+      return normalize(input).replace(/[\s\-:\/]+/g, "");
+    }
+
+    function escapeHTML(str) {
+      return String(str ?? "").replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+    }
+
+    function highlight(text, query) {
+      const safe = escapeHTML(text || "");
+      const tokens = normalize(query).split(" ").filter(t => t.length >= 2 && !["ccf", "class", "rank"].includes(t));
+      if (!tokens.length) return safe;
+      let out = safe;
+      const uniq = [...new Set(tokens)].sort((a,b) => b.length - a.length).slice(0, 8);
+      for (const token of uniq) {
+        const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        out = out.replace(new RegExp(`(${escaped})`, "ig"), "<mark>$1</mark>");
+      }
+      return out;
+    }
+
+    function inferFromQuery(q) {
+      const nq = normalize(q);
+      const cq = compact(q);
+      const inferred = { subject: null, rank: null, kind: null, flag: null, freeTokens: [] };
+
+      if (/(^|\s)(a|ccf\s*a|a类|a级)(\s|$)/i.test(nq)) inferred.rank = "A";
+      if (/(^|\s)(b|ccf\s*b|b类|b级)(\s|$)/i.test(nq)) inferred.rank = "B";
+      if (/(^|\s)(c|ccf\s*c|c类|c级)(\s|$)/i.test(nq)) inferred.rank = "C";
+
+      if (/期刊|journal|journals/.test(nq)) inferred.kind = "期刊";
+      if (/会议|conference|conf|symposium|workshop/.test(nq)) inferred.kind = "会议";
+
+      if (/新增|new/.test(nq)) inferred.flag = "新增";
+      if (/晋级|升级|promot/.test(nq)) inferred.flag = "晋级";
+      if (/降级|demot/.test(nq)) inferred.flag = "降级";
+      if (/更名|名称更新|renam/.test(nq)) inferred.flag = "更名";
+
+      const aliasKeys = Object.keys(subjectAliases).sort((a,b) => b.length - a.length);
+      for (const key of aliasKeys) {
+        if (nq.includes(key.toLowerCase()) || cq.includes(compact(key))) {
+          inferred.subject = subjectAliases[key];
+          break;
+        }
+      }
+
+      let cleaned = nq
+        .replace(/\bccf\b/g, " ")
+        .replace(/\bclass\b|\brank\b/g, " ")
+        .replace(/\b(a|b|c)\b/g, " ")
+        .replace(/a类|b类|c类|a级|b级|c级/g, " ")
+        .replace(/期刊|会议|journal|journals|conference|conf|symposium|workshop/g, " ")
+        .replace(/新增|晋级|升级|降级|更名|名称更新|new|promoted|demoted|renamed/g, " ");
+      if (inferred.subject) {
+        for (const [k, v] of Object.entries(subjectAliases)) {
+          if (v === inferred.subject) cleaned = cleaned.replace(new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "ig"), " ");
+        }
+      }
+      inferred.freeTokens = normalize(cleaned).split(" ").filter(Boolean);
+      return inferred;
+    }
+
+    function scoreItem(item, q, inferred) {
+      if (!q.trim()) return 1;
+      const nq = normalize(q);
+      const cq = compact(q);
+      const free = inferred.freeTokens;
+      let score = 0;
+
+      if (item.abbrNorm && item.abbrNorm === nq) score += 1200;
+      if (item.abbrNorm && compact(item.abbr) === cq) score += 1150;
+      if (item.nameNorm === nq) score += 1000;
+      if (compact(item.name) === cq) score += 900;
+      if (item.abbrNorm && item.abbrNorm.includes(nq)) score += 520;
+      if (item.nameNorm.includes(nq)) score += 380;
+      if (item.publisherNorm.includes(nq)) score += 90;
+
+      for (const t of free) {
+        const ct = compact(t);
+        if (!t) continue;
+        if (item.abbrNorm === t || compact(item.abbr) === ct) score += 360;
+        else if (item.abbrNorm.includes(t) || compact(item.abbr).includes(ct)) score += 220;
+        if (item.nameNorm.includes(t) || compact(item.name).includes(ct)) score += 120;
+        if (item.publisherNorm.includes(t)) score += 30;
+      }
+
+      if (inferred.subject && item.subject === inferred.subject) score += 80;
+      if (inferred.rank && item.rank === inferred.rank) score += 70;
+      if (inferred.kind && item.kind === inferred.kind) score += 70;
+      if (inferred.flag && item.flagLabel === inferred.flag) score += 60;
+
+      return score;
+    }
+
+    function passesExplicitFilters(item) {
+      return (state.subject === "全部" || item.subject === state.subject) &&
+             (state.rank === "全部" || item.rank === state.rank) &&
+             (state.kind === "全部" || item.kind === state.kind) &&
+             (state.flag === "全部" || item.flagLabel === state.flag);
+    }
+
+    function matchesQuery(item, q, inferred) {
+      if (!q.trim()) return true;
+      const score = scoreItem(item, q, inferred);
+      if (score > 0 && !inferred.freeTokens.length) return true;
+      if (inferred.freeTokens.length) {
+        const allFreeMatched = inferred.freeTokens.every(t => item.norm.includes(t) || compact(item.abbr).includes(compact(t)) || compact(item.name).includes(compact(t)));
+        return allFreeMatched || score >= 160;
+      }
+      return score > 0;
+    }
+
+    function getResults() {
+      const inferred = inferFromQuery(state.q);
+      let results = data.filter(item => passesExplicitFilters(item) && matchesQuery(item, state.q, inferred))
+        .map(item => ({ ...item, score: scoreItem(item, state.q, inferred) }));
+
+      if (state.sortBy === "relevance") {
+        results.sort((a,b) => b.score - a.score || rankOrder[a.rank] - rankOrder[b.rank] || subjectOrder[a.subject] - subjectOrder[b.subject] || a.kind.localeCompare(b.kind, "zh-Hans") || a.abbr.localeCompare(b.abbr));
+      } else if (state.sortBy === "rank") {
+        results.sort((a,b) => rankOrder[a.rank] - rankOrder[b.rank] || subjectOrder[a.subject] - subjectOrder[b.subject] || kindOrder[a.kind] - kindOrder[b.kind] || a.abbr.localeCompare(b.abbr));
+      } else if (state.sortBy === "subject") {
+        results.sort((a,b) => subjectOrder[a.subject] - subjectOrder[b.subject] || rankOrder[a.rank] - rankOrder[b.rank] || kindOrder[a.kind] - kindOrder[b.kind] || a.abbr.localeCompare(b.abbr));
+      } else if (state.sortBy === "kind") {
+        results.sort((a,b) => kindOrder[a.kind] - kindOrder[b.kind] || rankOrder[a.rank] - rankOrder[b.rank] || subjectOrder[a.subject] - subjectOrder[b.subject] || a.abbr.localeCompare(b.abbr));
+      } else if (state.sortBy === "name") {
+        results.sort((a,b) => (a.abbr || a.name).localeCompare((b.abbr || b.name), "en"));
+      }
+
+      return { results, inferred };
+    }
+
+    function buildChips(containerId, values, key) {
+      const box = $("#" + containerId);
+      box.innerHTML = values.map(v => `<button class="chip ${state[key] === v ? "active" : ""}" type="button" data-key="${key}" data-value="${escapeHTML(v)}">${escapeHTML(v)}</button>`).join("");
+    }
+
+    function renderStats() {
+      const total = data.length;
+      const journal = data.filter(d => d.kind === "期刊").length;
+      const conf = data.filter(d => d.kind === "会议").length;
+      const a = data.filter(d => d.rank === "A").length;
+      $("#stats").innerHTML = [
+        ["总条目", total],
+        ["期刊", journal],
+        ["会议", conf],
+        ["A 类", a]
+      ].map(([label, val]) => `<div class="stat"><strong>${val}</strong><span>${label}</span></div>`).join("");
+    }
+
+    function renderSmartAnswer(results) {
+      const box = $("#smartAnswer");
+      const q = state.q.trim();
+      if (!q || results.length !== 1 && !(results[0] && results[0].score >= 900)) {
+        box.classList.remove("show");
+        box.innerHTML = "";
+        return;
+      }
+
+      const item = results[0];
+      box.innerHTML = `
+        <div class="answer-head">
+          <span>最佳匹配</span>
+          <button class="copy-btn" type="button" data-copy="${escapeHTML(formatItem(item))}">复制结果</button>
+        </div>
+        <div class="answer-body">
+          <div class="answer-rank">${item.rank}</div>
+          <div>
+            <h2 class="answer-title">${escapeHTML(item.abbr || item.name)}</h2>
+            <div class="answer-meta">${escapeHTML(item.name)}</div>
+            <div class="answer-meta">${escapeHTML(item.subject)} · CCF ${escapeHTML(item.rank)} 类 · ${escapeHTML(item.kind)} · ${escapeHTML(item.publisher || "-")}${item.flag !== "0" ? " · " + escapeHTML(item.flagLabel) : ""}</div>
+          </div>
+          <div class="card-tags">
+            <span class="subject-badge">${escapeHTML(item.subject)}</span>
+            <span class="kind-badge">${escapeHTML(item.kind)}</span>
+            ${item.flag !== "0" ? `<span class="flag-badge ${item.flagCss}">${escapeHTML(item.flagLabel)}</span>` : ""}
+          </div>
+        </div>`;
+      box.classList.add("show");
+    }
+
+    function formatItem(item) {
+      return `${item.abbr || item.name}｜${item.name}｜${item.subject}｜CCF ${item.rank}类｜${item.kind}｜${item.publisher || "-"}` + (item.flag !== "0" ? `｜${item.flagLabel}` : "");
+    }
+
+    function renderCards(results) {
+      const limit = 300;
+      const shown = results.slice(0, limit);
+      $("#cards").innerHTML = shown.map(item => `
+        <article class="paper-card ${item.flagCss}">
+          <div class="card-top">
+            <div>
+              <div class="abbr ${item.abbr === "-" ? "empty" : ""}">${highlight(item.abbr && item.abbr !== "-" ? item.abbr : "无简称", state.q)}</div>
+            </div>
+            <span class="rank-badge rank-${item.rank}">CCF ${item.rank}</span>
+          </div>
+          <p class="paper-name">${highlight(item.name, state.q)}</p>
+          <div class="publisher">出版社 / 主办方：${highlight(item.publisher || "-", state.q)}</div>
+          <div class="card-tags">
+            <span class="subject-badge">${escapeHTML(item.subject)}</span>
+            <span class="kind-badge">${escapeHTML(item.kind)}</span>
+            ${item.flag !== "0" ? `<span class="flag-badge ${item.flagCss}">${escapeHTML(item.flagLabel)}</span>` : ""}
+            <button class="copy-btn" type="button" data-copy="${escapeHTML(formatItem(item))}">复制</button>
+          </div>
+        </article>
+      `).join("") + (results.length > limit ? `<article class="paper-card"><p class="paper-name">结果较多，仅显示前 ${limit} 条。请继续输入关键词缩小范围。</p></article>` : "");
+    }
+
+    function renderTable(results) {
+      $("#tableBody").innerHTML = results.map(item => `
+        <tr class="${item.flagCss}">
+          <td class="center">${escapeHTML(item.subject)}</td>
+          <td class="center"><span class="rank-badge rank-${item.rank}">CCF ${item.rank}</span></td>
+          <td class="center">${escapeHTML(item.kind)}</td>
+          <td><span class="t-abbr">${highlight(item.abbr && item.abbr !== "-" ? item.abbr : "无简称", state.q)}</span></td>
+          <td><span class="t-name">${highlight(item.name, state.q)}</span></td>
+          <td>${highlight(item.publisher || "-", state.q)}</td>
+          <td>${item.flag !== "0" ? `<span class="flag-badge ${item.flagCss}">${escapeHTML(item.flagLabel)}</span>` : "—"}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderMatrix() {
+      const columns = [
+        ["A期刊", "A", "期刊"], ["A会议", "A", "会议"],
+        ["B期刊", "B", "期刊"], ["B会议", "B", "会议"],
+        ["C期刊", "C", "期刊"], ["C会议", "C", "会议"]
+      ];
+      const rows = subjects.slice(1);
+      let html = `<div class="matrix-cell head">方向</div>` + columns.map(([label]) => `<div class="matrix-cell head">${label}</div>`).join("");
+      for (const subj of rows) {
+        html += `<div class="matrix-cell head matrix-row-label">${subj}</div>`;
+        for (const [label, rank, kind] of columns) {
+          const count = data.filter(d => d.subject === subj && d.rank === rank && d.kind === kind).length;
+          html += `<button class="matrix-cell clickable" type="button" data-subject="${subj}" data-rank="${rank}" data-kind="${kind}">${count}</button>`;
+        }
+      }
+      $("#matrix").innerHTML = html;
+    }
+
+    function updateHints() {
+      $("#subjectHint").textContent = state.subject;
+      $("#rankHint").textContent = state.rank;
+      $("#kindHint").textContent = state.kind;
+      $("#flagHint").textContent = state.flag;
+    }
+
+    function renderFilterSummary() {
+      const parts = [];
+      if (state.subject !== "全部") parts.push(state.subject);
+      if (state.rank !== "全部") parts.push(`CCF ${state.rank}`);
+      if (state.kind !== "全部") parts.push(state.kind);
+      if (state.flag !== "全部") parts.push(state.flag);
+      if (state.q.trim()) parts.push(`关键词“${state.q.trim()}”`);
+      $("#filterSummary").textContent = parts.length ? `｜${parts.join(" · ")}` : "";
+    }
+
+    function render() {
+      buildChips("subjectChips", subjects, "subject");
+      buildChips("rankChips", ranks, "rank");
+      buildChips("kindChips", kinds, "kind");
+      buildChips("flagChips", flags, "flag");
+      updateHints();
+
+      const { results } = getResults();
+      $("#count").textContent = results.length;
+      renderFilterSummary();
+      renderSmartAnswer(results);
+      renderCards(results);
+      renderTable(results);
+      $("#emptyState").classList.toggle("show", results.length === 0);
+      $("#cards").classList.toggle("hidden", state.view !== "card" || results.length === 0);
+      $("#tableWrap").classList.toggle("visible", state.view === "table" && results.length > 0);
+      $("#tableWrap").classList.toggle("hidden", state.view !== "table" || results.length === 0);
+      $("#cardViewBtn").classList.toggle("active", state.view === "card");
+      $("#tableViewBtn").classList.toggle("active", state.view === "table");
+    }
+
+    function resetFilters(keepQuery = false) {
+      if (!keepQuery) {
+        state.q = "";
+        $("#q").value = "";
+      }
+      state.subject = "全部";
+      state.rank = "全部";
+      state.kind = "全部";
+      state.flag = "全部";
+      state.sortBy = "relevance";
+      $("#sortBy").value = "relevance";
+      render();
+    }
+
+    function smartApplyQuery(query) {
+      state.q = query;
+      $("#q").value = query;
+      const inferred = inferFromQuery(query);
+
+      state.subject = inferred.subject || "全部";
+      state.rank = inferred.rank || "全部";
+      state.kind = inferred.kind || "全部";
+      state.flag = inferred.flag || "全部";
+
+      render();
+    }
+
+    function showToast(text) {
+      const t = $("#toast");
+      t.textContent = text;
+      t.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => t.classList.remove("show"), 1600);
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("已复制查询结果");
+      } catch (_) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        showToast("已复制查询结果");
+      }
+    }
+
+    function setupEvents() {
+      $("#q").addEventListener("input", (e) => {
+        state.q = e.target.value;
+        const inferred = inferFromQuery(state.q);
+        if (state.q.trim()) {
+          if (inferred.subject) state.subject = inferred.subject;
+          if (inferred.rank) state.rank = inferred.rank;
+          if (inferred.kind) state.kind = inferred.kind;
+          if (inferred.flag) state.flag = inferred.flag;
+        }
+        render();
+      });
+
+      $("#clearBtn").addEventListener("click", () => {
+        state.q = "";
+        $("#q").value = "";
+        render();
+        $("#q").focus();
+      });
+
+      $("#resetBtn").addEventListener("click", () => resetFilters(false));
+      $("#focusBtn").addEventListener("click", () => { $("#q").focus(); $("#q").select(); });
+
+      $("#sortBy").addEventListener("change", (e) => {
+        state.sortBy = e.target.value;
+        render();
+      });
+
+      document.addEventListener("click", (e) => {
+        const chip = e.target.closest(".chip");
+        if (chip) {
+          const key = chip.dataset.key;
+          state[key] = chip.dataset.value;
+          render();
+          return;
+        }
+
+        const ex = e.target.closest(".example");
+        if (ex) {
+          smartApplyQuery(ex.dataset.query);
+          $("#q").focus();
+          return;
+        }
+
+        const copy = e.target.closest("[data-copy]");
+        if (copy) {
+          copyText(copy.dataset.copy);
+          return;
+        }
+
+        const matrix = e.target.closest(".matrix-cell.clickable");
+        if (matrix) {
+          state.subject = matrix.dataset.subject;
+          state.rank = matrix.dataset.rank;
+          state.kind = matrix.dataset.kind;
+          state.flag = "全部";
+          state.q = "";
+          $("#q").value = "";
+          render();
+          window.scrollTo({ top: $(".search-zone").offsetTop - 14, behavior: "smooth" });
+        }
+      });
+
+      $("#cardViewBtn").addEventListener("click", () => {
+        state.view = "card";
+        localStorage.setItem("ccfView", state.view);
+        render();
+      });
+
+      $("#tableViewBtn").addEventListener("click", () => {
+        state.view = "table";
+        localStorage.setItem("ccfView", state.view);
+        render();
+      });
+
+      $("#themeBtn").addEventListener("click", toggleTheme);
+      $("#backtop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      window.addEventListener("scroll", () => {
+        const doc = document.documentElement;
+        const total = doc.scrollHeight - doc.clientHeight;
+        $("#progress").style.width = total > 0 ? `${(doc.scrollTop / total) * 100}%` : "0";
+        $("#backtop").classList.toggle("show", window.scrollY > 520);
+      }, { passive: true });
+
+      window.addEventListener("keydown", (e) => {
+        const isMac = navigator.platform.toLowerCase().includes("mac");
+        if ((isMac ? e.metaKey : e.ctrlKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          $("#q").focus();
+          $("#q").select();
+        }
+        if (e.key === "Escape") {
+          $("#q").blur();
+        }
+      });
+    }
+
+    function initTheme() {
+      const saved = localStorage.getItem("ccfTheme");
+      const preferredDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved || (preferredDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+      $("#themeBtn").textContent = theme === "dark" ? "☀️ 浅色" : "🌙 深色";
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", theme === "dark" ? "#07111f" : "#2563eb");
+    }
+
+    function toggleTheme() {
+      const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem("ccfTheme", next);
+      $("#themeBtn").textContent = next === "dark" ? "☀️ 浅色" : "🌙 深色";
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", next === "dark" ? "#07111f" : "#2563eb");
+    }
+
+    function init() {
+      initTheme();
+      renderStats();
+      renderMatrix();
+      setupEvents();
+      state.view = state.view === "table" ? "table" : "card";
+      render();
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>

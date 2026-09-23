@@ -63,3 +63,14 @@ This remains a plain static GitHub Pages project. Replace the repository content
 - Greatly broadened discovery topics across ML/LLM/generative-model security, privacy, poisoning/backdoors, model extraction, forensics, provenance, trustworthy AI, federated-learning security, and transferable methods from cryptography, statistics, information theory, OOD/anomaly detection, representation learning, causality, influence functions, and data valuation.
 - Increased OpenAlex/arXiv retrieval volume and Balanced/Explore quotas while batching OpenAlex calls to reduce burst rate-limit risk.
 - Versioned Radar preferences to ensure the broader v5 defaults are used instead of stale v4 keyword settings.
+
+## v6.0.1 — Research OS + Drive Organizer
+- 工作台默认入口改为“今日科研”。
+- 增加模型安全、具身抓取、跨域方法灵感三个独立 Radar Profile。
+- 增加 Drive 项目监视与项目继续包。
+- 增加 Experiment Inspector。
+- 增加结构化 Markdown 阅读笔记。
+- 增加 /paper 健康检查。
+- 新增 Drive 整理中心：重复/疑似重复、临时命名、根目录散落、缺阅读笔记、敏感材料提示。
+- 支持勾选后批量重命名/移动、在当前范围新建文件夹；不提供自动删除。
+- Google OAuth Client ID 继续预置，Drive token 仅保存在当前页面内存。

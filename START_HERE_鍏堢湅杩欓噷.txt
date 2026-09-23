@@ -1,18 +1,20 @@
-Research Radar v5 使用方法：
+Research OS v6 — 使用说明
+===========================
 
-1. 把这个文件夹里的全部内容覆盖上传到你的 GitHub Pages 仓库。
-2. 打开：https://niehewang.github.io/research-workbench.html
-3. 页面会先出现个人访问门禁；输入你设置的访问密码后进入。
-4. Google OAuth Client ID 已预置，无需再次粘贴。点击“连接 Google Drive”即可弹出 Google 官方授权窗口。
-5. 点击“扫描最近一年”开始论文发现。新版来源包括：
-   - IEEE Transactions
-   - ACM Transactions
-   - CCF A 类期刊 / 会议
-   - arXiv
-6. Balanced 模式默认会同时搜索：模型版权/水印/归因 + ML/LLM/生成模型安全 + 隐私/后门/窃取/取证/可信 AI + 密码学/统计/信息论/异常检测/表示学习等跨域方法。
-7. Drive 连接后会自动与 paper 文件夹去重；勾选开放 PDF 可一键归档。
+1. 把本目录中的全部文件覆盖上传到你的 niehewang.github.io GitHub 仓库。
+2. 等 GitHub Pages 更新后访问：
+   https://niehewang.github.io/research-workbench.html
+3. 输入你已经设置的工作区密码。
+4. 点击右上角“连接 Google Drive”，完成 Google 官方授权。
+5. 之后建议按这个顺序使用：
+   - 今日科研：刷新 Drive 与项目状态
+   - 项目监视：自动发现 / 添加长期研究项目
+   - 论文雷达：模型安全、具身抓取、跨域灵感分 Profile 扫描
+   - 实验体检：从 seed / retry / status / result / log 判断实验目录健康度
+   - 阅读笔记：从 Radar 一键生成 Markdown 阅读卡
+   - Drive 整理：扫描重复、临时命名、根目录散落、缺阅读笔记、敏感材料
 
-重要说明：
-- 访问密码是 GitHub Pages 上的“前端门禁”，用于防止普通访客随意进入，不等同于服务器端身份认证。
-- Google Drive Access Token 只存在当前页面内存，不写入 GitHub，也不长期保存在浏览器。
-- 论文搜索无需 Cloudflare Worker、SerpAPI 或其他后端。
+Drive 整理中心不会自动删除任何文件。
+移动和重命名只有在你勾选并确认后才会执行。
+
+Google OAuth Client ID 已预置，因此通常不需要重新配置 Google Cloud。

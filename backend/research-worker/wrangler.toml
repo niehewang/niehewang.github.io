@@ -1,0 +1,7 @@
+name = "nhw-research-radar"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+# Secrets are set with:
+#   npx wrangler secret put SERPAPI_KEY
+#   npx wrangler secret put SCHOLAR_AUTHOR_ID

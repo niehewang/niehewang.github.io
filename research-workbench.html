@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Research Radar | 聂何望</title>
+  <meta name="description" content="面向科研灵感发现的个人论文雷达：扫描近一年 IEEE Transactions、CCF A 与 arXiv，和 Google Drive /paper 去重，并将选中的开放论文一键归档。">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#eff4f2">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/workbench.css">
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="返回个人主页">
+      <div class="brandmark">HN</div>
+      <div><strong>Research Radar</strong><span>发现 · 去重 · 归档 · 留下灵感</span></div>
+    </a>
+    <div class="actions">
+      <a class="btn" href="index.html">个人主页</a>
+      <button class="btn" id="themeBtn">深色</button>
+      <button class="btn primary" id="connectDriveBtn">连接 Google Drive</button>
+      <button class="btn" id="settingsBtn">Drive 设置</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">PERSONAL RESEARCH INTELLIGENCE</div>
+      <h1>不要只追踪“同领域论文”，而是持续发现能改变研究思路的论文。</h1>
+      <p>一次扫描最近 365 天的 <strong>IEEE Transactions</strong>、<strong>CCF A 类期刊 / 会议</strong>和 <strong>arXiv</strong>。系统将候选分为核心相关、相邻安全和跨域启发，并与 Google Drive <code>paper</code> 文件夹去重，只保留你还没有的内容。</p>
+      <div class="scanbar">
+        <label class="select-wrap"><span>探索宽度</span><select id="breadthSelect" class="field">
+          <option value="focused">Focused · 聚焦本领域</option>
+          <option value="balanced" selected>Balanced · 默认推荐</option>
+          <option value="explore">Explore · 更多跨域启发</option>
+        </select></label>
+        <button class="btn primary scan-btn" id="scanBtn"><span>扫描最近一年</span><small>OpenAlex + arXiv · 无需后端</small></button>
+      </div>
+      <div class="statusline" id="connectionStatus"></div>
+    </div>
+    <div class="hero-metrics" id="heroMetrics">
+      <div class="metric"><b>—</b><span>新候选</span></div>
+      <div class="metric"><b>—</b><span>核心相关</span></div>
+      <div class="metric"><b>—</b><span>跨域启发</span></div>
+      <div class="metric"><b>—</b><span>已在 Drive</span></div>
+    </div>
+  </section>
+
+  <div class="workspace">
+    <aside class="side">
+      <nav class="nav" id="nav">
+        <button class="active" data-panel="radar"><span>论文雷达</span><small id="navRadarCount">·</small></button>
+        <button data-panel="library"><span>Drive Paper 库</span><small id="navLibraryCount">·</small></button>
+        <button data-panel="ideas"><span>灵感篮子</span><small id="navIdeasCount">0</small></button>
+        <button data-panel="watch"><span>主题偏好</span><small>⚙</small></button>
+        <button data-panel="about"><span>工作流说明</span><small>?</small></button>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="panel-radar" class="panel active">
+        <div class="panel-head">
+          <div><h2>论文雷达</h2><p>结果按“核心相关 / 相邻安全 / 跨域启发”混排，但来源仍受 IEEE Transactions、CCF A、arXiv 约束。</p></div>
+          <div class="panel-tools">
+            <button class="btn" id="selectAllBtn">全选可归档</button>
+            <button class="btn primary" id="uploadBtn" disabled>归档选中论文到 Drive</button>
+          </div>
+        </div>
+        <div class="filter-row">
+          <input id="resultSearch" class="field grow" type="search" placeholder="筛选标题 / 作者 / venue / 关键词">
+          <select id="laneFilter" class="field"><option value="all">全部关联度</option><option value="core">核心相关</option><option value="adjacent">相邻安全</option><option value="inspiration">跨域启发</option></select>
+          <select id="sourceFilter" class="field"><option value="all">全部来源</option><option value="ieee">IEEE Transactions</option><option value="ccfa">CCF A</option><option value="arxiv">arXiv</option></select>
+          <select id="pdfFilter" class="field"><option value="all">全部全文状态</option><option value="pdf">有开放 PDF</option><option value="nopdf">暂无开放 PDF</option></select>
+        </div>
+        <div class="selection-strip" id="selectionStrip">尚未扫描。论文搜索可直接使用；连接 Google Drive 后会自动与 /paper 去重。</div>
+        <div class="paper-grid" id="paperGrid"></div>
+      </section>
+
+      <section id="panel-library" class="panel">
+        <div class="panel-head"><div><h2>Google Drive /paper</h2><p>用于核对已收藏论文。扫描时会优先按 DOI / arXiv ID，再按文件名，最后使用 PDF 全文索引关键词去重。</p></div><button class="btn" id="refreshLibraryBtn">刷新目录</button></div>
+        <input id="librarySearch" class="field full" type="search" placeholder="搜索 Drive 中的文件名">
+        <div class="library-list" id="libraryList"></div>
+      </section>
+
+      <section id="panel-ideas" class="panel">
+        <div class="panel-head"><div><h2>灵感篮子</h2><p>不是“待读清单”。只保留那些你认为可能改变方法设计、实验或问题定义的论文。</p></div><button class="btn" id="exportIdeasBtn">导出 Markdown</button></div>
+        <div class="ideas-list" id="ideasList"></div>
+      </section>
+
+      <section id="panel-watch" class="panel">
+        <div class="panel-head"><div><h2>主题偏好</h2><p>默认策略已经按你的研究方向配置。你可以微调，但不需要每次扫描重新输入关键词。</p></div><button class="btn primary" id="saveWatchBtn">保存偏好</button></div>
+        <div class="settings-grid">
+          <div class="settings-card"><h3>核心相关</h3><p>高权重。直接服务于模型版权保护与模型安全。</p><textarea class="field full tall" id="coreTerms"></textarea></div>
+          <div class="settings-card"><h3>相邻安全</h3><p>中权重。寻找可以迁移的攻击、检测、隐私与取证技术。</p><textarea class="field full tall" id="adjacentTerms"></textarea></div>
+          <div class="settings-card"><h3>跨域启发</h3><p>低比例保留。关注可能迁移到确权、归因和验证的新方法。</p><textarea class="field full tall" id="inspirationTerms"></textarea></div>
+          <div class="settings-card"><h3>排除词</h3><p>降低明显不相关的“watermark / security”歧义结果。</p><textarea class="field full tall" id="negativeTerms"></textarea></div>
+        </div>
+      </section>
+
+      <section id="panel-about" class="panel">
+        <div class="panel-head"><div><h2>这套工作台实际替你做什么</h2><p>目标是减少重复检索、下载、比对和整理，而不是再做一个 Todo 软件。</p></div></div>
+        <div class="workflow-grid">
+          <div class="workflow-step"><b>01</b><h3>发现</h3><p>近 365 天内扫描高质量 venue 与 arXiv，并按研究邻域打分。</p></div>
+          <div class="workflow-step"><b>02</b><h3>控制宽度</h3><p>Balanced 默认保留核心 + 相邻，并混入少量跨域启发，避免只看“同质论文”。</p></div>
+          <div class="workflow-step"><b>03</b><h3>Drive 去重</h3><p>结合 DOI / arXiv ID、文件名与 Drive 全文索引，过滤你已经保存的论文。</p></div>
+          <div class="workflow-step"><b>04</b><h3>一键归档</h3><p>勾选多篇后直接保存开放 PDF 到 /paper；付费墙论文不会绕过访问限制。</p></div>
+          <div class="workflow-step"><b>05</b><h3>留下启发</h3><p>对真正值得跟进的论文写一句“可迁移到哪里”，形成个人方法灵感库。</p></div>
+          <div class="workflow-step"><b>06</b><h3>重复使用</h3><p>以后只需点击“扫描最近一年”，新结果会自动与已有 Paper 库比较。</p></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">CCF 分类依据：第七版《CCF 推荐国际学术会议和期刊目录》（2026-03-31 正式发布，4 月 9 日勘误）。</footer>
+</div>
+
+<div class="modal" id="settingsModal" aria-hidden="true">
+  <div class="modal-box compact">
+    <div class="panel-head"><div><h2>连接设置</h2><p>这些值只保存在当前浏览器，不会写入 GitHub。</p></div><button class="btn" id="closeSettingsBtn">关闭</button></div>
+    <label class="form-label">Google OAuth Client ID<input id="googleClientIdInput" class="field full" autocomplete="off" placeholder="例如 1234567890-xxxx.apps.googleusercontent.com"></label>
+    <div class="setup-note"><strong>只需设置一次。</strong>Client ID 不是密码，可以用于浏览器端 OAuth。它只保存在你当前浏览器的 localStorage；Google Drive access token 仅存在当前页面内存，关闭页面后失效。论文搜索本身无需任何后端配置。</div>
+    <div class="form-actions"><a class="btn" href="GOOGLE_OAUTH_SETUP.md" target="_blank" rel="noopener">查看设置说明</a><button class="btn primary" id="saveSettingsBtn">保存</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="assets/research-config.js"></script>
+<script src="assets/ccf-a-2026.js"></script>
+<script src="assets/workbench.js"></script>
+</body>
+</html>

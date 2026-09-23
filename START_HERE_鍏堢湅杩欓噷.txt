@@ -1,0 +1,14 @@
+新版 Research Radar（v4）最简单使用方法：
+
+1. 把这个文件夹里的全部内容上传到你的 GitHub Pages 仓库。
+2. 论文搜索、OpenAlex 论文/引用同步无需任何后端配置，上传后即可使用。
+3. Google Drive 只需一次设置：
+   - 按 GOOGLE_OAUTH_SETUP.md 在 Google Cloud 创建 Web OAuth Client ID；
+   - Authorized JavaScript origin 填：https://niehewang.github.io
+   - 打开 https://niehewang.github.io/research-workbench.html
+   - 点“连接 Google Drive”
+   - 粘贴 Client ID 并完成 Google 官方授权。
+
+不需要：Cloudflare Worker / Client Secret / 手工 Access Token / SerpAPI 才能使用论文搜索。
+
+说明：主页默认用 OpenAlex 同步公开论文及引用数。Google Scholar 没有官方公开 API；若未来一定要显示 Scholar 精确引用数，可以再单独增加可选后端，但不会影响当前主页和论文雷达的日常使用。

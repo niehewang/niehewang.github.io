@@ -1,3 +1,11 @@
+# v5.1.1 Hotfix — 2026-09-23
+
+- 修复论文扫描时 `Spread syntax requires ...iterable[Symbol.iterator] to be a function`。
+- OpenAlex / arXiv / Drive 的列表型返回全部改为防御式数组转换；单个 API 返回异常结构时跳过该批次，不再导致整个扫描失败。
+- 对旧版 localStorage 状态做数组归一化，避免历史缓存结构影响新版。
+- 工作台脚本增加 `?v=5.1.1` 缓存破坏参数，覆盖 GitHub 后可强制浏览器加载新 JS。
+- 保留 v5 的密码门禁、预置 Google OAuth Client ID、ACM Transactions、扩大检索主题与 Drive 去重。
+
 # 2026-09 Homepage Refresh
 
 ## Homepage

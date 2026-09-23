@@ -1,0 +1,12 @@
+Research Radar v5.1.1 修复说明
+
+本版本修复：Spread syntax requires ...iterable[Symbol.iterator] to be a function
+
+使用方法：
+1. 解压本 ZIP。
+2. 将所有文件覆盖上传到 niehewang.github.io 仓库。
+3. 等 GitHub Pages 更新后，重新打开 research-workbench.html。
+4. 如果浏览器仍显示旧页面，按 Ctrl+F5 强制刷新一次。
+
+Google OAuth Client ID 已保留，无需重新配置。
+论文雷达密码门禁、ACM Transactions、扩大检索范围均保留。

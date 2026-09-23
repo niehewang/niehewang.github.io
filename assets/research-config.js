@@ -5,7 +5,7 @@
  * in your own browser's localStorage.
  */
 window.NHW_RESEARCH_CONFIG = Object.freeze({
-  googleClientId: "",
+  googleClientId: "23984437861-6pjccfi2rsfd160k2h78ec245cks7cp0.apps.googleusercontent.com",
   paperFolderName: "paper",
   openAlexOrcid: "0000-0001-6652-4489",
   openAlexMailto: "nhw@gxnu.edu.cn",

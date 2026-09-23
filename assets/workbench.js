@@ -2,13 +2,13 @@
   'use strict';
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const CFG=window.NHW_RESEARCH_CONFIG||{}, CCF_A=window.NHW_CCF_A||[];
-  const K='nhw-radar-v4', SETTINGS='nhw-radar-settings-v4', FOLDER_KEY='nhw-radar-paper-folder-v1';
+  const K='nhw-radar-v5', LEGACY_K='nhw-radar-v4', SETTINGS='nhw-radar-settings-v5', FOLDER_KEY='nhw-radar-paper-folder-v1';
   const defaults={
     breadth:CFG.defaultBreadth||'balanced',
-    core:'model watermarking\nmodel ownership verification\nmodel fingerprinting\nmodel attribution\nmodel provenance\nmodel copyright protection\nmodel extraction detection\nAI-generated content provenance',
-    adjacent:'backdoor and trojan detection\nmodel stealing and extraction\nmachine unlearning\nmodel editing\nadversarial robustness\nprivacy leakage\nAI forensics\ndata attribution\ntraining data provenance\nmodel supply-chain security',
-    inspiration:'cryptographic proof and commitment\nconformal inference\nsequential hypothesis testing\ninformation theory\nerror-correcting codes\ncausal inference\nanomaly detection\nrepresentation similarity\nmechanism design\nstatistical forensics',
-    negative:'audio watermarking for broadcast\nphysical watermark removal\ndatabase watermarking only',
+    core:'model watermarking\nmodel ownership verification\nmodel fingerprinting\nmodel attribution\nmodel provenance\nmodel copyright protection\nmodel intellectual property protection\nneural network ownership verification\nfoundation model ownership\ndiffusion model watermarking\nlarge language model watermarking\nAI-generated content provenance\ntraining data attribution\nmodel lineage',
+    adjacent:'machine learning security\nAI security\nfoundation model security\ngenerative model security\nlarge language model security\ndiffusion model security\ntrustworthy artificial intelligence\nbackdoor and trojan detection\ndata poisoning\nmodel stealing and extraction\nmodel inversion\nmembership inference\nadversarial machine learning\nadversarial robustness\nprivacy leakage\ndifferential privacy\nmachine unlearning\nmodel editing\nAI forensics\ndeepfake detection\ndata provenance\nmodel supply chain security\nsoftware supply chain security\nsecure federated learning\nfederated learning security\nprompt injection\njailbreak detection\nAI authentication\ncontent authenticity',
+    inspiration:'cryptographic commitment\nzero knowledge proof\nproof of provenance\nsecure multiparty computation\nverifiable computation\nconformal prediction\nconformal inference\nsequential hypothesis testing\nmultiple hypothesis testing\nchange point detection\nuncertainty quantification\ninformation theory\nerror correcting codes\ncausal inference\nanomaly detection\nout of distribution detection\nrepresentation similarity\nrepresentation alignment\nmetric learning\ncontrastive learning\nmechanistic interpretability\ninfluence functions\ndata valuation\ngraph matching\nset matching\nstatistical forensics\nrobust statistics\nactive learning\ncontinual learning\nknowledge tracing\nprovenance tracking\nsoftware provenance',
+    negative:'audio broadcast watermark\nphysical document watermark\nwatermark removal from photographs\ndatabase watermarking only\nwireless channel watermark',
     googleClientId:CFG.googleClientId||''
   };
   let state=loadState(), prefs=loadPrefs(), driveToken=null, driveFiles=[], active='radar';
@@ -16,7 +16,7 @@
 
   function safeGet(k){try{return localStorage.getItem(k)||''}catch(_){return''}}
   function safeSet(k,v){try{localStorage.setItem(k,v)}catch(_){}}
-  function loadState(){try{return Object.assign({results:[],ideas:[],lastScan:null,driveNames:[]},JSON.parse(localStorage.getItem(K)||'{}'))}catch(_){return {results:[],ideas:[],lastScan:null,driveNames:[]}}}
+  function loadState(){try{return Object.assign({results:[],ideas:[],lastScan:null,driveNames:[]},JSON.parse(localStorage.getItem(K)||localStorage.getItem(LEGACY_K)||'{}'))}catch(_){return {results:[],ideas:[],lastScan:null,driveNames:[]}}}
   function loadPrefs(){try{return Object.assign({},defaults,JSON.parse(localStorage.getItem(SETTINGS)||'{}'))}catch(_){return {...defaults}}}
   function persist(){try{localStorage.setItem(K,JSON.stringify(state))}catch(_){}}
   function persistPrefs(){try{localStorage.setItem(SETTINGS,JSON.stringify(prefs))}catch(_){}}
@@ -25,7 +25,7 @@
   const toast=msg=>{const t=$('#toast');if(!t)return;t.textContent=msg;t.classList.add('show');clearTimeout(window.__radarToast);window.__radarToast=setTimeout(()=>t.classList.remove('show'),2600)};
   const today=()=>new Date().toISOString().slice(0,10), fmtDate=d=>d?String(d).slice(0,10):'日期未知';
   const laneLabel=v=>v==='core'?'核心相关':v==='adjacent'?'相邻安全':'跨域启发';
-  const sourceLabel=p=>{const a=[];if(p.flags?.ieee)a.push('IEEE Trans');if(p.flags?.ccfa)a.push('CCF A');if(p.flags?.arxiv)a.push('arXiv');return a.join(' · ')||p.venue||'其他'};
+  const sourceLabel=p=>{const a=[];if(p.flags?.ieee)a.push('IEEE Trans');if(p.flags?.acm)a.push('ACM Trans');if(p.flags?.ccfa)a.push('CCF A');if(p.flags?.arxiv)a.push('arXiv');return a.join(' · ')||p.venue||'其他'};
   function setStatus(text,kind=''){const e=$('#connectionStatus');if(!e)return;e.className='statusline '+kind;e.innerHTML=text}
   function parseLines(id){return ($('#'+id)?.value||'').split(/\n+/).map(x=>x.trim()).filter(Boolean)}
 
@@ -42,9 +42,9 @@
   }
   function filteredResults(){
     const q=norm($('#resultSearch')?.value||''), lane=$('#laneFilter')?.value||'all', src=$('#sourceFilter')?.value||'all', pdf=$('#pdfFilter')?.value||'all';
-    return state.results.filter(p=>{
+    return state.results.filter(p=>!p.inDrive).filter(p=>{
       const hay=norm([p.title,p.authors,p.venue,p.reason,(p.keywords||[]).join(' ')].join(' '));
-      const srcOk=src==='all'||(src==='ieee'&&p.flags?.ieee)||(src==='ccfa'&&p.flags?.ccfa)||(src==='arxiv'&&p.flags?.arxiv);
+      const srcOk=src==='all'||(src==='ieee'&&p.flags?.ieee)||(src==='acm'&&p.flags?.acm)||(src==='ccfa'&&p.flags?.ccfa)||(src==='arxiv'&&p.flags?.arxiv);
       const pdfOk=pdf==='all'||(pdf==='pdf'&&p.pdfAvailable)||(pdf==='nopdf'&&!p.pdfAvailable);
       return (!q||hay.includes(q))&&(lane==='all'||p.lane===lane)&&srcOk&&pdfOk;
     });
@@ -144,12 +144,14 @@
     const v=norm(venue);if(!v)return false;
     return CCF_A.some(x=>{const n=norm(x.name),a=norm(x.abbr);if(n&&(v.includes(n)||n.includes(v)))return true;if(a.length>=4&&new RegExp('(^| )'+a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'( |$)').test(v))return true;const A=new Set(v.split(' ')),B=new Set(n.split(' '));let inter=0;B.forEach(t=>{if(t.length>3&&A.has(t))inter++});return inter>=Math.min(4,Math.ceil(B.size*.65))})
   }
+  function isAcmTransactions(venue){return /^acm transactions on\b/i.test(String(venue||'').trim())||/\bacm transactions on\b/i.test(String(venue||''))}
   function reason(lane,q){if(lane==='core')return `直接命中“${q}”，与模型确权、归因、水印或版权保护问题高度相关。`;if(lane==='adjacent')return `来自相邻安全问题“${q}”，其中的攻击模型、检测机制或鲁棒性设计可能迁移到模型版权研究。`;return `来自“${q}”等方法邻域，主题未必相同，但统计、密码、表示或推断机制可能带来新的研究思路。`}
   function abstractFromIndex(idx){if(!idx)return'';const a=[];for(const [word,pos] of Object.entries(idx))for(const p of pos)a[p]=word;return a.join(' ')}
   function openAlexPaper(w,seed){
-    const locs=w.locations||[], venue=w.primary_location?.source?.display_name||locs.find(x=>x.source?.display_name)?.source?.display_name||'';
+    const locs=w.locations||[], sourceNames=[w.primary_location?.source?.display_name,...locs.map(x=>x.source?.display_name)].filter(Boolean);
     const arxivLoc=locs.find(x=>/arxiv/i.test(x.source?.display_name||'')||/arxiv\.org/i.test(x.landing_page_url||''));
-    const flags={ieee:/^ieee transactions on\b/i.test(venue),ccfa:isCcfA(venue),arxiv:!!arxivLoc||/arxiv/i.test(venue)};
+    const venue=sourceNames.find(v=>!/arxiv/i.test(v))||sourceNames[0]||'';
+    const flags={ieee:sourceNames.some(v=>/^ieee transactions on\b/i.test(v)),acm:sourceNames.some(isAcmTransactions),ccfa:sourceNames.some(isCcfA),arxiv:!!arxivLoc||sourceNames.some(v=>/arxiv/i.test(v))};
     const doi=w.doi||w.ids?.doi||'', doiUrl=doi?String(doi).replace(/^https?:\/\/doi\.org\//i,'https://doi.org/'):'';
     const oaLoc=w.best_oa_location||locs.find(x=>x.pdf_url)||{}, pdf=oaLoc.pdf_url||'';
     const id=String(w.id||'').split('/').pop(), arxivUrl=arxivLoc?.landing_page_url||'';
@@ -157,32 +159,56 @@
     return {id:'oa:'+id,openAlexId:id,title:w.title||w.display_name||'',authors:(w.authorships||[]).slice(0,8).map(a=>a.author?.display_name).filter(Boolean).join(', ')+((w.authorships||[]).length>8?' et al.':''),venue,date:w.publication_date||'',doi:doiUrl,url:doiUrl||w.primary_location?.landing_page_url||w.id||'',arxivId,arxivUrl,lane:seed.lane,reason:reason(seed.lane,seed.q),keywords:[seed.q],flags,pdfAvailable:!!pdf,pdfUrl:pdf,citations:Number(w.cited_by_count||0),abstract:abstractFromIndex(w.abstract_inverted_index)};
   }
   async function searchOpenAlex(seed,from,to){
-    const u=new URL('https://api.openalex.org/works');u.searchParams.set('search',seed.q);u.searchParams.set('filter',`from_publication_date:${from},to_publication_date:${to}`);u.searchParams.set('sort','publication_date:desc');u.searchParams.set('per-page','50');if(CFG.openAlexMailto)u.searchParams.set('mailto',CFG.openAlexMailto);
-    const r=await fetch(u);if(!r.ok)throw new Error(`OpenAlex ${r.status}`);const d=await r.json();return (d.results||[]).map(w=>openAlexPaper(w,seed)).filter(x=>x.title&&(x.flags.ieee||x.flags.ccfa||x.flags.arxiv));
+    const u=new URL('https://api.openalex.org/works');u.searchParams.set('search',seed.q);u.searchParams.set('filter',`from_publication_date:${from},to_publication_date:${to}`);u.searchParams.set('sort','publication_date:desc');u.searchParams.set('per-page','100');if(CFG.openAlexMailto)u.searchParams.set('mailto',CFG.openAlexMailto);
+    const r=await fetch(u);if(!r.ok)throw new Error(`OpenAlex ${r.status}`);const d=await r.json();return (d.results||[]).map(w=>openAlexPaper(w,seed)).filter(x=>x.title&&(x.flags.ieee||x.flags.acm||x.flags.ccfa||x.flags.arxiv));
   }
   function xmlText(node,sel){return node.querySelector(sel)?.textContent?.replace(/\s+/g,' ').trim()||''}
   function arxivStamp(d){return d.toISOString().replace(/[-:T.Z]/g,'').slice(0,12)}
   async function searchArxiv(terms,lane,start,end){
     if(!terms.length)return[];
     const expr=terms.slice(0,8).map(t=>`all:"${t.replace(/"/g,'')}"`).join(' OR '), date=`submittedDate:[${arxivStamp(start)} TO ${arxivStamp(end)}]`;
-    const u='https://export.arxiv.org/api/query?'+new URLSearchParams({search_query:`(${expr}) AND ${date}`,start:'0',max_results:'60',sortBy:'submittedDate',sortOrder:'descending'});
+    const u='https://export.arxiv.org/api/query?'+new URLSearchParams({search_query:`(${expr}) AND ${date}`,start:'0',max_results:'100',sortBy:'submittedDate',sortOrder:'descending'});
     const r=await fetch(u);if(!r.ok)throw new Error(`arXiv ${r.status}`);const text=await r.text(), doc=new DOMParser().parseFromString(text,'application/xml');
-    return [...doc.querySelectorAll('entry')].map(e=>{const idUrl=xmlText(e,'id'),id=(idUrl.match(/abs\/([^?#]+)/)||[])[1]||'',title=xmlText(e,'title'),summary=xmlText(e,'summary'),authors=[...e.querySelectorAll('author > name')].map(x=>x.textContent.trim()),pub=xmlText(e,'published'),doiRaw=xmlText(e,'doi');return {id:'arxiv:'+id,title,authors:authors.slice(0,8).join(', ')+(authors.length>8?' et al.':''),venue:'arXiv',date:pub.slice(0,10),doi:doiRaw?'https://doi.org/'+doiRaw:'',url:idUrl,arxivId:id,arxivUrl:idUrl,lane,reason:reason(lane,terms.find(t=>norm(title+' '+summary).includes(norm(t)))||terms[0]),keywords:terms,flags:{ieee:false,ccfa:false,arxiv:true},pdfAvailable:true,pdfUrl:id?`https://arxiv.org/pdf/${id}`:'',citations:0,abstract:summary}}).filter(x=>x.title&&x.arxivId);
+    return [...doc.querySelectorAll('entry')].map(e=>{const idUrl=xmlText(e,'id'),id=(idUrl.match(/abs\/([^?#]+)/)||[])[1]||'',title=xmlText(e,'title'),summary=xmlText(e,'summary'),authors=[...e.querySelectorAll('author > name')].map(x=>x.textContent.trim()),pub=xmlText(e,'published'),doiRaw=xmlText(e,'doi');return {id:'arxiv:'+id,title,authors:authors.slice(0,8).join(', ')+(authors.length>8?' et al.':''),venue:'arXiv',date:pub.slice(0,10),doi:doiRaw?'https://doi.org/'+doiRaw:'',url:idUrl,arxivId:id,arxivUrl:idUrl,lane,reason:reason(lane,terms.find(t=>norm(title+' '+summary).includes(norm(t)))||terms[0]),keywords:terms,flags:{ieee:false,acm:false,ccfa:false,arxiv:true},pdfAvailable:true,pdfUrl:id?`https://arxiv.org/pdf/${id}`:'',citations:0,abstract:summary}}).filter(x=>x.title&&x.arxivId);
   }
-  function score(p){let s=p.lane==='core'?60:p.lane==='adjacent'?42:28;if(p.flags?.ccfa)s+=10;if(p.flags?.ieee)s+=7;if(p.flags?.arxiv)s+=3;if(p.pdfAvailable)s+=3;s+=Math.min(8,Math.log10(1+Number(p.citations||0))*3);const age=Math.max(0,(Date.now()-new Date(p.date||0).getTime())/86400000);return s+Math.max(0,6-age/70)}
+  function score(p){let s=p.lane==='core'?60:p.lane==='adjacent'?42:28;if(p.flags?.ccfa)s+=10;if(p.flags?.ieee)s+=7;if(p.flags?.acm)s+=7;if(p.flags?.arxiv)s+=3;if(p.pdfAvailable)s+=3;s+=Math.min(8,Math.log10(1+Number(p.citations||0))*3);const age=Math.max(0,(Date.now()-new Date(p.date||0).getTime())/86400000);return s+Math.max(0,6-age/70)}
+  async function settleBatches(tasks,batchSize=4){
+    const out=[];
+    for(let i=0;i<tasks.length;i+=batchSize){
+      const settled=await Promise.allSettled(tasks.slice(i,i+batchSize).map(fn=>fn()));
+      settled.forEach(x=>{if(x.status==='fulfilled')out.push(...x.value)});
+      if(i+batchSize<tasks.length)await new Promise(r=>setTimeout(r,450));
+    }
+    return out;
+  }
+  function spreadTerms(list,n){if(n<=0||!list.length)return[];if(n>=list.length)return [...list];const out=[];for(let i=0;i<n;i++){const idx=Math.round(i*(list.length-1)/(n-1));if(!out.includes(list[idx]))out.push(list[idx])}return out}
   async function discoverClient(){
-    const breadth=prefs.breadth, t=termsPayload(), counts=breadth==='focused'?[6,2,0]:breadth==='explore'?[7,7,7]:[7,5,3];
-    const seeds=[...t.core.slice(0,counts[0]).map(q=>({q,lane:'core'})),...t.adjacent.slice(0,counts[1]).map(q=>({q,lane:'adjacent'})),...t.inspiration.slice(0,counts[2]).map(q=>({q,lane:'inspiration'}))];
+    const breadth=prefs.breadth, t=termsPayload();
+    const counts=breadth==='focused'?[9,7,3]:breadth==='explore'?[13,18,15]:[12,15,11];
+    const coreSeeds=spreadTerms(t.core,counts[0]),adjSeeds=spreadTerms(t.adjacent,counts[1]),inspSeeds=spreadTerms(t.inspiration,counts[2]);
+    const seeds=[...coreSeeds.map(q=>({q,lane:'core'})),...adjSeeds.map(q=>({q,lane:'adjacent'})),...inspSeeds.map(q=>({q,lane:'inspiration'}))];
     const end=new Date(),start=new Date(end.getTime()-Number(CFG.radarLookbackDays||365)*86400000),from=dateString(start),to=dateString(end);
-    const oa=seeds.map(s=>searchOpenAlex(s,from,to)), ax=[searchArxiv(t.core.slice(0,Math.min(8,counts[0])),'core',start,end),searchArxiv(t.adjacent.slice(0,Math.min(7,counts[1])),'adjacent',start,end),...(counts[2]?[searchArxiv(t.inspiration.slice(0,Math.min(6,counts[2])),'inspiration',start,end)]:[])];
-    const settled=await Promise.allSettled([...oa,...ax]), all=[];settled.forEach(x=>{if(x.status==='fulfilled')all.push(...x.value)});
+    const oaTasks=seeds.map(seed=>()=>searchOpenAlex(seed,from,to));
+    const all=await settleBatches(oaTasks,4);
+    const axTasks=[()=>searchArxiv(spreadTerms(t.core,Math.min(10,counts[0])),'core',start,end),()=>searchArxiv(spreadTerms(t.adjacent,Math.min(10,counts[1])),'adjacent',start,end)];
+    if(counts[2])axTasks.push(()=>searchArxiv(spreadTerms(t.inspiration,Math.min(9,counts[2])),'inspiration',start,end));
+    const axSettled=await Promise.allSettled(axTasks);axSettled.forEach(x=>{if(x.status==='fulfilled')all.push(...x.value)});
     if(!all.length)throw new Error('公开论文源暂时没有返回结果，请稍后重试');
     const negative=t.negative.map(norm), byKey=new Map();
-    for(const p of all){const text=norm(p.title+' '+(p.abstract||''));if(negative.some(n=>n&&text.includes(n)))continue;if(!p.flags?.arxiv&&!p.flags?.ieee&&!p.flags?.ccfa)continue;const key=p.doi?norm(p.doi):p.arxivId?'arxiv '+norm(p.arxivId):norm(p.title),old=byKey.get(key);if(!old){byKey.set(key,p);continue}old.flags={ieee:old.flags.ieee||p.flags.ieee,ccfa:old.flags.ccfa||p.flags.ccfa,arxiv:old.flags.arxiv||p.flags.arxiv};if(!old.pdfUrl&&p.pdfUrl){old.pdfUrl=p.pdfUrl;old.pdfAvailable=true}if(laneRank(p.lane)<laneRank(old.lane)){old.lane=p.lane;old.reason=p.reason}}
+    for(const p of all){
+      const text=norm(p.title+' '+(p.abstract||''));
+      if(negative.some(n=>n&&text.includes(n)))continue;
+      if(!p.flags?.arxiv&&!p.flags?.ieee&&!p.flags?.acm&&!p.flags?.ccfa)continue;
+      const key=p.doi?norm(p.doi):p.arxivId?'arxiv '+norm(p.arxivId):norm(p.title),old=byKey.get(key);
+      if(!old){byKey.set(key,p);continue}
+      old.flags={ieee:old.flags.ieee||p.flags.ieee,acm:old.flags.acm||p.flags.acm,ccfa:old.flags.ccfa||p.flags.ccfa,arxiv:old.flags.arxiv||p.flags.arxiv};
+      if(!old.pdfUrl&&p.pdfUrl){old.pdfUrl=p.pdfUrl;old.pdfAvailable=true}
+      if(laneRank(p.lane)<laneRank(old.lane)){old.lane=p.lane;old.reason=p.reason}
+    }
     let list=[...byKey.values()];list.forEach(p=>{p.score=score(p);delete p.abstract});
-    const quotas=breadth==='focused'?{core:48,adjacent:22,inspiration:0}:breadth==='explore'?{core:32,adjacent:28,inspiration:22}:{core:42,adjacent:26,inspiration:14},chosen=[];
+    const quotas=breadth==='focused'?{core:48,adjacent:27,inspiration:8}:breadth==='explore'?{core:58,adjacent:62,inspiration:55}:{core:52,adjacent:43,inspiration:30},chosen=[];
     for(const lane of ['core','adjacent','inspiration'])chosen.push(...list.filter(x=>x.lane===lane).sort((a,b)=>b.score-a.score).slice(0,quotas[lane]));
-    return chosen.sort((a,b)=>new Date(b.date||0)-new Date(a.date||0)||b.score-a.score).slice(0,90);
+    return chosen.sort((a,b)=>new Date(b.date||0)-new Date(a.date||0)||b.score-a.score).slice(0,breadth==='focused'?82:breadth==='explore'?175:125);
   }
 
   /* ---------- Drive dedup ---------- */
@@ -191,7 +217,7 @@
   function filenameDuplicate(p){const ids=identifiers(p),files=driveFiles.map(f=>({n:norm(f.name),d:norm(f.description||''),a:norm(JSON.stringify(f.appProperties||{}))}));return files.some(f=>ids.some(id=>id.length>7&&(f.n.includes(id)||f.d.includes(id)||f.a.includes(id)))||(norm(p.title).length>14&&similarity(norm(p.title),f.n)>0.9))}
   function rareTokens(title){return norm(title).split(' ').filter(x=>x.length>=5&&!['model','using','based','learning','neural','security','watermark','watermarking'].includes(x)).sort((a,b)=>b.length-a.length).slice(0,3)}
   async function fullTextDuplicate(p){const toks=rareTokens(p.title);if(toks.length<2)return false;const folder=await findPaperFolder(),clauses=toks.map(t=>`fullText contains '${t.replace(/'/g,"\\'")}'`).join(' and '),q=`'${folder}' in parents and trashed=false and ${clauses}`;try{const j=await (await driveFetch('https://www.googleapis.com/drive/v3/files?'+new URLSearchParams({q,fields:'files(id,name)',pageSize:'5'}))).json();return !!j.files?.length}catch(_){return false}}
-  async function dedupeAgainstDrive(results){await ensureDrive();const unresolved=[];for(const p of results){p.inDrive=filenameDuplicate(p);if(!p.inDrive)unresolved.push(p)}const batch=unresolved.slice(0,60);for(let i=0;i<batch.length;i+=5){const part=batch.slice(i,i+5),vals=await Promise.all(part.map(fullTextDuplicate));vals.forEach((v,k)=>part[k].inDrive=v);setStatus(`正在与 Drive /paper 做全文去重… ${Math.min(i+5,batch.length)}/${batch.length}`,'ok')}return results}
+  async function dedupeAgainstDrive(results){await ensureDrive();const unresolved=[];for(const p of results){p.inDrive=filenameDuplicate(p);if(!p.inDrive)unresolved.push(p)}const batch=unresolved;for(let i=0;i<batch.length;i+=5){const part=batch.slice(i,i+5),vals=await Promise.all(part.map(fullTextDuplicate));vals.forEach((v,k)=>part[k].inDrive=v);setStatus(`正在与 Drive /paper 做全文去重… ${Math.min(i+5,batch.length)}/${batch.length}`,'ok')}return results}
 
   async function scan(){
     try{
@@ -222,7 +248,7 @@
 
   $('#nav').addEventListener('click',e=>{const b=e.target.closest('[data-panel]');if(!b)return;active=b.dataset.panel;renderAll()});
   $('#themeBtn').onclick=()=>{const d=document.documentElement;d.dataset.theme=d.dataset.theme==='dark'?'light':'dark';safeSet('nhw-radar-theme',d.dataset.theme)};
-  $('#settingsBtn').onclick=()=>openSettings(false);$('#connectDriveBtn').onclick=connectDrive;$('#closeSettingsBtn').onclick=closeSettings;$('#settingsModal').onclick=e=>{if(e.target.id==='settingsModal')closeSettings()};$('#saveSettingsBtn').onclick=saveSettings;
+  $('#settingsBtn').onclick=()=>openSettings(false);$('#connectDriveBtn').onclick=connectDrive;$('#lockRadarBtn').onclick=()=>window.NHW_LOCK_RADAR?.();$('#closeSettingsBtn').onclick=closeSettings;$('#settingsModal').onclick=e=>{if(e.target.id==='settingsModal')closeSettings()};$('#saveSettingsBtn').onclick=saveSettings;
   $('#scanBtn').onclick=scan;$('#uploadBtn').onclick=uploadSelected;
   $('#refreshLibraryBtn').onclick=async()=>{try{await ensureDrive();await loadDriveLibrary();toast('Drive /paper 已刷新')}catch(e){toast(e.message)}};
   $('#selectAllBtn').onclick=()=>{const visible=new Set(filteredResults().filter(x=>!x.inDrive&&x.pdfAvailable).map(x=>x.id)),all=state.results.filter(x=>visible.has(x.id)),target=!all.every(x=>x.selected);all.forEach(x=>x.selected=target);persist();renderRadar()};

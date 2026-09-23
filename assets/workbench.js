@@ -1,7 +1,8 @@
 (()=>{
   'use strict';
-  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-  const CFG=window.NHW_RESEARCH_CONFIG||{}, CCF_A=window.NHW_CCF_A||[];
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+  const asArray=v=>Array.isArray(v)?v:(v==null?[]:(typeof v?.[Symbol.iterator]==='function'?Array.from(v):[]));
+  const CFG=window.NHW_RESEARCH_CONFIG||{}, CCF_A=asArray(window.NHW_CCF_A);
   const K='nhw-radar-v5', LEGACY_K='nhw-radar-v4', SETTINGS='nhw-radar-settings-v5', FOLDER_KEY='nhw-radar-paper-folder-v1';
   const defaults={
     breadth:CFG.defaultBreadth||'balanced',
@@ -16,7 +17,7 @@
 
   function safeGet(k){try{return localStorage.getItem(k)||''}catch(_){return''}}
   function safeSet(k,v){try{localStorage.setItem(k,v)}catch(_){}}
-  function loadState(){try{return Object.assign({results:[],ideas:[],lastScan:null,driveNames:[]},JSON.parse(localStorage.getItem(K)||localStorage.getItem(LEGACY_K)||'{}'))}catch(_){return {results:[],ideas:[],lastScan:null,driveNames:[]}}}
+  function loadState(){try{const raw=JSON.parse(localStorage.getItem(K)||localStorage.getItem(LEGACY_K)||'{}')||{};return {results:asArray(raw.results),ideas:asArray(raw.ideas),lastScan:raw.lastScan||null,driveNames:asArray(raw.driveNames)}}catch(_){return {results:[],ideas:[],lastScan:null,driveNames:[]}}}
   function loadPrefs(){try{return Object.assign({},defaults,JSON.parse(localStorage.getItem(SETTINGS)||'{}'))}catch(_){return {...defaults}}}
   function persist(){try{localStorage.setItem(K,JSON.stringify(state))}catch(_){}}
   function persistPrefs(){try{localStorage.setItem(SETTINGS,JSON.stringify(prefs))}catch(_){}}
@@ -132,7 +133,7 @@
   }
   async function loadDriveLibrary(){
     const folder=await findPaperFolder(), all=[];let token='';
-    do{const params={q:`'${folder}' in parents and trashed=false`,fields:'nextPageToken,files(id,name,mimeType,modifiedTime,webViewLink,description,appProperties)',pageSize:'1000'};if(token)params.pageToken=token;const j=await (await driveFetch('https://www.googleapis.com/drive/v3/files?'+new URLSearchParams(params))).json();all.push(...(j.files||[]));token=j.nextPageToken||''}while(token);
+    do{const params={q:`'${folder}' in parents and trashed=false`,fields:'nextPageToken,files(id,name,mimeType,modifiedTime,webViewLink,description,appProperties)',pageSize:'1000'};if(token)params.pageToken=token;const j=await (await driveFetch('https://www.googleapis.com/drive/v3/files?'+new URLSearchParams(params))).json();asArray(j.files).forEach(x=>all.push(x));token=j.nextPageToken||''}while(token);
     driveFiles=all;state.driveNames=all.map(x=>x.name);persist();renderAll();return all;
   }
 
@@ -148,7 +149,7 @@
   function reason(lane,q){if(lane==='core')return `直接命中“${q}”，与模型确权、归因、水印或版权保护问题高度相关。`;if(lane==='adjacent')return `来自相邻安全问题“${q}”，其中的攻击模型、检测机制或鲁棒性设计可能迁移到模型版权研究。`;return `来自“${q}”等方法邻域，主题未必相同，但统计、密码、表示或推断机制可能带来新的研究思路。`}
   function abstractFromIndex(idx){if(!idx)return'';const a=[];for(const [word,pos] of Object.entries(idx))for(const p of pos)a[p]=word;return a.join(' ')}
   function openAlexPaper(w,seed){
-    const locs=w.locations||[], sourceNames=[w.primary_location?.source?.display_name,...locs.map(x=>x.source?.display_name)].filter(Boolean);
+    const locs=asArray(w.locations), sourceNames=[w.primary_location?.source?.display_name].concat(locs.map(x=>x?.source?.display_name)).filter(Boolean);
     const arxivLoc=locs.find(x=>/arxiv/i.test(x.source?.display_name||'')||/arxiv\.org/i.test(x.landing_page_url||''));
     const venue=sourceNames.find(v=>!/arxiv/i.test(v))||sourceNames[0]||'';
     const flags={ieee:sourceNames.some(v=>/^ieee transactions on\b/i.test(v)),acm:sourceNames.some(isAcmTransactions),ccfa:sourceNames.some(isCcfA),arxiv:!!arxivLoc||sourceNames.some(v=>/arxiv/i.test(v))};
@@ -156,11 +157,11 @@
     const oaLoc=w.best_oa_location||locs.find(x=>x.pdf_url)||{}, pdf=oaLoc.pdf_url||'';
     const id=String(w.id||'').split('/').pop(), arxivUrl=arxivLoc?.landing_page_url||'';
     let arxivId='';const mm=arxivUrl.match(/(?:abs|pdf)\/([^?#/]+(?:v\d+)?)/);if(mm)arxivId=mm[1].replace(/\.pdf$/,'');
-    return {id:'oa:'+id,openAlexId:id,title:w.title||w.display_name||'',authors:(w.authorships||[]).slice(0,8).map(a=>a.author?.display_name).filter(Boolean).join(', ')+((w.authorships||[]).length>8?' et al.':''),venue,date:w.publication_date||'',doi:doiUrl,url:doiUrl||w.primary_location?.landing_page_url||w.id||'',arxivId,arxivUrl,lane:seed.lane,reason:reason(seed.lane,seed.q),keywords:[seed.q],flags,pdfAvailable:!!pdf,pdfUrl:pdf,citations:Number(w.cited_by_count||0),abstract:abstractFromIndex(w.abstract_inverted_index)};
+    return {id:'oa:'+id,openAlexId:id,title:w.title||w.display_name||'',authors:asArray(w.authorships).slice(0,8).map(a=>a?.author?.display_name).filter(Boolean).join(', ')+(asArray(w.authorships).length>8?' et al.':''),venue,date:w.publication_date||'',doi:doiUrl,url:doiUrl||w.primary_location?.landing_page_url||w.id||'',arxivId,arxivUrl,lane:seed.lane,reason:reason(seed.lane,seed.q),keywords:[seed.q],flags,pdfAvailable:!!pdf,pdfUrl:pdf,citations:Number(w.cited_by_count||0),abstract:abstractFromIndex(w.abstract_inverted_index)};
   }
   async function searchOpenAlex(seed,from,to){
     const u=new URL('https://api.openalex.org/works');u.searchParams.set('search',seed.q);u.searchParams.set('filter',`from_publication_date:${from},to_publication_date:${to}`);u.searchParams.set('sort','publication_date:desc');u.searchParams.set('per-page','100');if(CFG.openAlexMailto)u.searchParams.set('mailto',CFG.openAlexMailto);
-    const r=await fetch(u);if(!r.ok)throw new Error(`OpenAlex ${r.status}`);const d=await r.json();return (d.results||[]).map(w=>openAlexPaper(w,seed)).filter(x=>x.title&&(x.flags.ieee||x.flags.acm||x.flags.ccfa||x.flags.arxiv));
+    const r=await fetch(u);if(!r.ok)throw new Error(`OpenAlex ${r.status}`);const d=await r.json();return asArray(d?.results).map(w=>openAlexPaper(w||{},seed)).filter(x=>x.title&&(x.flags.ieee||x.flags.acm||x.flags.ccfa||x.flags.arxiv));
   }
   function xmlText(node,sel){return node.querySelector(sel)?.textContent?.replace(/\s+/g,' ').trim()||''}
   function arxivStamp(d){return d.toISOString().replace(/[-:T.Z]/g,'').slice(0,12)}
@@ -169,30 +170,30 @@
     const expr=terms.slice(0,8).map(t=>`all:"${t.replace(/"/g,'')}"`).join(' OR '), date=`submittedDate:[${arxivStamp(start)} TO ${arxivStamp(end)}]`;
     const u='https://export.arxiv.org/api/query?'+new URLSearchParams({search_query:`(${expr}) AND ${date}`,start:'0',max_results:'100',sortBy:'submittedDate',sortOrder:'descending'});
     const r=await fetch(u);if(!r.ok)throw new Error(`arXiv ${r.status}`);const text=await r.text(), doc=new DOMParser().parseFromString(text,'application/xml');
-    return [...doc.querySelectorAll('entry')].map(e=>{const idUrl=xmlText(e,'id'),id=(idUrl.match(/abs\/([^?#]+)/)||[])[1]||'',title=xmlText(e,'title'),summary=xmlText(e,'summary'),authors=[...e.querySelectorAll('author > name')].map(x=>x.textContent.trim()),pub=xmlText(e,'published'),doiRaw=xmlText(e,'doi');return {id:'arxiv:'+id,title,authors:authors.slice(0,8).join(', ')+(authors.length>8?' et al.':''),venue:'arXiv',date:pub.slice(0,10),doi:doiRaw?'https://doi.org/'+doiRaw:'',url:idUrl,arxivId:id,arxivUrl:idUrl,lane,reason:reason(lane,terms.find(t=>norm(title+' '+summary).includes(norm(t)))||terms[0]),keywords:terms,flags:{ieee:false,acm:false,ccfa:false,arxiv:true},pdfAvailable:true,pdfUrl:id?`https://arxiv.org/pdf/${id}`:'',citations:0,abstract:summary}}).filter(x=>x.title&&x.arxivId);
+    return Array.from(doc.querySelectorAll('entry')).map(e=>{const idUrl=xmlText(e,'id'),id=(idUrl.match(/abs\/([^?#]+)/)||[])[1]||'',title=xmlText(e,'title'),summary=xmlText(e,'summary'),authors=Array.from(e.querySelectorAll('author > name')).map(x=>x.textContent.trim()),pub=xmlText(e,'published'),doiRaw=xmlText(e,'doi');return {id:'arxiv:'+id,title,authors:authors.slice(0,8).join(', ')+(authors.length>8?' et al.':''),venue:'arXiv',date:pub.slice(0,10),doi:doiRaw?'https://doi.org/'+doiRaw:'',url:idUrl,arxivId:id,arxivUrl:idUrl,lane,reason:reason(lane,terms.find(t=>norm(title+' '+summary).includes(norm(t)))||terms[0]),keywords:terms,flags:{ieee:false,acm:false,ccfa:false,arxiv:true},pdfAvailable:true,pdfUrl:id?`https://arxiv.org/pdf/${id}`:'',citations:0,abstract:summary}}).filter(x=>x.title&&x.arxivId);
   }
   function score(p){let s=p.lane==='core'?60:p.lane==='adjacent'?42:28;if(p.flags?.ccfa)s+=10;if(p.flags?.ieee)s+=7;if(p.flags?.acm)s+=7;if(p.flags?.arxiv)s+=3;if(p.pdfAvailable)s+=3;s+=Math.min(8,Math.log10(1+Number(p.citations||0))*3);const age=Math.max(0,(Date.now()-new Date(p.date||0).getTime())/86400000);return s+Math.max(0,6-age/70)}
   async function settleBatches(tasks,batchSize=4){
     const out=[];
     for(let i=0;i<tasks.length;i+=batchSize){
       const settled=await Promise.allSettled(tasks.slice(i,i+batchSize).map(fn=>fn()));
-      settled.forEach(x=>{if(x.status==='fulfilled')out.push(...x.value)});
+      settled.forEach(x=>{if(x.status==='fulfilled')asArray(x.value).forEach(v=>out.push(v))});
       if(i+batchSize<tasks.length)await new Promise(r=>setTimeout(r,450));
     }
     return out;
   }
-  function spreadTerms(list,n){if(n<=0||!list.length)return[];if(n>=list.length)return [...list];const out=[];for(let i=0;i<n;i++){const idx=Math.round(i*(list.length-1)/(n-1));if(!out.includes(list[idx]))out.push(list[idx])}return out}
+  function spreadTerms(list,n){list=asArray(list);if(n<=0||!list.length)return[];if(n>=list.length)return list.slice();const out=[];for(let i=0;i<n;i++){const idx=n===1?0:Math.round(i*(list.length-1)/(n-1));if(!out.includes(list[idx]))out.push(list[idx])}return out}
   async function discoverClient(){
     const breadth=prefs.breadth, t=termsPayload();
     const counts=breadth==='focused'?[9,7,3]:breadth==='explore'?[13,18,15]:[12,15,11];
     const coreSeeds=spreadTerms(t.core,counts[0]),adjSeeds=spreadTerms(t.adjacent,counts[1]),inspSeeds=spreadTerms(t.inspiration,counts[2]);
-    const seeds=[...coreSeeds.map(q=>({q,lane:'core'})),...adjSeeds.map(q=>({q,lane:'adjacent'})),...inspSeeds.map(q=>({q,lane:'inspiration'}))];
+    const seeds=coreSeeds.map(q=>({q,lane:'core'})).concat(adjSeeds.map(q=>({q,lane:'adjacent'})),inspSeeds.map(q=>({q,lane:'inspiration'})));
     const end=new Date(),start=new Date(end.getTime()-Number(CFG.radarLookbackDays||365)*86400000),from=dateString(start),to=dateString(end);
     const oaTasks=seeds.map(seed=>()=>searchOpenAlex(seed,from,to));
     const all=await settleBatches(oaTasks,4);
     const axTasks=[()=>searchArxiv(spreadTerms(t.core,Math.min(10,counts[0])),'core',start,end),()=>searchArxiv(spreadTerms(t.adjacent,Math.min(10,counts[1])),'adjacent',start,end)];
     if(counts[2])axTasks.push(()=>searchArxiv(spreadTerms(t.inspiration,Math.min(9,counts[2])),'inspiration',start,end));
-    const axSettled=await Promise.allSettled(axTasks);axSettled.forEach(x=>{if(x.status==='fulfilled')all.push(...x.value)});
+    const axSettled=await Promise.allSettled(axTasks);axSettled.forEach(x=>{if(x.status==='fulfilled')asArray(x.value).forEach(v=>all.push(v))});
     if(!all.length)throw new Error('公开论文源暂时没有返回结果，请稍后重试');
     const negative=t.negative.map(norm), byKey=new Map();
     for(const p of all){
@@ -205,9 +206,9 @@
       if(!old.pdfUrl&&p.pdfUrl){old.pdfUrl=p.pdfUrl;old.pdfAvailable=true}
       if(laneRank(p.lane)<laneRank(old.lane)){old.lane=p.lane;old.reason=p.reason}
     }
-    let list=[...byKey.values()];list.forEach(p=>{p.score=score(p);delete p.abstract});
+    let list=Array.from(byKey.values());list.forEach(p=>{p.score=score(p);delete p.abstract});
     const quotas=breadth==='focused'?{core:48,adjacent:27,inspiration:8}:breadth==='explore'?{core:58,adjacent:62,inspiration:55}:{core:52,adjacent:43,inspiration:30},chosen=[];
-    for(const lane of ['core','adjacent','inspiration'])chosen.push(...list.filter(x=>x.lane===lane).sort((a,b)=>b.score-a.score).slice(0,quotas[lane]));
+    for(const lane of ['core','adjacent','inspiration'])list.filter(x=>x.lane===lane).sort((a,b)=>b.score-a.score).slice(0,quotas[lane]).forEach(v=>chosen.push(v));
     return chosen.sort((a,b)=>new Date(b.date||0)-new Date(a.date||0)||b.score-a.score).slice(0,breadth==='focused'?82:breadth==='explore'?175:125);
   }
 
@@ -222,7 +223,7 @@
   async function scan(){
     try{
       prefs.breadth=$('#breadthSelect').value;persistPrefs();$('#scanBtn').disabled=true;$('#scanBtn').innerHTML='<span><i class="loading-dot"></i>正在扫描</span><small>OpenAlex + arXiv</small>';setStatus('正在直接查询 OpenAlex 与 arXiv…','ok');
-      let results=(await discoverClient()).map(x=>({...x,selected:false,inDrive:false}));
+      let results=asArray(await discoverClient()).map(x=>Object.assign({},x,{selected:false,inDrive:false}));
       if(prefs.googleClientId||CFG.googleClientId){try{setStatus(`发现 ${results.length} 条候选，正在请求 Google Drive 授权并去重…`,'ok');await dedupeAgainstDrive(results)}catch(e){setStatus(`已发现 ${results.length} 条候选；Drive 未连接，因此本次暂未去重。${esc(e.message)}`,'warn')}}
       state.results=results;state.lastScan=new Date().toISOString();persist();renderAll();const fresh=results.filter(x=>!x.inDrive).length;toast(`发现 ${fresh} 篇候选`);
     }catch(e){setStatus(esc(e.message),'warn');toast(e.message)}finally{$('#scanBtn').disabled=false;$('#scanBtn').innerHTML='<span>扫描最近一年</span><small>OpenAlex + arXiv · 无需后端</small>'}
@@ -230,7 +231,7 @@
   function openPdf(id){const p=state.results.find(x=>x.id===id);if(!p?.pdfUrl)return toast('没有开放 PDF 链接');window.open(p.pdfUrl,'_blank','noopener')}
   async function fetchPdf(p){
     const urls=[p.pdfUrl];if(p.arxivId)urls.push(`https://export.arxiv.org/pdf/${p.arxivId}`);
-    let last='';for(const u of [...new Set(urls.filter(Boolean))]){try{const r=await fetch(u,{mode:'cors',credentials:'omit'});if(!r.ok){last=`HTTP ${r.status}`;continue}const blob=await r.blob();if(blob.size<10000){last='PDF 响应过小';continue}return blob}catch(e){last=e.message||'CORS'}}
+    let last='';for(const u of Array.from(new Set(urls.filter(Boolean)))){try{const r=await fetch(u,{mode:'cors',credentials:'omit'});if(!r.ok){last=`HTTP ${r.status}`;continue}const blob=await r.blob();if(blob.size<10000){last='PDF 响应过小';continue}return blob}catch(e){last=e.message||'CORS'}}
     throw new Error(`${p.title}: 来源站点禁止浏览器跨域读取 PDF（${last}）。可以打开 PDF 后手动下载；论文搜索与 Drive 去重不受影响。`);
   }
   function safeFilename(p){return (`[${(p.venue||'paper').replace(/[^a-zA-Z0-9._-]+/g,'_').slice(0,35)}_${(p.date||'').slice(0,4)}] ${p.title}`).replace(/[\\/:*?"<>|]/g,' ').replace(/\s+/g,' ').trim().slice(0,180)+'.pdf'}

@@ -1,46 +1,33 @@
-# niehewang.github.io
+# niehewang.github.io — Research Radar v5
 
-Personal academic homepage for Hewang Nie. The public website itself remains a static GitHub Pages site; optional live research features use a small Cloudflare Worker and browser-side Google Drive OAuth.
+Hewang Nie 的静态 GitHub Pages 学术主页与个人 Research Radar。
 
-## 2026-09 Refresh
+## v5 主要变化
 
-- Reworked the visual system into a cleaner academic/editorial homepage.
-- Added FakeMark (2026), NSFC Regional Science Fund 62661008, and NSFC Review Expert service.
-- Added Google Scholar synchronization: one click updates citation counts and surfaces Scholar entries not yet present in the static publication list.
-- Replaced the old generic workbench with **Research Radar**, a literature-first workflow designed around discovery, Drive deduplication, multi-paper archiving, and idea capture.
-- Research Radar scans the most recent year of IEEE Transactions, CCF A venues, and arXiv, with three relevance lanes: core, adjacent security, and cross-domain inspiration.
-- Added Focused / Balanced / Explore controls so discovery can be broader without becoming noisy.
-- Added Google Drive `/paper` deduplication using identifiers, filename similarity, and indexed PDF full-text tokens.
-- Added multi-select archiving of legally available open PDFs directly to Google Drive.
+- Research Radar 增加个人访问门禁；解锁状态只保留在当前浏览器标签页会话中，并提供“锁定”按钮。
+- Google OAuth Web Client ID 已预置，部署到 `https://niehewang.github.io` 后可直接点击“连接 Google Drive”。
+- 论文来源扩展为 **IEEE Transactions + ACM Transactions + CCF A + arXiv**。
+- 默认检索主题显著扩展，不再只盯模型水印：同时覆盖 ML/LLM/生成模型安全、后门、投毒、模型窃取、隐私、模型编辑/遗忘、AI 取证、深伪、数据/模型 provenance、可信 AI、联邦学习安全，以及密码学验证、统计推断、信息论、异常/OOD、表示学习、因果推断、影响函数、数据估值等可迁移方法。
+- Balanced / Explore 模式增加检索种子与候选配额，并对主题词做均匀抽样，避免只搜索列表前几项。
+- Google Drive `/paper` 去重仍使用 DOI/arXiv ID、文件名/metadata 与 Drive 全文索引。
+- 主页论文/引用同步继续使用公开 OpenAlex 数据，无需额外后端。
 
-## Pages
+## 页面
 
-- `index.html` — bilingual academic homepage, publication filters/BibTeX tools, and Google Scholar sync.
-- `research-workbench.html` — Research Radar: discover → Drive dedupe → select → archive → capture inspiration.
-- `ccf-2026.html` — CCF seventh-edition journal/conference lookup tool.
-- `404.html` — GitHub Pages fallback.
+- `index.html` — 双语学术主页。
+- `research-workbench.html` — 私人 Research Radar。
+- `ccf-2026.html` — CCF 第七版目录查询。
 
-## Important files
+## 关键文件
 
-- `assets/research-config.js` — public integration config (Worker URL + Google OAuth Web Client ID only).
-- `backend/research-worker/worker.js` — Cloudflare Worker for Scholar, OpenAlex/arXiv aggregation, and safe OA-PDF resolution.
-- `RESEARCH_RADAR_SETUP.md` — one-time deployment/configuration instructions.
+- `assets/research-config.js` — 公开配置（Google OAuth Client ID、ORCID、paper 文件夹名等）。OAuth Client ID 不是密码。
+- `assets/radar-gate.js` — Research Radar 的前端访问门禁。
+- `assets/workbench.js` — 论文发现、Drive OAuth、去重、归档与灵感篮子逻辑。
+- `assets/ccf-a-2026.js` — CCF A 类 venue 数据。
+- `GOOGLE_OAUTH_SETUP.md` — Google OAuth 配置说明与排错。
 
-## Local preview
+## 安全说明
 
-```bash
-python -m http.server 8000
-```
+Research Radar 的密码门禁运行在纯静态 GitHub Pages 前端，因此它适合“防普通访客误入/随手访问”，但不能替代真正的服务器端身份认证。熟悉前端的人仍可能绕过页面门禁。若未来需要真正的访问控制，应使用 Cloudflare Access、反向代理登录或其他服务端认证方案。
 
-Open `http://localhost:8000/`.
-
-Google Drive OAuth only works from origins registered in the Google OAuth client. Add both the production GitHub Pages origin and your local origin when testing.
-
-## Security / privacy
-
-Never commit SerpAPI keys, Google OAuth client secrets, Google access tokens, unpublished research data, or review-confidential content.
-
-- `SERPAPI_KEY` and `SCHOLAR_AUTHOR_ID` are Cloudflare Worker secrets/environment variables.
-- The Google OAuth **Client ID** is public by design and may be committed.
-- Google Drive Access Tokens remain only in the active browser tab's memory and are never stored in localStorage or sent to the Worker.
-- The Worker can resolve only arXiv/OpenAlex paper identifiers to open-access PDFs; it is not an arbitrary URL proxy and does not bypass publisher paywalls.
+Google Drive Access Token 仅保存在当前页面运行内存，不写入仓库或 localStorage。

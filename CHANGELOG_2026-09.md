@@ -46,3 +46,12 @@ This remains a plain static GitHub Pages project. Replace the repository content
 - Added homepage Google Scholar sync, citation-count badges, and dynamically surfaced new Scholar entries.
 - Added Cloudflare Worker backend for Scholar, discovery aggregation, and safe OA-PDF resolution.
 - Added `RESEARCH_RADAR_SETUP.md` with one-time deployment instructions.
+
+## Research Radar v5 — 2026-09-23
+
+- Added a client-side password gate for `research-workbench.html` with session-only unlock and manual relock.
+- Preconfigured the Google OAuth Web Client ID for the production GitHub Pages origin.
+- Added all ACM Transactions journals as an independent Radar source family, in addition to IEEE Transactions, CCF A, and arXiv.
+- Greatly broadened discovery topics across ML/LLM/generative-model security, privacy, poisoning/backdoors, model extraction, forensics, provenance, trustworthy AI, federated-learning security, and transferable methods from cryptography, statistics, information theory, OOD/anomaly detection, representation learning, causality, influence functions, and data valuation.
+- Increased OpenAlex/arXiv retrieval volume and Balanced/Explore quotas while batching OpenAlex calls to reduce burst rate-limit risk.
+- Versioned Radar preferences to ensure the broader v5 defaults are used instead of stale v4 keyword settings.
